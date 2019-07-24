@@ -73,12 +73,15 @@ export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable {
   public phiniteState!: PhiniteState.Component<Adventurer>;
 
   create(scene: Phaser.Scene) {
+    // Components
     const renderable = new Renderable(scene, 200, 200, 'adventurer-core');
     renderable.create();
-    this.sprite = renderable.getSprite();
-    this.sprite.setScale(2);
 
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
     this.phiniteState.create();
+
+    // Actual Create
+    this.sprite = renderable.getSprite();
+    this.sprite.setScale(2);
   }
 }
