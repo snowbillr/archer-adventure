@@ -1,6 +1,6 @@
 import 'phaser';
 
-export class PhiniteState<T> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends HasPhiniteState<T>> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];
@@ -19,7 +19,7 @@ export class PhiniteState<T> implements PhiniteState.Component<T> {
     const transitionEventTypes = [Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, Phaser.Input.Keyboard.Events.ANY_KEY_UP];
 
     transitionEventTypes.forEach(eventType => {
-      this.scene.input.keyboard.on(eventType, e => {
+      this.scene.input.keyboard.on(eventType, (e: any) => {
         const transition = this.currentState.transitions
           .filter(transition => transition.event === eventType)
           .find(transition => transition.key === e.key);

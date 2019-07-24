@@ -19,7 +19,7 @@ export class AnimTestScene extends Phaser.Scene {
     const frameText = this.add.text(200, 150, `${cycle[cycleIndex]}`);
 
 
-    this.input.keyboard.on('keydown', e => {
+    this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
         case "ArrowUp":
           cycleIndex++;
