@@ -1,4 +1,5 @@
 import { PhiniteState } from '../components/phinite-state';
+import { Renderable } from '../components/renderable';
 
 const states = [
   {
@@ -67,13 +68,14 @@ const states = [
   }
 ];
 
-export class Adventurer implements HasPhiniteState<Adventurer> {
+export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable {
   public sprite!: Phaser.GameObjects.Sprite
-
   public phiniteState!: PhiniteState.Component<Adventurer>;
 
   create(scene: Phaser.Scene) {
-    this.sprite = scene.add.sprite(200, 200, 'adventurer-core');
+    const renderable = new Renderable(scene, 200, 200, 'adventurer-core');
+    renderable.create();
+    this.sprite = renderable.getSprite();
     this.sprite.setScale(2);
 
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));

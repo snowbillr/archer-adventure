@@ -1,3 +1,5 @@
+import 'phaser';
+
 export class PhiniteState<T> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
