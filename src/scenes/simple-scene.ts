@@ -1,5 +1,7 @@
 import 'phaser';
 
+import { Adventurer } from '../entities/adventurer';
+
 type Transition = {
   event: string,
   key: string,
@@ -9,18 +11,15 @@ type Transition = {
 type State = {
   id: string,
   animationKey: string,
-  onEnter?: (sprite: Phaser.GameObjects.Sprite) => void,
+  onEnter?: (adventurer: Adventurer) => void,
   transitions: Transition[],
 }
 
 export class SimpleScene extends Phaser.Scene {
-  private xVelocity: number = 0;
-  private xDirection: number = 0;
-
   private currentState: State;
   private states: State[] = [];
 
-  private sprite!: Phaser.GameObjects.Sprite;
+  private adventurer: Adventurer = new Adventurer();
 
   preload() {
     this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
@@ -55,8 +54,8 @@ export class SimpleScene extends Phaser.Scene {
       {
         id: 'adventurer-run-right',
         animationKey: 'adventurer-run',
-        onEnter(sprite: Phaser.GameObjects.Sprite) {
-          sprite.flipX = false;
+        onEnter(adventurer: Adventurer) {
+          adventurer.sprite.flipX = false;
         },
         transitions: [
           {
@@ -69,8 +68,8 @@ export class SimpleScene extends Phaser.Scene {
       {
         id: 'adventurer-run-left',
         animationKey: 'adventurer-run',
-        onEnter(sprite: Phaser.GameObjects.Sprite) {
-          sprite.flipX = true;
+        onEnter(adventurer: Adventurer) {
+          adventurer.sprite.flipX = true;
         },
         transitions: [
           {
@@ -103,22 +102,14 @@ export class SimpleScene extends Phaser.Scene {
 
         if (transition) {
           this.currentState = <State> this.states.find(state => state.id === transition.to);
-          this.sprite.anims.play(this.currentState.animationKey, true);
+          this.adventurer.sprite.anims.play(this.currentState.animationKey, true);
           if (this.currentState.onEnter) {
-            this.currentState.onEnter(this.sprite);
+            this.currentState.onEnter(this.adventurer);
           }
         }
       });
     });
 
-
-    this.sprite = this.add.sprite(200, 200, 'adventurer-core');
-    this.sprite.setScale(2);
-    // this.sprite.anims.play('adventurer-idle');
-
-  }
-
-  update() {
-    this.sprite.x += this.xVelocity * this.xDirection;
+    this.adventurer.create(this);
   }
 }
