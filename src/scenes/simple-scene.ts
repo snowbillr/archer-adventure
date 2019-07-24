@@ -25,30 +25,11 @@ export class SimpleScene extends Phaser.Scene {
   preload() {
     this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
+
+    this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
   }
 
   create() {
-    this.anims.create({
-      key: 'adventurer-idle',
-      frames: this.anims.generateFrameNumbers('adventurer-core', { start: 0, end: 3 }),
-      repeat: -1,
-      frameRate: 4,
-    });
-
-    this.anims.create({
-      key: 'adventurer-run',
-      frames: this.anims.generateFrameNumbers('adventurer-core', { start: 8, end: 13 }),
-      repeat: -1,
-      frameRate: 8,
-    });
-
-    this.anims.create({
-      key: 'adventurer-crouch',
-      frames: this.anims.generateFrameNumbers('adventurer-core', { start: 4, end: 7 }),
-      repeat: -1,
-      frameRate: 4,
-    });
-
     this.states = [
       {
         id:'adventurer-idle',

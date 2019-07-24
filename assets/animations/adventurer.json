@@ -1,0 +1,39 @@
+{
+  "anims": [
+    {
+      "key": "adventurer-idle",
+      "frames": [
+        { "key": "adventurer-core", "frame": 0 },
+        { "key": "adventurer-core", "frame": 1 },
+        { "key": "adventurer-core", "frame": 2 },
+        { "key": "adventurer-core", "frame": 3 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    },
+    {
+      "key": "adventurer-run",
+      "frames": [
+        { "key": "adventurer-core", "frame": 8 },
+        { "key": "adventurer-core", "frame": 9 },
+        { "key": "adventurer-core", "frame": 10 },
+        { "key": "adventurer-core", "frame": 11 },
+        { "key": "adventurer-core", "frame": 12 },
+        { "key": "adventurer-core", "frame": 13 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    },
+    {
+      "key": "adventurer-crouch",
+      "frames": [
+        { "key": "adventurer-core", "frame": 4 },
+        { "key": "adventurer-core", "frame": 5 },
+        { "key": "adventurer-core", "frame": 6 },
+        { "key": "adventurer-core", "frame": 7 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    }
+  ]
+}
