@@ -67,16 +67,16 @@ const states = [
   }
 ];
 
-export class Adventurer {
+export class Adventurer implements HasPhiniteState<Adventurer> {
   public sprite!: Phaser.GameObjects.Sprite
 
-  public phiniteState!: PhiniteState<Adventurer>;
+  public phiniteState!: PhiniteState.Component<Adventurer>;
 
   create(scene: Phaser.Scene) {
     this.sprite = scene.add.sprite(200, 200, 'adventurer-core');
     this.sprite.setScale(2);
 
-    this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
+    this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
     this.phiniteState.create();
   }
 }

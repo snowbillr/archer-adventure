@@ -1,11 +1,11 @@
-export class PhiniteState<T> {
+export class PhiniteState<T> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
-  private states: State<T>[];
+  private states: PhiniteState.State<T>[];
 
-  private currentState: State<T>;
+  private currentState: PhiniteState.State<T>;
 
-  constructor(scene: Phaser.Scene, entity: T, states: State<T>[], initialState: State<T>) {
+  constructor(scene: Phaser.Scene, entity: T, states: PhiniteState.State<T>[], initialState: PhiniteState.State<T>) {
     this.scene = scene;
     this.entity = entity;
     this.states = states;
@@ -23,7 +23,7 @@ export class PhiniteState<T> {
           .find(transition => transition.key === e.key);
 
         if (transition) {
-          this.currentState = <State<T>> this.states.find(state => state.id === transition.to);
+          this.currentState = <PhiniteState.State<T>> this.states.find(state => state.id === transition.to);
           if (this.currentState.onEnter) {
             this.currentState.onEnter(this.entity);
           }
