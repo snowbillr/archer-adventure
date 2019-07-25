@@ -2,7 +2,7 @@ import 'phaser';
 
 export enum TransitionType {
   Input,
-  Animation,
+  AnimationEnd,
 }
 
 // only care about the `currentState`
@@ -12,7 +12,7 @@ export enum TransitionType {
 // when transitioning away from a state
   // cancel its transition triggers
 
-export class PhiniteState<T extends HasPhiniteState<T>> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];
@@ -30,19 +30,18 @@ export class PhiniteState<T extends HasPhiniteState<T>> implements PhiniteState.
   }
 
   create() {
-    // register transition handlers
-    // call onEnter
     this.transition(this.currentState.id);
   }
 
   private transition(toId: string) {
     this.cancelTransitionTriggers();
+
     this.currentState = this.states.find(state => state.id === toId) as PhiniteState.State<T>;
-    this.registerTransitionTriggers();
 
     if (this.currentState.onEnter) {
       this.currentState.onEnter(this.entity);
     }
+    this.registerTransitionTriggers();
   }
 
   cancelTransitionTriggers() {
@@ -55,6 +54,9 @@ export class PhiniteState<T extends HasPhiniteState<T>> implements PhiniteState.
       switch(transition.type) {
         case TransitionType.Input:
           this.registerInputTransitionTrigger(transition as PhiniteState.InputTransition);
+          break;
+        case TransitionType.AnimationEnd:
+          this.registerAnimationEndTransitionTrigger(transition as PhiniteState.AnimationEndTransition);
           break;
       }
     });
@@ -71,35 +73,12 @@ export class PhiniteState<T extends HasPhiniteState<T>> implements PhiniteState.
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
-  /*
-  private registerInputTransitionHandler(transitions: PhiniteState.Transition[]) {
-    const transitionKeyboardEventTypes = [Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, Phaser.Input.Keyboard.Events.ANY_KEY_UP];
+  registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition) {
+    const listener = () => {
+      this.transition(transition.to);
+    }
 
-    transitionKeyboardEventTypes.forEach(eventType => {
-      this.scene.input.keyboard.on(eventType, (e: any) => {
-        const transition = transitions.find(transition => {
-          return transition.from === this.currentState.id
-          && transition.event === eventType
-          && transition.key === e.key;
-        });
-
-        if (transition) {
-          this.transition(this.currentState, <PhiniteState.State<T>> this.states.find(state => state.id === transition.to));
-        }
-      });
-    });
+    this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);
+    this.triggerCancelers.push(() => this.entity.sprite.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
   }
-
-  private registerAnimationTransitionHandler(transitions: PhiniteState.Transition[]) {
-    transitions.forEach(transition => {
-      const fromState = <PhiniteState.State<T>> this.states.find(state => transition.from === state.id);
-      const fromStateOnEnter = fromState.onEnter;
-
-      fromState.onEnter = (entity: T) => {
-
-      }
-    })
-  }
-  */
-
 }

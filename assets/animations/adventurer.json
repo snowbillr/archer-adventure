@@ -45,7 +45,8 @@
         { "key": "adventurer-core", "frame": 26 },
         { "key": "adventurer-core", "frame": 27 },
         { "key": "adventurer-core", "frame": 28 }
-      ]
+      ],
+      "frameRate": 9
     }
   ]
 }

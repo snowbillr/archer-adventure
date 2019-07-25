@@ -87,11 +87,11 @@ const states: PhiniteState.State<Adventurer>[] = [
   {
     id: 'adventurer-slide',
     onEnter(adventurer: Adventurer) {
-      // adventurer.sprite.anims.play('adventurer-slide', true)
+      adventurer.sprite.anims.play('adventurer-slide')
     },
     transitions: [
       {
-        type: TransitionType.Animation,
+        type: TransitionType.AnimationEnd,
         animationKey: 'adventurer-slide',
         to: 'adventurer-idle',
       }

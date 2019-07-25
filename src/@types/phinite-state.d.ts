@@ -9,13 +9,13 @@ declare namespace PhiniteState {
     key: string,
   }
 
-  type AnimationTransition = Transition & {
+  type AnimationEndTransition = Transition & {
     animationKey: string
   }
 
   type State<T> = {
     id: string,
-    transitions: (InputTransition | AnimationTransition)[],
+    transitions: (InputTransition | AnimationEndTransition)[],
     onEnter?: (entity: T) => void,
   }
 
