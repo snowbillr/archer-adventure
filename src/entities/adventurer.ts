@@ -1,25 +1,28 @@
-import { PhiniteState } from '../components/phinite-state';
+import { PhiniteState, TransitionType } from '../components/phinite-state';
 import { Renderable } from '../components/renderable';
 
-const states = [
+const states: PhiniteState.State<Adventurer>[] = [
   {
     id:'adventurer-idle',
     onEnter(adventurer: Adventurer) {
-      adventurer.sprite.anims.play('adventurer-idle', true);
+      adventurer.sprite.anims.play('adventurer-idle');
     },
     transitions: [
       {
-        event: 'keydown',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowRight',
         to: 'adventurer-run-right',
       },
       {
-        event: 'keydown',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowLeft',
         to: 'adventurer-run-left',
       },
       {
-        event: 'keydown',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowDown',
         to: 'adventurer-crouch',
       }
@@ -29,13 +32,20 @@ const states = [
     id: 'adventurer-run-right',
     onEnter(adventurer: Adventurer) {
       adventurer.sprite.flipX = false;
-      adventurer.sprite.anims.play('adventurer-run', true);
+      adventurer.sprite.anims.play('adventurer-run');
     },
     transitions: [
       {
-        event: 'keyup',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
         key: 'ArrowRight',
         to: 'adventurer-idle',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowDown',
+        to: 'adventurer-slide',
       }
     ]
   },
@@ -43,28 +53,49 @@ const states = [
     id: 'adventurer-run-left',
     onEnter(adventurer: Adventurer) {
       adventurer.sprite.flipX = true;
-      adventurer.sprite.anims.play('adventurer-run', true);
+      adventurer.sprite.anims.play('adventurer-run');
     },
     transitions: [
       {
-        event: 'keyup',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
         key: 'ArrowLeft',
         to: 'adventurer-idle',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowDown',
+        to: 'adventurer-slide',
       }
     ]
   },
   {
     id: 'adventurer-crouch',
     onEnter(adventurer: Adventurer) {
-      adventurer.sprite.anims.play('adventurer-crouch', true);
+      adventurer.sprite.anims.play('adventurer-crouch');
     },
     transitions: [
       {
-        event: 'keyup',
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
         key: 'ArrowDown',
         to: 'adventurer-idle',
       }
     ]
+  },
+  {
+    id: 'adventurer-slide',
+    onEnter(adventurer: Adventurer) {
+      // adventurer.sprite.anims.play('adventurer-slide', true)
+    },
+    transitions: [
+      {
+        type: TransitionType.Animation,
+        animationKey: 'adventurer-slide',
+        to: 'adventurer-idle',
+      }
+    ],
   }
 ];
 
@@ -73,15 +104,13 @@ export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable {
   public phiniteState!: PhiniteState.Component<Adventurer>;
 
   create(scene: Phaser.Scene) {
-    // Components
     const renderable = new Renderable(scene, 200, 200, 'adventurer-core');
     renderable.create();
+    this.sprite = renderable.getSprite();
+    this.sprite.setScale(2);
 
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
     this.phiniteState.create();
 
-    // Actual Create
-    this.sprite = renderable.getSprite();
-    this.sprite.setScale(2);
   }
 }

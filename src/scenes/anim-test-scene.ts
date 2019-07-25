@@ -9,8 +9,8 @@ export class AnimTestScene extends Phaser.Scene {
   }
 
   create() {
-    // const cycle = [4, 5, 6, 7];
-    const cycle = Array.from({ length: 111 }, (v, i) => i);
+    const cycle = [6, 24, 25, 26, 27, 28];
+    // const cycle = Array.from({ length: 111 }, (v, i) => i);
     let cycleIndex = 0;
 
     this.sprite = this.add.sprite(200, 200, 'adventurer-core', cycle[cycleIndex]);

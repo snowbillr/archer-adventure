@@ -34,6 +34,18 @@
       ],
       "repeat": -1,
       "frameRate": 4
+    },
+    {
+      "key": "adventurer-slide",
+      "frames": [
+        { "key": "adventurer-core", "frame": 6 },
+        { "key": "adventurer-core", "frame": 24 },
+        { "key": "adventurer-core", "frame": 24 },
+        { "key": "adventurer-core", "frame": 25 },
+        { "key": "adventurer-core", "frame": 26 },
+        { "key": "adventurer-core", "frame": 27 },
+        { "key": "adventurer-core", "frame": 28 }
+      ]
     }
   ]
 }
