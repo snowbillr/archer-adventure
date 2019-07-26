@@ -33,10 +33,11 @@ export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable & Controla
     this.transition(this.currentState.id);
   }
 
-  private transition(toId: string) {
+  private transition(to: string | PhiniteState.TransitionToFn<T>) {
     this.cancelTransitionTriggers();
 
-    this.currentState = this.states.find(state => state.id === toId) as PhiniteState.State<T>;
+    const nextStateId = typeof to === 'string' ? to : to(this.entity);
+    this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteState.State<T>;
 
     if (this.currentState.onEnter) {
       this.currentState.onEnter(this.entity);
@@ -53,20 +54,19 @@ export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable & Controla
     this.currentState.transitions.forEach(transition => {
       switch(transition.type) {
         case TransitionType.Input:
-          this.registerInputTransitionTrigger(transition as PhiniteState.InputTransition);
+          this.registerInputTransitionTrigger(transition as PhiniteState.InputTransition<T>);
           break;
         case TransitionType.AnimationEnd:
-          this.registerAnimationEndTransitionTrigger(transition as PhiniteState.AnimationEndTransition);
+          this.registerAnimationEndTransitionTrigger(transition as PhiniteState.AnimationEndTransition<T>);
           break;
       }
     });
   }
 
-  registerInputTransitionTrigger(transition: PhiniteState.InputTransition) {
+  registerInputTransitionTrigger(transition: PhiniteState.InputTransition<T>) {
     const listener = (e: KeyboardEvent) => {
       if (e.key === transition.key) {
-        const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
-        this.transition(nextStateId);
+        this.transition(transition.to);
       }
     }
 
@@ -74,10 +74,9 @@ export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable & Controla
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
-  registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition) {
+  registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition<T>) {
     const listener = () => {
-      const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
-      this.transition(nextStateId);
+      this.transition(transition.to);
     }
 
     this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);

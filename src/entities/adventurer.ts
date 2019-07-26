@@ -94,7 +94,7 @@ const states: PhiniteState.State<Adventurer>[] = [
       {
         type: TransitionType.AnimationEnd,
         animationKey: 'adventurer-slide',
-        to: (adventurer: Controlable.IsControlable) => {
+        to: (adventurer: Adventurer) => {
           if (adventurer.controls.left.isDown) {
             return 'adventurer-run-left';
           } else if (adventurer.controls.right.isDown) {

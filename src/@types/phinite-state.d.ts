@@ -1,23 +1,27 @@
 declare namespace PhiniteState {
-  type Transition = {
-    type: TransitionType,
-    to: string | ((entity: Controlable.IsControlable) => string),
+  type State<T> = {
+    id: string,
+    transitions: Transition<T>[],
+    onEnter?: (entity: T) => void,
   }
 
-  type InputTransition = Transition & {
+  type TransitionToFn<T> = (entity: T) => string;
+
+  type BaseTransition<T> = {
+    type: TransitionType,
+    to: string | TransitionToFn<T>,
+  }
+
+  type InputTransition<T> = BaseTransition<T> & {
     event: string,
     key: string,
   }
 
-  type AnimationEndTransition = Transition & {
+  type AnimationEndTransition<T> = BaseTransition<T> & {
     animationKey: string
   }
 
-  type State<T> = {
-    id: string,
-    transitions: (InputTransition | AnimationEndTransition)[],
-    onEnter?: (entity: T) => void,
-  }
+  type Transition<T> = InputTransition<T> | AnimationEndTransition<T>
 
   interface Component<T> {
     create(): void
