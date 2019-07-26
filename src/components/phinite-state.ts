@@ -12,7 +12,7 @@ export enum TransitionType {
 // when transitioning away from a state
   // cancel its transition triggers
 
-export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable & Controlable.IsControlable> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];
@@ -65,7 +65,8 @@ export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable> implement
   registerInputTransitionTrigger(transition: PhiniteState.InputTransition) {
     const listener = (e: KeyboardEvent) => {
       if (e.key === transition.key) {
-        this.transition(transition.to);
+        const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
+        this.transition(nextStateId);
       }
     }
 
@@ -75,7 +76,8 @@ export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable> implement
 
   registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition) {
     const listener = () => {
-      this.transition(transition.to);
+      const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
+      this.transition(nextStateId);
     }
 
     this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);

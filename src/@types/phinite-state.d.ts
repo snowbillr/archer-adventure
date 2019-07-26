@@ -1,7 +1,7 @@
 declare namespace PhiniteState {
   type Transition = {
     type: TransitionType,
-    to: string,
+    to: string | ((entity: Controlable.IsControlable) => string),
   }
 
   type InputTransition = Transition & {

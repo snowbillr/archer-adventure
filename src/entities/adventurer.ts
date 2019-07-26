@@ -1,5 +1,6 @@
 import { PhiniteState, TransitionType } from '../components/phinite-state';
 import { Renderable } from '../components/renderable';
+import { Controlable } from '../components/controlable';
 
 const states: PhiniteState.State<Adventurer>[] = [
   {
@@ -93,15 +94,24 @@ const states: PhiniteState.State<Adventurer>[] = [
       {
         type: TransitionType.AnimationEnd,
         animationKey: 'adventurer-slide',
-        to: 'adventurer-idle',
+        to: (adventurer: Controlable.IsControlable) => {
+          if (adventurer.controls.left.isDown) {
+            return 'adventurer-run-left';
+          } else if (adventurer.controls.right.isDown) {
+            return 'adventurer-run-right';
+          } else {
+            return 'adventurer-idle';
+          }
+        }
       }
     ],
   }
 ];
 
-export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable {
+export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable, Controlable.IsControlable {
   public sprite!: Phaser.GameObjects.Sprite
   public phiniteState!: PhiniteState.Component<Adventurer>;
+  public controls!: Controlable.Controls;
 
   create(scene: Phaser.Scene) {
     const renderable = new Renderable(scene, 200, 200, 'adventurer-core');
@@ -109,8 +119,11 @@ export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable {
     this.sprite = renderable.getSprite();
     this.sprite.setScale(2);
 
+    const controlable = new Controlable(scene);
+    controlable.create();
+    this.controls = controlable.getControls();
+
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
     this.phiniteState.create();
-
   }
 }
