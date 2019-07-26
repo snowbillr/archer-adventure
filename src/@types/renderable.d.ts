@@ -3,8 +3,9 @@ declare namespace Renderable {
     create(): void;
     getSprite(): Phaser.GameObjects.Sprite;
   }
+
+  interface IsRenderable {
+    sprite: Phaser.GameObjects.Sprite;
+  }
 }
 
-declare interface IsRenderable {
-  sprite: Phaser.GameObjects.Sprite;
-}

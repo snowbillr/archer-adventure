@@ -108,9 +108,8 @@ const states: PhiniteState.State<Adventurer>[] = [
   }
 ];
 
-export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable, Controlable.IsControlable {
+export class Adventurer implements Renderable.IsRenderable, Controlable.IsControlable {
   public sprite!: Phaser.GameObjects.Sprite
-  public phiniteState!: PhiniteState.Component<Adventurer>;
   public controls!: Controlable.Controls;
 
   create(scene: Phaser.Scene) {
@@ -123,7 +122,7 @@ export class Adventurer implements HasPhiniteState<Adventurer>, IsRenderable, Co
     controlable.create();
     this.controls = controlable.getControls();
 
-    this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
-    this.phiniteState.create();
+    const phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
+    phiniteState.create();
   }
 }

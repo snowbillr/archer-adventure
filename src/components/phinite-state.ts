@@ -5,14 +5,7 @@ export enum TransitionType {
   AnimationEnd,
 }
 
-// only care about the `currentState`
-// when transitioning to a new state
-  // register its transition triggers (like a key event, or an animation finishing)
-  // run its onEnter function
-// when transitioning away from a state
-  // cancel its transition triggers
-
-export class PhiniteState<T extends HasPhiniteState<T> & IsRenderable & Controlable.IsControlable> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];

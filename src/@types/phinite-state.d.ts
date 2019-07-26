@@ -6,6 +6,7 @@ declare namespace PhiniteState {
   }
 
   type TransitionToFn<T> = (entity: T) => string;
+  type TransitionType = number;
 
   type BaseTransition<T> = {
     type: TransitionType,
@@ -28,8 +29,3 @@ declare namespace PhiniteState {
   }
 }
 
-declare interface HasPhiniteState<T> {
-  phiniteState: PhiniteState.Component<T>
-}
-
-declare type TransitionType = number;
