@@ -47,6 +47,12 @@ const states: PhiniteState.State<Adventurer>[] = [
         event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowDown',
         to: 'adventurer-slide',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowLeft',
+        to: 'adventurer-run-left',
       }
     ]
   },
@@ -68,6 +74,12 @@ const states: PhiniteState.State<Adventurer>[] = [
         event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowDown',
         to: 'adventurer-slide',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowRight',
+        to: 'adventurer-run-right',
       }
     ]
   },
