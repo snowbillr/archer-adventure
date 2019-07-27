@@ -21,4 +21,15 @@ export class Controlable implements Controlable.Component {
   getControls() {
     return this.controls;
   }
+
+  update(body: Phaser.Physics.Arcade.Body) {
+    // friction slowing the player down to 0
+    if ((body.velocity.x >= 0 && body.acceleration.x <= 0)
+        || (body.velocity.x <= 0 && body.acceleration.x >= 0)) {
+      if (Phaser.Math.Within(body.velocity.x, 0, 100)) {
+        body.acceleration.x = 0;
+        body.velocity.x = 0;
+      }
+    }
+  }
 }

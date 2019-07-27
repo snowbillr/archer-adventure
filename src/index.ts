@@ -9,6 +9,15 @@ const gameConfig = {
   scene: SimpleScene,
   // scene: AnimTestScene,
   pixelArt: true,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      // debug: true,
+      gravity: {
+        y: 0,
+      }
+    }
+  }
 };
 
 new Phaser.Game(gameConfig);
