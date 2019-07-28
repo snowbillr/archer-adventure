@@ -245,13 +245,17 @@ const states: PhiniteState.State<Adventurer>[] = [
           return Phaser.Math.Within(body.velocity.y, 0, 5);
         },
         to(adventurer: Adventurer) {
-          if (adventurer.controls.left.isDown) {
+          if (adventurer.controls.down.isDown) {
+            if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+              return 'adventurer-crouch';
+            } else {
+              return 'adventurer-slide';
+            }
+          } else if (adventurer.controls.left.isDown) {
             return 'adventurer-run-left';
           } else if (adventurer.controls.right.isDown) {
             return 'adventurer-run-right';
-          } else if (adventurer.controls.down.isDown) {
-            return 'adventurer-slide';
-          } else {
+          }  else {
             return 'adventurer-idle';
           }
         }
