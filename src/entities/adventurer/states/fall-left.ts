@@ -9,7 +9,7 @@ export const adventurerFallLeft = StateMerge(baseFall, {
   data: {
     horizontalMaxVelocity: movementAttributes.fallHorizontalMaxVelocity * -1,
   },
-  onEnter(adventurer: Adventurer, data: PhiniteState.StateData) {
+  onEnter(adventurer: Adventurer) {
     adventurer.sprite.flipX = true;
   },
   transitions: [

@@ -1,5 +1,6 @@
 import { Adventurer } from '..';
 import { TransitionType } from '../../../components/phinite-state';
+import { movementAttributes } from '../movement-attributes';
 
 export const adventurerJumpPrep = {
   id: 'adventurer-jump-prep',
@@ -13,8 +14,17 @@ export const adventurerJumpPrep = {
       type: TransitionType.AnimationEnd,
       animationKey: 'adventurer-jump-prep',
       to: (adventurer: Adventurer) => {
-        return 'adventurer-jump';
-      }
+        if (adventurer.body.velocity.x > 0) {
+          return 'adventurer-jump-right';
+        } else if (adventurer.body.velocity.x < 0) {
+          return 'adventurer-jump-left';
+        } else {
+          return 'adventurer-jump';
+        }
+      },
+      onTransition: (adventurer: Adventurer) => {
+        adventurer.body.velocity.y = movementAttributes.jumpVelocity;
+      },
     }
   ]
 }
