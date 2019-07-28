@@ -8,5 +8,7 @@ export const movementAttributes: { [key: string]: number } = {
   slideDeceleration: 400,
 
   jumpVelocity: -400,
-  fallDriftAcceleration: 300,
+
+  fallHorizontalMaxVelocity: 150,
+  fallHorizontalAcceleration: 200,
 }

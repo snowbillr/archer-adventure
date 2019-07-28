@@ -34,7 +34,7 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
 
   update() {
     if (this.currentState.onUpdate) {
-      this.currentState.onUpdate(this.entity);
+      this.currentState.onUpdate(this.entity, this.currentState.data || {});
     }
   }
 
@@ -49,7 +49,7 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
     }
 
     if (this.currentState.onEnter) {
-      this.currentState.onEnter(this.entity);
+      this.currentState.onEnter(this.entity, this.currentState.data || {});
     }
     this.registerTransitionTriggers();
   }
@@ -120,12 +120,14 @@ export function StateMerge<T>(state1: Partial<PhiniteState.State<T>>, state2: Pa
 
       return deduped;
     }, []);
+  const data: PhiniteState.StateData = { ...state1.data, ...state2.data };
 
   const mergedState = {
     id: state1.id || state2.id,
     transitions: transitions,
-    onEnter: (entity: T) => onEnterChain.forEach(fn => fn!(entity)),
-    onUpdate: (entity: T) => onUpdateChain.forEach(fn => fn!(entity)),
+    data,
+    onEnter: (entity: T, data: PhiniteState.StateData) => onEnterChain.forEach(fn => fn!(entity, data)),
+    onUpdate: (entity: T, data: PhiniteState.StateData) => onUpdateChain.forEach(fn => fn!(entity, data)),
   }
 
   return mergedState as PhiniteState.State<T>;

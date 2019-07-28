@@ -4,9 +4,14 @@ declare namespace PhiniteState {
   type State<T> = {
     id: string;
     transitions: Transition<T>[];
-    onEnter?: (entity: T) => void;
-    onUpdate?: (entity: T) => void;
+    data?: {[key: string]: any},
+    onEnter?: StateCallbackFn<T>;
+    onUpdate?: StateCallbackFn<T>;
   }
+  type StateData = {
+    [key: string]: any;
+  }
+  type StateCallbackFn<T> = (entity: T, data: StateData) => void;
 
   type TransitionToFn<T> = (entity: T) => string;
   type TransitionType = number;

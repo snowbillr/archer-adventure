@@ -1,6 +1,4 @@
-import { Adventurer } from '..';
 import { TransitionType, StateMerge } from '../../../components/phinite-state';
-import { movementAttributes } from '../movement-attributes';
 import { baseFall } from './base-fall';
 
 export const adventurerFall = StateMerge(baseFall, {

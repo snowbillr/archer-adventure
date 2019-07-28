@@ -3,8 +3,20 @@ import { TransitionType } from '../../../components/phinite-state';
 import { movementAttributes } from '../movement-attributes';
 
 export const baseFall: Partial<PhiniteState.State<Adventurer>> = {
-  onEnter(adventurer :Adventurer) {
+  onEnter(adventurer :Adventurer, data: PhiniteState.StateData) {
     adventurer.sprite.anims.play('adventurer-fall');
+
+    if (adventurer.body.velocity.x < data.horizontalMaxVelocity) {
+      adventurer.body.acceleration.x = movementAttributes.fallHorizontalAcceleration;
+    } else if (adventurer.body.velocity.x > data.horizontalMaxVelocity) {
+      adventurer.body.acceleration.x = -1 * movementAttributes.fallHorizontalAcceleration;
+    }
+  },
+  onUpdate(adventurer :Adventurer, data: PhiniteState.StateData) {
+    if (Phaser.Math.Within(data.horizontalMaxVelocity, adventurer.body.velocity.x, 5)) {
+      adventurer.body.acceleration.x = 0;
+      adventurer.body.velocity.x = data.horizontalMaxVelocity;
+    }
   },
   transitions: [
     {
