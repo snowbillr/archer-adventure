@@ -54,7 +54,7 @@
         { "key": "adventurer-core", "frame": 14 },
         { "key": "adventurer-core", "frame": 15 }
       ],
-      "frameRate": 12
+      "frameRate": 16
     },
     {
       "key": "adventurer-jump-rise",
@@ -62,7 +62,7 @@
         { "key": "adventurer-core", "frame": 16 },
         { "key": "adventurer-core", "frame": 17 }
       ],
-      "frameRate": 12
+      "frameRate": 9
     },
     {
       "key": "adventurer-fall",
@@ -70,7 +70,7 @@
         { "key": "adventurer-core", "frame": 22 },
         { "key": "adventurer-core", "frame": 23 }
       ],
-      "frameRate": 12,
+      "frameRate": 9,
       "repeat": -1
     }
   ]
