@@ -110,10 +110,20 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
 export function StateMerge<T>(state1: Partial<PhiniteState.State<T>>, state2: Partial<PhiniteState.State<T>>): PhiniteState.State<T> {
   const onEnterChain = [state1.onEnter, state2.onEnter].filter(Boolean);
   const onUpdateChain = [state1.onUpdate, state2.onUpdate].filter(Boolean);
+  const transitions = [state1.transitions, state2.transitions]
+    .filter(Boolean)
+    .flat()
+    .reduce((deduped: PhiniteState.Transition<T>[], transition) => {
+      if (!deduped.find(t => t.to === transition.to)) {
+        deduped.push(transition);
+      }
+
+      return deduped;
+    }, []);
 
   const mergedState = {
     id: state1.id || state2.id,
-    transitions: state1.transitions || state2.transitions,
+    transitions: transitions,
     onEnter: (entity: T) => onEnterChain.forEach(fn => fn!(entity)),
     onUpdate: (entity: T) => onUpdateChain.forEach(fn => fn!(entity)),
   }

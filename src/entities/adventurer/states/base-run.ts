@@ -1,11 +1,32 @@
 import { Adventurer } from '../index';
 import { movementAttributes } from '../movement-attributes';
+import { TransitionType } from '../../../components/phinite-state';
 
 export const baseRun = {
   onEnter(adventurer: Adventurer) {
     adventurer.sprite.flipX = false;
     adventurer.sprite.anims.play('adventurer-run');
   },
+  transitions: [
+    {
+      type: TransitionType.Input,
+      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+      key: 'ArrowDown',
+      to: (adventurer: Adventurer) => {
+        if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+          return 'adventurer-crouch';
+        } else {
+          return 'adventurer-slide';
+        }
+      }
+    },
+    {
+      type: TransitionType.Input,
+      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+      key: 'ArrowUp',
+      to: 'adventurer-jump',
+    }
+  ]
 }
 
 export function startRunning(adventurer: Adventurer, direction: "left" | "right") {
