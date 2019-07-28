@@ -228,7 +228,96 @@ const states: PhiniteState.State<Adventurer>[] = [
           const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
           return body.velocity.y > 0;
         },
-        to: 'adventurer-fall',
+        to(adventurer: Adventurer) {
+          const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+          if (body.velocity.x > 0) {
+            return 'adventurer-fall-right';
+          } else if (body.velocity.x < 0) {
+            return 'adventurer-fall-left';
+          } else {
+            return 'adventurer-fall;'
+          }
+        }
+      }
+    ]
+  },
+  {
+    id: 'adventurer-fall-left',
+    onEnter(adventurer: Adventurer) {
+      adventurer.sprite.anims.play('adventurer-fall');
+      adventurer.sprite.flipX = true;
+
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      body.acceleration.x = -300;
+    },
+    transitions: [
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowRight',
+        to: 'adventurer-fall-right',
+      },
+      {
+        type: TransitionType.Conditional,
+        condition: (adventurer: Adventurer) => {
+          const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+          return Phaser.Math.Within(body.velocity.y, 0, 5);
+        },
+        to(adventurer: Adventurer) {
+          if (adventurer.controls.down.isDown) {
+            if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+              return 'adventurer-crouch';
+            } else {
+              return 'adventurer-slide';
+            }
+          } else if (adventurer.controls.left.isDown) {
+            return 'adventurer-run-left';
+          } else if (adventurer.controls.right.isDown) {
+            return 'adventurer-run-right';
+          }  else {
+            return 'adventurer-idle';
+          }
+        }
+      }
+    ]
+  },
+  {
+    id: 'adventurer-fall-right',
+    onEnter(adventurer: Adventurer) {
+      adventurer.sprite.anims.play('adventurer-fall');
+      adventurer.sprite.flipX = false;
+
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      body.acceleration.x = 300;
+    },
+    transitions: [
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowLeft',
+        to: 'adventurer-fall-left',
+      },
+      {
+        type: TransitionType.Conditional,
+        condition: (adventurer: Adventurer) => {
+          const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+          return Phaser.Math.Within(body.velocity.y, 0, 5);
+        },
+        to(adventurer: Adventurer) {
+          if (adventurer.controls.down.isDown) {
+            if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+              return 'adventurer-crouch';
+            } else {
+              return 'adventurer-slide';
+            }
+          } else if (adventurer.controls.left.isDown) {
+            return 'adventurer-run-left';
+          } else if (adventurer.controls.right.isDown) {
+            return 'adventurer-run-right';
+          }  else {
+            return 'adventurer-idle';
+          }
+        }
       }
     ]
   },
@@ -238,6 +327,18 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-fall');
     },
     transitions: [
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowLeft',
+        to: 'adventurer-fall-left',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowRight',
+        to: 'adventurer-fall-right',
+      },
       {
         type: TransitionType.Conditional,
         condition: (adventurer: Adventurer) => {
