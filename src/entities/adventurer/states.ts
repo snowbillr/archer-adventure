@@ -1,6 +1,4 @@
-import { TransitionType } from '../../components/phinite-state';
 import { Adventurer } from './index';
-import { movementAttributes } from './movement-attributes';
 
 import { adventurerStand } from './states/stand';
 import { adventurerCrouch } from './states/crouch';

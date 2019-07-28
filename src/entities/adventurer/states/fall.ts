@@ -3,6 +3,9 @@ import { baseFall } from './base-fall';
 
 export const adventurerFall = StateMerge(baseFall, {
   id: 'adventurer-fall',
+  data: {
+    horizontalMaxVelocity: 0,
+  },
   transitions: [
     {
       type: TransitionType.Input,

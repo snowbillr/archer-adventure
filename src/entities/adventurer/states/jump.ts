@@ -5,7 +5,7 @@ import { Adventurer } from '..';
 export const adventurerJump = StateMerge(baseJump, {
   id: 'adventurer-jump',
   data: {
-    horizontalMaxVelocity: 0,
+    targetAerialHorizontalVelocity: 0,
   },
   transitions: [
     {
