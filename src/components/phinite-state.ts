@@ -7,7 +7,7 @@ export enum TransitionType {
   AnimationEnd,
 }
 
-export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];

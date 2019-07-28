@@ -8,7 +8,7 @@ declare namespace Controlable {
     getControls: () => Controls;
   }
 
-  interface IsControlable {
+  interface Entity {
     controls: Controls;
     controlable: Component;
   }

@@ -4,7 +4,7 @@ declare namespace PhysicallyRenderable {
     getSprite: () => Phaser.Physics.Arcade.Sprite;
   }
 
-  interface IsPhysicallyRenderable {
+  interface Entity {
     sprite: Phaser.GameObjects.Sprite;
   }
 }

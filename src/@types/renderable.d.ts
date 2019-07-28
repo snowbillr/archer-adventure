@@ -4,7 +4,7 @@ declare namespace Renderable {
     getSprite(): Phaser.GameObjects.Sprite;
   }
 
-  interface IsRenderable {
+  interface Entity {
     sprite: Phaser.GameObjects.Sprite;
   }
 }

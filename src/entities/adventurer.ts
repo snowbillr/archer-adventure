@@ -182,7 +182,7 @@ const states: PhiniteState.State<Adventurer>[] = [
   }
 ];
 
-export class Adventurer implements PhysicallyRenderable.IsPhysicallyRenderable, Controlable.IsControlable {
+export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Entity {
   public sprite!: Phaser.Physics.Arcade.Sprite;
   public controls!: Controlable.Controls;
   public controlable!: Controlable.Component;
