@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { Adventurer } from '../entities/adventurer';
+import { Adventurer } from '../entities/adventurer/index';
 
 export class SimpleScene extends Phaser.Scene {
   private adventurer: Adventurer;
