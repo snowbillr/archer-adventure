@@ -16,13 +16,10 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-idle');
 
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-      if (!Phaser.Math.Within(0, body.velocity.x, 100)) {
-        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
-      }
+      body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
     },
     onUpdate(adventurer: Adventurer) {
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-
       if (Phaser.Math.Within(body.velocity.x, 0, 100)) {
         body.acceleration.x = 0;
         body.velocity.x = 0;
@@ -55,9 +52,7 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-crouch');
 
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-      if (!Phaser.Math.Within(0, body.velocity.x, 100)) {
-        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
-      }
+      body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
     },
     onUpdate(adventurer: Adventurer) {
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
@@ -80,7 +75,6 @@ const states: PhiniteState.State<Adventurer>[] = [
             return 'adventurer-idle';
           }
         }
-        // to: 'adventurer-idle',
       }
     ]
   },
@@ -90,7 +84,11 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.flipX = false;
       adventurer.sprite.anims.play('adventurer-run');
 
-      adventurer.sprite.setAccelerationX(movementAttributes.horizontalAcceleration);
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      if (body.velocity.x < 0) {
+        body.velocity.x += body.velocity.x * 0.5 * -1;
+      }
+      body.acceleration.x = movementAttributes.horizontalAcceleration;
     },
     transitions: [
       {
@@ -111,14 +109,12 @@ const states: PhiniteState.State<Adventurer>[] = [
           }
         }
       },
-      /*
       {
         type: TransitionType.Input,
         event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowLeft',
         to: 'adventurer-run-left',
       }
-      */
     ]
   },
   {
@@ -127,7 +123,11 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.flipX = true;
       adventurer.sprite.anims.play('adventurer-run');
 
-      adventurer.sprite.setAccelerationX(-movementAttributes.horizontalAcceleration);
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      if (body.velocity.x > 0) {
+        body.velocity.x += body.velocity.x * 0.5 * -1;
+      }
+      body.acceleration.x = -movementAttributes.horizontalAcceleration;
     },
     transitions: [
       {
@@ -148,14 +148,12 @@ const states: PhiniteState.State<Adventurer>[] = [
           }
         }
       },
-      /*
       {
         type: TransitionType.Input,
         event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowRight',
         to: 'adventurer-run-right',
       }
-      */
     ]
   },
   {

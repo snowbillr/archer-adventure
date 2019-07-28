@@ -1,6 +1,8 @@
 import 'phaser';
 
 export enum TransitionType {
+  Initial,
+
   Input,
   AnimationEnd,
 }
@@ -23,7 +25,10 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
   }
 
   create() {
-    this.transition(this.currentState.id);
+    this.doTransition({
+      type: TransitionType.Initial,
+      to: this.currentState.id,
+    });
   }
 
   update() {
@@ -32,11 +37,15 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
     }
   }
 
-  private transition(to: string | PhiniteState.TransitionToFn<T>) {
+  private doTransition(transition: PhiniteState.Transition<T>) {
     this.cancelTransitionTriggers();
 
-    const nextStateId = typeof to === 'string' ? to : to(this.entity);
+    const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
     this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteState.State<T>;
+
+    if (transition.onTransition) {
+      transition.onTransition(this.entity);
+    }
 
     if (this.currentState.onEnter) {
       this.currentState.onEnter(this.entity);
@@ -44,12 +53,12 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
     this.registerTransitionTriggers();
   }
 
-  cancelTransitionTriggers() {
+  private cancelTransitionTriggers() {
     this.triggerCancelers.forEach(canceler => canceler());
     this.triggerCancelers = [];
   }
 
-  registerTransitionTriggers() {
+  private registerTransitionTriggers() {
     this.currentState.transitions.forEach(transition => {
       switch(transition.type) {
         case TransitionType.Input:
@@ -62,10 +71,10 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
     });
   }
 
-  registerInputTransitionTrigger(transition: PhiniteState.InputTransition<T>) {
+  private registerInputTransitionTrigger(transition: PhiniteState.InputTransition<T>) {
     const listener = (e: KeyboardEvent) => {
       if (e.key === transition.key) {
-        this.transition(transition.to);
+        this.doTransition(transition);
       }
     }
 
@@ -73,9 +82,9 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
-  registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition<T>) {
+  private registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition<T>) {
     const listener = () => {
-      this.transition(transition.to);
+      this.doTransition(transition);
     }
 
     this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);

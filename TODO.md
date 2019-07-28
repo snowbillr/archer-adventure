@@ -1,0 +1,1 @@
+- rename Is* interfaces to Entity (so its clear that its the inverse of the Component)

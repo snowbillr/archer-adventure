@@ -12,6 +12,7 @@ declare namespace PhiniteState {
   type BaseTransition<T> = {
     type: TransitionType;
     to: string | TransitionToFn<T>;
+    onTransition?: (entity: T) => void;
   }
 
   type InputTransition<T> = BaseTransition<T> & {
@@ -23,7 +24,7 @@ declare namespace PhiniteState {
     animationKey: string;
   }
 
-  type Transition<T> = InputTransition<T> | AnimationEndTransition<T>;
+  type Transition<T> = BaseTransition<T> | InputTransition<T> | AnimationEndTransition<T>;
 
   interface Component<T> {
     create(): void;
