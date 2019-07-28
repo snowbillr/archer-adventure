@@ -14,7 +14,11 @@ export const adventurerJumpPrep = {
       type: TransitionType.AnimationEnd,
       animationKey: 'adventurer-jump-prep',
       to: (adventurer: Adventurer) => {
-        if (adventurer.body.velocity.x > 0) {
+        if (adventurer.controls.right.isDown) {
+          return 'adventurer-jump-right';
+        } else if (adventurer.controls.left.isDown) {
+          return 'adventurer-jump-left';
+        } else if (adventurer.body.velocity.x > 0) {
           return 'adventurer-jump-right';
         } else if (adventurer.body.velocity.x < 0) {
           return 'adventurer-jump-left';
