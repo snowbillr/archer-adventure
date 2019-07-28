@@ -5,14 +5,9 @@ import { movementAttributes } from '../movement-attributes';
 export const adventurerJump = {
   id: 'adventurer-jump',
   onEnter(adventurer: Adventurer) {
-    adventurer.body.acceleration.x = 0;
+    adventurer.body.velocity.y = movementAttributes.jumpVelocity;
 
-    adventurer.sprite.once(`${Phaser.Animations.Events.SPRITE_ANIMATION_KEY_START}adventurer-jump-rise`, () => {
-      adventurer.body.velocity.y = movementAttributes.jumpVelocity;
-    });
-
-    adventurer.sprite.anims.play('adventurer-jump-prep');
-    adventurer.sprite.anims.chain('adventurer-jump-rise');
+    adventurer.sprite.anims.play('adventurer-jump-rise');
   },
   transitions: [
     {

@@ -7,6 +7,7 @@ import { adventurerCrouch } from './states/crouch';
 import { adventurerRunRight } from './states/run-right';
 import { adventurerRunLeft } from './states/run-left';
 import { adventurerSlide } from './states/slide';
+import { adventurerJumpPrep } from './states/jump-prep';
 import { adventurerJump } from './states/jump';
 import { adventurerFall } from './states/fall';
 import { adventurerFallLeft } from './states/fall-left';
@@ -21,6 +22,7 @@ export const states: PhiniteState.State<Adventurer>[] = [
 
   adventurerSlide,
 
+  adventurerJumpPrep,
   adventurerJump,
 
   adventurerFall,

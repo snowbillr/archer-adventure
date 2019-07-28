@@ -24,7 +24,7 @@ export const baseRun = {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: 'ArrowUp',
-      to: 'adventurer-jump',
+      to: 'adventurer-jump-prep',
     }
   ]
 }
