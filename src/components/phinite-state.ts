@@ -106,3 +106,17 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
     this.triggerCancelers.push(() => this.scene.events.off(Phaser.Scenes.Events.POST_UPDATE, listener));
   }
 }
+
+export function StateMerge<T>(state1: Partial<PhiniteState.State<T>>, state2: Partial<PhiniteState.State<T>>): PhiniteState.State<T> {
+  const onEnterChain = [state1.onEnter, state2.onEnter].filter(Boolean);
+  const onUpdateChain = [state1.onUpdate, state2.onUpdate].filter(Boolean);
+
+  const mergedState = {
+    id: state1.id || state2.id,
+    transitions: state1.transitions || state2.transitions,
+    onEnter: (entity: T) => onEnterChain.forEach(fn => fn!(entity)),
+    onUpdate: (entity: T) => onUpdateChain.forEach(fn => fn!(entity)),
+  }
+
+  return mergedState as PhiniteState.State<T>;
+}

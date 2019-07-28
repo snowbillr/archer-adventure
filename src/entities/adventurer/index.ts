@@ -35,8 +35,4 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
   update() {
     this.phiniteState.update();
   }
-
-  public getBody() {
-    return this.sprite.body as Phaser.Physics.Arcade.Body;
-  }
 }

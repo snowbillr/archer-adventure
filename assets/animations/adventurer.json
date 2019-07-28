@@ -1,7 +1,7 @@
 {
   "anims": [
     {
-      "key": "adventurer-idle",
+      "key": "adventurer-stand",
       "frames": [
         { "key": "adventurer-core", "frame": 0 },
         { "key": "adventurer-core", "frame": 1 },
