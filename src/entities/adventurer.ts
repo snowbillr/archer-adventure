@@ -232,7 +232,15 @@ const states: PhiniteState.State<Adventurer>[] = [
           const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
           return Phaser.Math.Within(body.velocity.y, 0, 5);
         },
-        to: 'adventurer-idle',
+        to(adventurer: Adventurer) {
+          if (adventurer.controls.left.isDown) {
+            return 'adventurer-run-left';
+          } else if (adventurer.controls.right.isDown) {
+            return 'adventurer-run-right';
+          } else {
+            return 'adventurer-idle';
+          }
+        }
       }
     ],
   }
