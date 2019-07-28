@@ -195,15 +195,23 @@ const states: PhiniteState.State<Adventurer>[] = [
             return 'adventurer-idle';
           }
         }
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowUp',
+        to: 'adventurer-jump',
       }
     ],
   },
   {
     id: 'adventurer-jump',
     onEnter(adventurer: Adventurer) {
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      body.acceleration.x = 0;
+
       adventurer.sprite.once(`${Phaser.Animations.Events.SPRITE_ANIMATION_KEY_START}adventurer-jump-rise`, () => {
-        const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-        body.velocity.y = -600;
+        body.velocity.y = -800;
       });
 
       adventurer.sprite.anims.play('adventurer-jump-prep');
