@@ -180,7 +180,11 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-slide')
 
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-      adventurer.sprite.setAccelerationX(-1 * body.acceleration.x * 0.5);
+      if (body.velocity.x > 0) {
+        body.acceleration.x = -400;
+      } else {
+        body.acceleration.x = 400;
+      }
     },
     transitions: [
       {
@@ -245,6 +249,8 @@ const states: PhiniteState.State<Adventurer>[] = [
             return 'adventurer-run-left';
           } else if (adventurer.controls.right.isDown) {
             return 'adventurer-run-right';
+          } else if (adventurer.controls.down.isDown) {
+            return 'adventurer-slide';
           } else {
             return 'adventurer-idle';
           }
