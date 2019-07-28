@@ -5,6 +5,7 @@ export enum TransitionType {
 
   Input,
   AnimationEnd,
+  Conditional,
 }
 
 export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.Component<T> {
@@ -67,6 +68,9 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
         case TransitionType.AnimationEnd:
           this.registerAnimationEndTransitionTrigger(transition as PhiniteState.AnimationEndTransition<T>);
           break;
+        case TransitionType.Conditional:
+          this.registerConditionalTransitionTrigger(transition as PhiniteState.ConditionalTransition<T>);
+          break;
       }
     });
   }
@@ -89,5 +93,16 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
 
     this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);
     this.triggerCancelers.push(() => this.entity.sprite.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
+  }
+
+  private registerConditionalTransitionTrigger(transition: PhiniteState.ConditionalTransition<T>) {
+    const listener = () => {
+      if (transition.condition(this.entity)) {
+        this.doTransition(transition);
+      }
+    }
+
+    this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, listener);
+    this.triggerCancelers.push(() => this.scene.events.off(Phaser.Scenes.Events.POST_UPDATE, listener));
   }
 }

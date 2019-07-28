@@ -1,0 +1,5 @@
+- jumping
+  - rising state
+  - is a cresting state necessary?
+  - falling state
+  - needs some kind of physics based transition for when the y velocity hits 0 at the peak of the jump, or something else like that

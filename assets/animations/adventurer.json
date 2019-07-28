@@ -47,6 +47,31 @@
         { "key": "adventurer-core", "frame": 28 }
       ],
       "frameRate": 9
+    },
+    {
+      "key": "adventurer-jump-prep",
+      "frames": [
+        { "key": "adventurer-core", "frame": 14 },
+        { "key": "adventurer-core", "frame": 15 }
+      ],
+      "frameRate": 12
+    },
+    {
+      "key": "adventurer-jump-rise",
+      "frames": [
+        { "key": "adventurer-core", "frame": 16 },
+        { "key": "adventurer-core", "frame": 17 }
+      ],
+      "frameRate": 12
+    },
+    {
+      "key": "adventurer-fall",
+      "frames": [
+        { "key": "adventurer-core", "frame": 22 },
+        { "key": "adventurer-core", "frame": 23 }
+      ],
+      "frameRate": 12,
+      "repeat": -1
     }
   ]
 }

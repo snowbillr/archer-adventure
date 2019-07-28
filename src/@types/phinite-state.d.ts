@@ -24,7 +24,11 @@ declare namespace PhiniteState {
     animationKey: string;
   }
 
-  type Transition<T> = BaseTransition<T> | InputTransition<T> | AnimationEndTransition<T>;
+  type ConditionalTransition<T> = BaseTransition<T> & {
+    condition: (entity: T) => boolean;
+  }
+
+  type Transition<T> = BaseTransition<T> | InputTransition<T> | AnimationEndTransition<T> | ConditionalTransition<T>;
 
   interface Component<T> {
     create(): void;

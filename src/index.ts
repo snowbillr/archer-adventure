@@ -14,7 +14,7 @@ const gameConfig = {
     arcade: {
       // debug: true,
       gravity: {
-        y: 0,
+        y: 1100,
       }
     }
   }

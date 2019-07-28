@@ -43,6 +43,12 @@ const states: PhiniteState.State<Adventurer>[] = [
         event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
         key: 'ArrowDown',
         to: 'adventurer-crouch',
+      },
+      {
+        type: TransitionType.Input,
+        event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+        key: 'ArrowUp',
+        to: 'adventurer-jump',
       }
     ],
   },
@@ -177,6 +183,44 @@ const states: PhiniteState.State<Adventurer>[] = [
             return 'adventurer-idle';
           }
         }
+      }
+    ],
+  },
+  {
+    id: 'adventurer-jump',
+    onEnter(adventurer: Adventurer) {
+      adventurer.sprite.once(`${Phaser.Animations.Events.SPRITE_ANIMATION_KEY_START}adventurer-jump-rise`, () => {
+        const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+        body.velocity.y = -600;
+      });
+
+      adventurer.sprite.anims.play('adventurer-jump-prep');
+      adventurer.sprite.anims.chain('adventurer-jump-rise');
+    },
+    transitions: [
+      {
+        type: TransitionType.Conditional,
+        condition: (adventurer: Adventurer) => {
+          const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+          return body.velocity.y > 0;
+        },
+        to: 'adventurer-fall',
+      }
+    ]
+  },
+  {
+    id: 'adventurer-fall',
+    onEnter(adventurer: Adventurer) {
+      adventurer.sprite.anims.play('adventurer-fall');
+    },
+    transitions: [
+      {
+        type: TransitionType.Conditional,
+        condition: (adventurer: Adventurer) => {
+          const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+          return Phaser.Math.Within(body.velocity.y, 0, 5);
+        },
+        to: 'adventurer-idle',
       }
     ],
   }

@@ -20,5 +20,13 @@ export class SimpleScene extends Phaser.Scene {
 
   create() {
     this.adventurer.create(this);
+
+    const platform = this.add.rectangle(400, 400, 800, 50, 0x00aa00);
+    this.physics.add.existing(platform);
+    const platformBody = platform.body as Phaser.Physics.Arcade.Body;
+    platformBody.immovable = true;
+    platformBody.allowGravity = false;
+
+    this.physics.add.collider(this.adventurer.sprite, platform);
   }
 }
