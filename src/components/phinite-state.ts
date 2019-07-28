@@ -26,6 +26,12 @@ export class PhiniteState<T extends Renderable.IsRenderable> implements PhiniteS
     this.transition(this.currentState.id);
   }
 
+  update() {
+    if (this.currentState.onUpdate) {
+      this.currentState.onUpdate(this.entity);
+    }
+  }
+
   private transition(to: string | PhiniteState.TransitionToFn<T>) {
     this.cancelTransitionTriggers();
 

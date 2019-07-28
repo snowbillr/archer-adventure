@@ -6,7 +6,6 @@ declare namespace Controlable {
   interface Component {
     create: () => void;
     getControls: () => Controls;
-    update: (body: Phaser.Physics.Arcade.Body) => void;
   }
 
   interface IsControlable {

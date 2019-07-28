@@ -1,3 +1,0 @@
-- player hand
-- put tiles from hand onto board
-- put tiles from board into hand

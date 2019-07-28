@@ -16,11 +16,16 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-idle');
 
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-      if (Phaser.Math.Within(0, body.velocity.x, 100)) {
+      if (!Phaser.Math.Within(0, body.velocity.x, 100)) {
+        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
+      }
+    },
+    onUpdate(adventurer: Adventurer) {
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+
+      if (Phaser.Math.Within(body.velocity.x, 0, 100)) {
         body.acceleration.x = 0;
         body.velocity.x = 0;
-      } else {
-        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
       }
     },
     transitions: [
@@ -50,11 +55,15 @@ const states: PhiniteState.State<Adventurer>[] = [
       adventurer.sprite.anims.play('adventurer-crouch');
 
       const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
-      if (Phaser.Math.Within(0, body.velocity.x, 100)) {
+      if (!Phaser.Math.Within(0, body.velocity.x, 100)) {
+        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
+      }
+    },
+    onUpdate(adventurer: Adventurer) {
+      const body = adventurer.sprite.body as Phaser.Physics.Arcade.Body;
+      if (Phaser.Math.Within(body.velocity.x, 0, 100)) {
         body.acceleration.x = 0;
         body.velocity.x = 0;
-      } else {
-        body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
       }
     },
     transitions: [
@@ -179,6 +188,7 @@ export class Adventurer implements PhysicallyRenderable.IsPhysicallyRenderable, 
   public sprite!: Phaser.Physics.Arcade.Sprite;
   public controls!: Controlable.Controls;
   public controlable!: Controlable.Component;
+  public phiniteState!: PhiniteState<Adventurer>;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -193,11 +203,11 @@ export class Adventurer implements PhysicallyRenderable.IsPhysicallyRenderable, 
     this.controlable.create();
     this.controls = this.controlable.getControls();
 
-    const phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
-    phiniteState.create();
+    this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-idle'));
+    this.phiniteState.create();
   }
 
   update() {
-    this.controlable.update(this.sprite.body as Phaser.Physics.Arcade.Body);
+    this.phiniteState.update();
   }
 }
