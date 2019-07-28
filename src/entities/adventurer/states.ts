@@ -3,32 +3,27 @@ import { Adventurer } from './index';
 import { movementAttributes } from './movement-attributes';
 
 function decelerate(adventurer: Adventurer) {
-  const body = adventurer.getBody();
-  body.acceleration.x = body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
+  adventurer.body.acceleration.x = adventurer.body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
 }
 
 function haltMovementWithinThreshold(adventurer: Adventurer) {
-  const body = adventurer.getBody();
-  if (Phaser.Math.Within(body.velocity.x, 0, 100)) {
-    body.acceleration.x = 0;
-    body.velocity.x = 0;
+  if (Phaser.Math.Within(adventurer.body.velocity.x, 0, 100)) {
+    adventurer.body.acceleration.x = 0;
+    adventurer.body.velocity.x = 0;
   }
 }
 
 function boostTurnaroundVelocity(adventurer: Adventurer) {
-  const body = adventurer.getBody();
-  if (!Phaser.Math.Within(body.velocity.x, 0, 5)) {
-    body.velocity.x += body.velocity.x * 0.5 * -1;
+  if (!Phaser.Math.Within(adventurer.body.velocity.x, 0, 5)) {
+    adventurer.body.velocity.x += adventurer.body.velocity.x * 0.5 * -1;
   }
 }
 
 function startRunning(adventurer: Adventurer, direction: "left" | "right") {
-  const body = adventurer.getBody();
-
   if (direction === "left") {
-    body.acceleration.x = -movementAttributes.horizontalAcceleration;
+    adventurer.body.acceleration.x = -movementAttributes.horizontalAcceleration;
   } else if (direction === "right") {
-    body.acceleration.x = movementAttributes.horizontalAcceleration;
+    adventurer.body.acceleration.x = movementAttributes.horizontalAcceleration;
   }
 
   boostTurnaroundVelocity(adventurer);
@@ -118,7 +113,7 @@ const adventurerRunRight = {
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: 'ArrowDown',
       to: (adventurer: Adventurer) => {
-        if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+        if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
         } else {
           return 'adventurer-slide';
@@ -160,7 +155,7 @@ const adventurerRunLeft = {
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: 'ArrowDown',
       to: (adventurer: Adventurer) => {
-        if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+        if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
         } else {
           return 'adventurer-slide';
@@ -187,11 +182,10 @@ const adventurerSlide = {
   onEnter(adventurer: Adventurer) {
     adventurer.sprite.anims.play('adventurer-slide')
 
-    const body = adventurer.getBody();
-    if (body.velocity.x > 0) {
-      body.acceleration.x = -1 * movementAttributes.slideDeceleration;
+    if (adventurer.body.velocity.x > 0) {
+      adventurer.body.acceleration.x = -1 * movementAttributes.slideDeceleration;
     } else {
-      body.acceleration.x = movementAttributes.slideDeceleration;
+      adventurer.body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
   transitions: [
@@ -220,11 +214,10 @@ const adventurerSlide = {
 const adventurerJump = {
   id: 'adventurer-jump',
   onEnter(adventurer: Adventurer) {
-    const body = adventurer.getBody();
-    body.acceleration.x = 0;
+    adventurer.body.acceleration.x = 0;
 
     adventurer.sprite.once(`${Phaser.Animations.Events.SPRITE_ANIMATION_KEY_START}adventurer-jump-rise`, () => {
-      body.velocity.y = -800;
+      adventurer.body.velocity.y = -800;
     });
 
     adventurer.sprite.anims.play('adventurer-jump-prep');
@@ -234,14 +227,12 @@ const adventurerJump = {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        const body = adventurer.getBody();
-        return body.velocity.y > 0;
+        return adventurer.body.velocity.y > 0;
       },
       to(adventurer: Adventurer) {
-        const body = adventurer.getBody();
-        if (body.velocity.x > 0) {
+        if (adventurer.body.velocity.x > 0) {
           return 'adventurer-fall-right';
-        } else if (body.velocity.x < 0) {
+        } else if (adventurer.body.velocity.x < 0) {
           return 'adventurer-fall-left';
         } else {
           return 'adventurer-fall';
@@ -272,12 +263,11 @@ const adventurerFall = {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        const body = adventurer.getBody();
-        return Phaser.Math.Within(body.velocity.y, 0, 5);
+        return Phaser.Math.Within(adventurer.body.velocity.y, 0, 5);
       },
       to(adventurer: Adventurer) {
         if (adventurer.controls.down.isDown) {
-          if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+          if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
             return 'adventurer-crouch';
           } else {
             return 'adventurer-slide';
@@ -300,8 +290,7 @@ const adventurerFallLeft = {
     adventurer.sprite.anims.play('adventurer-fall');
     adventurer.sprite.flipX = true;
 
-    const body = adventurer.getBody();
-    body.acceleration.x = -1 * movementAttributes.fallDriftAcceleration;
+    adventurer.body.acceleration.x = -1 * movementAttributes.fallDriftAcceleration;
   },
   transitions: [
     {
@@ -313,12 +302,11 @@ const adventurerFallLeft = {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        const body = adventurer.getBody();
-        return Phaser.Math.Within(body.velocity.y, 0, 5);
+        return Phaser.Math.Within(adventurer.body.velocity.y, 0, 5);
       },
       to(adventurer: Adventurer) {
         if (adventurer.controls.down.isDown) {
-          if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+          if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
             return 'adventurer-crouch';
           } else {
             return 'adventurer-slide';
@@ -341,8 +329,7 @@ const adventurerFallRight = {
     adventurer.sprite.anims.play('adventurer-fall');
     adventurer.sprite.flipX = false;
 
-    const body = adventurer.getBody();
-    body.acceleration.x = movementAttributes.fallDriftAcceleration;
+    adventurer.body.acceleration.x = movementAttributes.fallDriftAcceleration;
   },
   transitions: [
     {
@@ -354,12 +341,11 @@ const adventurerFallRight = {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        const body = adventurer.getBody();
-        return Phaser.Math.Within(body.velocity.y, 0, 5);
+        return Phaser.Math.Within(adventurer.body.velocity.y, 0, 5);
       },
       to(adventurer: Adventurer) {
         if (adventurer.controls.down.isDown) {
-          if (Math.abs(adventurer.sprite.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+          if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
             return 'adventurer-crouch';
           } else {
             return 'adventurer-slide';

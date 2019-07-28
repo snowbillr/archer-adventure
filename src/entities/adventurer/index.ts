@@ -7,8 +7,11 @@ import { movementAttributes } from './movement-attributes';
 
 export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Entity {
   public sprite!: Phaser.Physics.Arcade.Sprite;
+  public body!: Phaser.Physics.Arcade.Body;
+
   public controls!: Controlable.Controls;
   public controlable!: Controlable.Component;
+
   public phiniteState!: PhiniteState<Adventurer>;
 
   create(scene: Phaser.Scene) {
@@ -18,7 +21,8 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     physicallyRenderable.create();
     this.sprite = physicallyRenderable.getSprite();
     this.sprite.setScale(2);
-    this.sprite.setMaxVelocity(movementAttributes.maxVelocity);
+    this.body = physicallyRenderable.getBody();
+    this.body.maxVelocity.x = movementAttributes.maxVelocity;
 
     this.controlable = new Controlable(scene);
     this.controlable.create();

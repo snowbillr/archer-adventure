@@ -23,4 +23,8 @@ export class PhysicallyRenderable implements PhysicallyRenderable.Component {
   getSprite() {
     return this._sprite;
   }
+
+  getBody() {
+    return this._sprite.body as Phaser.Physics.Arcade.Body;
+  }
 }
