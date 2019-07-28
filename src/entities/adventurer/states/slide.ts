@@ -22,6 +22,8 @@ export const adventurerSlide = {
           return 'adventurer-run-left';
         } else if (adventurer.controls.right.isDown) {
           return 'adventurer-run-right';
+        } else if (adventurer.controls.down.isDown) {
+          return 'adventurer-crouch';
         } else {
           return 'adventurer-stand';
         }
