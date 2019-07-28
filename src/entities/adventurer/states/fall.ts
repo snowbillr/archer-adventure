@@ -1,12 +1,10 @@
 import { Adventurer } from '..';
-import { TransitionType } from '../../../components/phinite-state';
+import { TransitionType, StateMerge } from '../../../components/phinite-state';
 import { movementAttributes } from '../movement-attributes';
+import { baseFall } from './base-fall';
 
-export const adventurerFall = {
+export const adventurerFall = StateMerge(baseFall, {
   id: 'adventurer-fall',
-  onEnter(adventurer: Adventurer) {
-    adventurer.sprite.anims.play('adventurer-fall');
-  },
   transitions: [
     {
       type: TransitionType.Input,
@@ -19,27 +17,6 @@ export const adventurerFall = {
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: 'ArrowRight',
       to: 'adventurer-fall-right',
-    },
-    {
-      type: TransitionType.Conditional,
-      condition: (adventurer: Adventurer) => {
-        return Phaser.Math.Within(adventurer.body.velocity.y, 0, 5);
-      },
-      to(adventurer: Adventurer) {
-        if (adventurer.controls.down.isDown) {
-          if (Math.abs(adventurer.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
-            return 'adventurer-crouch';
-          } else {
-            return 'adventurer-slide';
-          }
-        } else if (adventurer.controls.left.isDown) {
-          return 'adventurer-run-left';
-        } else if (adventurer.controls.right.isDown) {
-          return 'adventurer-run-right';
-        }  else {
-          return 'adventurer-stand';
-        }
-      }
     }
   ],
-};
+});
