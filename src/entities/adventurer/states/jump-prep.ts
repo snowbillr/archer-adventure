@@ -11,8 +11,7 @@ export const adventurerJumpPrep = {
   },
   transitions: [
     {
-      type: TransitionType.AnimationEnd,
-      animationKey: 'adventurer-jump-prep',
+      type: TransitionType.CurrentAnimationEnd,
       to: (adventurer: Adventurer) => {
         if (adventurer.controls.right.isDown) {
           return 'adventurer-jump-right';

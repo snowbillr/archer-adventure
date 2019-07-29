@@ -15,8 +15,7 @@ export const adventurerSlide = {
   },
   transitions: [
     {
-      type: TransitionType.AnimationEnd,
-      animationKey: 'adventurer-slide',
+      type: TransitionType.CurrentAnimationEnd,
       to: (adventurer: Adventurer) => {
         if (adventurer.controls.left.isDown) {
           return 'adventurer-run-left';

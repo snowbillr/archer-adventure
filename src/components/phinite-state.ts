@@ -4,7 +4,7 @@ export enum TransitionType {
   Initial,
 
   Input,
-  AnimationEnd,
+  CurrentAnimationEnd,
   Conditional,
 }
 
@@ -65,8 +65,8 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
         case TransitionType.Input:
           this.registerInputTransitionTrigger(transition as PhiniteState.InputTransition<T>);
           break;
-        case TransitionType.AnimationEnd:
-          this.registerAnimationEndTransitionTrigger(transition as PhiniteState.AnimationEndTransition<T>);
+        case TransitionType.CurrentAnimationEnd:
+          this.registerCurrentAnimationEndTransitionTrigger(transition as PhiniteState.CurrentAnimationEndTransition<T>);
           break;
         case TransitionType.Conditional:
           this.registerConditionalTransitionTrigger(transition as PhiniteState.ConditionalTransition<T>);
@@ -86,7 +86,7 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
-  private registerAnimationEndTransitionTrigger(transition: PhiniteState.AnimationEndTransition<T>) {
+  private registerCurrentAnimationEndTransitionTrigger(transition: PhiniteState.CurrentAnimationEndTransition<T>) {
     const listener = () => {
       this.doTransition(transition);
     }
