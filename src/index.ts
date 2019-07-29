@@ -1,12 +1,12 @@
 import 'phaser';
 
-import { SimpleScene } from './scenes/simple-scene';
+import { MovementTestScene } from './scenes/movement-test-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 
 const gameConfig = {
   width: 800,
   height: 450,
-  scene: SimpleScene,
+  scene: MovementTestScene,
   // scene: AnimTestScene,
   pixelArt: true,
   physics: {

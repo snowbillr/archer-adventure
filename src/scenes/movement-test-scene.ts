@@ -2,7 +2,7 @@ import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
 
-export class SimpleScene extends Phaser.Scene {
+export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
 
   constructor(config: any) {
@@ -21,12 +21,22 @@ export class SimpleScene extends Phaser.Scene {
   create() {
     this.adventurer.create(this);
 
-    const platform = this.add.rectangle(400, 400, 800, 50, 0x00aa00);
+    const platforms = [
+      this.createPlatform(100, 200, 200, 50),
+      this.createPlatform(400, 400, 100, 50),
+      this.createPlatform(600, 400, 100, 50),
+    ];
+
+    this.physics.add.collider(this.adventurer.sprite, platforms);
+  }
+
+  private createPlatform(x: number, y: number, width: number, height: number) {
+    const platform = this.add.rectangle(x, y, width, height, 0x00aa00);
     this.physics.add.existing(platform);
     const platformBody = platform.body as Phaser.Physics.Arcade.Body;
     platformBody.immovable = true;
     platformBody.allowGravity = false;
 
-    this.physics.add.collider(this.adventurer.sprite, platform);
+    return platform;
   }
 }

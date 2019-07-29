@@ -1,8 +1,10 @@
 import { Adventurer } from '../index';
 import { movementAttributes } from '../movement-attributes';
-import { TransitionType } from '../../../components/phinite-state';
+import { TransitionType, StateMerge } from '../../../components/phinite-state';
 
-export const baseRun = {
+import { baseGround } from './base-ground';
+
+export const baseRun = StateMerge(baseGround, {
   onEnter(adventurer: Adventurer) {
     adventurer.sprite.flipX = false;
     adventurer.sprite.anims.play('adventurer-run');
@@ -27,7 +29,7 @@ export const baseRun = {
       to: 'adventurer-jump-prep',
     }
   ]
-}
+});
 
 export function startRunning(adventurer: Adventurer, direction: "left" | "right") {
   if (direction === "left") {

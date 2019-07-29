@@ -17,7 +17,7 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
 
-    const physicallyRenderable = new PhysicallyRenderable(scene, 200, 200, 'adventurer-core');
+    const physicallyRenderable = new PhysicallyRenderable(scene, 100, 100, 'adventurer-core');
     physicallyRenderable.create();
     this.sprite = physicallyRenderable.getSprite();
     this.sprite.setScale(2);
