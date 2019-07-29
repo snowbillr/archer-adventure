@@ -9,6 +9,8 @@ export const baseGround = {
         return adventurer.body.velocity.y > 0;
       },
       to: (adventurer: Adventurer) => {
+        adventurer.body.velocity.y = 100;
+
         if (adventurer.body.velocity.x > 0) {
           return 'adventurer-fall-right';
         } else if (adventurer.body.velocity.x < 0) {

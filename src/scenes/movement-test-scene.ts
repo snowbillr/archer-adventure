@@ -16,27 +16,29 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
+
+    this.load.image('magic-cliffs', '/assets/tilesets/magic-cliffs.png');
+    this.load.tilemapTiledJSON('test', '/assets/tilemaps/test.json')
   }
 
   create() {
+    const map = this.make.tilemap({ key: 'test' });
+    const tileset = map.addTilesetImage('magic-cliffs', 'magic-cliffs');
+
+    const backgroundLayer = map.createStaticLayer('background', tileset, 0, 0);
+    const platformsLayer = map.createStaticLayer('platforms', tileset, 0, 0);
     this.adventurer.create(this);
+    const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
 
-    const platforms = [
-      this.createPlatform(100, 200, 200, 50),
-      this.createPlatform(400, 400, 100, 50),
-      this.createPlatform(600, 400, 100, 50),
-    ];
+    backgroundLayer.setScale(2);
+    platformsLayer.setScale(2);
+    foregroundLayer.setScale(2);
 
-    this.physics.add.collider(this.adventurer.sprite, platforms);
-  }
+    platformsLayer.setCollisionByProperty({ collides: true });
 
-  private createPlatform(x: number, y: number, width: number, height: number) {
-    const platform = this.add.rectangle(x, y, width, height, 0x00aa00);
-    this.physics.add.existing(platform);
-    const platformBody = platform.body as Phaser.Physics.Arcade.Body;
-    platformBody.immovable = true;
-    platformBody.allowGravity = false;
+    this.physics.add.collider(this.adventurer.sprite, platformsLayer);
 
-    return platform;
+    this.cameras.main.setBounds(0, 0, 50 * tileset.tileWidth * 2, 16 * tileset.tileHeight * 2);
+    this.cameras.main.startFollow(this.adventurer.sprite, true);
   }
 }
