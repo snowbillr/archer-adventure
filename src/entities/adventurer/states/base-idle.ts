@@ -1,6 +1,9 @@
 import { Adventurer } from '../index';
 import { movementAttributes } from '../movement-attributes';
 
+import { baseGround } from './base-ground';
+import { StateMerge } from '../../../components/phinite-state';
+
 function decelerate(adventurer: Adventurer) {
   adventurer.body.acceleration.x = adventurer.body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
 }
@@ -12,11 +15,11 @@ function haltMovementWithinThreshold(adventurer: Adventurer) {
   }
 }
 
-export const baseIdle: Partial<PhiniteState.State<Adventurer>> = {
+export const baseIdle = StateMerge(baseGround, {
   onEnter(adventurer: Adventurer) {
     decelerate(adventurer);
   },
   onUpdate(adventurer: Adventurer) {
     haltMovementWithinThreshold(adventurer);
   },
-}
+});

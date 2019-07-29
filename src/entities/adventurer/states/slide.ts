@@ -1,8 +1,10 @@
 import { Adventurer } from '../index';
 import { movementAttributes } from '../movement-attributes';
-import { TransitionType } from '../../../components/phinite-state';
+import { TransitionType, StateMerge } from '../../../components/phinite-state';
 
-export const adventurerSlide = {
+import { baseGround } from './base-ground';
+
+export const adventurerSlide = StateMerge(baseGround, {
   id: 'adventurer-slide',
   onEnter(adventurer: Adventurer) {
     adventurer.sprite.anims.play('adventurer-slide')
@@ -35,4 +37,4 @@ export const adventurerSlide = {
       to: 'adventurer-jump-prep',
     }
   ],
-};
+});

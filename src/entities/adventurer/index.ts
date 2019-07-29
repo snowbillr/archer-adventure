@@ -23,6 +23,8 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     this.sprite.setScale(2);
     this.body = physicallyRenderable.getBody();
     this.body.maxVelocity.x = movementAttributes.maxVelocity;
+    this.body.setSize(25, 32);
+    this.body.setOffset(12, 5);
 
     this.controlable = new Controlable(scene);
     this.controlable.create();
