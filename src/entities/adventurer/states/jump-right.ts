@@ -6,7 +6,7 @@ import { movementAttributes } from '../movement-attributes';
 export const adventurerJumpRight = StateMerge(baseJump, {
   id: 'adventurer-jump-right',
   data: {
-    targetAerialHorizontalVelocity: movementAttributes.fallHorizontalMaxVelocity,
+    targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
   onEnter(adventurer: Adventurer) {
     adventurer.sprite.flipX = false;

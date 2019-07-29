@@ -3,17 +3,17 @@ import { movementAttributes } from '../movement-attributes';
 
 function applyAirControls(adventurer: Adventurer, targetVelocity) {
   if (adventurer.controls.left.isDown && adventurer.body.velocity.x > targetVelocity) {
-    adventurer.body.acceleration.x = -1 * movementAttributes.fallHorizontalAcceleration;
+    adventurer.body.acceleration.x = -1 * movementAttributes.aerialHorizontalAcceleration;
   } else if (adventurer.controls.right.isDown && adventurer.body.velocity.x < targetVelocity) {
-    adventurer.body.acceleration.x = movementAttributes.fallHorizontalAcceleration;
+    adventurer.body.acceleration.x = movementAttributes.aerialHorizontalAcceleration;
   }
 }
 
 function applyAirFriction(adventurer: Adventurer) {
   if (adventurer.body.velocity.x > 0) {
-    adventurer.body.acceleration.x = -1 * movementAttributes.aerialFrictionAcceleration;
+    adventurer.body.acceleration.x = -1 * movementAttributes.aerialHorizontalFrictionAcceleration;
   } else if (adventurer.body.velocity.x < 0) {
-    adventurer.body.acceleration.x = movementAttributes.aerialFrictionAcceleration;
+    adventurer.body.acceleration.x = movementAttributes.aerialHorizontalFrictionAcceleration;
   } else {
     adventurer.body.acceleration.x = 0;
   }

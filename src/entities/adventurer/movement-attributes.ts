@@ -9,7 +9,7 @@ export const movementAttributes: { [key: string]: number } = {
 
   jumpVelocity: -400,
 
-  fallHorizontalMaxVelocity: 250,
-  fallHorizontalAcceleration: 300,
-  aerialFrictionAcceleration: 150,
+  aerialMaxHorizontalVelocity: 250,
+  aerialHorizontalAcceleration: 300,
+  aerialHorizontalFrictionAcceleration: 150,
 }

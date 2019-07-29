@@ -7,7 +7,7 @@ import { baseFall } from './base-fall';
 export const adventurerFallRight = StateMerge(baseFall, {
   id: 'adventurer-fall-right',
   data: {
-    targetAerialHorizontalVelocity: movementAttributes.fallHorizontalMaxVelocity,
+    targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
   onEnter(adventurer: Adventurer, data: PhiniteState.StateData) {
     adventurer.sprite.flipX = false;
