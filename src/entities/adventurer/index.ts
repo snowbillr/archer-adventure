@@ -1,6 +1,7 @@
 import { PhiniteState } from '../../components/phinite-state';
 import { PhysicallyRenderable } from '../../components/physically-renderable';
 import { Controlable } from '../../components/controlable';
+import { Hitboxes } from '../../components/hitboxes';
 
 import { states } from './states';
 import { movementAttributes } from './movement-attributes';
@@ -13,6 +14,8 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
   public controlable!: Controlable.Component;
 
   public phiniteState!: PhiniteState<Adventurer>;
+
+  private hitboxes!: Hitboxes<Adventurer>;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -32,9 +35,13 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
 
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
     this.phiniteState.create();
+
+    this.hitboxes = new Hitboxes<Adventurer>(scene, this, 'adventurer-hitboxes');
+    this.hitboxes.create();
   }
 
   update() {
     this.phiniteState.update();
+    this.hitboxes.update();
   }
 }

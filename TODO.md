@@ -4,3 +4,5 @@
 - enemy
 
 - interactive objects
+
+- state graph

@@ -1,0 +1,52 @@
+{
+  "frames": [
+    {
+      "key": "adventurer-core",
+      "frame": 0,
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 5,
+          "width": 12,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 1,
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 4,
+          "width": 12,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 2,
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 4,
+          "width": 12,
+          "height": 28
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 3,
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 5,
+          "width": 12,
+          "height": 28
+        }
+      ]
+    }
+  ]
+}
