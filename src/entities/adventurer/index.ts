@@ -36,7 +36,7 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
     this.phiniteState.create();
 
-    this.hitboxes = new Hitboxes<Adventurer>(scene, this, 'adventurer-hitboxes');
+    this.hitboxes = new Hitboxes<Adventurer>(scene, this, 'adventurer-hitboxes', true);
     this.hitboxes.create();
   }
 

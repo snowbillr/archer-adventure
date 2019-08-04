@@ -109,10 +109,13 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
     const scaleX = this.entity.sprite.scaleX;
     const scaleY = this.entity.sprite.scaleY;
 
+    const offsetX = this.entity.sprite.flipX ? hitbox.x * -1 : hitbox.x;
+    const offsetY = this.entity.sprite.flipY ? hitbox.y * -1 : hitbox.y;
+
     const width = scaleX * hitbox.width;
     const height = scaleY * hitbox.height;
-    const x = (this.entity.sprite.x + (hitbox.x * scaleX)) - (width * this.entity.sprite.originX);
-    const y = (this.entity.sprite.y + (hitbox.y * scaleY)) - (height * this.entity.sprite.originY);
+    const x = (this.entity.sprite.x + (offsetX * scaleX)) - (width * this.entity.sprite.originX);
+    const y = (this.entity.sprite.y + (offsetY * scaleY)) - (height * this.entity.sprite.originY);
 
     rectangle.x = x;
     rectangle.y = y;
