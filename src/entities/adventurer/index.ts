@@ -11,7 +11,6 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
   public body!: Phaser.Physics.Arcade.Body;
 
   public controls!: Controlable.Controls;
-  public controlable!: Controlable.Component;
 
   public phiniteState!: PhiniteState<Adventurer>;
 
@@ -29,9 +28,9 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     this.body.setSize(25, 32);
     this.body.setOffset(12, 5);
 
-    this.controlable = new Controlable(scene);
-    this.controlable.create();
-    this.controls = this.controlable.getControls();
+    const controlable = new Controlable(scene);
+    controlable.create();
+    this.controls = controlable.getControls();
 
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
     this.phiniteState.create();

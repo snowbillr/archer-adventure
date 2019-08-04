@@ -10,6 +10,5 @@ declare namespace Controlable {
 
   interface Entity {
     controls: Controls;
-    controlable: Component;
   }
 }
