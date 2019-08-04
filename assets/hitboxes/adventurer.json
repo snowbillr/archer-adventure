@@ -5,6 +5,7 @@
       "frame": 0,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 0,
           "y": 3,
           "width": 12,
@@ -17,6 +18,7 @@
       "frame": 1,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 0,
           "y": 2,
           "width": 12,
@@ -29,6 +31,7 @@
       "frame": 2,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 0,
           "y": 2,
           "width": 12,
@@ -41,6 +44,7 @@
       "frame": 3,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 0,
           "y": 3,
           "width": 12,
@@ -53,6 +57,7 @@
       "frame": 4,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 2,
           "y": 7,
           "width": 10,
@@ -65,6 +70,7 @@
       "frame": 5,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 2,
           "y": 6,
           "width": 10,
@@ -77,6 +83,7 @@
       "frame": 6,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 2,
           "y": 7,
           "width": 10,
@@ -89,6 +96,7 @@
       "frame": 7,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 2,
           "y": 7,
           "width": 10,
@@ -101,10 +109,18 @@
       "frame": 8,
       "hitboxes": [
         {
+          "type": "rectangle",
           "x": 3,
           "y": 13,
           "width": 10,
           "height": 20
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 5,
+          "height": 5
         }
       ]
     }
