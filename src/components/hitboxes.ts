@@ -30,9 +30,12 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
 
     this.debugRectangles = []
     this.debugPointerPosition = { x: 0, y: 0 };
-    this.scene.input.on('pointermove', (e: any) => {
-      this.debugPointerPosition = e.position;
-    });
+
+    if (this.debug) {
+      this.scene.input.on('pointermove', (e: any) => {
+        this.debugPointerPosition = e.position;
+      });
+    }
   }
 
   update() {
