@@ -8,7 +8,7 @@ export class HitboxTestScene extends Phaser.Scene {
   }
 
   create() {
-    let frameIndex = 4;
+    let frameIndex = 8;
     const frameText = this.add.text(100, 200, `Frame ${frameIndex}`);
 
     const testAdventurer = new TestAdventurer();

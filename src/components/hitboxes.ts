@@ -50,27 +50,27 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
       this.rectangle.y = y;
       this.rectangle.width = width;
       this.rectangle.height = height;
+    }
 
-      if (this.debug) {
-        const point = new Phaser.Geom.Point(this.debugPointerPosition.x, this.debugPointerPosition.y);
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.rectangle, point)) {
-          this.debugColor = 0xFF0000;
-        } else {
-          this.debugColor = 0x00FF00;
-        }
-
-        this.debugRectangle.visible = true;
-
-        this.debugRectangle.fillColor = this.debugColor;
-
-        this.debugRectangle.setOrigin(0, 0);
-        this.debugRectangle.x = this.rectangle.x;
-        this.debugRectangle.y = this.rectangle.y;
-        this.debugRectangle.width = this.rectangle.width;
-        this.debugRectangle.height = this.rectangle.height;
+    if (this.debug && hitboxDefinition && hitboxDefinition.hitboxes) {
+      const point = new Phaser.Geom.Point(this.debugPointerPosition.x, this.debugPointerPosition.y);
+      if (Phaser.Geom.Rectangle.ContainsPoint(this.rectangle, point)) {
+        this.debugColor = 0xFF0000;
       } else {
-        this.debugRectangle.visible = false;
+        this.debugColor = 0x00FF00;
       }
+
+      this.debugRectangle.visible = true;
+
+      this.debugRectangle.fillColor = this.debugColor;
+
+      this.debugRectangle.setOrigin(0, 0);
+      this.debugRectangle.x = this.rectangle.x;
+      this.debugRectangle.y = this.rectangle.y;
+      this.debugRectangle.width = this.rectangle.width;
+      this.debugRectangle.height = this.rectangle.height;
+    } else {
+      this.debugRectangle.visible = false;
     }
   }
 }
