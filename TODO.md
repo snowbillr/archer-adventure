@@ -1,6 +1,5 @@
-- tilemap woooo
-
-- texture packer offsets for adventurer sprite
+- hitboxes
+- hurtboxes
 
 - enemy
 

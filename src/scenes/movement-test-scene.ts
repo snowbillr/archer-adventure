@@ -17,28 +17,30 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
 
-    this.load.image('magic-cliffs', '/assets/tilesets/magic-cliffs.png');
-    this.load.tilemapTiledJSON('test', '/assets/tilemaps/test.json')
+    this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
+    this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
   }
 
   create() {
-    const map = this.make.tilemap({ key: 'test' });
-    const tileset = map.addTilesetImage('magic-cliffs', 'magic-cliffs');
+    const map = this.make.tilemap({ key: 'starting-area' });
+    const tileset = map.addTilesetImage('fantasy-platformer-core', 'fantasy-platformer-core');
 
-    const backgroundLayer = map.createStaticLayer('background', tileset, 0, 0);
-    const platformsLayer = map.createStaticLayer('platforms', tileset, 0, 0);
+    const groundLayer = map.createStaticLayer('ground', tileset, 0, 0);
+    const backgroundBaseLayer = map.createStaticLayer('background-base', tileset, 0, 0);
+    const backgroundDetailsLayer = map.createStaticLayer('background-details', tileset, 0, 0);
     this.adventurer.create(this);
     const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
 
-    backgroundLayer.setScale(2);
-    platformsLayer.setScale(2);
+    groundLayer.setScale(2);
+    backgroundBaseLayer.setScale(2);
+    backgroundDetailsLayer.setScale(2);
     foregroundLayer.setScale(2);
 
-    platformsLayer.setCollisionByProperty({ collides: true });
+    groundLayer.setCollisionByProperty({ collides: true });
 
-    this.physics.add.collider(this.adventurer.sprite, platformsLayer);
+    this.physics.add.collider(this.adventurer.sprite, groundLayer);
 
-    this.cameras.main.setBounds(0, 0, 50 * tileset.tileWidth * 2, 16 * tileset.tileHeight * 2);
+    this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
     this.cameras.main.startFollow(this.adventurer.sprite, true);
   }
 }

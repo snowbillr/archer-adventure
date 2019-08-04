@@ -1,7 +1,7 @@
 import { Adventurer } from '..';
 import { movementAttributes } from '../movement-attributes';
 
-function applyAirControls(adventurer: Adventurer, targetVelocity) {
+function applyAirControls(adventurer: Adventurer, targetVelocity: number) {
   if (adventurer.controls.left.isDown && adventurer.body.velocity.x > targetVelocity) {
     adventurer.body.acceleration.x = -1 * movementAttributes.aerialHorizontalAcceleration;
   } else if (adventurer.controls.right.isDown && adventurer.body.velocity.x < targetVelocity) {
