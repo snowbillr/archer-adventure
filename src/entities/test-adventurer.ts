@@ -11,9 +11,9 @@ export class TestAdventurer implements Renderable.Entity {
     const renderable = new Renderable(scene, 100, 100, 'adventurer-core');
     renderable.create();
     this.sprite = renderable.getSprite();
-    this.sprite.setScale(2);
+    this.sprite.setScale(3);
 
-    this.hitboxes = new Hitboxes<TestAdventurer>(scene, this, 'adventurer-hitboxes');
+    this.hitboxes = new Hitboxes<TestAdventurer>(scene, this, 'adventurer-hitboxes', true);
     this.hitboxes.create();
   }
 
