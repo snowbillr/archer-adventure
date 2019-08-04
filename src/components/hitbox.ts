@@ -1,8 +1,8 @@
-export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity)> {
+export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity)> implements Hitbox.Component {
   private scene: Phaser.Scene;
   private entity: T;
   private animationsKey: string;
-  private hitboxFrames!: [];
+  private hitboxFrames!: Hitbox.HitboxFrame[];
 
   private rectanglePool: Phaser.Geom.Rectangle[];
   private activeRectangles: Phaser.Geom.Rectangle[];
@@ -44,9 +44,9 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
     const key = this.entity.sprite.frame.texture.key;
     const frame = this.entity.sprite.frame.name;
 
-    const hitboxDefinition: any = this.hitboxFrames.find((a: Phaser.Types.Animations.JSONAnimationFrame) => a.key === key && a.frame === frame);
-    if (hitboxDefinition && hitboxDefinition.hitboxes) {
-      hitboxDefinition.hitboxes.forEach((hitbox: any) => {
+    const hitboxFrame: Hitbox.HitboxFrame = this.hitboxFrames.find((h: Hitbox.HitboxFrame) => h.key === key && h.frame === frame) as Hitbox.HitboxFrame;
+    if (hitboxFrame && hitboxFrame.hitboxes) {
+      hitboxFrame.hitboxes.forEach((hitbox: Hitbox.HitboxConfig) => {
         if (hitbox.type === 'rectangle') {
           this.setRectangleHitbox(hitbox);
         } else {
@@ -60,7 +60,7 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
     }
   }
 
-  renderDebugHitboxes() {
+  private renderDebugHitboxes() {
     const point = new Phaser.Geom.Point(this.debugPointerPosition.x, this.debugPointerPosition.y);
 
     this.activeRectangles.forEach((activeRectangle, i) => {
@@ -83,14 +83,14 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
     })
   }
 
-  disableHitboxes() {
+  private disableHitboxes() {
     this.rectanglePool = [...this.rectanglePool, ...this.activeRectangles];
     this.activeRectangles = [];
 
     this.debugRectangles.forEach(r => r.visible = false);
   }
 
-  getAvailableRectangle() {
+  private getAvailableRectangle() {
     let rectangle = this.rectanglePool.pop();
     if (rectangle == null) {
       rectangle = new Phaser.Geom.Rectangle(0, 0, 0, 0);
@@ -103,7 +103,7 @@ export class Hitboxes<T extends (PhysicallyRenderable.Entity | Renderable.Entity
     return rectangle;
   }
 
-  setRectangleHitbox(hitbox: any) {
+  private setRectangleHitbox(hitbox: Hitbox.HitboxConfig) {
     const rectangle = this.getAvailableRectangle();
 
     const scaleX = this.entity.sprite.scaleX;

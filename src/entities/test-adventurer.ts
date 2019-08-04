@@ -1,4 +1,4 @@
-import { Hitboxes } from '../components/hitboxes';
+import { Hitboxes } from '../components/hitbox';
 import { Renderable } from '../components/renderable';
 
 export class TestAdventurer implements Renderable.Entity {
