@@ -47,6 +47,54 @@
           "height": 28
         }
       ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 4,
+      "hitboxes": [
+        {
+          "x": 3,
+          "y": 13,
+          "width": 10,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 5,
+      "hitboxes": [
+        {
+          "x": 3,
+          "y": 12,
+          "width": 10,
+          "height": 21
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 6,
+      "hitboxes": [
+        {
+          "x": 3,
+          "y": 13,
+          "width": 10,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 7,
+      "hitboxes": [
+        {
+          "x": 3,
+          "y": 13,
+          "width": 10,
+          "height": 20
+        }
+      ]
     }
   ]
 }

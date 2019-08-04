@@ -8,13 +8,14 @@ export class HitboxTestScene extends Phaser.Scene {
   }
 
   create() {
-    let frameIndex = 0;
+    let frameIndex = 4;
     const frameText = this.add.text(100, 200, `Frame ${frameIndex}`);
 
     const testAdventurer = new TestAdventurer();
     testAdventurer.create(this);
     testAdventurer.sprite.x = 100;
     testAdventurer.sprite.y = 100;
+    testAdventurer.sprite.setFrame(frameIndex);
 
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
