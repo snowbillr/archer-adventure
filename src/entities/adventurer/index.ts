@@ -14,7 +14,7 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
 
   public phiniteState!: PhiniteState<Adventurer>;
 
-  private hurtboxes!: Collidable.Component;
+  public hurtboxes!: Collidable.Component;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -35,7 +35,7 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
     this.phiniteState.create();
 
-    this.hurtboxes = new Collidable<Adventurer>(scene, this, 'adventurer-hitboxes');
+    this.hurtboxes = new Collidable<Adventurer>(scene, this, 'adventurer-hitboxes', true);
     this.hurtboxes.create();
   }
 
