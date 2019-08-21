@@ -1,6 +1,4 @@
-- hurtboxes
-  - need to finish defining them per animation frame
-- a way to collide against hurtboxes
+- bounding box per animation frame
 
 - enemy
 

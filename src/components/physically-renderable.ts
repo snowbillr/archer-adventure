@@ -6,7 +6,7 @@ export class PhysicallyRenderable implements PhysicallyRenderable.Component {
   private x: number;
   private y: number;
   private key: string;
-  private _sprite!: Phaser.Physics.Arcade.Sprite;
+  private sprite!: Phaser.Physics.Arcade.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
     this.scene = scene;
@@ -17,14 +17,14 @@ export class PhysicallyRenderable implements PhysicallyRenderable.Component {
   }
 
   create() {
-    this._sprite = this.scene.physics.add.sprite(this.x, this.y, this.key);
+    this.sprite = this.scene.physics.add.sprite(this.x, this.y, this.key);
   }
 
   getSprite() {
-    return this._sprite;
+    return this.sprite;
   }
 
   getBody() {
-    return this._sprite.body as Phaser.Physics.Arcade.Body;
+    return this.sprite.body as Phaser.Physics.Arcade.Body;
   }
 }
