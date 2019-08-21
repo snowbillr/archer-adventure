@@ -1,4 +1,4 @@
-declare namespace Hitbox {
+declare namespace Collidable {
   interface Component {
     create(): void;
     update(): void;

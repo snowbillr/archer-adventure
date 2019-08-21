@@ -1,9 +1,9 @@
-import { Hitboxes } from '../components/hitbox';
+import { Collidable } from '../components/collidable';
 import { Renderable } from '../components/renderable';
 
 export class TestAdventurer implements Renderable.Entity {
   public sprite!: Phaser.GameObjects.Sprite;
-  private hitboxes!: Hitboxes<TestAdventurer>;
+  private hitboxes!: Collidable<TestAdventurer>;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -13,7 +13,7 @@ export class TestAdventurer implements Renderable.Entity {
     this.sprite = renderable.getSprite();
     this.sprite.setScale(3);
 
-    this.hitboxes = new Hitboxes<TestAdventurer>(scene, this, 'adventurer-hitboxes', true);
+    this.hitboxes = new Collidable<TestAdventurer>(scene, this, 'adventurer-hitboxes', true);
     this.hitboxes.create();
   }
 
