@@ -1,23 +1,26 @@
-import { Collidable } from '../components/collidable';
-import { Renderable } from '../components/renderable';
+import { Boundable } from '../components/boundable';
+import { PhysicallyRenderable } from '../components/physically-renderable';
 
-export class TestAdventurer implements Renderable.Entity {
+export class TestAdventurer implements PhysicallyRenderable.Entity {
   public sprite!: Phaser.GameObjects.Sprite;
-  private hitboxes!: Collidable<TestAdventurer>;
+  public body!: Phaser.Physics.Arcade.Body;
+  public boundable!: Boundable.Component;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
 
-    const renderable = new Renderable(scene, 100, 100, 'adventurer-core');
+    const renderable = new PhysicallyRenderable(scene, 100, 100, 'adventurer-core');
     renderable.create();
     this.sprite = renderable.getSprite();
     this.sprite.setScale(3);
+    this.body = renderable.getBody();
+    this.body.allowGravity = false;
 
-    this.hitboxes = new Collidable<TestAdventurer>(scene, this, 'adventurer-hitboxes', true);
-    this.hitboxes.create();
+    this.boundable = new Boundable<TestAdventurer>(scene, this, 'adventurer-bounds');
+    this.boundable.create();
   }
 
   update() {
-    this.hitboxes.update();
+    this.boundable.update();
   }
 }

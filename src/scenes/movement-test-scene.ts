@@ -17,6 +17,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
     this.load.json('adventurer-hitboxes', '/assets/hitboxes/adventurer.json');
+    this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
     this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
     this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')

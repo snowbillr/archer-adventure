@@ -1,0 +1,16 @@
+[
+  {
+    "key": "adventurer-core",
+    "frame": 0,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 7
+      },
+      "size": {
+        "width": 19,
+        "height": 29
+      }
+    }
+  }
+]
