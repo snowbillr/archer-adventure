@@ -23,7 +23,7 @@ export const adventurerJump = StateMerge(baseJump, {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        return adventurer.body.velocity.y > 0;
+        return adventurer.body.velocity.y > 1;
       },
       to: 'adventurer-fall'
     }
