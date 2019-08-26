@@ -22,10 +22,15 @@ export class Boundable<T extends PhysicallyRenderable.Entity> {
     const boundsFrame: Boundable.BoundableFrame = this.boundsFrames.find((b: Boundable.BoundableFrame) => b.key === key && b.frame === frame) as Boundable.BoundableFrame;
     if (boundsFrame) {
       const bounds: Boundable.BoundableBounds = boundsFrame.bounds;
-      // const offsetX = this.entity.sprite.flipX ? bounds.offset.x * -1 : bounds.offset.x;
-      // const offsetY = this.entity.sprite.flipY ? bounds.offset.y * -1 : bounds.offset.y;
-      const offsetX = bounds.offset.x;
-      const offsetY = bounds.offset.y;
+
+      let offsetX = bounds.offset.x;
+      let offsetY = bounds.offset.y;
+      if (this.entity.sprite.flipX) {
+        offsetX = this.entity.sprite.width - offsetX - bounds.size.width;
+      }
+      if (this.entity.sprite.flipY) {
+        offsetY = this.entity.sprite.height - offsetY - bounds.size.height;
+      }
 
       this.entity.body.setSize(bounds.size.width, bounds.size.height);
       this.entity.body.setOffset(offsetX, offsetY);
