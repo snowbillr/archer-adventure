@@ -1,4 +1,4 @@
-export class Boundable<T extends PhysicallyRenderable.Entity> {
+export class Boundable<T extends PhysicallyRenderable.Entity> implements Boundable.Component {
   private scene: Phaser.Scene;
   private boundsKey: string;
   private entity: T;
