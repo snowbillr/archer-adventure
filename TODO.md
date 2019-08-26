@@ -1,13 +1,13 @@
-- enemy
-
 - rework component system to have a component manager
   - can disable components selectively?
+
+- animal walking around in fence
 
 - interactive objects
   - signs
 
-- state graph
+- state graph visualization
 
-- animal walking around in fence
+- enemy
 
 - go into house
