@@ -6,7 +6,7 @@ export const baseGround = {
     {
       type: TransitionType.Conditional,
       condition: (adventurer: Adventurer) => {
-        return adventurer.body.velocity.y > 1;
+        return adventurer.body.velocity.y > 5;
       },
       to: (adventurer: Adventurer) => {
         adventurer.body.velocity.y = 100;

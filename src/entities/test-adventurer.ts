@@ -12,7 +12,7 @@ export class TestAdventurer implements PhysicallyRenderable.Entity {
     const renderable = new PhysicallyRenderable(scene, 100, 100, 'adventurer-core');
     renderable.create();
     this.sprite = renderable.getSprite();
-    this.sprite.setScale(3);
+    this.sprite.setScale(6);
     this.body = renderable.getBody();
     this.body.allowGravity = false;
 

@@ -8,13 +8,13 @@ export class BoundsTestScene extends Phaser.Scene {
   }
 
   create() {
-    let frameIndex = 0;
-    const frameText = this.add.text(100, 200, `Frame ${frameIndex}`);
+    let frameIndex = 28;
+    const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const testAdventurer = new TestAdventurer();
     testAdventurer.create(this);
-    testAdventurer.sprite.x = 100;
-    testAdventurer.sprite.y = 100;
+    testAdventurer.sprite.x = 150;
+    testAdventurer.sprite.y = 200;
     testAdventurer.sprite.setFrame(frameIndex);
 
     this.input.keyboard.on('keydown', (e: any) => {
