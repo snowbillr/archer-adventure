@@ -5,7 +5,6 @@ declare namespace Collidable {
   }
 
   interface Entity {
-
   }
 
   type HitboxFrame = {
