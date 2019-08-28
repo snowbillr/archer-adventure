@@ -1,0 +1,15 @@
+{
+  "anims": [
+    {
+      "key": "indicator-down",
+      "frames": [
+        { "key": "indicator-down", "frame": 0 },
+        { "key": "indicator-down", "frame": 1 },
+        { "key": "indicator-down", "frame": 2 },
+        { "key": "indicator-down", "frame": 3 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    }
+  ]
+}

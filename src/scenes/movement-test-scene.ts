@@ -49,16 +49,15 @@ export class MovementTestScene extends Phaser.Scene {
     const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
 
     const signs = map.getObjectLayer('signs');
-    const testSign = signs.objects[0];
+    const testSign = signs.objects[0] as { x: number, y: number };
     const sign = new Sign();
     sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
-    // const sprite = this.add.sprite(testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
 
     this.tagSystem.add('sign-interactor', this.adventurer);
     this.tagSystem.add('sign-interactive', sign);
-    this.tagSystem.addSystem(function() {
-      const interactors = this.get('sign-interactor') as Interactable.Entity[];
-      const interactives = this.get('sign-interactive') as Interactable.Entity[];
+    this.tagSystem.addSystem(() => {
+      const interactors = this.tagSystem.get('sign-interactor') as Interactable.Entity[];
+      const interactives = this.tagSystem.get('sign-interactive') as Interactable.Entity[];
 
       interactors.forEach(interactor => {
         interactives.forEach(interactive => {

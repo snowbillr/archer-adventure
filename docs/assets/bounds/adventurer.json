@@ -1,0 +1,352 @@
+[
+  {
+    "key": "adventurer-core",
+    "frame": 0,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 7
+      },
+      "size": {
+        "width": 19,
+        "height": 29
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 1,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 6
+      },
+      "size": {
+        "width": 17,
+        "height": 30
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 2,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 6
+      },
+      "size": {
+        "width": 19,
+        "height": 30
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 3,
+    "bounds": {
+      "offset": {
+        "x": 13,
+        "y": 7
+      },
+      "size": {
+        "width": 20,
+        "height": 29
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 4,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 15
+      },
+      "size": {
+        "width": 19,
+        "height": 21
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 5,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 14
+      },
+      "size": {
+        "width": 20,
+        "height": 22
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 6,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 14
+      },
+      "size": {
+        "width": 19,
+        "height": 22
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 7,
+    "bounds": {
+      "offset": {
+        "x": 17,
+        "y": 15
+      },
+      "size": {
+        "width": 17,
+        "height": 21
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 8,
+    "bounds": {
+      "offset": {
+        "x": 17,
+        "y": 8
+      },
+      "size": {
+        "width": 20,
+        "height": 28
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 9,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 9
+      },
+      "size": {
+        "width": 20,
+        "height": 27
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 10,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 11
+      },
+      "size": {
+        "width": 20,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 11,
+    "bounds": {
+      "offset": {
+        "x": 17,
+        "y": 8
+      },
+      "size": {
+        "width": 23,
+        "height": 28
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 12,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 9
+      },
+      "size": {
+        "width": 20,
+        "height": 27
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 13,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 11
+      },
+      "size": {
+        "width": 20,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 14,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 12
+      },
+      "size": {
+        "width": 20,
+        "height": 24
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 15,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 14
+      },
+      "size": {
+        "width": 20,
+        "height": 22
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 16,
+    "bounds": {
+      "offset": {
+        "x": 17,
+        "y": 7
+      },
+      "size": {
+        "width": 19,
+        "height": 27
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 17,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 5
+      },
+      "size": {
+        "width": 21,
+        "height": 23
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 22,
+    "bounds": {
+      "offset": {
+        "x": 18,
+        "y": 1
+      },
+      "size": {
+        "width": 17,
+        "height": 35
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 23,
+    "bounds": {
+      "offset": {
+        "x": 18,
+        "y": 2
+      },
+      "size": {
+        "width": 17,
+        "height": 34
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 24,
+    "bounds": {
+      "offset": {
+        "x": 5,
+        "y": 21
+      },
+      "size": {
+        "width": 34,
+        "height": 15
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 25,
+    "bounds": {
+      "offset": {
+        "x": 5,
+        "y": 21
+      },
+      "size": {
+        "width": 34,
+        "height": 15
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 26,
+    "bounds": {
+      "offset": {
+        "x": 5,
+        "y": 20
+      },
+      "size": {
+        "width": 34,
+        "height": 16
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 27,
+    "bounds": {
+      "offset": {
+        "x": 9,
+        "y": 19
+      },
+      "size": {
+        "width": 30,
+        "height": 17
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 28,
+    "bounds": {
+      "offset": {
+        "x": 15,
+        "y": 19
+      },
+      "size": {
+        "width": 22,
+        "height": 17
+      }
+    }
+  }
+]

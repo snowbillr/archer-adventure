@@ -2,8 +2,6 @@ export class Interactable<T extends (PhysicallyRenderable.Entity | Renderable.En
   private scene: Phaser.Scene;
   private entity: T;
 
-  private x: number;
-  private y: number;
   private radius: number;
 
   private interactionCircle!: Phaser.Geom.Circle;
@@ -34,7 +32,7 @@ export class Interactable<T extends (PhysicallyRenderable.Entity | Renderable.En
     this.interactionCircle.setPosition(this.entity.sprite.x, this.entity.sprite.y);
 
     if (this.debug) {
-      const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main);
+      const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
       this.debugCircle.setPosition(this.entity.sprite.x, this.entity.sprite.y);
 
       if (Phaser.Geom.Intersects.CircleToCircle(this.interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
