@@ -56,12 +56,12 @@ export class MovementTestScene extends Phaser.Scene {
     const signEntity: Systems.HasInteractionCircle & Systems.HasSprite = {};
 
     this.tagManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
-    this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.renderable);
-    this.tagManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.interactable);
+    this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
+    this.tagManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
     this.tagManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
 
 
-    this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.renderable, {
+    this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.hasSprite, {
       x: testSign.x * TILEMAP_SCALE,
       y: testSign.y * TILEMAP_SCALE - map.tileHeight,
       texture: 'fantasy-platformer-core-spritesheet',
@@ -69,8 +69,8 @@ export class MovementTestScene extends Phaser.Scene {
       scale: TILEMAP_SCALE,
     });
 
-    this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.interactable, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
-    this.tagManager.registerEntity(this.adventurer, HasInteracionCircleSystem.SystemTags.interactable, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });
+    this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
+    this.tagManager.registerEntity(this.adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });
 
     this.tagManager.registerEntity(this.adventurer, SignSystem.SystemTags.interactor);
     this.tagManager.registerEntity(signEntity, SignSystem.SystemTags.sign);

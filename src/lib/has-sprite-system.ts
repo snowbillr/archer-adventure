@@ -4,13 +4,13 @@ import { BaseSystem } from './base-system';
 
 export class HasSpriteSystem<T extends Systems.HasSprite> extends BaseSystem<T> implements Tags.TagSystem {
   static SystemTags = {
-    renderable: 'renderable',
+    hasSprite: 'hasSprite',
   };
 
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasSpriteSystem.SystemTags.renderable, '');
+    super(HasSpriteSystem.SystemTags.hasSprite, '');
 
     this.scene = scene;
   }

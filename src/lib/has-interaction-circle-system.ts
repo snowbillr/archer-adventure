@@ -4,13 +4,13 @@ import { BaseSystem } from './base-system';
 
 export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle & Systems.HasSprite> extends BaseSystem<T> implements Tags.TagSystem {
   static SystemTags = {
-    interactable: 'interactable',
+    hasInteractionCircle: 'hasInteractionCircle',
   };
 
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasInteracionCircleSystem.SystemTags.interactable, '');
+    super(HasInteracionCircleSystem.SystemTags.hasInteractionCircle, '');
 
     this.scene = scene;
   }
