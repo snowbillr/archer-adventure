@@ -27,7 +27,7 @@ export class InteractableSystem<T extends Systems.Interactable & Systems.Rendera
 
     const entities = this.tag1s;
     entities.forEach(entity => {
-      entity.interactionCircle.setPosition(entity.sprite.x, entity.sprite.y);
+      entity.interactionCircle!.setPosition(entity.sprite!.x, entity.sprite!.y);
     });
   }
 }

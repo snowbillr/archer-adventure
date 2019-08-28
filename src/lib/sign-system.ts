@@ -1,6 +1,8 @@
 import { BaseSystem } from './base-system';
 
-import { Sign } from '../entities/sign';
+// import { Sign } from '../entities/sign';
+
+type Sign = Systems.HasIndicator & Systems.Interactable & Systems.Renderable;
 
 export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sign> implements Tags.TagSystem {
   static SystemTags = {
@@ -25,14 +27,12 @@ export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sig
     interactors.forEach(interactor => {
       signs.forEach(sign => {
         const circle1 = interactor.interactionCircle;
-        const circle2 = sign.interactionCircle;
+        const circle2 = sign.interactionCircle!;
 
         if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-          // sign.showIndicator();
-          console.log('HIT')
+          sign.showIndicator();
         } else {
-          // sign.hideIndicator();
-          // console.log('MISS')
+          sign.hideIndicator();
         }
       })
     });
