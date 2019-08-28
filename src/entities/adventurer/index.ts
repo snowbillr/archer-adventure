@@ -48,15 +48,15 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
     this.boundable = new Boundable<Adventurer>(scene, this, 'adventurer-bounds');
     this.boundable.create();
 
-    this.interactable = new Interactable(scene, this, 30);
-    this.interactable.create();
-    this.interactionCircle = this.interactable.getInteractionCircle();
+    // this.interactable = new Interactable(scene, this, 30);
+    // this.interactable.create();
+    // this.interactionCircle = this.interactable.getInteractionCircle();
   }
 
   update() {
     this.phiniteState.update();
     this.hurtboxes.update();
     this.boundable.update();
-    this.interactable.update();
+    // this.interactable.update();
   }
 }

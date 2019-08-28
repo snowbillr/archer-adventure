@@ -5,9 +5,11 @@ import { Sign } from '../entities/sign';
 import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
 import { RenderableSystem } from '../lib/renderable-system';
+import { InteractableSystem } from '../lib/interactable-system';
 
 type SignType = {
-  sprite?: Phaser.GameObjects.Sprite;
+  sprite?: Phaser.GameObjects.Sprite; // renderable
+  interactionCircle?: Phaser.Geom.Circle; //interactable
 }
 
 export class MovementTestScene extends Phaser.Scene {
@@ -61,11 +63,9 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
     this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
+    this.tagManager.registerSystem(InteractableSystem.SystemTags.interactable, new InteractableSystem(this));
 
     const signNew: SignType = {};
-
-    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
-    // this.tagManager.registerEntity(SignSystem.SystemTags.sign, sign);
 
     this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, signNew, {
       x: testSign.x * TILEMAP_SCALE,
@@ -74,6 +74,12 @@ export class MovementTestScene extends Phaser.Scene {
       frame: 1128,
       scale: TILEMAP_SCALE,
     });
+
+    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, signNew, { x: signNew.sprite!.x , y: signNew.sprite!.y, radius: 30 });
+    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, this.adventurer, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30});
+
+    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
+    this.tagManager.registerEntity(SignSystem.SystemTags.sign, signNew);
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);

@@ -28,9 +28,11 @@ export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sig
         const circle2 = sign.interactionCircle;
 
         if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-          sign.showIndicator();
+          // sign.showIndicator();
+          console.log('HIT')
         } else {
-          sign.hideIndicator();
+          // sign.hideIndicator();
+          // console.log('MISS')
         }
       })
     });

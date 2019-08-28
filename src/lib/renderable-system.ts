@@ -16,6 +16,7 @@ export class RenderableSystem extends BaseSystem<Tags.Entity, Tags.Entity> imple
   }
 
   registerEntity(entity: Renderable.Entity, data: { [key: string]: any }): void {
+    console.log('renderable')
     const { x, y, texture, frame } = data;
     const sprite = this.scene.add.sprite(x, y, texture, frame);
 
