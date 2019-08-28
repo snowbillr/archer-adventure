@@ -3,6 +3,15 @@ import { BaseSystem } from './base-system';
 import { Sign } from '../entities/sign';
 
 export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sign> implements Tags.TagSystem {
+  static SystemTags = {
+    interactor: 'sign-interactor',
+    sign: 'sign-interactive',
+  }
+
+  constructor() {
+    super(SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign);
+  }
+
   update(tagManager: Tags.TagManager) {
     super.update(tagManager);
 
