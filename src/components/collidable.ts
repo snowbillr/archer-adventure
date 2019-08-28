@@ -1,6 +1,4 @@
-import { HasSpriteSystem } from '../lib/has-sprite-system';
-
-export class Collidable<T extends (PhysicallyRenderable.Entity | Systems.HasSprite)> implements Collidable.Component {
+export class Collidable<T extends Systems.HasSprite> implements Collidable.Component {
   private scene: Phaser.Scene;
   private entity: T;
   private animationsKey: string;

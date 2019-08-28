@@ -44,11 +44,11 @@ export class PhiniteState<T extends Systems.HasSprite> implements PhiniteState.C
     const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
     this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteState.State<T>;
 
-    if (transition.onTransition) {
+    if (transition.onTransition && transition.type !== TransitionType.Initial) {
       transition.onTransition(this.entity);
     }
 
-    if (this.currentState.onEnter) {
+    if (this.currentState.onEnter && transition.type !== TransitionType.Initial) {
       this.currentState.onEnter(this.entity, this.currentState.data || {});
     }
     this.registerTransitionTriggers();

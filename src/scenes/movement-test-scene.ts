@@ -4,8 +4,10 @@ import { Adventurer } from '../entities/adventurer/index';
 import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
 import { HasSpriteSystem } from '../lib/has-sprite-system';
+import { HasPhysicalSpriteSystem } from '../lib/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../lib/has-interaction-circle-system';
 import { HasIndicatorSystem } from '../lib/has-indicator-system';
+import { movementAttributes } from '../entities/adventurer/movement-attributes';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -57,6 +59,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
+    this.tagManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
     this.tagManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
     this.tagManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
 
@@ -67,6 +70,17 @@ export class MovementTestScene extends Phaser.Scene {
       texture: 'fantasy-platformer-core-spritesheet',
       frame: 1128,
       scale: TILEMAP_SCALE,
+    });
+
+    this.tagManager.registerEntity(this.adventurer, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
+      x: 900,
+      y: 100,
+      texture: 'adventurer-core',
+      frame: 0,
+      scale: TILEMAP_SCALE,
+      maxVelocity: {
+        x: movementAttributes.maxVelocity
+      }
     });
 
     this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
