@@ -4,8 +4,8 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
   private animationsKey: string;
   private hitboxFrames!: Collidable.HitboxFrame[];
 
-  private arcadeSpritePool: Phaser.Physics.Arcade.Sprite[];
-  private activeArcadeSprites: Phaser.Physics.Arcade.Sprite[];
+  private rectanglePool: Phaser.Geom.Rectangle[];
+  private activeRectangles: Phaser.Geom.Rectangle[];
 
   private debugRectangles: Phaser.GameObjects.Rectangle[];
   private debug: boolean;
@@ -17,8 +17,8 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
     this.entity = entity;
     this.animationsKey = animationsKey;
 
-    this.arcadeSpritePool = [];
-    this.activeArcadeSprites = [];
+    this.rectanglePool = [];
+    this.activeRectangles = [];
 
     this.debug = debug;
     this.debugColor = 0x00FF00;
@@ -48,47 +48,63 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
     if (hitboxFrame && hitboxFrame.hitboxes) {
       hitboxFrame.hitboxes.forEach((hitbox: Collidable.HitboxConfig) => {
         if (hitbox.type === 'rectangle') {
-          this.setArcadeSpriteHitbox(hitbox);
+          this.setRectangleHitbox(hitbox);
         } else {
           throw 'unsupported hitbox type';
         }
       })
     }
+
+    if (this.debug) {
+      this.renderDebugHitboxes();
+    }
   }
 
-  collide(arcadeObject: Phaser.Types.Physics.Arcade.ArcadeColliderType) {
-    return this.scene.physics.world.collide(arcadeObject, this.activeArcadeSprites);
+  private renderDebugHitboxes() {
+    const point = new Phaser.Geom.Point(this.debugPointerPosition.x, this.debugPointerPosition.y);
+
+    this.activeRectangles.forEach((activeRectangle, i) => {
+      if (Phaser.Geom.Rectangle.ContainsPoint(activeRectangle, point)) {
+        this.debugColor = 0xFF0000;
+      } else {
+        this.debugColor = 0x00FF00;
+      }
+
+      const debugRectangle = this.debugRectangles[i];
+
+      debugRectangle.visible = true;
+      debugRectangle.fillColor = this.debugColor;
+
+      debugRectangle.setOrigin(0, 0);
+      debugRectangle.x = activeRectangle.x;
+      debugRectangle.y = activeRectangle.y;
+      debugRectangle.width = activeRectangle.width;
+      debugRectangle.height = activeRectangle.height;
+    })
   }
 
   private disableHitboxes() {
-    this.arcadeSpritePool = [...this.arcadeSpritePool, ...this.activeArcadeSprites];
-    this.activeArcadeSprites = [];
-
-    this.arcadeSpritePool.forEach(as => {
-      as.disableBody(true, true);
-    });
+    this.rectanglePool = [...this.rectanglePool, ...this.activeRectangles];
+    this.activeRectangles = [];
 
     this.debugRectangles.forEach(r => r.visible = false);
   }
 
-  private getAvailableArcadeSprite() {
-    let arcadeSprite = this.arcadeSpritePool.pop();
-    if (arcadeSprite == null) {
-      arcadeSprite = this.scene.physics.add.sprite(0, 0, '');
+  private getAvailableRectangle() {
+    let rectangle = this.rectanglePool.pop();
+    if (rectangle == null) {
+      rectangle = new Phaser.Geom.Rectangle(0, 0, 0, 0);
       if (this.debug) {
         this.debugRectangles.push(this.scene.add.rectangle(0, 0, 0, 0, this.debugColor, 0.5));
       }
     }
 
-    this.activeArcadeSprites.push(arcadeSprite);
-    return arcadeSprite;
+    this.activeRectangles.push(rectangle);
+    return rectangle;
   }
 
-  private setArcadeSpriteHitbox(hitbox: Collidable.HitboxConfig) {
-    const arcadeSprite = this.getAvailableArcadeSprite();
-    arcadeSprite.setOrigin(0, 0);
-    arcadeSprite.setVisible(false);
-    arcadeSprite.enableBody(true, 0, 0, true, false);
+  private setRectangleHitbox(hitbox: Collidable.HitboxConfig) {
+    const rectangle = this.getAvailableRectangle();
 
     const scaleX = this.entity.sprite.scaleX;
     const scaleY = this.entity.sprite.scaleY;
@@ -101,13 +117,9 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
     const x = (this.entity.sprite.x + (offsetX * scaleX)) - (width * this.entity.sprite.originX);
     const y = (this.entity.sprite.y + (offsetY * scaleY)) - (height * this.entity.sprite.originY);
 
-    arcadeSprite.setOrigin(0, 0);
-    arcadeSprite.setSize(width, height);
-    arcadeSprite.setDisplaySize(width, height);
-    arcadeSprite.setPosition(x, y);
-
-    if (this.debug) {
-      arcadeSprite.setVisible(true);
-    }
+    rectangle.x = x;
+    rectangle.y = y;
+    rectangle.width = width;
+    rectangle.height = height;
   }
 }

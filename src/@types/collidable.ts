@@ -2,8 +2,6 @@ declare namespace Collidable {
   interface Component {
     create(): void;
     update(): void;
-
-    collide(arcadeObject: Phaser.Types.Physics.Arcade.ArcadeColliderType): void;
   }
 
   interface Entity {

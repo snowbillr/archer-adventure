@@ -15,7 +15,7 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
 
   public phiniteState!: PhiniteState<Adventurer>;
 
-  public hurtboxes!: Collidable.Component;
+  private hurtboxes!: Collidable.Component;
 
   public boundable!: Boundable.Component;
 
