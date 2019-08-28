@@ -11,9 +11,13 @@ export class TagManager implements Tags.TagManager {
     this.systems.push(system);
   };
 
-  registerEntity(tag: string, entity: Tags.Entity) {
-    this.tagMap[tag] = this.tagMap[tag] || [];
-    this.tagMap[tag].push(entity);
+  registerEntity(entity: Tags.Entity, tags: (string | string[])) {
+    const normalizedTags = Array.isArray(tags) ? tags : [tags];
+
+    normalizedTags.forEach(tag => {
+      this.tagMap[tag] = this.tagMap[tag] || [];
+      this.tagMap[tag].push(entity);
+    });
   }
 
   getEntities(tag: string) {

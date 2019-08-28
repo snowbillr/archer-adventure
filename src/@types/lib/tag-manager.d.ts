@@ -3,7 +3,7 @@ declare namespace Tags {
 
   interface TagManager {
     registerSystem(tagSystem: TagSystem): void;
-    registerEntity(tag: string, entity: Entity): void;
+    registerEntity(entity: Entity, tag: (string | string[])): void;
 
     getEntities(tag: string): Entity[];
 
