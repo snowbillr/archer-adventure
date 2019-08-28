@@ -20,7 +20,7 @@ export abstract class BaseSystem<T extends Tags.Entity, U extends Tags.Entity> i
   }
 
   update(tagManager: Tags.TagManager): void {
-    this.tag1s = tagManager.getEntities(this.tag1) as T[];
-    this.tag2s = tagManager.getEntities(this.tag2) as U[];
+    this.tag1s = (tagManager.getEntities(this.tag1) || []) as T[];
+    this.tag2s = (tagManager.getEntities(this.tag2) || []) as U[];
   }
 }

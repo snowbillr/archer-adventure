@@ -6,6 +6,10 @@ import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
 import { RenderableSystem } from '../lib/renderable-system';
 
+type SignType = {
+  sprite?: Phaser.GameObjects.Sprite;
+}
+
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
   private tagManager: TagManager;
@@ -52,15 +56,24 @@ export class MovementTestScene extends Phaser.Scene {
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
-    const sign = new Sign();
-    sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
+    // const sign = new Sign();
+    // sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
 
     this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
-    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
-    this.tagManager.registerEntity(SignSystem.SystemTags.sign, sign);
-
     this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
-    this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, {}, { x: 1000, y: 100, texture: 'adventurer-bow', frame: 0})
+
+    const signNew: SignType = {};
+
+    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
+    // this.tagManager.registerEntity(SignSystem.SystemTags.sign, sign);
+
+    this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, signNew, {
+      x: testSign.x * TILEMAP_SCALE,
+      y: testSign.y * TILEMAP_SCALE - map.tileHeight,
+      texture: 'fantasy-platformer-core-spritesheet',
+      frame: 1128,
+      scale: TILEMAP_SCALE,
+    });
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);
