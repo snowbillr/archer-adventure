@@ -7,10 +7,12 @@ import { SignSystem } from '../lib/sign-system';
 import { RenderableSystem } from '../lib/renderable-system';
 import { InteractableSystem } from '../lib/interactable-system';
 
+/*
 type SignType = {
   sprite?: Phaser.GameObjects.Sprite; // renderable
   interactionCircle?: Phaser.Geom.Circle; //interactable
 }
+*/
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -65,7 +67,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
     this.tagManager.registerSystem(InteractableSystem.SystemTags.interactable, new InteractableSystem(this));
 
-    const signNew: SignType = {};
+    const signNew: Systems.Interactable & Systems.Renderable = {};
 
     this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, signNew, {
       x: testSign.x * TILEMAP_SCALE,

@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from './base-system';
 
-export class InteractableSystem<T extends Interactable.Entity & Renderable.Entity> extends BaseSystem<T, Tags.Entity> implements Tags.TagSystem {
+export class InteractableSystem<T extends Systems.Interactable & Systems.Renderable> extends BaseSystem<T, Tags.Entity> implements Tags.TagSystem {
   static SystemTags = {
     interactable: 'interactable',
   };
