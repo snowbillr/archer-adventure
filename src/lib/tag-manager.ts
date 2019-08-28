@@ -1,5 +1,5 @@
 export class TagManager implements Tags.TagManager {
-  private tagMap: { [tag: string]: object[] };
+  private tagMap: { [tag: string]: Tags.Entity[] };
   private systems: Tags.TagSystem[]
 
   constructor() {
@@ -11,7 +11,7 @@ export class TagManager implements Tags.TagManager {
     this.systems.push(system);
   };
 
-  registerEntity(tag: string, entity: object) {
+  registerEntity(tag: string, entity: Tags.Entity) {
     this.tagMap[tag] = this.tagMap[tag] || [];
     this.tagMap[tag].push(entity);
   }

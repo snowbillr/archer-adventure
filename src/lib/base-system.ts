@@ -1,4 +1,4 @@
-export abstract class BaseSystem<T, U> implements Tags.TagSystem {
+export abstract class BaseSystem<T extends Tags.Entity, U extends Tags.Entity> implements Tags.TagSystem {
   protected tag1: string;
   protected tag2: string;
 

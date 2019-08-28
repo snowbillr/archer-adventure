@@ -1,5 +1,5 @@
 declare namespace Tags {
-  type Entity = any;
+  type Entity = object;
 
   interface TagManager {
     registerSystem(tagSystem: TagSystem): void;
