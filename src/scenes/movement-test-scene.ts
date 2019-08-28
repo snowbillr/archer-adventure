@@ -55,7 +55,7 @@ export class MovementTestScene extends Phaser.Scene {
     const testSign = signs.objects[0] as { x: number, y: number };
     const signEntity: Systems.Interactable & Systems.Renderable = {};
 
-    this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
+    this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem());
     this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
     this.tagManager.registerSystem(InteractableSystem.SystemTags.interactable, new InteractableSystem(this));
     this.tagManager.registerSystem(HasIndicatorSystem.SystemTags.hasIndicator, new HasIndicatorSystem(this));

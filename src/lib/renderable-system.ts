@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from './base-system';
 
-export class RenderableSystem extends BaseSystem<Tags.Entity, Tags.Entity> implements Tags.TagSystem {
+export class RenderableSystem<T extends Systems.Renderable> extends BaseSystem<T> implements Tags.TagSystem {
   static SystemTags = {
     renderable: 'renderable',
   };
@@ -15,7 +15,7 @@ export class RenderableSystem extends BaseSystem<Tags.Entity, Tags.Entity> imple
     this.scene = scene;
   }
 
-  registerEntity(entity: Systems.Renderable, data: { [key: string]: any }): void {
+  registerEntity(entity: T, data: { [key: string]: any }): void {
     console.log('renderable')
     const { x, y, texture, frame } = data;
     const sprite = this.scene.add.sprite(x, y, texture, frame);
