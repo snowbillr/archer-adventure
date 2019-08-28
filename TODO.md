@@ -13,6 +13,10 @@
 
 - convert remaining "components" to tag/entity system
 
+- systems file re-organization
+
+- systems probably should put their vars on the entities in buckets, rather than keep them all on the same flat level
+
 aside:
 > this is starting to feel a hell of a lot like react hooks - especially the `hasIndicator` system
 
