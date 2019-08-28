@@ -18,3 +18,5 @@ aside:
 - enemy
 
 - go into house
+
+- controlable controls should be used every where, no raw key codes

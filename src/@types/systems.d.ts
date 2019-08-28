@@ -37,4 +37,9 @@ declare namespace Systems {
   type HasBounds = {
     boundsFrames: HasBoundsFrame[];
   }
+
+  type HasControlsControls = { [control: string]: Phaser.Input.Keyboard.Key };
+  type HasControls = {
+    controls: HasControlsControls;
+  }
 }

@@ -8,6 +8,8 @@ import { HasPhysicalSpriteSystem } from '../lib/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../lib/has-interaction-circle-system';
 import { HasIndicatorSystem } from '../lib/has-indicator-system';
 import { HasBoundsSystem } from '../lib/has-bounds-system';
+import { HasControlsSystem } from '../lib/has-controls-system';
+
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
 
 export class MovementTestScene extends Phaser.Scene {
@@ -64,6 +66,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
     this.tagManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
     this.tagManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
+    this.tagManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
 
 
     this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.hasSprite, {
@@ -88,6 +91,8 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {
       boundsKey: 'adventurer-bounds'
     });
+
+    this.tagManager.registerEntity(this.adventurer, HasControlsSystem.SystemTags.hasControls);
 
     this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
     this.tagManager.registerEntity(this.adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });
