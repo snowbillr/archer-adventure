@@ -12,6 +12,10 @@ export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sig
     super(SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign);
   }
 
+  registerEntity(entity: (T | Sign)) {
+    // nothing
+  }
+
   update(tagManager: Tags.TagManager) {
     super.update(tagManager);
 

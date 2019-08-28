@@ -54,9 +54,9 @@ export class MovementTestScene extends Phaser.Scene {
     const sign = new Sign();
     sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
 
+    this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
     this.tagManager.registerEntity(this.adventurer, SignSystem.SystemTags.interactor);
-    this.tagManager.registerEntity(sign, [SignSystem.SystemTags.sign, 'b']);
-    this.tagManager.registerSystem(new SignSystem<Adventurer>());
+    this.tagManager.registerEntity(sign, SignSystem.SystemTags.sign);
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);

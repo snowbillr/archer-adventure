@@ -13,6 +13,12 @@ export abstract class BaseSystem<T extends Tags.Entity, U extends Tags.Entity> i
     this.tag2s = [];
   }
 
+  registerEntity(entity: (T | U)) {
+    // this is where you could do the `create` work of a component
+    // and assign any properties to the entity
+    //   what about functions?
+  }
+
   update(tagManager: Tags.TagManager): void {
     this.tag1s = tagManager.getEntities(this.tag1) as T[];
     this.tag2s = tagManager.getEntities(this.tag2) as U[];
