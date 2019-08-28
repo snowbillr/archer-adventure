@@ -1,28 +1,28 @@
-export class TagSystem {
+export class TagManager implements Tags.TagManager {
   private tagMap: { [tag: string]: object[] };
-  private systems: (() => void)[]
+  private systems: Tags.TagSystem[]
 
   constructor() {
     this.tagMap = {};
     this.systems = [];
   }
 
-  add(tag: string, entity: object) {
+  registerSystem(system: Tags.TagSystem) {
+    this.systems.push(system);
+  };
+
+  registerEntity(tag: string, entity: object) {
     this.tagMap[tag] = this.tagMap[tag] || [];
     this.tagMap[tag].push(entity);
   }
 
-  get(tag: string) {
+  getEntities(tag: string) {
     return this.tagMap[tag];
   }
 
-  addSystem(system: () => void) {
-    this.systems.push(system);
-  };
-
   update() {
     this.systems.forEach(system => {
-      system.call(this);
+      system.update(this);
     });
   }
 }

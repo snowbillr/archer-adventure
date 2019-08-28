@@ -2,17 +2,18 @@ import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
 import { Sign } from '../entities/sign';
-import { TagSystem } from '../lib/tag-system';
+import { TagManager } from '../lib/tag-manager';
+import { SignSystem } from '../lib/sign-system';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
-  private tagSystem: TagSystem;
+  private tagManager: TagManager;
 
   constructor(config: any) {
     super(config);
 
     this.adventurer = new Adventurer();
-    this.tagSystem = new TagSystem();
+    this.tagManager = new TagManager();
   }
 
   preload() {
@@ -53,25 +54,9 @@ export class MovementTestScene extends Phaser.Scene {
     const sign = new Sign();
     sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
 
-    this.tagSystem.add('sign-interactor', this.adventurer);
-    this.tagSystem.add('sign-interactive', sign);
-    this.tagSystem.addSystem(() => {
-      const interactors = this.tagSystem.get('sign-interactor') as Interactable.Entity[];
-      const interactives = this.tagSystem.get('sign-interactive') as Interactable.Entity[];
-
-      interactors.forEach(interactor => {
-        interactives.forEach(interactive => {
-          const circle1 = interactor.interactionCircle;
-          const circle2 = interactive.interactionCircle;
-
-          if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-            sign.showIndicator();
-          } else {
-            sign.hideIndicator();
-          }
-        })
-      });
-    });
+    this.tagManager.registerEntity('sign-interactor', this.adventurer);
+    this.tagManager.registerEntity('sign-interactive', sign);
+    this.tagManager.registerSystem(new SignSystem());
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);
@@ -87,6 +72,6 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   update() {
-    this.tagSystem.update();
+    this.tagManager.update();
   }
 }
