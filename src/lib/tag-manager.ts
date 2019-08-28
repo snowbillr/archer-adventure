@@ -7,7 +7,7 @@ export class TagManager implements Tags.TagManager {
     this.systemsMap = {};
   }
 
-  registerSystem(tags: (string | string[]), system: Tags.TagSystem) {
+  registerSystem(system: Tags.TagSystem, tags: (string | string[])) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -16,7 +16,7 @@ export class TagManager implements Tags.TagManager {
     });
   };
 
-  registerEntity(tags: (string | string[]), entity: Tags.Entity, data?: Tags.EntityRegistrationData) {
+  registerEntity(entity: Tags.Entity, tags: (string | string[]), data?: Tags.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
