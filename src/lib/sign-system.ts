@@ -1,7 +1,5 @@
 import { BaseSystem } from './base-system';
 
-// import { Sign } from '../entities/sign';
-
 type Sign = Systems.HasIndicator & Systems.Interactable & Systems.Renderable;
 
 export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sign> implements Tags.TagSystem {

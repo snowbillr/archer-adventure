@@ -1,19 +1,11 @@
 import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
-import { Sign } from '../entities/sign';
 import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
 import { RenderableSystem } from '../lib/renderable-system';
 import { InteractableSystem } from '../lib/interactable-system';
 import { HasIndicatorSystem } from '../lib/has-indicator-system';
-
-/*
-type SignType = {
-  sprite?: Phaser.GameObjects.Sprite; // renderable
-  interactionCircle?: Phaser.Geom.Circle; //interactable
-}
-*/
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -61,15 +53,13 @@ export class MovementTestScene extends Phaser.Scene {
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
-    // const sign = new Sign();
-    // sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
+    const signEntity: Systems.Interactable & Systems.Renderable = {};
 
     this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
     this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
     this.tagManager.registerSystem(InteractableSystem.SystemTags.interactable, new InteractableSystem(this));
     this.tagManager.registerSystem(HasIndicatorSystem.SystemTags.hasIndicator, new HasIndicatorSystem(this));
 
-    const signEntity: Systems.Interactable & Systems.Renderable = {};
 
     this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, signEntity, {
       x: testSign.x * TILEMAP_SCALE,
