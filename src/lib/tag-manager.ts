@@ -16,7 +16,7 @@ export class TagManager implements Tags.TagManager {
     });
   };
 
-  registerEntity(entity: Tags.Entity, tags: (string | string[])) {
+  registerEntity(tags: (string | string[]), entity: Tags.Entity, data?: Tags.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -24,7 +24,7 @@ export class TagManager implements Tags.TagManager {
       this.entityMap[tag].push(entity);
 
       this.systemsMap[tag] = this.systemsMap[tag] || [];
-      this.systemsMap[tag].forEach(system => system.registerEntity(entity));
+      this.systemsMap[tag].forEach(system => system.registerEntity(entity, data || {}));
     });
   }
 

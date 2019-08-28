@@ -1,9 +1,11 @@
 declare namespace Tags {
   type Entity = object;
 
+  type EntityRegistrationData = { [key: string]: any };
+
   interface TagManager {
     registerSystem(tag: (string | string[]), tagSystem: TagSystem): void;
-    registerEntity(entity: Entity, tag: (string | string[])): void;
+    registerEntity(tag: (string | string[]), entity: Entity, data?: EntityRegistrationData): void;
 
     getEntities(tag: string): Entity[];
 
@@ -11,7 +13,7 @@ declare namespace Tags {
   }
 
   interface TagSystem {
-    registerEntity(entity: Entity): void;
+    registerEntity(entity: Entity, data: EntityRegistrationData): void;
 
     update(tagManager: TagManager): void;
   }

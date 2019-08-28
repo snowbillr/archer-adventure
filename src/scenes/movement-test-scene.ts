@@ -4,6 +4,7 @@ import { Adventurer } from '../entities/adventurer/index';
 import { Sign } from '../entities/sign';
 import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
+import { RenderableSystem } from '../lib/renderable-system';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -55,8 +56,11 @@ export class MovementTestScene extends Phaser.Scene {
     sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
 
     this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
-    this.tagManager.registerEntity(this.adventurer, SignSystem.SystemTags.interactor);
-    this.tagManager.registerEntity(sign, SignSystem.SystemTags.sign);
+    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
+    this.tagManager.registerEntity(SignSystem.SystemTags.sign, sign);
+
+    this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
+    this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, {}, { x: 1000, y: 100, texture: 'adventurer-bow', frame: 0})
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);

@@ -1,5 +1,4 @@
-- rework component system to have a component manager
-  - can disable components selectively?
+- can we recreate the renderable component as a tag/system with registerEntity?
 
 - animal walking around in fence
 
