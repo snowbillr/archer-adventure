@@ -1,9 +1,11 @@
 import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
-import { Sign } from '../entities/sign';
 import { TagManager } from '../lib/tag-manager';
 import { SignSystem } from '../lib/sign-system';
+import { RenderableSystem } from '../lib/renderable-system';
+import { InteractableSystem } from '../lib/interactable-system';
+import { HasIndicatorSystem } from '../lib/has-indicator-system';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -51,12 +53,29 @@ export class MovementTestScene extends Phaser.Scene {
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
-    const sign = new Sign();
-    sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
+    const signEntity: Systems.Interactable & Systems.Renderable = {};
 
-    this.tagManager.registerEntity(this.adventurer, SignSystem.SystemTags.interactor);
-    this.tagManager.registerEntity(sign, [SignSystem.SystemTags.sign, 'b']);
-    this.tagManager.registerSystem(new SignSystem<Adventurer>());
+    this.tagManager.registerSystem([SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign], new SignSystem<Adventurer>());
+    this.tagManager.registerSystem(RenderableSystem.SystemTags.renderable, new RenderableSystem(this));
+    this.tagManager.registerSystem(InteractableSystem.SystemTags.interactable, new InteractableSystem(this));
+    this.tagManager.registerSystem(HasIndicatorSystem.SystemTags.hasIndicator, new HasIndicatorSystem(this));
+
+
+    this.tagManager.registerEntity(RenderableSystem.SystemTags.renderable, signEntity, {
+      x: testSign.x * TILEMAP_SCALE,
+      y: testSign.y * TILEMAP_SCALE - map.tileHeight,
+      texture: 'fantasy-platformer-core-spritesheet',
+      frame: 1128,
+      scale: TILEMAP_SCALE,
+    });
+
+    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, signEntity, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
+    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, this.adventurer, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30});
+
+    this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
+    this.tagManager.registerEntity(SignSystem.SystemTags.sign, signEntity);
+
+    this.tagManager.registerEntity(HasIndicatorSystem.SystemTags.hasIndicator, signEntity, { targetX: signEntity.sprite!.x, targetY: signEntity.sprite!.y - signEntity.sprite!.displayHeight - 5 });
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);
