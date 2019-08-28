@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="5">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="6">
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
