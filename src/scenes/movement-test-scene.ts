@@ -30,7 +30,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
-    this.load.json('adventurer-hitboxes', '/assets/hitboxes/adventurer.json');
+    this.load.json('adventurer-hitboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
     // indicators
@@ -91,7 +91,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerEntity(this.adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
       animationsKey: 'adventurer-hitboxes',
-      debug: false,
+      debug: true,
     });
 
     this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {

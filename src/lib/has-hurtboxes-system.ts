@@ -16,7 +16,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
   }
 
   registerEntity(entity: T, data: Tags.EntityRegistrationData): void {
-    entity.hitboxFrames = this.scene.cache.json.get(data.animationsKey).frames;
+    entity.hurtboxFrames = this.scene.cache.json.get(data.animationsKey).frames;
 
     entity.rectanglePool = [];
     entity.activeRectangles = [];
@@ -37,15 +37,15 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
       const key = entity.sprite!.frame.texture.key;
       const frame = entity.sprite!.frame.name;
 
-      const hitboxFrame: Systems.HasHurtboxesFrame = entity.hitboxFrames.find((h: Systems.HasHurtboxesFrame) => h.key === key && h.frame === frame) as Systems.HasHurtboxesFrame;
-      if (hitboxFrame && hitboxFrame.hitboxes) {
-        hitboxFrame.hitboxes.forEach((hitbox: Systems.HasHurtboxHurtboxConfig) => {
+      const hitboxFrame: Systems.HasHurtboxesFrame = entity.hurtboxFrames.find((h: Systems.HasHurtboxesFrame) => h.key === key && h.frame === frame) as Systems.HasHurtboxesFrame;
+      if (hitboxFrame && hitboxFrame.hurtboxes) {
+        hitboxFrame.hurtboxes.forEach((hitbox: Systems.HasHurtboxShape) => {
           if (hitbox.type === 'rectangle') {
             this.setRectangleHitbox(entity, hitbox);
           } else {
             throw 'unsupported hitbox type';
           }
-        })
+        });
       }
 
       if (entity.debug) {
@@ -98,7 +98,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
     return rectangle;
   }
 
-  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxHurtboxConfig) {
+  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxShape) {
     const rectangle = this.getAvailableRectangle(entity);
 
     const scaleX = entity.sprite!.scaleX;

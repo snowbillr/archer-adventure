@@ -3,7 +3,7 @@
     {
       "key": "adventurer-core",
       "frame": 0,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 0,
@@ -16,7 +16,7 @@
     {
       "key": "adventurer-core",
       "frame": 1,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 0,
@@ -29,7 +29,7 @@
     {
       "key": "adventurer-core",
       "frame": 2,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 0,
@@ -42,7 +42,7 @@
     {
       "key": "adventurer-core",
       "frame": 3,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 0,
@@ -55,7 +55,7 @@
     {
       "key": "adventurer-core",
       "frame": 4,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 2,
@@ -68,7 +68,7 @@
     {
       "key": "adventurer-core",
       "frame": 5,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 2,
@@ -81,7 +81,7 @@
     {
       "key": "adventurer-core",
       "frame": 6,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 2,
@@ -94,7 +94,7 @@
     {
       "key": "adventurer-core",
       "frame": 7,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 2,
@@ -107,7 +107,7 @@
     {
       "key": "adventurer-core",
       "frame": 8,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 7,
@@ -134,7 +134,7 @@
     {
       "key": "adventurer-core",
       "frame": 9,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 7,
@@ -161,7 +161,7 @@
     {
       "key": "adventurer-core",
       "frame": 10,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 7,
@@ -188,7 +188,7 @@
     {
       "key": "adventurer-core",
       "frame": 11,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 6,
@@ -215,7 +215,7 @@
     {
       "key": "adventurer-core",
       "frame": 12,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 6,
@@ -242,7 +242,7 @@
     {
       "key": "adventurer-core",
       "frame": 13,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 7,
@@ -269,7 +269,7 @@
     {
       "key": "adventurer-core",
       "frame": 14,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 3,
@@ -296,7 +296,7 @@
     {
       "key": "adventurer-core",
       "frame": 15,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 3,
@@ -323,7 +323,7 @@
     {
       "key": "adventurer-core",
       "frame": 16,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 3,
@@ -350,7 +350,7 @@
     {
       "key": "adventurer-core",
       "frame": 17,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 4,
@@ -377,7 +377,7 @@
     {
       "key": "adventurer-core",
       "frame": 22,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 3,
@@ -404,7 +404,7 @@
     {
       "key": "adventurer-core",
       "frame": 23,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 3,
@@ -431,7 +431,7 @@
     {
       "key": "adventurer-core",
       "frame": 24,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": -6,
@@ -458,7 +458,7 @@
     {
       "key": "adventurer-core",
       "frame": 25,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": -6,
@@ -485,7 +485,7 @@
     {
       "key": "adventurer-core",
       "frame": 26,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": -5,
@@ -512,7 +512,7 @@
     {
       "key": "adventurer-core",
       "frame": 27,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": -3,
@@ -539,7 +539,7 @@
     {
       "key": "adventurer-core",
       "frame": 28,
-      "hitboxes": [
+      "hurtboxes": [
         {
           "type": "rectangle",
           "x": 0,

@@ -43,7 +43,7 @@ declare namespace Systems {
     controls: HasControlsControls;
   }
 
-  type HasHurtboxHurtboxConfig = {
+  type HasHurtboxShape = {
     type: "rectangle";
     x: number;
     y: number;
@@ -53,10 +53,10 @@ declare namespace Systems {
   type HasHurtboxesFrame = {
     key: string;
     frame: number | string;
-    hitboxes: HasHurtboxHurtboxConfig[];
+    hurtboxes: HasHurtboxShape[];
   }
   type HasHurtboxes = {
-    hitboxFrames: HasHurtboxesFrame[];
+    hurtboxFrames: HasHurtboxesFrame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
     activeRectangles: Phaser.Geom.Rectangle[];
