@@ -2,9 +2,11 @@ import { PhiniteState } from '../../components/phinite-state';
 
 import { states } from './states';
 
-export class Adventurer {
+export class Adventurer implements Systems.HasControls {
   public sprite!: Phaser.Physics.Arcade.Sprite;
   public body!: Phaser.Physics.Arcade.Body;
+
+  public controls!: Systems.HasControlsControls;
 
   public phiniteState!: PhiniteState<Adventurer>;
 
