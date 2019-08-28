@@ -2,13 +2,12 @@ import { PhiniteState } from '../../components/phinite-state';
 import { Boundable } from '../../components/boundable';
 import { Controlable } from '../../components/controlable';
 import { Collidable } from '../../components/collidable';
-import { Interactable } from '../../components/interactable';
 import { PhysicallyRenderable } from '../../components/physically-renderable';
 
 import { states } from './states';
 import { movementAttributes } from './movement-attributes';
 
-export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Entity, Interactable.Entity {
+export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Entity {
   public sprite!: Phaser.Physics.Arcade.Sprite;
   public body!: Phaser.Physics.Arcade.Body;
 
@@ -19,9 +18,6 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
   private hurtboxes!: Collidable.Component;
 
   public boundable!: Boundable.Component;
-
-  private interactable!: Interactable.Component;
-  public interactionCircle!: Phaser.Geom.Circle;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -47,16 +43,11 @@ export class Adventurer implements PhysicallyRenderable.Entity, Controlable.Enti
 
     this.boundable = new Boundable<Adventurer>(scene, this, 'adventurer-bounds');
     this.boundable.create();
-
-    // this.interactable = new Interactable(scene, this, 30);
-    // this.interactable.create();
-    // this.interactionCircle = this.interactable.getInteractionCircle();
   }
 
   update() {
     this.phiniteState.update();
     this.hurtboxes.update();
     this.boundable.update();
-    // this.interactable.update();
   }
 }
