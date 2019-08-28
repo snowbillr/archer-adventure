@@ -37,9 +37,9 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
       const key = entity.sprite!.frame.texture.key;
       const frame = entity.sprite!.frame.name;
 
-      const hitboxFrame: Collidable.HitboxFrame = entity.hitboxFrames.find((h: Collidable.HitboxFrame) => h.key === key && h.frame === frame) as Collidable.HitboxFrame;
+      const hitboxFrame: Systems.HasHurtboxesFrame = entity.hitboxFrames.find((h: Systems.HasHurtboxesFrame) => h.key === key && h.frame === frame) as Systems.HasHurtboxesFrame;
       if (hitboxFrame && hitboxFrame.hitboxes) {
-        hitboxFrame.hitboxes.forEach((hitbox: Collidable.HitboxConfig) => {
+        hitboxFrame.hitboxes.forEach((hitbox: Systems.HasHurtboxHurtboxConfig) => {
           if (hitbox.type === 'rectangle') {
             this.setRectangleHitbox(entity, hitbox);
           } else {
@@ -98,7 +98,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
     return rectangle;
   }
 
-  private setRectangleHitbox(entity: T, hitbox: Collidable.HitboxConfig) {
+  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxHurtboxConfig) {
     const rectangle = this.getAvailableRectangle(entity);
 
     const scaleX = entity.sprite!.scaleX;

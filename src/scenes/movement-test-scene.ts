@@ -91,7 +91,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerEntity(this.adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
       animationsKey: 'adventurer-hitboxes',
-      debug: true,
+      debug: false,
     });
 
     this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {

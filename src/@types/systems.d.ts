@@ -56,7 +56,7 @@ declare namespace Systems {
     hitboxes: HasHurtboxHurtboxConfig[];
   }
   type HasHurtboxes = {
-    hitboxFrames: Collidable.HitboxFrame[];
+    hitboxFrames: HasHurtboxesFrame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
     activeRectangles: Phaser.Geom.Rectangle[];
