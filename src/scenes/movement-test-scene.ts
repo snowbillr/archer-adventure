@@ -1,6 +1,7 @@
 import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
+import { Tilemaps } from 'phaser';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -19,11 +20,15 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.json('adventurer-hitboxes', '/assets/hitboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
+    this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
+
     this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
     this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
   }
 
   create() {
+    const TILEMAP_SCALE = 2;
+
     const map = this.make.tilemap({ key: 'starting-area' });
     const tileset = map.addTilesetImage('fantasy-platformer-core', 'fantasy-platformer-core');
 
@@ -33,10 +38,15 @@ export class MovementTestScene extends Phaser.Scene {
     this.adventurer.create(this);
     const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
 
-    groundLayer.setScale(2);
-    backgroundBaseLayer.setScale(2);
-    backgroundDetailsLayer.setScale(2);
-    foregroundLayer.setScale(2);
+    const signs = map.getObjectLayer('signs');
+    const testSign = signs.objects[0];
+    const sprite = this.add.sprite(testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
+    sprite.setScale(TILEMAP_SCALE);
+
+    groundLayer.setScale(TILEMAP_SCALE);
+    backgroundBaseLayer.setScale(TILEMAP_SCALE);
+    backgroundDetailsLayer.setScale(TILEMAP_SCALE);
+    foregroundLayer.setScale(TILEMAP_SCALE);
 
     groundLayer.setCollisionByProperty({ collides: true });
 
