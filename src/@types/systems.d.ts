@@ -17,4 +17,24 @@ declare namespace Systems {
     showIndicator: () => void;
     hideIndicator: () => void;
   }
+
+
+  type HasBoundsFrame = {
+    key: string;
+    frame: number | string;
+    bounds: HasBoundsBounds;
+  }
+  type HasBoundsBounds = {
+    offset: {
+      x: number;
+      y: number;
+    },
+    size: {
+      width: number;
+      height: number;
+    }
+  }
+  type HasBounds = {
+    boundsFrames: HasBoundsFrame[];
+  }
 }

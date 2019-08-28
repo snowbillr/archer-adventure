@@ -1,5 +1,4 @@
 import { PhiniteState } from '../../components/phinite-state';
-import { Boundable } from '../../components/boundable';
 import { Controlable } from '../../components/controlable';
 import { Collidable } from '../../components/collidable';
 
@@ -16,8 +15,6 @@ export class Adventurer implements Controlable.Entity {
 
   private hurtboxes!: Collidable.Component;
 
-  public boundable!: Boundable.Component;
-
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
 
@@ -30,14 +27,10 @@ export class Adventurer implements Controlable.Entity {
 
     this.hurtboxes = new Collidable<Adventurer>(scene, this, 'adventurer-hitboxes');
     this.hurtboxes.create();
-
-    this.boundable = new Boundable<Adventurer>(scene, this, 'adventurer-bounds');
-    this.boundable.create();
   }
 
   update() {
     this.phiniteState.update();
     this.hurtboxes.update();
-    this.boundable.update();
   }
 }

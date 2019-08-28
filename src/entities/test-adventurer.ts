@@ -1,9 +1,6 @@
-import { Boundable } from '../components/boundable';
-
 export class TestAdventurer {
   public sprite!: Phaser.GameObjects.Sprite;
   public body!: Phaser.Physics.Arcade.Body;
-  public boundable!: Boundable.Component;
 
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
@@ -17,11 +14,15 @@ export class TestAdventurer {
     this.body.allowGravity = false;
     */
 
+    /*
     this.boundable = new Boundable<TestAdventurer>(scene, this, 'adventurer-bounds');
     this.boundable.create();
+    */
   }
 
   update() {
+    /*
     this.boundable.update();
+    */
   }
 }
