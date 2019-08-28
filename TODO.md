@@ -1,7 +1,8 @@
 - rename systems to `hasInteractionCircle`, `hasSprite`
   - what about the sign system? feels almost too specific. maybe there is an `interactsWith` system to be built that takes a set of tags and a callback?
+  - oh shit - just use a new one for each pair of tags you assign it to
 - organize types for tag/entity system
-- the generics for the `BaseSystem` are kinda whacky.
+- having to mark some fields with a `!` all over the place feels wrong
 - convert remaining "components" to tag/entity system
 
 aside:
