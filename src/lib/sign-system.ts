@@ -1,6 +1,6 @@
 import { BaseSystem } from './base-system';
 
-type Sign = Systems.HasIndicator & Systems.Interactable & Systems.Renderable;
+type Sign = Systems.HasIndicator & Systems.HasInteractionCircle & Systems.HasSprite;
 
 export class SignSystem<T extends Interactable.Entity> extends BaseSystem<T, Sign> implements Tags.TagSystem {
   static SystemTags = {

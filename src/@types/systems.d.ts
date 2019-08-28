@@ -1,9 +1,9 @@
 declare namespace Systems {
-  type Renderable = {
+  type HasSprite = {
     sprite?: Phaser.GameObjects.Sprite;
   }
 
-  type Interactable = {
+  type HasInteractionCircle = {
     interactionCircle?: Phaser.Geom.Circle;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }

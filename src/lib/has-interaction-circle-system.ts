@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from './base-system';
 
-export class InteractableSystem<T extends Systems.Interactable & Systems.Renderable> extends BaseSystem<T> implements Tags.TagSystem {
+export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle & Systems.HasSprite> extends BaseSystem<T> implements Tags.TagSystem {
   static SystemTags = {
     interactable: 'interactable',
   };
@@ -10,7 +10,7 @@ export class InteractableSystem<T extends Systems.Interactable & Systems.Rendera
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(InteractableSystem.SystemTags.interactable, '');
+    super(HasInteracionCircleSystem.SystemTags.interactable, '');
 
     this.scene = scene;
   }

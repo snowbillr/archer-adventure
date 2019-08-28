@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from './base-system';
 
-export class RenderableSystem<T extends Systems.Renderable> extends BaseSystem<T> implements Tags.TagSystem {
+export class HasSpriteSystem<T extends Systems.HasSprite> extends BaseSystem<T> implements Tags.TagSystem {
   static SystemTags = {
     renderable: 'renderable',
   };
@@ -10,7 +10,7 @@ export class RenderableSystem<T extends Systems.Renderable> extends BaseSystem<T
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(RenderableSystem.SystemTags.renderable, '');
+    super(HasSpriteSystem.SystemTags.renderable, '');
 
     this.scene = scene;
   }
