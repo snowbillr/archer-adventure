@@ -1,4 +1,6 @@
-export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Entity)> implements Collidable.Component {
+import { HasSpriteSystem } from '../lib/has-sprite-system';
+
+export class Collidable<T extends (PhysicallyRenderable.Entity | Systems.HasSprite)> implements Collidable.Component {
   private scene: Phaser.Scene;
   private entity: T;
   private animationsKey: string;
@@ -41,8 +43,8 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
   update() {
     this.disableHitboxes();
 
-    const key = this.entity.sprite.frame.texture.key;
-    const frame = this.entity.sprite.frame.name;
+    const key = this.entity.sprite!.frame.texture.key;
+    const frame = this.entity.sprite!.frame.name;
 
     const hitboxFrame: Collidable.HitboxFrame = this.hitboxFrames.find((h: Collidable.HitboxFrame) => h.key === key && h.frame === frame) as Collidable.HitboxFrame;
     if (hitboxFrame && hitboxFrame.hitboxes) {
@@ -106,16 +108,16 @@ export class Collidable<T extends (PhysicallyRenderable.Entity | Renderable.Enti
   private setRectangleHitbox(hitbox: Collidable.HitboxConfig) {
     const rectangle = this.getAvailableRectangle();
 
-    const scaleX = this.entity.sprite.scaleX;
-    const scaleY = this.entity.sprite.scaleY;
+    const scaleX = this.entity.sprite!.scaleX;
+    const scaleY = this.entity.sprite!.scaleY;
 
-    const offsetX = this.entity.sprite.flipX ? hitbox.x * -1 : hitbox.x;
-    const offsetY = this.entity.sprite.flipY ? hitbox.y * -1 : hitbox.y;
+    const offsetX = this.entity.sprite!.flipX ? hitbox.x * -1 : hitbox.x;
+    const offsetY = this.entity.sprite!.flipY ? hitbox.y * -1 : hitbox.y;
 
     const width = scaleX * hitbox.width;
     const height = scaleY * hitbox.height;
-    const x = (this.entity.sprite.x + (offsetX * scaleX)) - (width * this.entity.sprite.originX);
-    const y = (this.entity.sprite.y + (offsetY * scaleY)) - (height * this.entity.sprite.originY);
+    const x = (this.entity.sprite!.x + (offsetX * scaleX)) - (width * this.entity.sprite!.originX);
+    const y = (this.entity.sprite!.y + (offsetY * scaleY)) - (height * this.entity.sprite!.originY);
 
     rectangle.x = x;
     rectangle.y = y;

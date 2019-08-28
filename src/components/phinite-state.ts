@@ -8,7 +8,7 @@ export enum TransitionType {
   Conditional,
 }
 
-export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends Systems.HasSprite> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];
@@ -91,8 +91,8 @@ export class PhiniteState<T extends Renderable.Entity> implements PhiniteState.C
       this.doTransition(transition);
     }
 
-    this.entity.sprite.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);
-    this.triggerCancelers.push(() => this.entity.sprite.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
+    this.entity.sprite!.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);
+    this.triggerCancelers.push(() => this.entity.sprite!.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
   }
 
   private registerConditionalTransitionTrigger(transition: PhiniteState.ConditionalTransition<T>) {
