@@ -9,6 +9,7 @@ import { HasInteracionCircleSystem } from '../lib/has-interaction-circle-system'
 import { HasIndicatorSystem } from '../lib/has-indicator-system';
 import { HasBoundsSystem } from '../lib/has-bounds-system';
 import { HasControlsSystem } from '../lib/has-controls-system';
+import { HasHurtboxesSystem } from '../lib/has-hurtboxes-system';
 
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
 
@@ -67,7 +68,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
     this.tagManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.tagManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
-
+    this.tagManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
 
     this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.hasSprite, {
       x: testSign.x * TILEMAP_SCALE,
@@ -86,6 +87,11 @@ export class MovementTestScene extends Phaser.Scene {
       maxVelocity: {
         x: movementAttributes.maxVelocity
       }
+    });
+
+    this.tagManager.registerEntity(this.adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
+      animationsKey: 'adventurer-hitboxes',
+      debug: true,
     });
 
     this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {

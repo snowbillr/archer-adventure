@@ -42,4 +42,28 @@ declare namespace Systems {
   type HasControls = {
     controls: HasControlsControls;
   }
+
+  type HasHurtboxHurtboxConfig = {
+    type: "rectangle";
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  }
+  type HasHurtboxesFrame = {
+    key: string;
+    frame: number | string;
+    hitboxes: HasHurtboxHurtboxConfig[];
+  }
+  type HasHurtboxes = {
+    hitboxFrames: Collidable.HitboxFrame[];
+
+    rectanglePool: Phaser.Geom.Rectangle[];
+    activeRectangles: Phaser.Geom.Rectangle[];
+
+    debugRectangles: Phaser.GameObjects.Rectangle[];
+    debug: boolean;
+    debugPointerPosition: any;
+    debugColor: number;
+  }
 }
