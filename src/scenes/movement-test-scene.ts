@@ -70,7 +70,7 @@ export class MovementTestScene extends Phaser.Scene {
     });
 
     this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, signEntity, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
-    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, this.adventurer, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30});
+    this.tagManager.registerEntity(InteractableSystem.SystemTags.interactable, this.adventurer, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });
 
     this.tagManager.registerEntity(SignSystem.SystemTags.interactor, this.adventurer);
     this.tagManager.registerEntity(SignSystem.SystemTags.sign, signEntity);

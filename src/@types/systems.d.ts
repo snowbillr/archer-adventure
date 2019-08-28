@@ -5,6 +5,7 @@ declare namespace Systems {
 
   type Interactable = {
     interactionCircle?: Phaser.Geom.Circle;
+    debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 
   type HasIndicator = {

@@ -24,7 +24,6 @@ export class Interactable<T extends (PhysicallyRenderable.Entity | Renderable.En
     if (this.debug) {
       this.debugCircle = this.scene.add.circle(this.entity.sprite.x, this.entity.sprite.y, this.radius, 0x00FF00, 0.5);
       this.debugCircle.setOrigin(0.25, 0.25);
-      console.log(this.debugCircle);
     }
   }
 
