@@ -16,6 +16,7 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   preload() {
+    // adventurer
     this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
 
@@ -23,8 +24,14 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.json('adventurer-hitboxes', '/assets/hitboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
+    // indicators
+    this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
+    this.load.animation('indicator-animations', '/assets/animations/indicators.json');
+
+    // tilemap spritesheet
     this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
 
+    // tilemap
     this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
     this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
   }
@@ -46,7 +53,6 @@ export class MovementTestScene extends Phaser.Scene {
     const sign = new Sign();
     sign.create(this, testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
     // const sprite = this.add.sprite(testSign.x * TILEMAP_SCALE, testSign.y * TILEMAP_SCALE - map.tileHeight, 'fantasy-platformer-core-spritesheet', 1128);
-    console.log(sign);
 
     this.tagSystem.add('sign-interactor', this.adventurer);
     this.tagSystem.add('sign-interactive', sign);
@@ -60,7 +66,9 @@ export class MovementTestScene extends Phaser.Scene {
           const circle2 = interactive.interactionCircle;
 
           if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-            console.log('boom')
+            sign.showIndicator();
+          } else {
+            sign.hideIndicator();
           }
         })
       });
