@@ -56,7 +56,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerEntity('sign-interactor', this.adventurer);
     this.tagManager.registerEntity('sign-interactive', sign);
-    this.tagManager.registerSystem(new SignSystem());
+    this.tagManager.registerSystem(new SignSystem<Adventurer, Sign>('sign-interactor', 'sign-interactive'));
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);
