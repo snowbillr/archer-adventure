@@ -1,13 +1,13 @@
-export class SystemsManager implements Systems.SystemsManager {
-  private entityMap: { [tag: string]: Systems.Entity[] };
-  private systemsMap: { [tag: string]: Systems.System[] };
+export class SystemsManager implements SystemsManager.SystemsManager {
+  private entityMap: { [tag: string]: SystemsManager.Entity[] };
+  private systemsMap: { [tag: string]: SystemsManager.System[] };
 
   constructor() {
     this.entityMap = {};
     this.systemsMap = {};
   }
 
-  registerSystem(system: Systems.System, tags: (string | string[])) {
+  registerSystem(system: SystemsManager.System, tags: (string | string[])) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -16,7 +16,7 @@ export class SystemsManager implements Systems.SystemsManager {
     });
   };
 
-  registerEntity(entity: Systems.Entity, tags: (string | string[]), data?: Systems.EntityRegistrationData) {
+  registerEntity(entity: SystemsManager.Entity, tags: (string | string[]), data?: SystemsManager.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {

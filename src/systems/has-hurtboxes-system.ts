@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements Systems.System {
+export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
     hasHurtboxes: 'hasHurtboxes',
   };
@@ -15,7 +15,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: Systems.EntityRegistrationData): void {
+  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
     entity.hurtboxFrames = this.scene.cache.json.get(data.animationsKey).frames;
 
     entity.rectanglePool = [];
@@ -27,7 +27,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     entity.debugPointerPosition = { x: 0, y: 0 };
   }
 
-  update(tagManager: Systems.SystemsManager) {
+  update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
     const entities = this.tag1s;

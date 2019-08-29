@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements Systems.System {
+export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
     hasInteractionCircle: 'hasInteractionCircle',
   };
@@ -15,7 +15,7 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: Systems.EntityRegistrationData): void {
+  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
     const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.radius);
 
     if (data.debug) {
@@ -28,7 +28,7 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
     entity.interactionCircle = interactionCircle;
   }
 
-  update(tagManager: Systems.SystemsManager) {
+  update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
     const entities = this.tag1s;

@@ -1,4 +1,4 @@
-declare namespace Systems {
+declare namespace SystemsManager {
   type Entity = object;
 
   type EntityRegistrationData = { [key: string]: any };

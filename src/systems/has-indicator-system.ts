@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends BaseSystem<T> implements Systems.System {
+export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
     hasIndicator: 'hasIndicator',
   };
@@ -15,7 +15,7 @@ export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends B
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: { [key: string]: any }): void {
+  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
     const { targetX, targetY } = data;
 
     const indicatorSprite = this.scene.add.sprite(targetX, targetY, 'indicator-down');

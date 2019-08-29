@@ -10,6 +10,7 @@ import { HasIndicatorSystem } from '../systems/has-indicator-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
+import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
 
@@ -69,6 +70,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.tagManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
     this.tagManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
+    this.tagManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
 
     this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.hasSprite, {
       x: testSign.x * TILEMAP_SCALE,

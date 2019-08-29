@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasSpriteSystem<T extends Systems.HasSprite.Entity> extends BaseSystem<T> implements Systems.System {
+export class HasSpriteSystem<T extends Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
     hasSprite: 'hasSprite',
   };
@@ -15,7 +15,7 @@ export class HasSpriteSystem<T extends Systems.HasSprite.Entity> extends BaseSys
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: { [key: string]: any }): void {
+  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
     const { x, y, texture, frame } = data;
     const sprite = this.scene.add.sprite(x, y, texture, frame);
 
