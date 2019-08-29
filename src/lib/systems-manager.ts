@@ -1,13 +1,13 @@
-export class TagManager implements Tags.TagManager {
-  private entityMap: { [tag: string]: Tags.Entity[] };
-  private systemsMap: { [tag: string]: Tags.TagSystem[] };
+export class SystemsManager implements Systems.SystemsManager {
+  private entityMap: { [tag: string]: Systems.Entity[] };
+  private systemsMap: { [tag: string]: Systems.System[] };
 
   constructor() {
     this.entityMap = {};
     this.systemsMap = {};
   }
 
-  registerSystem(system: Tags.TagSystem, tags: (string | string[])) {
+  registerSystem(system: Systems.System, tags: (string | string[])) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -16,7 +16,7 @@ export class TagManager implements Tags.TagManager {
     });
   };
 
-  registerEntity(entity: Tags.Entity, tags: (string | string[]), data?: Tags.EntityRegistrationData) {
+  registerEntity(entity: Systems.Entity, tags: (string | string[]), data?: Systems.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {

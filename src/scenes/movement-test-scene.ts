@@ -1,27 +1,27 @@
 import 'phaser';
 
 import { Adventurer } from '../entities/adventurer/index';
-import { TagManager } from '../lib/tag-manager';
-import { SignSystem } from '../lib/sign-system';
-import { HasSpriteSystem } from '../lib/has-sprite-system';
-import { HasPhysicalSpriteSystem } from '../lib/has-physical-sprite-system';
-import { HasInteracionCircleSystem } from '../lib/has-interaction-circle-system';
-import { HasIndicatorSystem } from '../lib/has-indicator-system';
-import { HasBoundsSystem } from '../lib/has-bounds-system';
-import { HasControlsSystem } from '../lib/has-controls-system';
-import { HasHurtboxesSystem } from '../lib/has-hurtboxes-system';
+import { SystemsManager } from '../lib/systems-manager';
+import { SignSystem } from '../systems/sign-system';
+import { HasSpriteSystem } from '../systems/has-sprite-system';
+import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
+import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
+import { HasIndicatorSystem } from '../systems/has-indicator-system';
+import { HasBoundsSystem } from '../systems/has-bounds-system';
+import { HasControlsSystem } from '../systems/has-controls-system';
+import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
-  private tagManager: TagManager;
+  private tagManager: SystemsManager;
 
   constructor(config: any) {
     super(config);
 
     this.adventurer = new Adventurer();
-    this.tagManager = new TagManager();
+    this.tagManager = new SystemsManager();
   }
 
   preload() {

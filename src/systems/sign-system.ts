@@ -1,8 +1,8 @@
-import { BaseSystem } from './base-system';
+import { BaseSystem } from '../lib/base-system';
 
 type Sign = Systems.HasIndicator & Systems.HasInteractionCircle & Systems.HasSprite;
 
-export class SignSystem<T extends Systems.HasInteractionCircle> extends BaseSystem<T, Sign> implements Tags.TagSystem {
+export class SignSystem<T extends Systems.HasInteractionCircle> extends BaseSystem<T, Sign> implements Systems.System {
   static SystemTags = {
     interactor: 'sign-interactor',
     sign: 'sign-interactive',
@@ -16,7 +16,7 @@ export class SignSystem<T extends Systems.HasInteractionCircle> extends BaseSyst
     // nothing
   }
 
-  update(tagManager: Tags.TagManager) {
+  update(tagManager: Systems.SystemsManager) {
     super.update(tagManager);
 
     const interactors = this.tag1s;

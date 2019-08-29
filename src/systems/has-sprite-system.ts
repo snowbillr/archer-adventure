@@ -1,8 +1,8 @@
 import 'phaser';
 
-import { BaseSystem } from './base-system';
+import { BaseSystem } from '../lib/base-system';
 
-export class HasSpriteSystem<T extends Systems.HasSprite> extends BaseSystem<T> implements Tags.TagSystem {
+export class HasSpriteSystem<T extends Systems.HasSprite> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasSprite: 'hasSprite',
   };

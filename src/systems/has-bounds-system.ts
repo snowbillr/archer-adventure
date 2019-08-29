@@ -1,8 +1,8 @@
 import 'phaser';
 
-import { BaseSystem } from './base-system';
+import { BaseSystem } from '../lib/base-system';
 
-export class HasBoundsSystem<T extends (Systems.HasBounds & Systems.HasPhysicalSprite)> extends BaseSystem<T> implements Tags.TagSystem {
+export class HasBoundsSystem<T extends (Systems.HasBounds & Systems.HasPhysicalSprite)> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasBounds: 'hasBounds',
   };
@@ -15,11 +15,11 @@ export class HasBoundsSystem<T extends (Systems.HasBounds & Systems.HasPhysicalS
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: Tags.EntityRegistrationData): void {
+  registerEntity(entity: T, data: Systems.EntityRegistrationData): void {
     entity.boundsFrames = this.scene.cache.json.get(data.boundsKey);
   }
 
-  update(tagManager: Tags.TagManager) {
+  update(tagManager: Systems.SystemsManager) {
     super.update(tagManager);
 
     const entities = this.tag1s;
