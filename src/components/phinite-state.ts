@@ -8,7 +8,7 @@ export enum TransitionType {
   Conditional,
 }
 
-export class PhiniteState<T extends Systems.HasSprite> implements PhiniteState.Component<T> {
+export class PhiniteState<T extends Systems.HasSprite.Entity> implements PhiniteState.Component<T> {
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteState.State<T>[];

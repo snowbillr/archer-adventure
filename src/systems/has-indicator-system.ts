@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasIndicatorSystem<T extends Systems.HasIndicator> extends BaseSystem<T> implements Systems.System {
+export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasIndicator: 'hasIndicator',
   };

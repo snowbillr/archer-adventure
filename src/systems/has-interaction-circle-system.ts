@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle & Systems.HasSprite> extends BaseSystem<T> implements Systems.System {
+export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasInteractionCircle: 'hasInteractionCircle',
   };

@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasBoundsSystem<T extends (Systems.HasBounds & Systems.HasPhysicalSprite)> extends BaseSystem<T> implements Systems.System {
+export class HasBoundsSystem<T extends (Systems.HasBounds.Entity & Systems.HasPhysicalSprite.Entity)> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasBounds: 'hasBounds',
   };
@@ -27,9 +27,9 @@ export class HasBoundsSystem<T extends (Systems.HasBounds & Systems.HasPhysicalS
       const key = entity.sprite.frame.texture.key;
       const frame = entity.sprite.frame.name;
 
-      const boundsFrame: Systems.HasBoundsFrame = entity.boundsFrames.find((b: Systems.HasBoundsFrame) => b.key === key && b.frame === frame) as Systems.HasBoundsFrame;
+      const boundsFrame: Systems.HasBounds.Frame = entity.boundsFrames.find((b: Systems.HasBounds.Frame) => b.key === key && b.frame === frame) as Systems.HasBounds.Frame;
       if (boundsFrame) {
-        const bounds: Systems.HasBoundsBounds = boundsFrame.bounds;
+        const bounds: Systems.HasBounds.Bounds = boundsFrame.bounds;
 
         let offsetX = bounds.offset.x;
         let offsetY = bounds.offset.y;

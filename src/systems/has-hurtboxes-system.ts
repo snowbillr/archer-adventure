@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSprite> extends BaseSystem<T> implements Systems.System {
+export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasHurtboxes: 'hasHurtboxes',
   };
@@ -37,9 +37,9 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
       const key = entity.sprite!.frame.texture.key;
       const frame = entity.sprite!.frame.name;
 
-      const hitboxFrame: Systems.HasHurtboxesFrame = entity.hurtboxFrames.find((h: Systems.HasHurtboxesFrame) => h.key === key && h.frame === frame) as Systems.HasHurtboxesFrame;
+      const hitboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((h: Systems.HasHurtboxes.Frame) => h.key === key && h.frame === frame) as Systems.HasHurtboxes.Frame;
       if (hitboxFrame && hitboxFrame.hurtboxes) {
-        hitboxFrame.hurtboxes.forEach((hitbox: Systems.HasHurtboxShape) => {
+        hitboxFrame.hurtboxes.forEach((hitbox: Systems.HasHurtboxes.Shape) => {
           if (hitbox.type === 'rectangle') {
             this.setRectangleHitbox(entity, hitbox);
           } else {
@@ -98,7 +98,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes & Systems.HasSpri
     return rectangle;
   }
 
-  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxShape) {
+  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxes.Shape) {
     const rectangle = this.getAvailableRectangle(entity);
 
     const scaleX = entity.sprite!.scaleX;

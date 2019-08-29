@@ -2,7 +2,7 @@ import 'phaser';
 
 import { BaseSystem } from '../lib/base-system';
 
-export class HasControlsSystem<T extends Systems.HasControls> extends BaseSystem<T> implements Systems.System {
+export class HasControlsSystem<T extends Systems.HasControls.Entity> extends BaseSystem<T> implements Systems.System {
   static SystemTags = {
     hasControls: 'hasControls',
   };
@@ -21,7 +21,7 @@ export class HasControlsSystem<T extends Systems.HasControls> extends BaseSystem
       'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
       'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
       'right': Phaser.Input.Keyboard.KeyCodes.RIGHT,
-    }) as Systems.HasControlsControls;
+    }) as Systems.HasControls.Controls;
 
     entity.controls = controls;
   }
