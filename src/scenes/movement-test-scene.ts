@@ -13,6 +13,7 @@ import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
+import { states } from '../entities/adventurer/states';
 
 export class MovementTestScene extends Phaser.Scene {
   private adventurer: Adventurer;
@@ -93,7 +94,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.tagManager.registerEntity(this.adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
       animationsKey: 'adventurer-hitboxes',
-      debug: true,
+      debug: false,
     });
 
     this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {
@@ -101,6 +102,11 @@ export class MovementTestScene extends Phaser.Scene {
     });
 
     this.tagManager.registerEntity(this.adventurer, HasControlsSystem.SystemTags.hasControls);
+
+    this.tagManager.registerEntity(this.adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
+      states: states,
+      initialState: states.find(s => s.id === 'adventurer-stand'),
+    });
 
     this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
     this.tagManager.registerEntity(this.adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });

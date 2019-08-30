@@ -13,11 +13,11 @@ export class Adventurer implements Systems.HasControls.Entity {
   create(scene: Phaser.Scene) {
     scene.events.on(Phaser.Scenes.Events.POST_UPDATE, () => this.update());
 
-    this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
-    this.phiniteState.create();
+    // this.phiniteState = new PhiniteState<Adventurer>(scene, this, states, <PhiniteState.State<Adventurer>> states.find(s => s.id === 'adventurer-stand'));
+    // this.phiniteState.create();
   }
 
   update() {
-    this.phiniteState.update();
+    // this.phiniteState.update();
   }
 }

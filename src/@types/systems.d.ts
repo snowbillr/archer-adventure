@@ -85,6 +85,10 @@ declare namespace Systems.HasHurtboxes {
 }
 
 declare namespace Systems.HasPhiniteStateMachine {
+  type Entity = {
+    phiniteStateMachine: PhiniteStateMachine.PhiniteStateMachine;
+  }
+
   type StateMergeFn<T> = (state1: Partial<State<T>>, state2: Partial<State<T>>) => State<T>;
 
   type State<T> = {
