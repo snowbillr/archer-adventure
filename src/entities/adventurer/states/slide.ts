@@ -15,6 +15,11 @@ export const adventurerSlide = StateMerge(baseGround, {
       adventurer.body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
+  onUpdate(adventurer: Adventurer) {
+    if(Phaser.Math.Within(adventurer.body.velocity.x, 0, 5)) {
+      adventurer.body.acceleration.x = 0;
+    }
+  },
   transitions: [
     {
       type: TransitionType.CurrentAnimationEnd,

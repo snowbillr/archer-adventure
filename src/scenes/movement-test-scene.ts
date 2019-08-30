@@ -61,7 +61,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
-    const signEntity: Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity = {};
+    const signEntity: Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity = {} as (Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity)
 
     this.tagManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
