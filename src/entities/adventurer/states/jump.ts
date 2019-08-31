@@ -1,8 +1,8 @@
 import { baseJump } from './base-jump';
-import { StateMerge, TransitionType } from '../../../components/phinite-state';
-import { Adventurer } from '..';
+import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
-export const adventurerJump = StateMerge(baseJump, {
+export const adventurerJump: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
   id: 'adventurer-jump',
   data: {
     targetAerialHorizontalVelocity: 0,
@@ -22,8 +22,8 @@ export const adventurerJump = StateMerge(baseJump, {
     },
     {
       type: TransitionType.Conditional,
-      condition: (adventurer: Adventurer) => {
-        return adventurer.body.velocity.y > 1;
+      condition: (entity: Entities.Adventurer) => {
+        return entity.body.velocity.y > 1;
       },
       to: 'adventurer-fall'
     }

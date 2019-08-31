@@ -1,16 +1,16 @@
-import { Adventurer } from '..';
 import { movementAttributes } from '../movement-attributes';
-import { TransitionType, StateMerge } from '../../../components/phinite-state';
 
 import { baseFall } from './base-fall';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 
-export const adventurerFallRight = StateMerge(baseFall, {
+export const adventurerFallRight: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseFall, {
   id: 'adventurer-fall-right',
   data: {
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
-  onEnter(adventurer: Adventurer, data: PhiniteState.StateData) {
-    adventurer.sprite.flipX = false;
+  onEnter(entity: Entities.Adventurer, data: PhiniteStateMachine.States.StateData) {
+    entity.sprite.flipX = false;
   },
   transitions: [
     {

@@ -1,50 +1,63 @@
 declare namespace PhiniteStateMachine {
   type Entity = object;
 
-  type PhiniteStateMachine = {
-    doTransition: (transition: PhiniteStateMachine.Transitions.Transition) => void;
+  interface PhiniteStateMachine<T> {
+    doTransition: (transition: PhiniteStateMachine.Transitions.Transition<T>) => void;
     update: () => void;
   }
 
   namespace States {
-    type State = {
-      id: string;
-      transitions: Transitions.Transition[];
-      data?: {[key: string]: any},
-      onEnter?: StateCallbackFn;
-      onUpdate?: StateCallbackFn;
-    }
+    // type StateCallbackFn = <T>(entity: T, data: StateData) => void;
+    // interface StateCallbackFn {
+      // <T>(entity: T, data?: StateData): void;
+    // }
 
-    type StateCallbackFn = (entity: Entity, data: StateData) => void;
+    type State<T> = {
+      id: string;
+      transitions: Transitions.Transition<T>[];
+      data?: {[key: string]: any},
+      onEnter?: (entity: T, data: StateData) => void;
+      onUpdate?: (entity: T, data: StateData) => void;
+    }
 
     type StateData = {
       [key: string]: any;
     }
 
-    type StateMergeFn = (state1: Partial<State>, state2: Partial<State>) => State;
+    type StateMergeFn = <T>(state1: any, state2: any) => State<T>;
   }
 
   namespace Transitions {
-    type TransitionToFn = (entity: Entity) => string;
+    // interface TransitionToFn {
+      // <T>(entity: T): string;
+    // }
+    // type TransitionToFn = <T>(entity: T) => string;
+
     type TransitionType = number;
 
-    type BaseTransition = {
-      type: TransitionType;
-      to: string | TransitionToFn;
-      onTransition?: (entity: Entity) => void;
+    interface TransitionCallbackFn {
+      <T>(entity: T): void;
     }
 
-    type InputTransition = BaseTransition & {
+    type BaseTransition<T> = {
+      type: TransitionType;
+      to: string | ((entity: T) => string);
+      onTransition?: (entity: T) => void;
+    }
+
+    type InputTransition<T> = BaseTransition<T> & {
       event: string;
       key: string;
     }
 
-    type CurrentAnimationEndTransition = BaseTransition;
+    type CurrentAnimationEndTransition<T> = BaseTransition<T> & {
 
-    type ConditionalTransition = BaseTransition & {
-      condition: (entity: Entity) => boolean;
     }
 
-    type Transition = BaseTransition | InputTransition | CurrentAnimationEndTransition | ConditionalTransition;
+    type ConditionalTransition<T> = BaseTransition<T> & {
+      condition: (entity: T) => boolean;
+    }
+
+    type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T>;
   }
 }

@@ -4,7 +4,7 @@ import { BaseSystem } from '../lib/base-system';
 import { PhiniteStateMachine } from '../lib/phinite-state-machine/phinite-state-machine';
 import { TransitionType } from '../lib/phinite-state-machine/transition-type';
 
-export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachine.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachine.Entity<T>> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
     hasPhiniteStateMachineSystem: 'hasPhiniteStateMachineSystem',
   };
@@ -17,9 +17,9 @@ export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachi
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity<U extends T>(entity: U, data: SystemsManager.EntityRegistrationData): void {
     const { states, initialState } = data;
-    const phiniteStateMachine = new PhiniteStateMachine(this.scene, entity, states);
+    const phiniteStateMachine = new PhiniteStateMachine<U>(this.scene, entity, states);
 
     phiniteStateMachine.doTransition({
       type: TransitionType.Initial,

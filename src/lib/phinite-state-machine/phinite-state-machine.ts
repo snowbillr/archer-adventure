@@ -2,15 +2,15 @@ import 'phaser';
 
 import { TransitionType } from './transition-type';
 
-export class PhiniteStateMachine implements PhiniteStateMachine.PhiniteStateMachine {
+export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateMachine<T> {
   private scene: Phaser.Scene;
-  private entity: object;
-  private states: PhiniteStateMachine.States.State[];
+  private entity: T;
+  private states: PhiniteStateMachine.States.State<T>[];
 
-  private currentState: PhiniteStateMachine.States.State;
+  private currentState: PhiniteStateMachine.States.State<T>;
   private triggerCancelers: (() => void)[];
 
-  constructor(scene: Phaser.Scene, entity: PhiniteStateMachine.Entity, states: PhiniteStateMachine.States.State[]) {
+  constructor(scene: Phaser.Scene, entity: T, states: PhiniteStateMachine.States.State<T>[]) {
     this.scene = scene;
     this.entity = entity;
     this.states = states;
@@ -25,11 +25,11 @@ export class PhiniteStateMachine implements PhiniteStateMachine.PhiniteStateMach
     }
   }
 
-  doTransition(transition: PhiniteStateMachine.Transitions.Transition) {
+  doTransition(transition: PhiniteStateMachine.Transitions.Transition<T>) {
     this.cancelTransitionTriggers();
 
     const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
-    this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteStateMachine.States.State;
+    this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteStateMachine.States.State<T>;
 
     if (transition.onTransition && transition.type !== TransitionType.Initial) {
       transition.onTransition(this.entity);
@@ -50,19 +50,19 @@ export class PhiniteStateMachine implements PhiniteStateMachine.PhiniteStateMach
     this.currentState.transitions.forEach(transition => {
       switch(transition.type) {
         case TransitionType.Input:
-          this.registerInputTransitionTrigger(transition as PhiniteStateMachine.Transitions.InputTransition);
+          this.registerInputTransitionTrigger(transition as PhiniteStateMachine.Transitions.InputTransition<T>);
           break;
         case TransitionType.CurrentAnimationEnd:
-          this.registerCurrentAnimationEndTransitionTrigger(transition as PhiniteStateMachine.Transitions.CurrentAnimationEndTransition);
+          this.registerCurrentAnimationEndTransitionTrigger(transition as PhiniteStateMachine.Transitions.CurrentAnimationEndTransition<T>);
           break;
         case TransitionType.Conditional:
-          this.registerConditionalTransitionTrigger(transition as PhiniteStateMachine.Transitions.ConditionalTransition);
+          this.registerConditionalTransitionTrigger(transition as PhiniteStateMachine.Transitions.ConditionalTransition<T>);
           break;
       }
     });
   }
 
-  private registerInputTransitionTrigger(transition: PhiniteStateMachine.Transitions.InputTransition) {
+  private registerInputTransitionTrigger(transition: PhiniteStateMachine.Transitions.InputTransition<T>) {
     const listener = (e: KeyboardEvent) => {
       if (e.key === transition.key) {
         this.doTransition(transition);
@@ -73,7 +73,7 @@ export class PhiniteStateMachine implements PhiniteStateMachine.PhiniteStateMach
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
-  private registerCurrentAnimationEndTransitionTrigger(transition: PhiniteStateMachine.Transitions.CurrentAnimationEndTransition) {
+  private registerCurrentAnimationEndTransitionTrigger(transition: PhiniteStateMachine.Transitions.CurrentAnimationEndTransition<T>) {
     const listener = () => {
       this.doTransition(transition);
     }
@@ -81,7 +81,7 @@ export class PhiniteStateMachine implements PhiniteStateMachine.PhiniteStateMach
     // this.triggerCancelers.push(() => this.entity.sprite!.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
   }
 
-  private registerConditionalTransitionTrigger(transition: PhiniteStateMachine.Transitions.ConditionalTransition) {
+  private registerConditionalTransitionTrigger(transition: PhiniteStateMachine.Transitions.ConditionalTransition<T>) {
     const listener = () => {
       if (transition.condition(this.entity)) {
         this.doTransition(transition);

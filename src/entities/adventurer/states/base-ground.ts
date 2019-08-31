@@ -1,19 +1,18 @@
-import { TransitionType } from '../../../components/phinite-state';
-import { Adventurer } from '..';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
-export const baseGround = {
+export const baseGround: Partial<PhiniteStateMachine.States.State<Entities.Adventurer>> = {
   transitions: [
     {
       type: TransitionType.Conditional,
-      condition: (adventurer: Adventurer) => {
-        return adventurer.body.velocity.y > 5;
+      condition: (entity: Entities.Adventurer) => {
+        return entity.body.velocity.y > 5;
       },
-      to: (adventurer: Adventurer) => {
-        adventurer.body.velocity.y = 100;
+      to: (entity: Entities.Adventurer) => {
+        entity.body.velocity.y = 100;
 
-        if (adventurer.body.velocity.x > 0) {
+        if (entity.body.velocity.x > 0) {
           return 'adventurer-fall-right';
-        } else if (adventurer.body.velocity.x < 0) {
+        } else if (entity.body.velocity.x < 0) {
           return 'adventurer-fall-left';
         } else {
           return 'adventurer-fall';

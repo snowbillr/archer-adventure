@@ -1,25 +1,25 @@
 declare namespace Systems.HasSprite {
-  type Entity = {
-    sprite?: Phaser.GameObjects.Sprite;
+  interface Entity {
+    sprite: Phaser.GameObjects.Sprite;
   }
 }
 
 declare namespace Systems.HasPhysicalSprite {
-  type Entity = {
+  interface Entity {
     sprite: Phaser.GameObjects.Sprite;
     body: Phaser.Physics.Arcade.Body;
   }
 }
 
 declare namespace Systems.HasInteractionCircle {
-  type Entity = {
+  interface Entity {
     interactionCircle?: Phaser.Geom.Circle;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
 
 declare namespace Systems.HasIndicator {
-  type Entity = {
+  interface Entity {
     showIndicator: () => void;
     hideIndicator: () => void;
   }
@@ -28,7 +28,7 @@ declare namespace Systems.HasIndicator {
 declare namespace Systems.HasControls {
   type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
 
-  type Entity = {
+  interface Entity {
     controls: Controls;
   }
 }
@@ -51,7 +51,7 @@ declare namespace Systems.HasBounds {
     }
   }
 
-  type Entity = {
+  interface Entity {
     boundsFrames: Frame[];
   }
 }
@@ -71,7 +71,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  type Entity = {
+  interface Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
@@ -85,43 +85,7 @@ declare namespace Systems.HasHurtboxes {
 }
 
 declare namespace Systems.HasPhiniteStateMachine {
-  type Entity = {
-    phiniteStateMachine: PhiniteStateMachine.PhiniteStateMachine;
+  interface Entity<T> {
+    phiniteStateMachine: PhiniteStateMachine.PhiniteStateMachine<T>;
   }
-
-  type StateMergeFn<T> = (state1: Partial<State<T>>, state2: Partial<State<T>>) => State<T>;
-
-  type State<T> = {
-    id: string;
-    transitions: Transition<T>[];
-    data?: {[key: string]: any},
-    onEnter?: StateCallbackFn<T>;
-    onUpdate?: StateCallbackFn<T>;
-  }
-  type StateData = {
-    [key: string]: any;
-  }
-  type StateCallbackFn<T> = (entity: T, data: StateData) => void;
-
-  type TransitionToFn<T> = (entity: T) => string;
-  type TransitionType = number;
-
-  type BaseTransition<T> = {
-    type: TransitionType;
-    to: string | TransitionToFn<T>;
-    onTransition?: (entity: T) => void;
-  }
-
-  type InputTransition<T> = BaseTransition<T> & {
-    event: string;
-    key: string;
-  }
-
-  type CurrentAnimationEndTransition<T> = BaseTransition<T>;
-
-  type ConditionalTransition<T> = BaseTransition<T> & {
-    condition: (entity: T) => boolean;
-  }
-
-  type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T>;
 }
