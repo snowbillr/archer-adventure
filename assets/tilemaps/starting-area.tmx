@@ -573,7 +573,7 @@
   </object>
  </objectgroup>
  <objectgroup name="adventurer">
-  <object id="6" name="adventurer" x="488.233" y="95.7074">
+  <object id="6" name="adventurer" x="866.143" y="400.109">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>

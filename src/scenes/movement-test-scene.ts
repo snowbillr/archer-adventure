@@ -47,15 +47,6 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   create() {
-    const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-    const map = areaManager.map;
-    areaManager.createTileLayers([
-      'ground',
-      'background-base',
-      'background-details',
-      'foreground'
-    ]);
-
     this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
     this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
@@ -66,16 +57,25 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
     this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
 
-    areaManager.createObjects('signs', this.systemsManager);
-    const adventurerEntity: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
+    const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    const map = areaManager.map;
+    areaManager.createTileLayers([
+      'ground',
+      'background-base',
+      'background-details',
+      'foreground'
+    ]);
 
-    this.systemsManager.registerEntity(adventurerEntity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
+    areaManager.createObjects('signs', this.systemsManager);
+    const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
+
+    this.systemsManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
       states: states,
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
 
     this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
-    this.cameras.main.startFollow(adventurerEntity.sprite, true);
+    this.cameras.main.startFollow(adventurer.sprite, true);
   }
 
   update() {
