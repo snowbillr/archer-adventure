@@ -7,11 +7,6 @@ declare namespace PhiniteStateMachine {
   }
 
   namespace States {
-    // type StateCallbackFn = <T>(entity: T, data: StateData) => void;
-    // interface StateCallbackFn {
-      // <T>(entity: T, data?: StateData): void;
-    // }
-
     type State<T> = {
       id: string;
       transitions: Transitions.Transition<T>[];
@@ -28,11 +23,6 @@ declare namespace PhiniteStateMachine {
   }
 
   namespace Transitions {
-    // interface TransitionToFn {
-      // <T>(entity: T): string;
-    // }
-    // type TransitionToFn = <T>(entity: T) => string;
-
     type TransitionType = number;
 
     interface TransitionCallbackFn {
