@@ -74,13 +74,6 @@ export class MovementTestScene extends Phaser.Scene {
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
 
-    // more area stuff
-
-    const groundLayer = areaManager.layers[0];
-    groundLayer.setCollisionByProperty({ collides: true });
-
-    this.physics.add.collider(adventurerEntity.sprite, groundLayer);
-
     this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
     this.cameras.main.startFollow(adventurerEntity.sprite, true);
   }

@@ -34,6 +34,12 @@ export class AreaManager {
     layerNames.forEach(layerName => {
       const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
       layer.setScale(this.scale);
+
+      const collisionProperty = (layer.layer.properties as any).collisionProperty;
+      if (collisionProperty) {
+        layer.setCollisionByProperty({ [collisionProperty]: true })
+      }
+
       this.layers.push(layer);
     });
   }
@@ -44,7 +50,6 @@ export class AreaManager {
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
       const entity = {} as any;
-      console.log(tiledObject)
 
       tiledObject.properties.tags.split(',').forEach((tag: string) => {
         if (tag === HasSpriteSystem.SystemTags.hasSprite) {
@@ -67,6 +72,12 @@ export class AreaManager {
           this.registerHasControlsEntity(entity, tiledObject, systemsManager);
         }
       });
+
+      if (tiledObject.properties.layerCollisions) {
+        tiledObject.properties.layerCollisions.split(',').forEach((layerName: string) => {
+          this.scene.physics.add.collider(entity.sprite, this.layers.find(layer => layer.layer.name === layerName)!);
+        });
+      }
 
       createdEntities.push(entity);
     });
