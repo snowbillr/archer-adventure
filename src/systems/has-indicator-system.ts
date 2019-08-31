@@ -20,7 +20,6 @@ export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends B
 
     const indicatorSprite = this.scene.add.sprite(targetX, targetY, 'indicator-down');
     indicatorSprite.setScale(2);
-    console.log(depth);
     indicatorSprite.setDepth(depth);
 
     function showIndicator() {
