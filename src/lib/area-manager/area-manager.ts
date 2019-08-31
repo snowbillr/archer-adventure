@@ -7,7 +7,6 @@ import { HasPhysicalSpriteSystem } from '../../systems/has-physical-sprite-syste
 import { HasHurtboxesSystem } from '../../systems/has-hurtboxes-system';
 import { HasBoundsSystem } from '../../systems/has-bounds-system';
 import { HasControlsSystem } from '../../systems/has-controls-system';
-import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
 
 export class AreaManager {
   private scene: Phaser.Scene;
