@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/base-system';
+import { BaseSystem } from '../lib/systems/base-system';
 
 export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
@@ -26,6 +26,8 @@ export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity>
     entity.sprite = sprite;
     entity.body = sprite.body as Phaser.Physics.Arcade.Body;
 
-    entity.body.maxVelocity.x = data.maxVelocity.x;
+    if (data.maxVelocity) {
+      entity.body.maxVelocity.x = data.maxVelocity.x;
+    }
   }
 }

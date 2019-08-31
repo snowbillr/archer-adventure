@@ -424,6 +424,9 @@
   </tile>
  </tileset>
  <layer name="ground" width="100" height="30">
+  <properties>
+   <property name="collisionProperty" value="collides"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -562,13 +565,25 @@
  <objectgroup name="signs">
   <object id="4" gid="1129" x="528" y="112" width="16" height="16">
    <properties>
-    <property name="interactive" type="bool" value="true"/>
-    <property name="message_id" value="test_sign"/>
+    <property name="frame" type="int" value="1128"/>
+    <property name="interactionRadius" type="int" value="30"/>
+    <property name="tags" value="hasSprite,hasInteractionCircle,hasIndicator,sign-interactive"/>
+    <property name="texture" value="fantasy-platformer-core-spritesheet"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="adventurer">
-  <object id="6" name="adventurer" x="488.233" y="95.7074">
+  <object id="6" name="adventurer" x="866.143" y="400.109">
+   <properties>
+    <property name="boundsKey" value="adventurer-bounds"/>
+    <property name="frame" value="0"/>
+    <property name="hurtboxesKey" value="adventurer-hurtboxes"/>
+    <property name="interactionRadius" type="int" value="30"/>
+    <property name="layerCollisions" value="ground"/>
+    <property name="maxHorizontalVelocity" type="int" value="350"/>
+    <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor"/>
+    <property name="texture" value="adventurer-core"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

@@ -6,6 +6,14 @@
          "height":30,
          "name":"ground",
          "opacity":1,
+         "properties":
+            {
+             "collisionProperty":"collides"
+            },
+         "propertytypes":
+            {
+             "collisionProperty":"string"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -56,13 +64,17 @@
                  "name":"",
                  "properties":
                     {
-                     "interactive":true,
-                     "message_id":"test_sign"
+                     "frame":1128,
+                     "interactionRadius":30,
+                     "tags":"hasSprite,hasInteractionCircle,hasIndicator,sign-interactive",
+                     "texture":"fantasy-platformer-core-spritesheet"
                     },
                  "propertytypes":
                     {
-                     "interactive":"bool",
-                     "message_id":"string"
+                     "frame":"int",
+                     "interactionRadius":"int",
+                     "tags":"string",
+                     "texture":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -86,12 +98,34 @@
                  "id":6,
                  "name":"adventurer",
                  "point":true,
+                 "properties":
+                    {
+                     "boundsKey":"adventurer-bounds",
+                     "frame":"0",
+                     "hurtboxesKey":"adventurer-hurtboxes",
+                     "interactionRadius":30,
+                     "layerCollisions":"ground",
+                     "maxHorizontalVelocity":350,
+                     "tags":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor",
+                     "texture":"adventurer-core"
+                    },
+                 "propertytypes":
+                    {
+                     "boundsKey":"string",
+                     "frame":"string",
+                     "hurtboxesKey":"string",
+                     "interactionRadius":"int",
+                     "layerCollisions":"string",
+                     "maxHorizontalVelocity":"int",
+                     "tags":"string",
+                     "texture":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":488.233496332518,
-                 "y":95.707432874958
+                 "x":866.143212664627,
+                 "y":400.108526080122
                 }],
          "opacity":1,
          "type":"objectgroup",
