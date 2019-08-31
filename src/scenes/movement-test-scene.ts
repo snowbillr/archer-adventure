@@ -34,6 +34,10 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
+    // sheep
+    this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
+    this.load.animation('sheep-animations', '/assets/animations/sheep.json');
+
     // indicators
     this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
@@ -67,6 +71,7 @@ export class MovementTestScene extends Phaser.Scene {
     ]);
 
     areaManager.createObjects('signs', this.systemsManager);
+    areaManager.createObjects('npcs', this.systemsManager);
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
 
     this.systemsManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {

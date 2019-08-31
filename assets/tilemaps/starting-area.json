@@ -91,6 +91,40 @@
         }, 
         {
          "draworder":"topdown",
+         "name":"npcs",
+         "objects":[
+                {
+                 "height":0,
+                 "id":8,
+                 "name":"sheep",
+                 "point":true,
+                 "properties":
+                    {
+                     "frame":0,
+                     "tags":"hasSprite",
+                     "texture":"sheep-walk"
+                    },
+                 "propertytypes":
+                    {
+                     "frame":"int",
+                     "tags":"string",
+                     "texture":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":953.545232273839,
+                 "y":414.883863080685
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "name":"adventurer",
          "objects":[
                 {
@@ -124,8 +158,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":866.143212664627,
-                 "y":400.108526080122
+                 "x":866.143,
+                 "y":406.985528117359
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -133,7 +167,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":8,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="8">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="9">
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
@@ -572,8 +572,18 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="npcs">
+  <object id="8" name="sheep" x="953.545" y="414.884">
+   <properties>
+    <property name="frame" type="int" value="0"/>
+    <property name="tags" value="hasSprite"/>
+    <property name="texture" value="sheep-walk"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup name="adventurer">
-  <object id="6" name="adventurer" x="866.143" y="400.109">
+  <object id="6" name="adventurer" x="866.143" y="406.986">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>
