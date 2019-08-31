@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/base-system';
+import { BaseSystem } from '../lib/systems/base-system';
 import { PhiniteStateMachine } from '../lib/phinite-state-machine/phinite-state-machine';
 import { TransitionType } from '../lib/phinite-state-machine/transition-type';
 

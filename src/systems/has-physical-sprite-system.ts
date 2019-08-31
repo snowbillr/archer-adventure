@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/base-system';
+import { BaseSystem } from '../lib/systems/base-system';
 
 export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
