@@ -1,6 +1,5 @@
 import 'phaser';
 
-import { Adventurer } from '../entities/adventurer/index';
 import { SystemsManager } from '../lib/systems-manager';
 import { SignSystem } from '../systems/sign-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
@@ -16,13 +15,11 @@ import { movementAttributes } from '../entities/adventurer/movement-attributes';
 import { states } from '../entities/adventurer/states';
 
 export class MovementTestScene extends Phaser.Scene {
-  private adventurer: Adventurer;
   private tagManager: SystemsManager;
 
   constructor(config: any) {
     super(config);
 
-    this.adventurer = new Adventurer();
     this.tagManager = new SystemsManager();
   }
 
@@ -56,12 +53,13 @@ export class MovementTestScene extends Phaser.Scene {
     const groundLayer = map.createStaticLayer('ground', tileset, 0, 0);
     const backgroundBaseLayer = map.createStaticLayer('background-base', tileset, 0, 0);
     const backgroundDetailsLayer = map.createStaticLayer('background-details', tileset, 0, 0);
-    this.adventurer.create(this);
     const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
     const signEntity: Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity = {} as (Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity)
+
+    const adventurer: Entities.Adventurer = {} as Entities.Adventurer;
 
     this.tagManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
@@ -81,7 +79,7 @@ export class MovementTestScene extends Phaser.Scene {
       scale: TILEMAP_SCALE,
     });
 
-    this.tagManager.registerEntity(this.adventurer, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
+    this.tagManager.registerEntity(adventurer, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
       x: 900,
       y: 100,
       texture: 'adventurer-core',
@@ -92,26 +90,26 @@ export class MovementTestScene extends Phaser.Scene {
       }
     });
 
-    this.tagManager.registerEntity(this.adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
+    this.tagManager.registerEntity(adventurer, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
       animationsKey: 'adventurer-hitboxes',
       debug: false,
     });
 
-    this.tagManager.registerEntity(this.adventurer, HasBoundsSystem.SystemTags.hasBounds, {
+    this.tagManager.registerEntity(adventurer, HasBoundsSystem.SystemTags.hasBounds, {
       boundsKey: 'adventurer-bounds'
     });
 
-    this.tagManager.registerEntity(this.adventurer, HasControlsSystem.SystemTags.hasControls);
+    this.tagManager.registerEntity(adventurer, HasControlsSystem.SystemTags.hasControls);
 
-    this.tagManager.registerEntity(this.adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
+    this.tagManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
       states: states,
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
 
     this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
-    this.tagManager.registerEntity(this.adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: this.adventurer.sprite.x, y: this.adventurer.sprite.y, radius: 30 });
+    this.tagManager.registerEntity(adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: adventurer.sprite.x, y: adventurer.sprite.y, radius: 30 });
 
-    this.tagManager.registerEntity(this.adventurer, SignSystem.SystemTags.interactor);
+    this.tagManager.registerEntity(adventurer, SignSystem.SystemTags.interactor);
     this.tagManager.registerEntity(signEntity, SignSystem.SystemTags.sign);
 
     this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { targetX: signEntity.sprite!.x, targetY: signEntity.sprite!.y - signEntity.sprite!.displayHeight - 5 });
@@ -123,10 +121,10 @@ export class MovementTestScene extends Phaser.Scene {
 
     groundLayer.setCollisionByProperty({ collides: true });
 
-    this.physics.add.collider(this.adventurer.sprite, groundLayer);
+    this.physics.add.collider(adventurer.sprite, groundLayer);
 
     this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
-    this.cameras.main.startFollow(this.adventurer.sprite, true);
+    this.cameras.main.startFollow(adventurer.sprite, true);
   }
 
   update() {
