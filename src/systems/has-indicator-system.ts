@@ -16,10 +16,12 @@ export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity> extends B
   }
 
   registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
-    const { targetX, targetY } = data;
+    const { depth, targetX, targetY } = data;
 
     const indicatorSprite = this.scene.add.sprite(targetX, targetY, 'indicator-down');
     indicatorSprite.setScale(2);
+    console.log(depth);
+    indicatorSprite.setDepth(depth);
 
     function showIndicator() {
       indicatorSprite.visible = true;

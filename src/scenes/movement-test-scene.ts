@@ -57,7 +57,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     const signs = map.getObjectLayer('signs');
     const testSign = signs.objects[0] as { x: number, y: number };
-    const signEntity: Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity = {} as (Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity)
+    const signEntity: Entities.Sign = {} as Entities.Sign;
 
     const adventurer: Entities.Adventurer = {} as Entities.Adventurer;
 
@@ -112,7 +112,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.tagManager.registerEntity(adventurer, SignSystem.SystemTags.interactor);
     this.tagManager.registerEntity(signEntity, SignSystem.SystemTags.sign);
 
-    this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { targetX: signEntity.sprite.x, targetY: signEntity.sprite.y - signEntity.sprite.displayHeight - 5 });
+    this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { depth: signEntity.sprite.depth, targetX: signEntity.sprite.x, targetY: signEntity.sprite.y - signEntity.sprite.displayHeight - 5 });
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);
