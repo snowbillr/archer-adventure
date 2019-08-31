@@ -31,7 +31,7 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const entities = this.tag1s;
+    const entities = this.entity1s;
     entities.forEach(entity => {
       entity.interactionCircle!.setPosition(entity.sprite!.x, entity.sprite!.y);
 

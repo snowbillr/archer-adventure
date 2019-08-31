@@ -30,7 +30,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const entities = this.tag1s;
+    const entities = this.entity1s;
     entities.forEach(entity => {
       this.disableHitboxes(entity);
 

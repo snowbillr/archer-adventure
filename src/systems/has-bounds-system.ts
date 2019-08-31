@@ -22,7 +22,7 @@ export class HasBoundsSystem<T extends (Systems.HasBounds.Entity & Systems.HasPh
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const entities = this.tag1s;
+    const entities = this.entity1s;
     entities.forEach(entity => {
       const key = entity.sprite.frame.texture.key;
       const frame = entity.sprite.frame.name;

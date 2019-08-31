@@ -32,7 +32,7 @@ export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachi
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const entities = this.tag1s;
+    const entities = this.entity1s;
     entities.forEach(entity => {
       entity.phiniteStateMachine.update();
     });
