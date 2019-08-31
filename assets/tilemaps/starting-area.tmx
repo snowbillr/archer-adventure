@@ -562,8 +562,10 @@
  <objectgroup name="signs">
   <object id="4" gid="1129" x="528" y="112" width="16" height="16">
    <properties>
-    <property name="interactive" type="bool" value="true"/>
-    <property name="message_id" value="test_sign"/>
+    <property name="frame" type="int" value="1128"/>
+    <property name="interactionRadius" type="int" value="30"/>
+    <property name="tags" value="hasSprite,hasInteractionCircle,hasIndicator,sign-interactive"/>
+    <property name="texture" value="fantasy-platformer-core-spritesheet"/>
    </properties>
   </object>
  </objectgroup>

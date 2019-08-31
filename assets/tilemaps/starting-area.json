@@ -56,13 +56,17 @@
                  "name":"",
                  "properties":
                     {
-                     "interactive":true,
-                     "message_id":"test_sign"
+                     "frame":1128,
+                     "interactionRadius":30,
+                     "tags":"hasSprite,hasInteractionCircle,hasIndicator,sign-interactive",
+                     "texture":"fantasy-platformer-core-spritesheet"
                     },
                  "propertytypes":
                     {
-                     "interactive":"bool",
-                     "message_id":"string"
+                     "frame":"int",
+                     "interactionRadius":"int",
+                     "tags":"string",
+                     "texture":"string"
                     },
                  "rotation":0,
                  "type":"",
