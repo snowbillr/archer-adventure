@@ -3,5 +3,4 @@ export enum TransitionType {
 
   Input,
   Conditional,
-  CurrentAnimationEnd,
 }

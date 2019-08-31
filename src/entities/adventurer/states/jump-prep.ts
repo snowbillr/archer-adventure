@@ -10,7 +10,10 @@ export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adven
   },
   transitions: [
     {
-      type: TransitionType.CurrentAnimationEnd,
+      type: TransitionType.Conditional,
+      condition: (entity: Entities.Adventurer) => {
+        return !entity.sprite.anims.isPlaying;
+      },
       to: (entity: Entities.Adventurer) => {
         if (entity.controls.right.isDown) {
           return 'adventurer-jump-right';

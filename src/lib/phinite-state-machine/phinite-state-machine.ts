@@ -52,9 +52,6 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
         case TransitionType.Input:
           this.registerInputTransitionTrigger(transition as PhiniteStateMachine.Transitions.InputTransition<T>);
           break;
-        case TransitionType.CurrentAnimationEnd:
-          this.registerCurrentAnimationEndTransitionTrigger(transition as PhiniteStateMachine.Transitions.CurrentAnimationEndTransition<T>);
-          break;
         case TransitionType.Conditional:
           this.registerConditionalTransitionTrigger(transition as PhiniteStateMachine.Transitions.ConditionalTransition<T>);
           break;
@@ -71,14 +68,6 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
 
     this.scene.input.keyboard.on(transition.event, listener);
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
-  }
-
-  private registerCurrentAnimationEndTransitionTrigger(transition: PhiniteStateMachine.Transitions.CurrentAnimationEndTransition<T>) {
-    const listener = () => {
-      this.doTransition(transition);
-    }
-    // this.entity.sprite!.anims.currentAnim.on(Phaser.Animations.Events.ANIMATION_COMPLETE, listener);
-    // this.triggerCancelers.push(() => this.entity.sprite!.anims.currentAnim.off(Phaser.Animations.Events.ANIMATION_COMPLETE, listener))
   }
 
   private registerConditionalTransitionTrigger(transition: PhiniteStateMachine.Transitions.ConditionalTransition<T>) {
