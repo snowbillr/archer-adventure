@@ -20,13 +20,13 @@ export class SignSystem<T extends Systems.HasInteractionCircle.Entity> extends B
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const interactors = this.tag1s;
-    const signs = this.tag2s;
+    const interactors = this.entity1s;
+    const signs = this.entity2s;
 
     interactors.forEach(interactor => {
       signs.forEach(sign => {
-        const circle1 = interactor.interactionCircle!;
-        const circle2 = sign.interactionCircle!;
+        const circle1 = interactor.interactionCircle;
+        const circle2 = sign.interactionCircle;
 
         if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
           sign.showIndicator();

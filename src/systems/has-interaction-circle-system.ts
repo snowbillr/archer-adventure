@@ -31,18 +31,20 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
   update(tagManager: SystemsManager.SystemsManager) {
     super.update(tagManager);
 
-    const entities = this.tag1s;
+    const entities = this.entity1s;
     entities.forEach(entity => {
-      entity.interactionCircle!.setPosition(entity.sprite!.x, entity.sprite!.y);
+      entity.interactionCircle.setPosition(entity.sprite.x, entity.sprite.y);
 
       if (entity.debugInteractionCircle) {
         const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
-        entity.debugInteractionCircle.setPosition(entity.sprite!.x, entity.sprite!.y);
+        entity.debugInteractionCircle.setPosition(entity.sprite.x, entity.sprite.y);
 
-        if (Phaser.Geom.Intersects.CircleToCircle(entity.interactionCircle!, new Phaser.Geom.Circle(position.x, position.y, 1))) {
-          entity.debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
-        } else {
-          entity.debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
+        if (entity.debugInteractionCircle) {
+          if (Phaser.Geom.Intersects.CircleToCircle(entity.interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
+            entity.debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
+          } else {
+            entity.debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
+          }
         }
       }
     });

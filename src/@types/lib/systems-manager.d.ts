@@ -13,7 +13,7 @@ declare namespace SystemsManager {
   }
 
   interface System {
-    registerEntity(entity: Entity, data: EntityRegistrationData): void;
+    registerEntity<T = any>(entity: Entity, data: EntityRegistrationData): void;
 
     update(tagManager: SystemsManager): void;
   }

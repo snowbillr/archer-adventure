@@ -1,32 +1,34 @@
-import { Adventurer } from '..';
-import { TransitionType } from '../../../components/phinite-state';
 import { movementAttributes } from '../movement-attributes';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
-export const adventurerJumpPrep = {
+export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adventurer> = {
   id: 'adventurer-jump-prep',
-  onEnter(adventurer: Adventurer) {
-    adventurer.body.acceleration.x = 0;
+  onEnter(entity: Entities.Adventurer) {
+    entity.body.acceleration.x = 0;
 
-    adventurer.sprite.anims.play('adventurer-jump-prep');
+    entity.sprite.anims.play('adventurer-jump-prep');
   },
   transitions: [
     {
-      type: TransitionType.CurrentAnimationEnd,
-      to: (adventurer: Adventurer) => {
-        if (adventurer.controls.right.isDown) {
+      type: TransitionType.Conditional,
+      condition: (entity: Entities.Adventurer) => {
+        return !entity.sprite.anims.isPlaying;
+      },
+      to: (entity: Entities.Adventurer) => {
+        if (entity.controls.right.isDown) {
           return 'adventurer-jump-right';
-        } else if (adventurer.controls.left.isDown) {
+        } else if (entity.controls.left.isDown) {
           return 'adventurer-jump-left';
-        } else if (adventurer.body.velocity.x > 0) {
+        } else if (entity.body.velocity.x > 0) {
           return 'adventurer-jump-right';
-        } else if (adventurer.body.velocity.x < 0) {
+        } else if (entity.body.velocity.x < 0) {
           return 'adventurer-jump-left';
         } else {
           return 'adventurer-jump';
         }
       },
-      onTransition: (adventurer: Adventurer) => {
-        adventurer.body.velocity.y = movementAttributes.jumpVelocity;
+      onTransition: (entity: Entities.Adventurer) => {
+        entity.body.velocity.y = movementAttributes.jumpVelocity;
       },
     }
   ]

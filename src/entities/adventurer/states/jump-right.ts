@@ -1,15 +1,15 @@
 import { baseJump } from './base-jump';
-import { StateMerge, TransitionType } from '../../../components/phinite-state';
-import { Adventurer } from '..';
 import { movementAttributes } from '../movement-attributes';
+import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
-export const adventurerJumpRight = StateMerge(baseJump, {
+export const adventurerJumpRight: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
   id: 'adventurer-jump-right',
   data: {
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
-  onEnter(adventurer: Adventurer) {
-    adventurer.sprite.flipX = false;
+  onEnter(entity: Entities.Adventurer) {
+    entity.sprite.flipX = false;
   },
   transitions: [
     {
@@ -20,8 +20,8 @@ export const adventurerJumpRight = StateMerge(baseJump, {
     },
     {
       type: TransitionType.Conditional,
-      condition: (adventurer: Adventurer) => {
-        return adventurer.body.velocity.y > 0;
+      condition: (entity: Entities.Adventurer) => {
+        return entity.body.velocity.y > 0;
       },
       to: 'adventurer-fall-right',
     }

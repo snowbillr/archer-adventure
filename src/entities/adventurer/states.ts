@@ -1,5 +1,3 @@
-import { Adventurer } from './index';
-
 import { adventurerStand } from './states/stand';
 import { adventurerCrouch } from './states/crouch';
 import { adventurerRunRight } from './states/run-right';
@@ -13,7 +11,7 @@ import { adventurerFall } from './states/fall';
 import { adventurerFallLeft } from './states/fall-left';
 import { adventurerFallRight } from './states/fall-right';
 
-export const states: PhiniteState.State<Adventurer>[] = [
+export const states: PhiniteStateMachine.States.State<Entities.Adventurer>[] = [
   adventurerStand,
   adventurerCrouch,
 
