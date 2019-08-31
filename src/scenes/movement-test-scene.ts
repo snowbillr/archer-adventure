@@ -31,7 +31,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
-    this.load.json('adventurer-hitboxes', '/assets/hurtboxes/adventurer.json');
+    this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
     // indicators
@@ -47,8 +47,6 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   create() {
-    const TILEMAP_SCALE = 2;
-
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     const map = areaManager.map;
     areaManager.createTileLayers([
@@ -57,13 +55,6 @@ export class MovementTestScene extends Phaser.Scene {
       'background-details',
       'foreground'
     ]);
-
-    // const signs = map.getObjectLayer('signs');
-    // const testSign = signs.objects[0] as { x: number, y: number };
-    // const signEntity: Entities.Sign = {} as Entities.Sign;
-
-    const adventurer = map.getObjectLayer('adventurer').objects[0] as { x: number, y: number };
-    const adventurerEntity: Entities.Adventurer = {} as Entities.Adventurer;
 
     this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
@@ -76,38 +67,12 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
 
     areaManager.createObjects('signs', this.systemsManager);
-
-    this.systemsManager.registerEntity(adventurerEntity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
-      x: adventurer.x * TILEMAP_SCALE,
-      y: adventurer.y * TILEMAP_SCALE,
-      texture: 'adventurer-core',
-      frame: 0,
-      scale: TILEMAP_SCALE,
-      maxVelocity: {
-        x: movementAttributes.maxVelocity
-      }
-    });
-
-    this.systemsManager.registerEntity(adventurerEntity, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
-      animationsKey: 'adventurer-hitboxes',
-      debug: false,
-    });
-
-    this.systemsManager.registerEntity(adventurerEntity, HasBoundsSystem.SystemTags.hasBounds, {
-      boundsKey: 'adventurer-bounds'
-    });
-
-    this.systemsManager.registerEntity(adventurerEntity, HasControlsSystem.SystemTags.hasControls);
+    const adventurerEntity: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
 
     this.systemsManager.registerEntity(adventurerEntity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
       states: states,
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
-
-    this.systemsManager.registerEntity(adventurerEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: adventurerEntity.sprite.x, y: adventurerEntity.sprite.y, radius: 30 });
-
-    this.systemsManager.registerEntity(adventurerEntity, SignSystem.SystemTags.interactor);
-
 
     // more area stuff
 

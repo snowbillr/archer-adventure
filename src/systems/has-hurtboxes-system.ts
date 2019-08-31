@@ -16,7 +16,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
   }
 
   registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
-    entity.hurtboxFrames = this.scene.cache.json.get(data.animationsKey).frames;
+    entity.hurtboxFrames = this.scene.cache.json.get(data.hurtboxesKey).frames;
 
     entity.rectanglePool = [];
     entity.activeRectangles = [];

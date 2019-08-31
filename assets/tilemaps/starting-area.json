@@ -90,6 +90,26 @@
                  "id":6,
                  "name":"adventurer",
                  "point":true,
+                 "properties":
+                    {
+                     "boundsKey":"adventurer-bounds",
+                     "frame":"0",
+                     "hurtboxesKey":"adventurer-hurtboxes",
+                     "interactionRadius":30,
+                     "maxHorizontalVelocity":350,
+                     "tags":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor",
+                     "texture":"adventurer-core"
+                    },
+                 "propertytypes":
+                    {
+                     "boundsKey":"string",
+                     "frame":"string",
+                     "hurtboxesKey":"string",
+                     "interactionRadius":"int",
+                     "maxHorizontalVelocity":"int",
+                     "tags":"string",
+                     "texture":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,

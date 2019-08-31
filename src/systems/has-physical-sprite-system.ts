@@ -26,6 +26,8 @@ export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity>
     entity.sprite = sprite;
     entity.body = sprite.body as Phaser.Physics.Arcade.Body;
 
-    entity.body.maxVelocity.x = data.maxVelocity.x;
+    if (data.maxVelocity) {
+      entity.body.maxVelocity.x = data.maxVelocity.x;
+    }
   }
 }

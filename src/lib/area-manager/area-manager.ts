@@ -3,6 +3,11 @@ import { HasSpriteSystem } from '../../systems/has-sprite-system';
 import { HasInteracionCircleSystem } from '../../systems/has-interaction-circle-system';
 import { HasIndicatorSystem } from '../../systems/has-indicator-system';
 import { SignSystem } from '../../systems/sign-system';
+import { HasPhysicalSpriteSystem } from '../../systems/has-physical-sprite-system';
+import { HasHurtboxesSystem } from '../../systems/has-hurtboxes-system';
+import { HasBoundsSystem } from '../../systems/has-bounds-system';
+import { HasControlsSystem } from '../../systems/has-controls-system';
+import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
 
 export class AreaManager {
   private scene: Phaser.Scene;
@@ -39,17 +44,27 @@ export class AreaManager {
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
       const entity = {} as any;
-      console.log(tiledObject);
+      console.log(tiledObject)
 
       tiledObject.properties.tags.split(',').forEach((tag: string) => {
         if (tag === HasSpriteSystem.SystemTags.hasSprite) {
           this.registerHasSpriteEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite) {
+          this.registerHasPhysicalSpriteEntity(entity, tiledObject, systemsManager);
         } else if (tag === HasInteracionCircleSystem.SystemTags.hasInteractionCircle) {
           this.registerHasInteractionCircleEntity(entity, tiledObject, systemsManager);
         } else if (tag === HasIndicatorSystem.SystemTags.hasIndicator) {
           this.registerHasIndicatorEntity(entity, tiledObject, systemsManager);
         } else if (tag === SignSystem.SystemTags.sign) {
           this.registerSignSystemSignEntity(entity, tiledObject, systemsManager);
+        } else if (tag === SignSystem.SystemTags.interactor) {
+          this.registerSignSystemInteractorEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasHurtboxesSystem.SystemTags.hasHurtboxes) {
+          this.registerHasHurtboxesEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasBoundsSystem.SystemTags.hasBounds) {
+          this.registerHasBoundsEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasControlsSystem.SystemTags.hasControls) {
+          this.registerHasControlsEntity(entity, tiledObject, systemsManager);
         }
       });
 
@@ -71,6 +86,21 @@ export class AreaManager {
     });
   }
 
+  private registerHasPhysicalSpriteEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    const { x, y } = this.getObjectPosition(tiledObject);
+
+    systemsManager.registerEntity(entity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
+      x,
+      y,
+      texture: tiledObject.properties.texture,
+      frame: tiledObject.properties.frame,
+      maxVelocity: {
+        x: tiledObject.properties.maxHorizontalVelocity,
+      },
+      scale: this.scale,
+    });
+  }
+
   private registerHasInteractionCircleEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
@@ -78,6 +108,7 @@ export class AreaManager {
       x,
       y,
       radius: tiledObject.properties.interactionRadius,
+      debug: false
     });
   }
 
@@ -93,6 +124,27 @@ export class AreaManager {
 
   private registerSignSystemSignEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     systemsManager.registerEntity(entity, SignSystem.SystemTags.sign);
+  }
+
+  private registerSignSystemInteractorEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, SignSystem.SystemTags.interactor);
+  }
+
+  private registerHasHurtboxesEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
+      hurtboxesKey: tiledObject.properties.hurtboxesKey,
+      debug: false
+    });
+  }
+
+  private registerHasBoundsEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, HasBoundsSystem.SystemTags.hasBounds, {
+      boundsKey: tiledObject.properties.boundsKey
+    });
+  }
+
+  private registerHasControlsEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, HasControlsSystem.SystemTags.hasControls);
   }
 
   private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {

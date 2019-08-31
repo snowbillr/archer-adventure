@@ -571,6 +571,15 @@
  </objectgroup>
  <objectgroup name="adventurer">
   <object id="6" name="adventurer" x="488.233" y="95.7074">
+   <properties>
+    <property name="boundsKey" value="adventurer-bounds"/>
+    <property name="frame" value="0"/>
+    <property name="hurtboxesKey" value="adventurer-hurtboxes"/>
+    <property name="interactionRadius" type="int" value="30"/>
+    <property name="maxHorizontalVelocity" type="int" value="350"/>
+    <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor"/>
+    <property name="texture" value="adventurer-core"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
