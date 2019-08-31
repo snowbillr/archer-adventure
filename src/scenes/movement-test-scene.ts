@@ -11,16 +11,18 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
+import { AreaManager } from '../lib/area-manager/area-manager';
+
 import { movementAttributes } from '../entities/adventurer/movement-attributes';
 import { states } from '../entities/adventurer/states';
 
 export class MovementTestScene extends Phaser.Scene {
-  private tagManager: SystemsManager;
+  private systemsManager: SystemsManager;
 
   constructor(config: any) {
     super(config);
 
-    this.tagManager = new SystemsManager();
+    this.systemsManager = new SystemsManager();
   }
 
   preload() {
@@ -29,7 +31,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
-    this.load.json('adventurer-hitboxes', '/assets/hurtboxes/adventurer.json');
+    this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
     // indicators
@@ -45,90 +47,38 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   create() {
-    const TILEMAP_SCALE = 2;
+    this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
+    this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
+    this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
+    this.systemsManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
+    this.systemsManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
+    this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
+    this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
+    this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
+    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
 
-    const map = this.make.tilemap({ key: 'starting-area' });
-    const tileset = map.addTilesetImage('fantasy-platformer-core', 'fantasy-platformer-core');
+    const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    const map = areaManager.map;
+    areaManager.createTileLayers([
+      'ground',
+      'background-base',
+      'background-details',
+      'foreground'
+    ]);
 
-    const groundLayer = map.createStaticLayer('ground', tileset, 0, 0);
-    const backgroundBaseLayer = map.createStaticLayer('background-base', tileset, 0, 0);
-    const backgroundDetailsLayer = map.createStaticLayer('background-details', tileset, 0, 0);
-    const foregroundLayer = map.createStaticLayer('foreground', tileset, 0, 0);
+    areaManager.createObjects('signs', this.systemsManager);
+    const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
 
-    const signs = map.getObjectLayer('signs');
-    const testSign = signs.objects[0] as { x: number, y: number };
-    const signEntity: Entities.Sign = {} as Entities.Sign;
-
-    const adventurer = map.getObjectLayer('adventurer').objects[0] as { x: number, y: number };
-    const adventurerEntity: Entities.Adventurer = {} as Entities.Adventurer;
-
-    this.tagManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
-    this.tagManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
-    this.tagManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
-    this.tagManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
-    this.tagManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
-    this.tagManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
-    this.tagManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
-    this.tagManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
-    this.tagManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
-
-    this.tagManager.registerEntity(signEntity, HasSpriteSystem.SystemTags.hasSprite, {
-      x: testSign.x * TILEMAP_SCALE,
-      y: testSign.y * TILEMAP_SCALE - map.tileHeight,
-      texture: 'fantasy-platformer-core-spritesheet',
-      frame: 1128,
-      scale: TILEMAP_SCALE,
-    });
-
-    this.tagManager.registerEntity(adventurerEntity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
-      x: adventurer.x * TILEMAP_SCALE,
-      y: adventurer.y * TILEMAP_SCALE,
-      texture: 'adventurer-core',
-      frame: 0,
-      scale: TILEMAP_SCALE,
-      maxVelocity: {
-        x: movementAttributes.maxVelocity
-      }
-    });
-
-    this.tagManager.registerEntity(adventurerEntity, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
-      animationsKey: 'adventurer-hitboxes',
-      debug: false,
-    });
-
-    this.tagManager.registerEntity(adventurerEntity, HasBoundsSystem.SystemTags.hasBounds, {
-      boundsKey: 'adventurer-bounds'
-    });
-
-    this.tagManager.registerEntity(adventurerEntity, HasControlsSystem.SystemTags.hasControls);
-
-    this.tagManager.registerEntity(adventurerEntity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
+    this.systemsManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
       states: states,
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
 
-    this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite.x , y: signEntity.sprite.y, radius: 30 });
-    this.tagManager.registerEntity(adventurerEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: adventurerEntity.sprite.x, y: adventurerEntity.sprite.y, radius: 30 });
-
-    this.tagManager.registerEntity(adventurerEntity, SignSystem.SystemTags.interactor);
-    this.tagManager.registerEntity(signEntity, SignSystem.SystemTags.sign);
-
-    this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { depth: signEntity.sprite.depth, targetX: signEntity.sprite.x, targetY: signEntity.sprite.y - signEntity.sprite.displayHeight - 5 });
-
-    groundLayer.setScale(TILEMAP_SCALE);
-    backgroundBaseLayer.setScale(TILEMAP_SCALE);
-    backgroundDetailsLayer.setScale(TILEMAP_SCALE);
-    foregroundLayer.setScale(TILEMAP_SCALE);
-
-    groundLayer.setCollisionByProperty({ collides: true });
-
-    this.physics.add.collider(adventurerEntity.sprite, groundLayer);
-
-    this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
-    this.cameras.main.startFollow(adventurerEntity.sprite, true);
+    this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
+    this.cameras.main.startFollow(adventurer.sprite, true);
   }
 
   update() {
-    this.tagManager.update();
+    this.systemsManager.update();
   }
 }
