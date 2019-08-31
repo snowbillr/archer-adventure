@@ -34,8 +34,8 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     entities.forEach(entity => {
       this.disableHitboxes(entity);
 
-      const key = entity.sprite!.frame.texture.key;
-      const frame = entity.sprite!.frame.name;
+      const key = entity.sprite.frame.texture.key;
+      const frame = entity.sprite.frame.name;
 
       const hitboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((h: Systems.HasHurtboxes.Frame) => h.key === key && h.frame === frame) as Systems.HasHurtboxes.Frame;
       if (hitboxFrame && hitboxFrame.hurtboxes) {
@@ -101,16 +101,16 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
   private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxes.Shape) {
     const rectangle = this.getAvailableRectangle(entity);
 
-    const scaleX = entity.sprite!.scaleX;
-    const scaleY = entity.sprite!.scaleY;
+    const scaleX = entity.sprite.scaleX;
+    const scaleY = entity.sprite.scaleY;
 
-    const offsetX = entity.sprite!.flipX ? hitbox.x * -1 : hitbox.x;
-    const offsetY = entity.sprite!.flipY ? hitbox.y * -1 : hitbox.y;
+    const offsetX = entity.sprite.flipX ? hitbox.x * -1 : hitbox.x;
+    const offsetY = entity.sprite.flipY ? hitbox.y * -1 : hitbox.y;
 
     const width = scaleX * hitbox.width;
     const height = scaleY * hitbox.height;
-    const x = (entity.sprite!.x + (offsetX * scaleX)) - (width * entity.sprite!.originX);
-    const y = (entity.sprite!.y + (offsetY * scaleY)) - (height * entity.sprite!.originY);
+    const x = (entity.sprite.x + (offsetX * scaleX)) - (width * entity.sprite.originX);
+    const y = (entity.sprite.y + (offsetY * scaleY)) - (height * entity.sprite.originY);
 
     rectangle.x = x;
     rectangle.y = y;

@@ -106,13 +106,13 @@ export class MovementTestScene extends Phaser.Scene {
       initialState: states.find(s => s.id === 'adventurer-stand'),
     });
 
-    this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite!.x , y: signEntity.sprite!.y, radius: 30 });
+    this.tagManager.registerEntity(signEntity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: signEntity.sprite.x , y: signEntity.sprite.y, radius: 30 });
     this.tagManager.registerEntity(adventurer, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, { x: adventurer.sprite.x, y: adventurer.sprite.y, radius: 30 });
 
     this.tagManager.registerEntity(adventurer, SignSystem.SystemTags.interactor);
     this.tagManager.registerEntity(signEntity, SignSystem.SystemTags.sign);
 
-    this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { targetX: signEntity.sprite!.x, targetY: signEntity.sprite!.y - signEntity.sprite!.displayHeight - 5 });
+    this.tagManager.registerEntity(signEntity, HasIndicatorSystem.SystemTags.hasIndicator, { targetX: signEntity.sprite.x, targetY: signEntity.sprite.y - signEntity.sprite.displayHeight - 5 });
 
     groundLayer.setScale(TILEMAP_SCALE);
     backgroundBaseLayer.setScale(TILEMAP_SCALE);

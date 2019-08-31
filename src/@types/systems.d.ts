@@ -13,7 +13,7 @@ declare namespace Systems.HasPhysicalSprite {
 
 declare namespace Systems.HasInteractionCircle {
   interface Entity {
-    interactionCircle?: Phaser.Geom.Circle;
+    interactionCircle: Phaser.Geom.Circle;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
