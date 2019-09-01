@@ -7,14 +7,14 @@ import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 
 export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachine.Entity<T>> extends BaseSystem<T> implements SystemsManager.System {
   static SystemTags = {
-    hasPhiniteStateMachineSystem: 'hasPhiniteStateMachineSystem',
+    hasPhiniteStateMachine: 'hasPhiniteStateMachine',
   };
 
   private scene: Phaser.Scene;
   private stateRegistrar: StateRegistrar;
 
   constructor(scene: Phaser.Scene, stateRegistrar: StateRegistrar) {
-    super(HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, '');
+    super(HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine, '');
 
     this.scene = scene;
     this.stateRegistrar = stateRegistrar;

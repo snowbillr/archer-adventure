@@ -588,10 +588,12 @@
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>
     <property name="hurtboxesKey" value="adventurer-hurtboxes"/>
+    <property name="initialStateId" value="adventurer-stand"/>
     <property name="interactionRadius" type="int" value="30"/>
     <property name="layerCollisions" value="ground"/>
     <property name="maxHorizontalVelocity" type="int" value="350"/>
-    <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor"/>
+    <property name="setId" value="adventurer"/>
+    <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine"/>
     <property name="texture" value="adventurer-core"/>
    </properties>
    <point/>

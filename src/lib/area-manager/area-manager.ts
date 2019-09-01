@@ -7,6 +7,7 @@ import { HasPhysicalSpriteSystem } from '../../systems/has-physical-sprite-syste
 import { HasHurtboxesSystem } from '../../systems/has-hurtboxes-system';
 import { HasBoundsSystem } from '../../systems/has-bounds-system';
 import { HasControlsSystem } from '../../systems/has-controls-system';
+import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
 
 export class AreaManager {
   private scene: Phaser.Scene;
@@ -69,6 +70,8 @@ export class AreaManager {
           this.registerHasBoundsEntity(entity, tiledObject, systemsManager);
         } else if (tag === HasControlsSystem.SystemTags.hasControls) {
           this.registerHasControlsEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine) {
+          this.registerHasPhiniteStateMachineEntity(entity, tiledObject, systemsManager);
         }
       });
 
@@ -155,6 +158,13 @@ export class AreaManager {
 
   private registerHasControlsEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     systemsManager.registerEntity(entity, HasControlsSystem.SystemTags.hasControls);
+  }
+
+  private registerHasPhiniteStateMachineEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine, {
+      setId: tiledObject.properties.setId, //'adventurer',
+      initialStateId: tiledObject.properties.initialStateId //'adventurer-stand',
+    });
   }
 
   private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {

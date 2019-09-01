@@ -66,7 +66,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
     this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
-    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this, this.stateRegistrar), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
+    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this, this.stateRegistrar), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine);
 
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     const map = areaManager.map;
@@ -80,11 +80,6 @@ export class MovementTestScene extends Phaser.Scene {
     areaManager.createObjects('signs', this.systemsManager);
     areaManager.createObjects('npcs', this.systemsManager);
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
-
-    this.systemsManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
-      setId: 'adventurer',
-      initialStateId: 'adventurer-stand',
-    });
 
     this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
     this.cameras.main.startFollow(adventurer.sprite, true);

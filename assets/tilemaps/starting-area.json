@@ -137,10 +137,12 @@
                      "boundsKey":"adventurer-bounds",
                      "frame":"0",
                      "hurtboxesKey":"adventurer-hurtboxes",
+                     "initialStateId":"adventurer-stand",
                      "interactionRadius":30,
                      "layerCollisions":"ground",
                      "maxHorizontalVelocity":350,
-                     "tags":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor",
+                     "setId":"adventurer",
+                     "tags":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine",
                      "texture":"adventurer-core"
                     },
                  "propertytypes":
@@ -148,9 +150,11 @@
                      "boundsKey":"string",
                      "frame":"string",
                      "hurtboxesKey":"string",
+                     "initialStateId":"string",
                      "interactionRadius":"int",
                      "layerCollisions":"string",
                      "maxHorizontalVelocity":"int",
+                     "setId":"string",
                      "tags":"string",
                      "texture":"string"
                     },
