@@ -11,7 +11,7 @@ import { adventurerFall } from './states/fall';
 import { adventurerFallLeft } from './states/fall-left';
 import { adventurerFallRight } from './states/fall-right';
 
-export const states: PhiniteStateMachine.States.State<Entities.Adventurer>[] = [
+export const adventurerStates: PhiniteStateMachine.States.State<Entities.Adventurer>[] = [
   adventurerStand,
   adventurerCrouch,
 

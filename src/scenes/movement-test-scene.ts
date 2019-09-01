@@ -13,16 +13,18 @@ import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machi
 
 import { AreaManager } from '../lib/area-manager/area-manager';
 
-import { movementAttributes } from '../entities/adventurer/movement-attributes';
-import { states } from '../entities/adventurer/states';
+import { adventurerStates } from '../entities/adventurer/states';
+import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 
 export class MovementTestScene extends Phaser.Scene {
   private systemsManager: SystemsManager;
+  private stateRegistrar: StateRegistrar;
 
   constructor(config: any) {
     super(config);
 
     this.systemsManager = new SystemsManager();
+    this.stateRegistrar = new StateRegistrar();
   }
 
   preload() {
@@ -51,6 +53,11 @@ export class MovementTestScene extends Phaser.Scene {
   }
 
   create() {
+    adventurerStates.forEach((state: PhiniteStateMachine.States.State<Entities.Adventurer>) => {
+      this.stateRegistrar.addState(state.id, state);
+    });
+    this.stateRegistrar.addSet('adventurer', adventurerStates.map((state: PhiniteStateMachine.States.State<Entities.Adventurer>) => state.id));
+
     this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
     this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
@@ -59,7 +66,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
     this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
-    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
+    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this, this.stateRegistrar), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem);
 
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     const map = areaManager.map;
@@ -75,8 +82,8 @@ export class MovementTestScene extends Phaser.Scene {
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
 
     this.systemsManager.registerEntity(adventurer, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachineSystem, {
-      states: states,
-      initialState: states.find(s => s.id === 'adventurer-stand'),
+      setId: 'adventurer',
+      initialStateId: 'adventurer-stand',
     });
 
     this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
