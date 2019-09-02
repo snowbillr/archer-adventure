@@ -1,5 +1,4 @@
 import { BaseSystem } from '../lib/systems/base-system';
-import { SystemsManager } from '../lib/systems/systems-manager';
 
 type Sign = Systems.HasIndicator.Entity & Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity;
 

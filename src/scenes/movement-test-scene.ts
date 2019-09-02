@@ -17,9 +17,11 @@ import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
 import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
+import { SystemsManagerPlugin } from '../plugins/systems-manager-plugin';
 
 export class MovementTestScene extends Phaser.Scene {
   private stateRegistrar: StateRegistrar;
+  private systemsManager!: SystemsManagerPlugin;
 
   constructor(config: any) {
     super(config);
