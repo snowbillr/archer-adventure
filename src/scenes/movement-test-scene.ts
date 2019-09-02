@@ -1,6 +1,6 @@
 import 'phaser';
 
-import { SystemsManager } from '../lib/systems/systems-manager';
+// import { SystemsManager } from '../lib/systems/systems-manager';
 import { SignSystem } from '../systems/sign-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
@@ -19,13 +19,11 @@ import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 
 export class MovementTestScene extends Phaser.Scene {
-  private systemsManager: SystemsManager;
   private stateRegistrar: StateRegistrar;
 
   constructor(config: any) {
     super(config);
 
-    this.systemsManager = new SystemsManager();
     this.stateRegistrar = new StateRegistrar();
   }
 

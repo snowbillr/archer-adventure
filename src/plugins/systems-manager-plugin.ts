@@ -1,8 +1,12 @@
-export class SystemsManager implements SystemsManager.SystemsManager {
+import 'phaser';
+
+export class SystemsManagerPlugin extends Phaser.Plugins.BasePlugin implements SystemsManager.SystemsManager {
   private entityMap: { [tag: string]: SystemsManager.Entity[] };
   private systemsMap: { [tag: string]: SystemsManager.System[] };
 
-  constructor() {
+  constructor(pluginManager: Phaser.Plugins.PluginManager) {
+    super(pluginManager);
+
     this.entityMap = {};
     this.systemsMap = {};
   }
