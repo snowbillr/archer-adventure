@@ -4,9 +4,9 @@ export class SignSystem implements SystemsManager.System {
     sign: 'sign-interactive',
   }
 
-  update(tagManager: SystemsManager.SystemsManager) {
-    const interactors: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(SignSystem.SystemTags.interactor);
-    const signs: Entities.Sign[] = tagManager.getEntities(SignSystem.SystemTags.sign);
+  update(systemsManager: SystemsManager.SystemsManager) {
+    const interactors: Systems.HasInteractionCircle.Entity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+    const signs: Entities.Sign[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
     interactors.forEach(interactor => {
       signs.forEach(sign => {

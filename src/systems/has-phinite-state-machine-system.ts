@@ -11,8 +11,8 @@ export class HasPhiniteStateMachineSystem implements SystemsManager.System {
 
   private scene: BaseScene;
 
-  constructor(scene: BaseScene) {
-    this.scene = scene;
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene as BaseScene;
   }
 
   registerEntity(entity: Systems.HasPhiniteStateMachine.Entity<any>, data: SystemsManager.EntityRegistrationData): void {

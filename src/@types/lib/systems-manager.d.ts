@@ -15,6 +15,10 @@ declare namespace SystemsManager {
     update(): void;
   }
 
+  interface SystemConstructor {
+    new(scene: Phaser.Scene): System;
+  }
+
   interface System {
     registerEntity?(entity: any, data: EntityRegistrationData): void;
 

@@ -55,16 +55,20 @@ export class MovementTestScene extends BaseScene {
     });
     this.stateRegistrar.addSet('sheep', sheepStates.map((state: PhiniteStateMachine.States.State<Entities.Sheep>) => state.id));
 
-    this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
-    this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
-    this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
-    this.systemsManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
-    this.systemsManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
-    this.systemsManager.registerSystem(new HasAreaBoundarySystem(), HasAreaBoundarySystem.SystemTags.hasAreaBoundary);
-    this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
-    this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
-    this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
-    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine);
+    this.systemsManager.registerSystems(
+      [
+        { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
+        { klass: HasSpriteSystem, tags: HasSpriteSystem.SystemTags.hasSprite },
+        { klass: HasPhysicalSpriteSystem, tags: HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite },
+        { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
+        { klass: HasIndicatorSystem, tags: HasIndicatorSystem.SystemTags.hasIndicator },
+        { klass: HasAreaBoundarySystem, tags: HasAreaBoundarySystem.SystemTags.hasAreaBoundary },
+        { klass: HasBoundsSystem, tags: HasBoundsSystem.SystemTags.hasBounds },
+        { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
+        { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
+        { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
+      ]
+    );
 
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     const map = areaManager.map;
