@@ -45,8 +45,10 @@ export class MovementTestScene extends BaseScene {
   }
 
   create() {
-    this.stateRegistrar.addSet('adventurer', adventurerStates);
-    this.stateRegistrar.addSet('sheep', sheepStates);
+    this.stateRegistrar.registerSets([
+      { id: 'adventurer', states: adventurerStates },
+      { id: 'sheep', states: sheepStates },
+    ]);
 
     this.systemsManager.registerSystems(
       [
