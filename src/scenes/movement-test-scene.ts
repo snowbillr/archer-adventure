@@ -39,9 +39,12 @@ export class MovementTestScene extends BaseScene {
     // tilemap spritesheet
     this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
 
-    // tilemap
+    // tileset
     this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
+
+    // tilemap
     this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
+    this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
   }
 
   create() {
@@ -77,6 +80,17 @@ export class MovementTestScene extends BaseScene {
     areaManager.createObjects('signs', this.systemsManager);
     areaManager.createObjects('npcs', this.systemsManager);
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
+
+    /*
+    const areaManager = new AreaManager(this, 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    areaManager.createTileLayers([
+      'ground',
+      'background-base',
+      'background-details',
+    ]);
+
+    const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
+    */
 
     const map = areaManager.map;
     const tileset = areaManager.tileset;

@@ -27,9 +27,9 @@ export class AreaManager {
       const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
       layer.setScale(this.scale);
 
-      const properties = layer.layer.properties as any;
+      const layerProperties: any = this.normalizeProperties(layer.layer.properties);
 
-      if (properties.collides) {
+      if (layerProperties.collides) {
         layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
           tile.setCollision(true, true, true, true, false);
         }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
@@ -37,7 +37,7 @@ export class AreaManager {
         layer.calculateFacesWithin(0, 0, layer.width, layer.height);
       }
 
-      layer.setDepth(properties.depth);
+      layer.setDepth(layerProperties.depth);
 
       this.layers.push(layer);
     });
@@ -46,18 +46,21 @@ export class AreaManager {
   createObjects(layerName: string, systemsManager: SystemsManager.SystemsManager): any[] {
     const createdEntities: any[] = [];
     const layer = this.map.getObjectLayer(layerName);
-    const layerProperties = layer.properties as any;
+    const layerProperties = this.normalizeProperties(layer.properties);
     const tiledObjects = layer.objects;
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
       const entity = {} as any;
 
-      tiledObject.properties.tags.split(',').forEach((tag: string) => {
+      const tileProperties: any = this.normalizeProperties(tiledObject.properties);
+      tiledObject.properties = tileProperties;
+
+      tileProperties.tags.split(',').forEach((tag: string) => {
         this.registerEntity(tag, entity, tiledObject, systemsManager);
       });
 
-      if (tiledObject.properties.layerCollisions) {
-        tiledObject.properties.layerCollisions.split(',').forEach((layerName: string) => {
+      if (tileProperties.layerCollisions) {
+        tileProperties.layerCollisions.split(',').forEach((layerName: string) => {
           this.scene.physics.add.collider(entity.sprite, this.layers.find(layer => layer.layer.name === layerName)!);
         });
       }
@@ -81,6 +84,17 @@ export class AreaManager {
       scale: this.scale,
       ...tiledObject.properties
     });
+  }
+
+  private normalizeProperties(properties: any) {
+    if (Array.isArray(properties)) {
+      return properties.reduce((acc: any, propertyMap: any) => {
+        acc[propertyMap.name] = propertyMap.value;
+        return acc;
+      }, {});
+    } else {
+      return properties;
+    }
   }
 
   private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {
