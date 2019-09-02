@@ -592,7 +592,7 @@
   <object id="8" name="sheep" x="953.545" y="414.884">
    <properties>
     <property name="frame" type="int" value="0"/>
-    <property name="initialStateId" value="sheep-walk-left"/>
+    <property name="initialStateId" value="sheep-walk-right"/>
     <property name="setId" value="sheep"/>
     <property name="tags" value="hasSprite,hasPhiniteStateMachine"/>
     <property name="texture" value="sheep-walk"/>
