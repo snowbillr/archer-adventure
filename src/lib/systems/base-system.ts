@@ -1,4 +1,4 @@
-export abstract class BaseSystem<T extends SystemsManager.Entity, U extends SystemsManager.Entity = SystemsManager.Entity> implements SystemsManager.System {
+export abstract class BaseSystem<T extends any, U extends any = any> implements SystemsManager.System {
   protected tag1: string;
   protected tag2: string;
 

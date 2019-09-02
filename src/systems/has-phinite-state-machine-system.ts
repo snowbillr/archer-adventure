@@ -1,11 +1,10 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
 import { PhiniteStateMachine } from '../lib/phinite-state-machine/phinite-state-machine';
 import { TransitionType } from '../lib/phinite-state-machine/transition-type';
 import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 
-export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachine.Entity<T>> extends BaseSystem<T> implements SystemsManager.System {
+export class HasPhiniteStateMachineSystem implements SystemsManager.System {
   static SystemTags = {
     hasPhiniteStateMachine: 'hasPhiniteStateMachine',
   };
@@ -14,17 +13,15 @@ export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachi
   private stateRegistrar: StateRegistrar;
 
   constructor(scene: Phaser.Scene, stateRegistrar: StateRegistrar) {
-    super(HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine, '');
-
     this.scene = scene;
     this.stateRegistrar = stateRegistrar;
   }
 
-  registerEntity<U extends T>(entity: U, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasPhiniteStateMachine.Entity<any>, data: SystemsManager.EntityRegistrationData): void {
     const states = this.stateRegistrar.getSet(data.stateSet);
     const initialState = this.stateRegistrar.getState(data.initialStateId);
 
-    const phiniteStateMachine = new PhiniteStateMachine<U>(this.scene, entity, states);
+    const phiniteStateMachine = new PhiniteStateMachine<any>(this.scene, entity, states);
 
     phiniteStateMachine.doTransition({
       type: TransitionType.Initial,
@@ -35,9 +32,8 @@ export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachi
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
-    super.update(tagManager);
+    const entities: Systems.HasPhiniteStateMachine.Entity<any>[] = tagManager.getEntities(HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine)
 
-    const entities = this.entity1s;
     entities.forEach(entity => {
       entity.phiniteStateMachine.update();
     });

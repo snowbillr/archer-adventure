@@ -1,8 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
-
-export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasInteracionCircleSystem implements SystemsManager.System {
   static SystemTags = {
     hasInteractionCircle: 'hasInteractionCircle',
   };
@@ -10,12 +8,10 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasInteracionCircleSystem.SystemTags.hasInteractionCircle, '');
-
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasInteractionCircle.Entity, data: SystemsManager.EntityRegistrationData): void {
     const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.interactionRadius);
 
     if (data.interactionDebug) {
@@ -29,9 +25,8 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
-    super.update(tagManager);
+    const entities: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
 
-    const entities = this.entity1s;
     entities.forEach(entity => {
       entity.interactionCircle.setPosition(entity.sprite.x, entity.sprite.y);
 

@@ -1,8 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
-
-export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasIndicatorSystem implements SystemsManager.System {
   static SystemTags = {
     hasIndicator: 'hasIndicator',
   };
@@ -10,12 +8,10 @@ export class HasIndicatorSystem<T extends Systems.HasIndicator.Entity & Systems.
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasIndicatorSystem.SystemTags.hasIndicator, '');
-
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasIndicator.Entity, data: SystemsManager.EntityRegistrationData): void {
     let { x, y } = data;
     y = y - entity.sprite.displayHeight - 20;
 

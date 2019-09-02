@@ -1,8 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
-
-export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasPhysicalSpriteSystem implements SystemsManager.System {
   static SystemTags = {
     hasPhysicalSprite: 'hasPhysicalSprite',
   };
@@ -10,15 +8,14 @@ export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity>
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, '');
-
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasPhysicalSprite.Entity, data: SystemsManager.EntityRegistrationData): void {
     const { x, y, texture, frame } = data;
     const sprite = this.scene.physics.add.sprite(x, y, texture, frame);
 
+    // needed because the tiled map puts the position at the bottom of the sprite
     sprite.y -= sprite.height;
 
     if (data.scale) {

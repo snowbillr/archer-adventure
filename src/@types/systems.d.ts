@@ -5,21 +5,20 @@ declare namespace Systems.HasSprite {
 }
 
 declare namespace Systems.HasPhysicalSprite {
-  interface Entity {
-    sprite: Phaser.GameObjects.Sprite;
+  interface Entity extends Systems.HasSprite.Entity {
     body: Phaser.Physics.Arcade.Body;
   }
 }
 
 declare namespace Systems.HasInteractionCircle {
-  interface Entity {
+  interface Entity extends Systems.HasSprite.Entity {
     interactionCircle: Phaser.Geom.Circle;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
 
 declare namespace Systems.HasIndicator {
-  interface Entity {
+  interface Entity extends Systems.HasSprite.Entity {
     showIndicator: () => void;
     hideIndicator: () => void;
   }
@@ -62,7 +61,7 @@ declare namespace Systems.HasBounds {
     }
   }
 
-  interface Entity {
+  interface Entity extends Systems.HasPhysicalSprite.Entity {
     boundsFrames: Frame[];
   }
 }
@@ -82,7 +81,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  interface Entity {
+  interface Entity extends Systems.HasSprite.Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];

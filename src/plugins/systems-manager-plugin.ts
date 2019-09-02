@@ -1,7 +1,7 @@
 import 'phaser';
 
 export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements SystemsManager.SystemsManager {
-  private entityMap: { [tag: string]: SystemsManager.Entity[] };
+  private entityMap: { [tag: string]: any[] };
   private systemsMap: { [tag: string]: SystemsManager.System[] };
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
@@ -20,7 +20,7 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     });
   };
 
-  registerEntity(entity: SystemsManager.Entity, tags: (string | string[]), data?: SystemsManager.EntityRegistrationData) {
+  registerEntity(entity: any, tags: (string | string[]), data?: SystemsManager.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -28,17 +28,17 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
       this.entityMap[tag].push(entity);
 
       this.systemsMap[tag] = this.systemsMap[tag] || [];
-      this.systemsMap[tag].forEach(system => system.registerEntity(entity, data || {}));
+      this.systemsMap[tag].forEach(system => system.registerEntity && system.registerEntity(entity, data || {}));
     });
   }
 
   getEntities(tag: string) {
-    return this.entityMap[tag];
+    return this.entityMap[tag] || [];
   }
 
   update() {
     Object.entries(this.systemsMap).forEach(([tag, systems]) => {
-      systems.forEach(system => system.update(this));
+      systems.forEach(system => system.update && system.update(this));
     });
   }
 }

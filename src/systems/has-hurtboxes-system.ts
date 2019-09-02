@@ -1,8 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
-
-export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.HasSprite.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasHurtboxesSystem implements SystemsManager.System {
   static SystemTags = {
     hasHurtboxes: 'hasHurtboxes',
   };
@@ -10,12 +8,10 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasHurtboxesSystem.SystemTags.hasHurtboxes, '');
-
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasHurtboxes.Entity, data: SystemsManager.EntityRegistrationData): void {
     entity.hurtboxFrames = this.scene.cache.json.get(data.hurtboxesKey).frames;
 
     entity.rectanglePool = [];
@@ -28,9 +24,8 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
-    super.update(tagManager);
+    const entities: Systems.HasHurtboxes.Entity[] = tagManager.getEntities(HasHurtboxesSystem.SystemTags.hasHurtboxes);
 
-    const entities = this.entity1s;
     entities.forEach(entity => {
       this.disableHitboxes(entity);
 
@@ -55,7 +50,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     });
   }
 
-  private renderDebugHitboxes(entity: T) {
+  private renderDebugHitboxes(entity: Systems.HasHurtboxes.Entity) {
     const point = new Phaser.Geom.Point(entity.debugPointerPosition.x, entity.debugPointerPosition.y);
 
     entity.activeRectangles.forEach((activeRectangle, i) => {
@@ -78,14 +73,14 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     })
   }
 
-  private disableHitboxes(entity: T) {
+  private disableHitboxes(entity: Systems.HasHurtboxes.Entity) {
     entity.rectanglePool = [...entity.rectanglePool, ...entity.activeRectangles];
     entity.activeRectangles = [];
 
     entity.debugRectangles.forEach(r => r.visible = false);
   }
 
-  private getAvailableRectangle(entity: T) {
+  private getAvailableRectangle(entity: Systems.HasHurtboxes.Entity) {
     let rectangle = entity.rectanglePool.pop();
     if (rectangle == null) {
       rectangle = new Phaser.Geom.Rectangle(0, 0, 0, 0);
@@ -100,7 +95,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     return rectangle;
   }
 
-  private setRectangleHitbox(entity: T, hitbox: Systems.HasHurtboxes.Shape) {
+  private setRectangleHitbox(entity: Systems.HasHurtboxes.Entity, hitbox: Systems.HasHurtboxes.Shape) {
     const rectangle = this.getAvailableRectangle(entity);
 
     const scaleX = entity.sprite.scaleX;

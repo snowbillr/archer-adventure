@@ -1,8 +1,6 @@
 import 'phaser';
 
-import { BaseSystem } from '../lib/systems/base-system';
-
-export class HasControlsSystem<T extends Systems.HasControls.Entity> extends BaseSystem<T> implements SystemsManager.System {
+export class HasControlsSystem implements SystemsManager.System {
   static SystemTags = {
     hasControls: 'hasControls',
   };
@@ -10,12 +8,10 @@ export class HasControlsSystem<T extends Systems.HasControls.Entity> extends Bas
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
-    super(HasControlsSystem.SystemTags.hasControls, '');
-
     this.scene = scene;
   }
 
-  registerEntity(entity: T, data: { [key: string]: any }): void {
+  registerEntity(entity: Systems.HasControls.Entity): void {
     const controls = this.scene.input.keyboard.addKeys({
       'up': Phaser.Input.Keyboard.KeyCodes.UP,
       'down': Phaser.Input.Keyboard.KeyCodes.DOWN,

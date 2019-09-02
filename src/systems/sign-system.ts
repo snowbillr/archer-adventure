@@ -1,26 +1,14 @@
 import { BaseSystem } from '../lib/systems/base-system';
 
-type Sign = Systems.HasIndicator.Entity & Systems.HasInteractionCircle.Entity & Systems.HasSprite.Entity;
-
-export class SignSystem<T extends Systems.HasInteractionCircle.Entity> extends BaseSystem<T, Sign> implements SystemsManager.System {
+export class SignSystem implements SystemsManager.System {
   static SystemTags = {
     interactor: 'sign-interactor',
     sign: 'sign-interactive',
   }
 
-  constructor() {
-    super(SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign);
-  }
-
-  registerEntity(entity: (T | Sign)) {
-    // nothing
-  }
-
   update(tagManager: SystemsManager.SystemsManager) {
-    super.update(tagManager);
-
-    const interactors = this.entity1s;
-    const signs = this.entity2s;
+    const interactors: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(SignSystem.SystemTags.interactor);
+    const signs: Entities.Sign[] = tagManager.getEntities(SignSystem.SystemTags.sign);
 
     interactors.forEach(interactor => {
       signs.forEach(sign => {
