@@ -1,14 +1,18 @@
 import 'phaser';
 
-export class SystemsManagerPlugin extends Phaser.Plugins.BasePlugin implements SystemsManager.SystemsManager {
+export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements SystemsManager.SystemsManager {
   private entityMap: { [tag: string]: SystemsManager.Entity[] };
   private systemsMap: { [tag: string]: SystemsManager.System[] };
 
-  constructor(pluginManager: Phaser.Plugins.PluginManager) {
-    super(pluginManager);
+  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
+    super(scene, pluginManager);
 
     this.entityMap = {};
     this.systemsMap = {};
+  }
+
+  start() {
+    console.log(this);
   }
 
   registerSystem(system: SystemsManager.System, tags: (string | string[])) {

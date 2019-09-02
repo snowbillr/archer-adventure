@@ -11,11 +11,10 @@ const gameConfig = {
   width: 800,
   height: 450,
   plugins: {
-    global: [
+    scene: [
       {
         key: 'SystemsManager',
         plugin: SystemsManagerPlugin,
-        start: true,
         mapping: 'systemsManager',
       }
     ]

@@ -20,8 +20,9 @@ import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 import { SystemsManagerPlugin } from '../plugins/systems-manager-plugin';
 
 export class MovementTestScene extends Phaser.Scene {
-  private stateRegistrar: StateRegistrar;
   private systemsManager!: SystemsManagerPlugin;
+
+  private stateRegistrar: StateRegistrar;
 
   constructor(config: any) {
     super(config);
