@@ -589,7 +589,7 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="8" name="sheep" x="953.545" y="414.884">
+  <object id="8" name="sheep" x="953.545" y="416.871">
    <properties>
     <property name="frame" type="int" value="0"/>
     <property name="initialStateId" value="sheep-walk-right"/>
@@ -604,7 +604,7 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="6" name="adventurer" x="866.143" y="406.986">
+  <object id="6" name="adventurer" x="863.851" y="417.673">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>

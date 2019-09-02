@@ -8,6 +8,7 @@ import { HasHurtboxesSystem } from '../../systems/has-hurtboxes-system';
 import { HasBoundsSystem } from '../../systems/has-bounds-system';
 import { HasControlsSystem } from '../../systems/has-controls-system';
 import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
+import { ENGINE_METHOD_PKEY_ASN1_METHS } from 'constants';
 
 export class AreaManager {
   private scene: Phaser.Scene;
@@ -94,7 +95,7 @@ export class AreaManager {
     return createdEntities;
   }
 
-  private registerHasSpriteEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+  private registerHasSpriteEntity(entity: Systems.HasSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
     systemsManager.registerEntity(entity, HasSpriteSystem.SystemTags.hasSprite, {
@@ -104,9 +105,11 @@ export class AreaManager {
       frame: tiledObject.properties.frame,
       scale: this.scale,
     });
+
+    entity.sprite.y -= entity.sprite.height;
   }
 
-  private registerHasPhysicalSpriteEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+  private registerHasPhysicalSpriteEntity(entity: Systems.HasPhysicalSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
     systemsManager.registerEntity(entity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
@@ -119,6 +122,8 @@ export class AreaManager {
       },
       scale: this.scale,
     });
+
+    entity.sprite.y -= entity.sprite.height;
   }
 
   private registerHasInteractionCircleEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
@@ -177,7 +182,7 @@ export class AreaManager {
   private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {
     return {
       x: tiledObject.x! * this.scale,
-      y: tiledObject.y! * this.scale - this.map.tileHeight,
+      y: tiledObject.y! * this.scale,
     };
   }
 }
