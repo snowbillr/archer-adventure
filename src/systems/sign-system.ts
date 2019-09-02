@@ -1,5 +1,3 @@
-import { BaseSystem } from '../lib/systems/base-system';
-
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
     interactor: 'sign-interactor',
