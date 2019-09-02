@@ -16,6 +16,7 @@ import { AreaManager } from '../lib/area-manager/area-manager';
 import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
 import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
+import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 
 export class MovementTestScene extends Phaser.Scene {
   private systemsManager: SystemsManager;
@@ -69,6 +70,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
     this.systemsManager.registerSystem(new HasInteracionCircleSystem(this), HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
     this.systemsManager.registerSystem(new HasIndicatorSystem(this), HasIndicatorSystem.SystemTags.hasIndicator);
+    this.systemsManager.registerSystem(new HasAreaBoundarySystem(), HasAreaBoundarySystem.SystemTags.hasAreaBoundary);
     this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
     this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);

@@ -156,8 +156,10 @@
                      "frame":0,
                      "initialStateId":"sheep-walk-right",
                      "layerCollisions":"ground",
+                     "left":1850,
+                     "right":2100,
                      "setId":"sheep",
-                     "tags":"hasPhysicalSprite,hasPhiniteStateMachine",
+                     "tags":"hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary",
                      "texture":"sheep-walk"
                     },
                  "propertytypes":
@@ -165,6 +167,8 @@
                      "frame":"int",
                      "initialStateId":"string",
                      "layerCollisions":"string",
+                     "left":"int",
+                     "right":"int",
                      "setId":"string",
                      "tags":"string",
                      "texture":"string"

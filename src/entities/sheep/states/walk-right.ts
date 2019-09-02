@@ -12,7 +12,7 @@ export const walkRight: PhiniteStateMachine.States.State<Entities.Sheep> = {
     {
       type: TransitionType.Conditional,
       condition(sheep: Entities.Sheep) {
-        return sheep.sprite.x > 2100;
+        return sheep.sprite.x > sheep.areaBoundary.right;
       },
       to: 'sheep-walk-left'
     }

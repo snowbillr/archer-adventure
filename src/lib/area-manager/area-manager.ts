@@ -9,6 +9,7 @@ import { HasBoundsSystem } from '../../systems/has-bounds-system';
 import { HasControlsSystem } from '../../systems/has-controls-system';
 import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
 import { ENGINE_METHOD_PKEY_ASN1_METHS } from 'constants';
+import { HasAreaBoundarySystem } from '../../systems/has-area-boundary-system';
 
 export class AreaManager {
   private scene: Phaser.Scene;
@@ -80,6 +81,8 @@ export class AreaManager {
           this.registerHasControlsEntity(entity, tiledObject, systemsManager);
         } else if (tag === HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine) {
           this.registerHasPhiniteStateMachineEntity(entity, tiledObject, systemsManager);
+        } else if (tag === HasAreaBoundarySystem.SystemTags.hasAreaBoundary) {
+          this.registerHasAreaBoundaryEntity(entity, tiledObject, systemsManager);
         }
       });
 
@@ -180,6 +183,13 @@ export class AreaManager {
     systemsManager.registerEntity(entity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine, {
       setId: tiledObject.properties.setId, //'adventurer',
       initialStateId: tiledObject.properties.initialStateId //'adventurer-stand',
+    });
+  }
+
+  private registerHasAreaBoundaryEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, HasAreaBoundarySystem.SystemTags.hasAreaBoundary, {
+      left: tiledObject.properties.left,
+      right: tiledObject.properties.right
     });
   }
 
