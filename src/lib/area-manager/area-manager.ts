@@ -150,7 +150,7 @@ export class AreaManager {
     systemsManager.registerEntity(entity, HasIndicatorSystem.SystemTags.hasIndicator, {
       depth: 0,
       targetX: x,
-      targetY: y - entity.sprite.displayHeight - 5
+      targetY: y - entity.sprite.displayHeight - 20
     });
   }
 
