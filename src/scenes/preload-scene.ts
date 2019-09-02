@@ -32,18 +32,6 @@ export class PreloadScene extends Phaser.Scene {
       tilemapKey: 'starting-area',
       tilesetName: 'fantasy-platformer-core',
       tilesetKey: 'fantasy-platformer-core',
-      tileLayers: [
-        'ground',
-        'background-base',
-        'background-details',
-        'npc-foreground',
-        'foreground'
-      ],
-      objectLayers: [
-        'signs',
-        'npcs',
-        'adventurer'
-      ]
     };
 
     this.scene.start('movementTest', data);

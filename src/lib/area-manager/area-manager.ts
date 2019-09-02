@@ -5,24 +5,33 @@ export class AreaManager {
   private scene: BaseScene;
   private scale: number;
 
-  public map: Phaser.Tilemaps.Tilemap;
-  public tileset: Phaser.Tilemaps.Tileset;
+  public map!: Phaser.Tilemaps.Tilemap;
+  public tileset!: Phaser.Tilemaps.Tileset;
 
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
 
-  constructor(scene: BaseScene, mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
+  constructor(scene: BaseScene) {
     this.scene = scene;
-    this.scale = scale;
+    this.scale = 1;
 
-    const map = scene.make.tilemap({ key: mapKey });
+    this.tileLayers = [];
+    this.objects = {};
+  }
+
+  load(mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
+    const map = this.scene.make.tilemap({ key: mapKey });
     const tileset = map.addTilesetImage(tilesetName, tilesetKey);
 
     this.map = map;
     this.tileset = tileset;
+    this.scale = scale;
 
     this.tileLayers = [];
     this.objects = {};
+
+    this.createTileLayers(this.map.layers.map(layer => layer.name));
+    this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
 
   createTileLayers(layerNames: string[]) {
