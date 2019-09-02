@@ -1,15 +1,4 @@
 import 'phaser';
-import { HasSpriteSystem } from '../../systems/has-sprite-system';
-import { HasInteracionCircleSystem } from '../../systems/has-interaction-circle-system';
-import { HasIndicatorSystem } from '../../systems/has-indicator-system';
-import { SignSystem } from '../../systems/sign-system';
-import { HasPhysicalSpriteSystem } from '../../systems/has-physical-sprite-system';
-import { HasHurtboxesSystem } from '../../systems/has-hurtboxes-system';
-import { HasBoundsSystem } from '../../systems/has-bounds-system';
-import { HasControlsSystem } from '../../systems/has-controls-system';
-import { HasPhiniteStateMachineSystem } from '../../systems/has-phinite-state-machine-system';
-import { ENGINE_METHOD_PKEY_ASN1_METHS } from 'constants';
-import { HasAreaBoundarySystem } from '../../systems/has-area-boundary-system';
 
 export class AreaManager {
   private scene: Phaser.Scene;
