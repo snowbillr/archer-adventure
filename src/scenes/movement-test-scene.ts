@@ -45,15 +45,8 @@ export class MovementTestScene extends BaseScene {
   }
 
   create() {
-    adventurerStates.forEach((state: PhiniteStateMachine.States.State<Entities.Adventurer>) => {
-      this.stateRegistrar.addState(state.id, state);
-    });
-    this.stateRegistrar.addSet('adventurer', adventurerStates.map((state: PhiniteStateMachine.States.State<Entities.Adventurer>) => state.id));
-
-    sheepStates.forEach((state: PhiniteStateMachine.States.State<Entities.Sheep>) => {
-      this.stateRegistrar.addState(state.id, state);
-    });
-    this.stateRegistrar.addSet('sheep', sheepStates.map((state: PhiniteStateMachine.States.State<Entities.Sheep>) => state.id));
+    this.stateRegistrar.addSet('adventurer', adventurerStates);
+    this.stateRegistrar.addSet('sheep', sheepStates);
 
     this.systemsManager.registerSystems(
       [
@@ -71,7 +64,6 @@ export class MovementTestScene extends BaseScene {
     );
 
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-    const map = areaManager.map;
     areaManager.createTileLayers([
       'ground',
       'background-base',
@@ -84,9 +76,11 @@ export class MovementTestScene extends BaseScene {
     areaManager.createObjects('npcs', this.systemsManager);
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
 
-    this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
-    this.cameras.main.startFollow(adventurer.sprite, true);
+    const map = areaManager.map;
+    const tileset = areaManager.tileset;
     this.cameras.main.setBackgroundColor(0xCCCCCC);
+    this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
+    this.cameras.main.startFollow(adventurer.sprite, true);
   }
 
   update() {

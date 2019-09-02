@@ -9,17 +9,16 @@ export class StateRegistrarPlugin extends Phaser.Plugins.BasePlugin {
     this.sets = {};
   }
 
+  addSet(id: string, states: PhiniteStateMachine.States.State<any>[]) {
+    states.forEach(state => {
+      this.states[state.id] = state;
+    });
 
-  addState(id: string, state: PhiniteStateMachine.States.State<any>) {
-    this.states[id] = state;
+    this.sets[id] = states.map(state => state.id);
   }
 
   getState(id: string): PhiniteStateMachine.States.State<any>{
     return this.states[id];
-  }
-
-  addSet(id: string, stateIds: string[]) {
-    this.sets[id] = stateIds;
   }
 
   getSet(id: string): PhiniteStateMachine.States.State<any>[] {
