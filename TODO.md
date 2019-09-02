@@ -4,8 +4,6 @@
 
 - interact with the sign
 
-- animal walking around in fence
-
 - state graph visualization
 
 - enemy
@@ -13,5 +11,3 @@
 - go into house
 
 - controlable controls should be used every where, no raw key codes
-
-- need an `AreaManager` to handle loading the tilemap, creating the objects, dealing with depth layers
