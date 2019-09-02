@@ -20,7 +20,7 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     });
   };
 
-  registerEntity(entity: any, tags: (string | string[]), data?: SystemsManager.EntityRegistrationData) {
+  registerEntity(entity: any, tags: (string | string[]), data: SystemsManager.EntityRegistrationData) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -28,7 +28,7 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
       this.entityMap[tag].push(entity);
 
       this.systemsMap[tag] = this.systemsMap[tag] || [];
-      this.systemsMap[tag].forEach(system => system.registerEntity && system.registerEntity(entity, data || {}));
+      this.systemsMap[tag].forEach(system => system.registerEntity && system.registerEntity(entity, data));
     });
   }
 

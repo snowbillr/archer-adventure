@@ -1,7 +1,8 @@
 declare namespace SystemsManager {
   type EntityRegistrationData = {
-    // x: number,
-    // y: number,
+    x: number,
+    y: number,
+    scale: number,
     [key: string]: any
   };
 
