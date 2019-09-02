@@ -4,6 +4,7 @@ declare namespace PhiniteStateMachine {
   interface PhiniteStateMachine<T> {
     doTransition: (transition: PhiniteStateMachine.Transitions.Transition<T>) => void;
     update: () => void;
+    destroy: () => void;
   }
 
   namespace States {

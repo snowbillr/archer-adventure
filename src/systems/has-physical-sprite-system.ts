@@ -29,4 +29,8 @@ export class HasPhysicalSpriteSystem implements SystemsManager.System {
       entity.body.maxVelocity.x = data.maxVelocityX;
     }
   }
+
+  destroy(entity: Systems.HasPhysicalSprite.Entity) {
+    entity.sprite.destroy();
+  }
 }

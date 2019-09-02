@@ -50,6 +50,12 @@ export class HasHurtboxesSystem implements SystemsManager.System {
     });
   }
 
+  destroy(entity: Systems.HasHurtboxes.Entity) {
+    entity.rectanglePool = [];
+    entity.activeRectangles = [];
+    entity.debugRectangles.forEach(rectangle => rectangle.destroy());
+  }
+
   private renderDebugHitboxes(entity: Systems.HasHurtboxes.Entity) {
     const point = new Phaser.Geom.Point(entity.debugPointerPosition.x, entity.debugPointerPosition.y);
 

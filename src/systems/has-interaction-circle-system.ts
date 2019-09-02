@@ -44,4 +44,10 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       }
     });
   }
+
+  destroy(entity: Systems.HasInteractionCircle.Entity) {
+    if (entity.debugInteractionCircle) {
+      entity.debugInteractionCircle.destroy();
+    }
+  }
 }

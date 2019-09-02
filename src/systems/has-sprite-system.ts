@@ -24,4 +24,8 @@ export class HasSpriteSystem implements SystemsManager.System {
 
     entity.sprite = sprite;
   }
+
+  destroy(entity: Systems.HasSprite.Entity) {
+    entity.sprite.destroy();
+  }
 }

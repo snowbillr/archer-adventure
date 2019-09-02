@@ -23,5 +23,7 @@ declare namespace SystemsManager {
     registerEntity?(entity: any, data: EntityRegistrationData): void;
 
     update?(tagManager: SystemsManager): void;
+
+    destroy?(entity: any): void;
   }
 }

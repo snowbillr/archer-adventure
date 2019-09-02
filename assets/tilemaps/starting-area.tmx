@@ -644,7 +644,7 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="12" name="adventurer" type="adventurer" x="865.156" y="417.262">
+  <object id="12" name="adventurer" type="adventurer" x="865.156" y="418.262">
    <point/>
   </object>
  </objectgroup>

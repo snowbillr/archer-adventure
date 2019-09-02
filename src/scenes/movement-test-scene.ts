@@ -63,6 +63,24 @@ export class MovementTestScene extends BaseScene {
     const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
     */
 
+    this.input.keyboard.on(`${Phaser.Input.Keyboard.Events.KEY_DOWN}SPACE`, () => {
+      this.systemsManager.destroy();
+
+      this.scene.restart({
+        tilemapKey: 'house',
+        tilesetName: 'fantasy-platformer-core',
+        tilesetKey: 'fantasy-platformer-core',
+        tileLayers: [
+          'ground',
+          'background-base',
+          'background-details',
+        ],
+        objectLayers: [
+          // 'adventurer'
+        ]
+      })
+    });
+
     const map = areaManager.map;
     const tileset = areaManager.tileset;
     this.cameras.main.setBackgroundColor(0xCCCCCC);

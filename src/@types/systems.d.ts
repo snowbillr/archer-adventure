@@ -19,6 +19,7 @@ declare namespace Systems.HasInteractionCircle {
 
 declare namespace Systems.HasIndicator {
   interface Entity extends Systems.HasSprite.Entity {
+    indicatorSprite: Phaser.GameObjects.Sprite;
     showIndicator: () => void;
     hideIndicator: () => void;
   }

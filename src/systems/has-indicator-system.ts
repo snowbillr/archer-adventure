@@ -32,7 +32,12 @@ export class HasIndicatorSystem implements SystemsManager.System {
       indicatorSprite.anims.stop();
     }
 
+    entity.indicatorSprite = indicatorSprite;
     entity.showIndicator = showIndicator;
     entity.hideIndicator = hideIndicator;
+  }
+
+  destroy(entity: Systems.HasIndicator.Entity) {
+    entity.indicatorSprite.destroy();
   }
 }

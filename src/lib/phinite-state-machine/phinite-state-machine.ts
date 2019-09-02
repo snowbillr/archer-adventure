@@ -41,6 +41,10 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
     this.registerTransitionTriggers();
   }
 
+  destroy() {
+    this.cancelTransitionTriggers();
+  }
+
   private cancelTransitionTriggers() {
     this.triggerCancelers.forEach(canceler => canceler());
     this.triggerCancelers = [];
