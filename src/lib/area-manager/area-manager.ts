@@ -29,9 +29,12 @@ export class AreaManager {
 
       const properties = layer.layer.properties as any;
 
-      const collisionProperty = properties.collisionProperty;
-      if (collisionProperty) {
-        layer.setCollisionByProperty({ [collisionProperty]: true })
+      if (properties.collides) {
+        layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+          tile.setCollision(true, true, true, true, false);
+        }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
+
+        layer.calculateFacesWithin(0, 0, layer.width, layer.height);
       }
 
       layer.setDepth(properties.depth);

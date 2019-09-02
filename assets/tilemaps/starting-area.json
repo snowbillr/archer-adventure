@@ -8,12 +8,12 @@
          "opacity":1,
          "properties":
             {
-             "collisionProperty":"collides",
+             "collides":true,
              "depth":0
             },
          "propertytypes":
             {
-             "collisionProperty":"string",
+             "collides":"bool",
              "depth":"int"
             },
          "type":"tilelayer",
@@ -235,8 +235,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":849.740232197938,
-                 "y":418.263566036412
+                 "x":625.734587961233,
+                 "y":406.798710229022
                 }],
          "opacity":1,
          "properties":

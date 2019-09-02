@@ -425,7 +425,7 @@
  </tileset>
  <layer name="ground" width="100" height="30">
   <properties>
-   <property name="collisionProperty" value="collides"/>
+   <property name="collides" type="bool" value="true"/>
    <property name="depth" type="int" value="0"/>
   </properties>
   <data encoding="csv">
@@ -644,7 +644,7 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="6" name="adventurer" x="849.74" y="418.264">
+  <object id="6" name="adventurer" x="625.735" y="406.799">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>
