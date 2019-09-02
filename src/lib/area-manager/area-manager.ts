@@ -89,6 +89,10 @@ export class AreaManager {
         });
       }
 
+      if (layerProperties.depth && entity.sprite) {
+        entity.sprite.setDepth(layerProperties.depth);
+      }
+
       createdEntities.push(entity);
     });
 
@@ -111,7 +115,6 @@ export class AreaManager {
 
   private registerHasPhysicalSpriteEntity(entity: Systems.HasPhysicalSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
-
 
     systemsManager.registerEntity(entity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
       x,

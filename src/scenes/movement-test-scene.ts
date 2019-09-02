@@ -80,6 +80,7 @@ export class MovementTestScene extends Phaser.Scene {
       'ground',
       'background-base',
       'background-details',
+      'npc-foreground',
       'foreground'
     ]);
 
