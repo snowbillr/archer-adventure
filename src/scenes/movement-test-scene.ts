@@ -1,6 +1,5 @@
 import 'phaser';
 
-// import { SystemsManager } from '../lib/systems/systems-manager';
 import { SignSystem } from '../systems/sign-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
