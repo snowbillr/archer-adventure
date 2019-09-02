@@ -112,8 +112,6 @@ export class AreaManager {
       frame: tiledObject.properties.frame,
       scale: this.scale,
     });
-
-    entity.sprite.y -= entity.sprite.height;
   }
 
   private registerHasPhysicalSpriteEntity(entity: Systems.HasPhysicalSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
@@ -124,13 +122,9 @@ export class AreaManager {
       y,
       texture: tiledObject.properties.texture,
       frame: tiledObject.properties.frame,
-      maxVelocity: {
-        x: tiledObject.properties.maxHorizontalVelocity || 1000,
-      },
+      maxVelocityX: tiledObject.properties.maxVelocityX,
       scale: this.scale,
     });
-
-    entity.sprite.y -= entity.sprite.height;
   }
 
   private registerHasInteractionCircleEntity(entity: object, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
@@ -139,8 +133,8 @@ export class AreaManager {
     systemsManager.registerEntity(entity, HasInteracionCircleSystem.SystemTags.hasInteractionCircle, {
       x,
       y,
-      radius: tiledObject.properties.interactionRadius,
-      debug: false
+      interactionRadius: tiledObject.properties.interactionRadius,
+      interactionDebug: tiledObject.properties.interactionDebug || false
     });
   }
 
@@ -148,24 +142,16 @@ export class AreaManager {
     const { x, y } = this.getObjectPosition(tiledObject);
 
     systemsManager.registerEntity(entity, HasIndicatorSystem.SystemTags.hasIndicator, {
-      depth: 0,
-      targetX: x,
-      targetY: y - entity.sprite.displayHeight - 20
+      x,
+      y,
+      scale: this.scale
     });
-  }
-
-  private registerSignSystemSignEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
-    systemsManager.registerEntity(entity, SignSystem.SystemTags.sign);
-  }
-
-  private registerSignSystemInteractorEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
-    systemsManager.registerEntity(entity, SignSystem.SystemTags.interactor);
   }
 
   private registerHasHurtboxesEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     systemsManager.registerEntity(entity, HasHurtboxesSystem.SystemTags.hasHurtboxes, {
       hurtboxesKey: tiledObject.properties.hurtboxesKey,
-      debug: false
+      hurtboxesDebug: tiledObject.properties.hurtboxesDebug
     });
   }
 
@@ -181,17 +167,26 @@ export class AreaManager {
 
   private registerHasPhiniteStateMachineEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     systemsManager.registerEntity(entity, HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine, {
-      setId: tiledObject.properties.setId, //'adventurer',
-      initialStateId: tiledObject.properties.initialStateId //'adventurer-stand',
+      stateSet: tiledObject.properties.stateSet,
+      initialStateId: tiledObject.properties.initialStateId
     });
   }
 
   private registerHasAreaBoundaryEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     systemsManager.registerEntity(entity, HasAreaBoundarySystem.SystemTags.hasAreaBoundary, {
-      left: tiledObject.properties.left,
-      right: tiledObject.properties.right
+      areaBoundaryLeft: tiledObject.properties.areaBoundaryLeft,
+      areaBoundaryRight: tiledObject.properties.areaBoundaryRight
     });
   }
+
+  private registerSignSystemSignEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, SignSystem.SystemTags.sign);
+  }
+
+  private registerSignSystemInteractorEntity(entity: any, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+    systemsManager.registerEntity(entity, SignSystem.SystemTags.interactor);
+  }
+
 
   private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {
     return {

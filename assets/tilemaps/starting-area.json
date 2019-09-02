@@ -153,23 +153,23 @@
                  "point":true,
                  "properties":
                     {
+                     "areaBoundaryLeft":1850,
+                     "areaBoundaryRight":2100,
                      "frame":0,
                      "initialStateId":"sheep-walk-right",
                      "layerCollisions":"ground",
-                     "left":1850,
-                     "right":2100,
-                     "setId":"sheep",
+                     "stateSet":"sheep",
                      "tags":"hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary",
                      "texture":"sheep-walk"
                     },
                  "propertytypes":
                     {
+                     "areaBoundaryLeft":"int",
+                     "areaBoundaryRight":"int",
                      "frame":"int",
                      "initialStateId":"string",
                      "layerCollisions":"string",
-                     "left":"int",
-                     "right":"int",
-                     "setId":"string",
+                     "stateSet":"string",
                      "tags":"string",
                      "texture":"string"
                     },
@@ -207,12 +207,13 @@
                     {
                      "boundsKey":"adventurer-bounds",
                      "frame":"0",
+                     "hurtboxesDebug":false,
                      "hurtboxesKey":"adventurer-hurtboxes",
                      "initialStateId":"adventurer-stand",
                      "interactionRadius":30,
                      "layerCollisions":"ground",
-                     "maxHorizontalVelocity":350,
-                     "setId":"adventurer",
+                     "maxVelocityX":350,
+                     "stateSet":"adventurer",
                      "tags":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine",
                      "texture":"adventurer-core"
                     },
@@ -220,12 +221,13 @@
                     {
                      "boundsKey":"string",
                      "frame":"string",
+                     "hurtboxesDebug":"bool",
                      "hurtboxesKey":"string",
                      "initialStateId":"string",
                      "interactionRadius":"int",
                      "layerCollisions":"string",
-                     "maxHorizontalVelocity":"int",
-                     "setId":"string",
+                     "maxVelocityX":"int",
+                     "stateSet":"string",
                      "tags":"string",
                      "texture":"string"
                     },
@@ -233,8 +235,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":483.746758346628,
-                 "y":112.767755118342
+                 "x":849.740232197938,
+                 "y":418.263566036412
                 }],
          "opacity":1,
          "properties":
@@ -250,7 +252,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":10,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",

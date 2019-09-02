@@ -13,8 +13,8 @@ export class HasAreaBoundarySystem<T extends Systems.HasAreaBoundary.Entity> ext
 
   registerEntity(entity: T, data: { [key: string]: any }): void {
     entity.areaBoundary = {
-      left: data.left,
-      right: data.right
+      left: data.areaBoundaryLeft,
+      right: data.areaBoundaryRight
     };
   }
 }

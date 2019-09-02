@@ -21,7 +21,7 @@ export class HasPhiniteStateMachineSystem<T extends Systems.HasPhiniteStateMachi
   }
 
   registerEntity<U extends T>(entity: U, data: SystemsManager.EntityRegistrationData): void {
-    const states = this.stateRegistrar.getSet(data.setId);
+    const states = this.stateRegistrar.getSet(data.stateSet);
     const initialState = this.stateRegistrar.getState(data.initialStateId);
 
     const phiniteStateMachine = new PhiniteStateMachine<U>(this.scene, entity, states);

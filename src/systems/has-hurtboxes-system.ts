@@ -21,7 +21,7 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     entity.rectanglePool = [];
     entity.activeRectangles = [];
 
-    entity.debug = data.debug;
+    entity.debug = data.hurtboxesDebug;
     entity.debugColor = 0x00FF00;
     entity.debugRectangles = [];
     entity.debugPointerPosition = { x: 0, y: 0 };
@@ -90,7 +90,9 @@ export class HasHurtboxesSystem<T extends Systems.HasHurtboxes.Entity & Systems.
     if (rectangle == null) {
       rectangle = new Phaser.Geom.Rectangle(0, 0, 0, 0);
       if (entity.debug) {
-        entity.debugRectangles.push(this.scene.add.rectangle(0, 0, 0, 0, entity.debugColor, 0.5));
+        const debugRectangle = this.scene.add.rectangle(0, 0, 0, 0, entity.debugColor, 0.5);
+        debugRectangle.setDepth(entity.sprite.depth + 1);
+        entity.debugRectangles.push(debugRectangle);
       }
     }
 

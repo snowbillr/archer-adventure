@@ -16,10 +16,10 @@ export class HasInteracionCircleSystem<T extends Systems.HasInteractionCircle.En
   }
 
   registerEntity(entity: T, data: SystemsManager.EntityRegistrationData): void {
-    const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.radius);
+    const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.interactionRadius);
 
-    if (data.debug) {
-      const debugCircle = this.scene.add.circle(data.x, data.y, data.radius, 0x00FF00, 0.5);
+    if (data.interactionDebug) {
+      const debugCircle = this.scene.add.circle(data.x, data.y, data.interactionRadius, 0x00FF00, 0.5);
       debugCircle.setOrigin(0.25, 0.25);
 
       entity.debugInteractionCircle = debugCircle;

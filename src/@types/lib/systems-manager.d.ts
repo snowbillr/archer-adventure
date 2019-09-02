@@ -1,7 +1,11 @@
 declare namespace SystemsManager {
   type Entity = object;
 
-  type EntityRegistrationData = { [key: string]: any };
+  type EntityRegistrationData = {
+    // x: number,
+    // y: number,
+    [key: string]: any
+  };
 
   interface SystemsManager {
     registerSystem(tagSystem: System, tag: (string | string[])): void;

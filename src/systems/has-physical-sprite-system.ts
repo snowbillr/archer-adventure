@@ -19,6 +19,8 @@ export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity>
     const { x, y, texture, frame } = data;
     const sprite = this.scene.physics.add.sprite(x, y, texture, frame);
 
+    sprite.y -= sprite.height;
+
     if (data.scale) {
       sprite.setScale(data.scale);
     }
@@ -26,8 +28,8 @@ export class HasPhysicalSpriteSystem<T extends Systems.HasPhysicalSprite.Entity>
     entity.sprite = sprite;
     entity.body = sprite.body as Phaser.Physics.Arcade.Body;
 
-    if (data.maxVelocity) {
-      entity.body.maxVelocity.x = data.maxVelocity.x;
+    if (data.maxVelocityX) {
+      entity.body.maxVelocity.x = data.maxVelocityX;
     }
   }
 }

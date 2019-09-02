@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="10">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="12">
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
@@ -628,12 +628,12 @@
   </properties>
   <object id="8" name="sheep" x="953.545" y="416.871">
    <properties>
+    <property name="areaBoundaryLeft" type="int" value="1850"/>
+    <property name="areaBoundaryRight" type="int" value="2100"/>
     <property name="frame" type="int" value="0"/>
     <property name="initialStateId" value="sheep-walk-right"/>
     <property name="layerCollisions" value="ground"/>
-    <property name="left" type="int" value="1850"/>
-    <property name="right" type="int" value="2100"/>
-    <property name="setId" value="sheep"/>
+    <property name="stateSet" value="sheep"/>
     <property name="tags" value="hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary"/>
     <property name="texture" value="sheep-walk"/>
    </properties>
@@ -644,16 +644,17 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="6" name="adventurer" x="483.747" y="112.768">
+  <object id="6" name="adventurer" x="849.74" y="418.264">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>
+    <property name="hurtboxesDebug" type="bool" value="false"/>
     <property name="hurtboxesKey" value="adventurer-hurtboxes"/>
     <property name="initialStateId" value="adventurer-stand"/>
     <property name="interactionRadius" type="int" value="30"/>
     <property name="layerCollisions" value="ground"/>
-    <property name="maxHorizontalVelocity" type="int" value="350"/>
-    <property name="setId" value="adventurer"/>
+    <property name="maxVelocityX" type="int" value="350"/>
+    <property name="stateSet" value="adventurer"/>
     <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine"/>
     <property name="texture" value="adventurer-core"/>
    </properties>
