@@ -8,11 +8,13 @@
          "opacity":1,
          "properties":
             {
-             "collisionProperty":"collides"
+             "collisionProperty":"collides",
+             "depth":0
             },
          "propertytypes":
             {
-             "collisionProperty":"string"
+             "collisionProperty":"string",
+             "depth":"int"
             },
          "type":"tilelayer",
          "visible":true,
@@ -25,6 +27,14 @@
          "height":30,
          "name":"background-base",
          "opacity":1,
+         "properties":
+            {
+             "depth":0
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -36,6 +46,14 @@
          "height":30,
          "name":"background-details",
          "opacity":1,
+         "properties":
+            {
+             "depth":0
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -47,6 +65,14 @@
          "height":30,
          "name":"foreground",
          "opacity":1,
+         "properties":
+            {
+             "depth":2
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":100,
@@ -84,6 +110,14 @@
                  "y":112
                 }],
          "opacity":1,
+         "properties":
+            {
+             "depth":1
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -118,6 +152,14 @@
                  "y":414.883863080685
                 }],
          "opacity":1,
+         "properties":
+            {
+             "depth":1
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -166,12 +208,20 @@
                  "y":406.985528117359
                 }],
          "opacity":1,
+         "properties":
+            {
+             "depth":1
+            },
+         "propertytypes":
+            {
+             "depth":"int"
+            },
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextobjectid":9,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",

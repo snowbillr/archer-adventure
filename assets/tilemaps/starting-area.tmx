@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="9">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="10">
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
@@ -426,6 +426,7 @@
  <layer name="ground" width="100" height="30">
   <properties>
    <property name="collisionProperty" value="collides"/>
+   <property name="depth" type="int" value="0"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -461,6 +462,9 @@
 </data>
  </layer>
  <layer name="background-base" width="100" height="30">
+  <properties>
+   <property name="depth" type="int" value="0"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -495,6 +499,9 @@
 </data>
  </layer>
  <layer name="background-details" width="100" height="30">
+  <properties>
+   <property name="depth" type="int" value="0"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -529,6 +536,9 @@
 </data>
  </layer>
  <layer name="foreground" width="100" height="30">
+  <properties>
+   <property name="depth" type="int" value="2"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -563,6 +573,9 @@
 </data>
  </layer>
  <objectgroup name="signs">
+  <properties>
+   <property name="depth" type="int" value="1"/>
+  </properties>
   <object id="4" gid="1129" x="528" y="112" width="16" height="16">
    <properties>
     <property name="frame" type="int" value="1128"/>
@@ -573,6 +586,9 @@
   </object>
  </objectgroup>
  <objectgroup name="npcs">
+  <properties>
+   <property name="depth" type="int" value="1"/>
+  </properties>
   <object id="8" name="sheep" x="953.545" y="414.884">
    <properties>
     <property name="frame" type="int" value="0"/>
@@ -583,6 +599,9 @@
   </object>
  </objectgroup>
  <objectgroup name="adventurer">
+  <properties>
+   <property name="depth" type="int" value="1"/>
+  </properties>
   <object id="6" name="adventurer" x="866.143" y="406.986">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
