@@ -644,7 +644,7 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="6" name="adventurer" x="863.851" y="417.673">
+  <object id="6" name="adventurer" x="44.5546" y="81.9008">
    <properties>
     <property name="boundsKey" value="adventurer-bounds"/>
     <property name="frame" value="0"/>
