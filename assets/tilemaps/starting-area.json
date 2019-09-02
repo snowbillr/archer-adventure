@@ -223,7 +223,7 @@
          "objects":[
                 {
                  "height":0,
-                 "id":6,
+                 "id":12,
                  "name":"adventurer",
                  "point":true,
                  "properties":[
@@ -234,8 +234,8 @@
                         }, 
                         {
                          "name":"frame",
-                         "type":"string",
-                         "value":"0"
+                         "type":"int",
+                         "value":0
                         }, 
                         {
                          "name":"hurtboxesDebug",
@@ -283,11 +283,11 @@
                          "value":"adventurer-core"
                         }],
                  "rotation":0,
-                 "type":"",
+                 "type":"adventurer",
                  "visible":true,
                  "width":0,
-                 "x":625.735,
-                 "y":406.799
+                 "x":865.155657465385,
+                 "y":417.262457006791
                 }],
          "opacity":1,
          "properties":[
@@ -302,7 +302,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

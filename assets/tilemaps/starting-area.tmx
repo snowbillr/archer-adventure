@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="12">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="13">
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
@@ -644,20 +644,7 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="6" name="adventurer" x="625.735" y="406.799">
-   <properties>
-    <property name="boundsKey" value="adventurer-bounds"/>
-    <property name="frame" value="0"/>
-    <property name="hurtboxesDebug" type="bool" value="false"/>
-    <property name="hurtboxesKey" value="adventurer-hurtboxes"/>
-    <property name="initialStateId" value="adventurer-stand"/>
-    <property name="interactionRadius" type="int" value="30"/>
-    <property name="layerCollisions" value="ground"/>
-    <property name="maxVelocityX" type="int" value="350"/>
-    <property name="stateSet" value="adventurer"/>
-    <property name="tags" value="hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine"/>
-    <property name="texture" value="adventurer-core"/>
-   </properties>
+  <object id="12" name="adventurer" type="adventurer" x="865.156" y="417.262">
    <point/>
   </object>
  </objectgroup>

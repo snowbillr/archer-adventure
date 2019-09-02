@@ -3,6 +3,7 @@ import 'phaser';
 import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 
+import { PreloadScene } from './scenes/preload-scene';
 import { MovementTestScene } from './scenes/movement-test-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 import { BoundsTestScene } from './scenes/bounds-test-scene';
@@ -29,7 +30,7 @@ const gameConfig = {
     ]
   },
   // scene: BoundsTestScene,
-  scene: MovementTestScene,
+  scene: [PreloadScene, MovementTestScene],
   // scene: AnimTestScene,
   // scene: HitboxTestScene,
   pixelArt: true,
