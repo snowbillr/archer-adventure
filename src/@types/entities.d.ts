@@ -7,5 +7,5 @@ declare namespace Entities {
     & Systems.HasControls.Entity
     & Systems.HasBounds.Entity;
 
-  type Sheep = Systems.HasSprite.Entity;
+  type Sheep = Systems.HasPhysicalSprite.Entity;
 }

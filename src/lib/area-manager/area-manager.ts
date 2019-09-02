@@ -112,13 +112,14 @@ export class AreaManager {
   private registerHasPhysicalSpriteEntity(entity: Systems.HasPhysicalSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
+
     systemsManager.registerEntity(entity, HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite, {
       x,
       y,
       texture: tiledObject.properties.texture,
       frame: tiledObject.properties.frame,
       maxVelocity: {
-        x: tiledObject.properties.maxHorizontalVelocity,
+        x: tiledObject.properties.maxHorizontalVelocity || 1000,
       },
       scale: this.scale,
     });

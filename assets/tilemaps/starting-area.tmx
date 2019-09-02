@@ -593,8 +593,9 @@
    <properties>
     <property name="frame" type="int" value="0"/>
     <property name="initialStateId" value="sheep-walk-right"/>
+    <property name="layerCollisions" value="ground"/>
     <property name="setId" value="sheep"/>
-    <property name="tags" value="hasSprite,hasPhiniteStateMachine"/>
+    <property name="tags" value="hasPhysicalSprite,hasPhiniteStateMachine"/>
     <property name="texture" value="sheep-walk"/>
    </properties>
    <point/>
