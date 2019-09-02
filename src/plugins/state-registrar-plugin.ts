@@ -1,10 +1,17 @@
-export class StateRegistrarPlugin extends Phaser.Plugins.BasePlugin {
+export class StateRegistrarPlugin extends Phaser.Plugins.ScenePlugin {
   private states: { [key: string]: PhiniteStateMachine.States.State<any> };
   private sets: { [key: string]: string[] };
 
-  constructor(pluginManager: Phaser.Plugins.PluginManager) {
-    super(pluginManager);
+  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
+    super(scene, pluginManager);
 
+    this.states = {};
+    this.sets = {};
+
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
+  }
+
+  destroy() {
     this.states = {};
     this.sets = {};
   }

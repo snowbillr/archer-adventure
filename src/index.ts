@@ -13,15 +13,12 @@ const gameConfig = {
   width: 800,
   height: 450,
   plugins: {
-    global: [
+    scene: [
       {
         key: 'StateRegistrar',
         plugin: StateRegistrarPlugin,
         mapping: 'stateRegistrar',
-        start: true,
-      }
-    ],
-    scene: [
+      },
       {
         key: 'SystemsManager',
         plugin: SystemsManagerPlugin,

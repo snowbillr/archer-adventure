@@ -49,15 +49,15 @@ export class MovementTestScene extends BaseScene {
     const { tilemapKey, tilesetName, tilesetKey } = data;
     areaManager.load(tilemapKey, tilesetName, tilesetKey, 2);
 
-    this.input.keyboard.on(`${Phaser.Input.Keyboard.Events.KEY_DOWN}SPACE`, () => {
-      this.systemsManager.destroy();
-
+    /*
+    this.input.keyboard.once(`${Phaser.Input.Keyboard.Events.KEY_DOWN}SPACE`, () => {
       this.scene.restart({
         tilemapKey: 'house',
         tilesetName: 'fantasy-platformer-core',
         tilesetKey: 'fantasy-platformer-core',
       });
     });
+    */
 
     const adventurer = areaManager.objects['adventurer'][0];
     const map = areaManager.map;
