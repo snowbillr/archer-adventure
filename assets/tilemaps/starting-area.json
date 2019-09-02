@@ -135,12 +135,16 @@
                  "properties":
                     {
                      "frame":0,
-                     "tags":"hasSprite",
+                     "initialStateId":"sheep-walk-left",
+                     "setId":"sheep",
+                     "tags":"hasSprite,hasPhiniteStateMachine",
                      "texture":"sheep-walk"
                     },
                  "propertytypes":
                     {
                      "frame":"int",
+                     "initialStateId":"string",
+                     "setId":"string",
                      "tags":"string",
                      "texture":"string"
                     },

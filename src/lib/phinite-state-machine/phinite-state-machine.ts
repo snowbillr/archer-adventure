@@ -35,7 +35,7 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
       transition.onTransition(this.entity);
     }
 
-    if (this.currentState.onEnter && transition.type !== TransitionType.Initial) {
+    if (this.currentState.onEnter) {
       this.currentState.onEnter(this.entity, this.currentState.data || {});
     }
     this.registerTransitionTriggers();

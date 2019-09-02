@@ -14,6 +14,7 @@ import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machi
 import { AreaManager } from '../lib/area-manager/area-manager';
 
 import { adventurerStates } from '../entities/adventurer/states';
+import { sheepStates } from '../entities/sheep/states';
 import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 
 export class MovementTestScene extends Phaser.Scene {
@@ -58,6 +59,11 @@ export class MovementTestScene extends Phaser.Scene {
     });
     this.stateRegistrar.addSet('adventurer', adventurerStates.map((state: PhiniteStateMachine.States.State<Entities.Adventurer>) => state.id));
 
+    sheepStates.forEach((state: PhiniteStateMachine.States.State<Entities.Sheep>) => {
+      this.stateRegistrar.addState(state.id, state);
+    });
+    this.stateRegistrar.addSet('sheep', sheepStates.map((state: PhiniteStateMachine.States.State<Entities.Sheep>) => state.id));
+
     this.systemsManager.registerSystem(new SignSystem(), [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign]);
     this.systemsManager.registerSystem(new HasSpriteSystem(this), HasSpriteSystem.SystemTags.hasSprite);
     this.systemsManager.registerSystem(new HasPhysicalSpriteSystem(this), HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite);
@@ -83,6 +89,7 @@ export class MovementTestScene extends Phaser.Scene {
 
     this.cameras.main.setBounds(0, 0, map.width * areaManager.tileset.tileWidth * 2, map.height * areaManager.tileset.tileHeight * 2);
     this.cameras.main.startFollow(adventurer.sprite, true);
+    this.cameras.main.setBackgroundColor(0xCCCCCC);
   }
 
   update() {

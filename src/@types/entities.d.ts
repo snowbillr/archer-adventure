@@ -6,4 +6,6 @@ declare namespace Entities {
     & Systems.HasHurtboxes.Entity
     & Systems.HasControls.Entity
     & Systems.HasBounds.Entity;
+
+  type Sheep = Systems.HasSprite.Entity;
 }
