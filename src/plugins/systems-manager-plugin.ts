@@ -11,10 +11,6 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     this.systemsMap = {};
   }
 
-  start() {
-    console.log(this);
-  }
-
   registerSystem(system: SystemsManager.System, tags: (string | string[])) {
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
