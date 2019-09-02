@@ -1,5 +1,7 @@
 import 'phaser';
 
+import { BaseScene } from './base-scene';
+
 import { SignSystem } from '../systems/sign-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
@@ -14,21 +16,9 @@ import { AreaManager } from '../lib/area-manager/area-manager';
 
 import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
-import { StateRegistrar } from '../lib/phinite-state-machine/state-registrar';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
-import { SystemsManagerPlugin } from '../plugins/systems-manager-plugin';
 
-export class MovementTestScene extends Phaser.Scene {
-  private systemsManager!: SystemsManagerPlugin;
-
-  private stateRegistrar: StateRegistrar;
-
-  constructor(config: any) {
-    super(config);
-
-    this.stateRegistrar = new StateRegistrar();
-  }
-
+export class MovementTestScene extends BaseScene {
   preload() {
     // adventurer
     this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
@@ -74,7 +64,7 @@ export class MovementTestScene extends Phaser.Scene {
     this.systemsManager.registerSystem(new HasBoundsSystem(this), HasBoundsSystem.SystemTags.hasBounds);
     this.systemsManager.registerSystem(new HasControlsSystem(this), HasControlsSystem.SystemTags.hasControls);
     this.systemsManager.registerSystem(new HasHurtboxesSystem(this), HasHurtboxesSystem.SystemTags.hasHurtboxes);
-    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this, this.stateRegistrar), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine);
+    this.systemsManager.registerSystem(new HasPhiniteStateMachineSystem(this), HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine);
 
     const areaManager = new AreaManager(this, 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     const map = areaManager.map;

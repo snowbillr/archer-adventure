@@ -1,6 +1,7 @@
 import 'phaser';
 
 import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
+import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 
 import { MovementTestScene } from './scenes/movement-test-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
@@ -11,6 +12,14 @@ const gameConfig = {
   width: 800,
   height: 450,
   plugins: {
+    global: [
+      {
+        key: 'StateRegistrar',
+        plugin: StateRegistrarPlugin,
+        mapping: 'stateRegistrar',
+        start: true,
+      }
+    ],
     scene: [
       {
         key: 'SystemsManager',
