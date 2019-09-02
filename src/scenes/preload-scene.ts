@@ -42,7 +42,7 @@ export class PreloadScene extends Phaser.Scene {
       objectLayers: [
         'signs',
         'npcs',
-        // 'adventurer'
+        'adventurer'
       ]
     };
 

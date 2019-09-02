@@ -49,19 +49,7 @@ export class MovementTestScene extends BaseScene {
     const areaManager = new AreaManager(this, tilemapKey, tilesetName, tilesetKey, 2);
     areaManager.createTileLayers(tileLayers);
     areaManager.createObjectLayers(objectLayers);
-
-    const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer')[0];
-
-    /*
-    const areaManager = new AreaManager(this, 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-    areaManager.createTileLayers([
-      'ground',
-      'background-base',
-      'background-details',
-    ]);
-
-    const adventurer: Entities.Adventurer  = areaManager.createObjects('adventurer', this.systemsManager)[0];
-    */
+    const adventurer = areaManager.objects['adventurer'][0];
 
     this.input.keyboard.on(`${Phaser.Input.Keyboard.Events.KEY_DOWN}SPACE`, () => {
       this.systemsManager.destroy();
@@ -76,7 +64,7 @@ export class MovementTestScene extends BaseScene {
           'background-details',
         ],
         objectLayers: [
-          // 'adventurer'
+          'adventurer'
         ]
       })
     });

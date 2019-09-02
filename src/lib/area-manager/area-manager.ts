@@ -8,7 +8,8 @@ export class AreaManager {
   public map: Phaser.Tilemaps.Tilemap;
   public tileset: Phaser.Tilemaps.Tileset;
 
-  public layers: Phaser.Tilemaps.StaticTilemapLayer[];
+  public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
+  public objects: { [layerName: string]: any[] };
 
   constructor(scene: BaseScene, mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
     this.scene = scene;
@@ -19,7 +20,9 @@ export class AreaManager {
 
     this.map = map;
     this.tileset = tileset;
-    this.layers = [];
+
+    this.tileLayers = [];
+    this.objects = {};
   }
 
   createTileLayers(layerNames: string[]) {
@@ -39,7 +42,7 @@ export class AreaManager {
 
       layer.setDepth(layerProperties.depth);
 
-      this.layers.push(layer);
+      this.tileLayers.push(layer);
     });
   }
 
@@ -47,11 +50,12 @@ export class AreaManager {
     layerNames.forEach(layerName => this.createObjects(layerName));
   }
 
-  createObjects(layerName: string): any[] {
-    const createdEntities: any[] = [];
+  createObjects(layerName: string): void {
     const layer = this.map.getObjectLayer(layerName);
     const layerProperties = this.normalizeProperties(layer.properties);
     const tiledObjects = layer.objects;
+
+    this.objects[layerName] = [];
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
       const entity = {} as any;
@@ -65,7 +69,7 @@ export class AreaManager {
 
       if (tileProperties.layerCollisions) {
         tileProperties.layerCollisions.split(',').forEach((layerName: string) => {
-          this.scene.physics.add.collider(entity.sprite, this.layers.find(layer => layer.layer.name === layerName)!);
+          this.scene.physics.add.collider(entity.sprite, this.tileLayers.find(layer => layer.layer.name === layerName)!);
         });
       }
 
@@ -73,10 +77,8 @@ export class AreaManager {
         entity.sprite.setDepth(layerProperties.depth);
       }
 
-      createdEntities.push(entity);
+      this.objects[layerName].push(entity);
     });
-
-    return createdEntities;
   }
 
   private registerEntity(tag: string, entity: Systems.HasSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
