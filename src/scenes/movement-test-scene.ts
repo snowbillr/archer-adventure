@@ -3,6 +3,7 @@ import 'phaser';
 import { BaseScene } from './base-scene';
 
 import { SignSystem } from '../systems/sign-system';
+import { DoorSystem } from '../systems/door-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
@@ -31,6 +32,7 @@ export class MovementTestScene extends BaseScene {
 
     this.systemsManager.registerSystems(
       [
+        { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
         { klass: HasSpriteSystem, tags: HasSpriteSystem.SystemTags.hasSprite },
         { klass: HasPhysicalSpriteSystem, tags: HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite },
@@ -44,20 +46,10 @@ export class MovementTestScene extends BaseScene {
       ]
     );
 
+    const { tilemapKey, tilesetName, tilesetKey, scale = 2 } = data;
     const areaManager = new AreaManager(this);
 
-    const { tilemapKey, tilesetName, tilesetKey } = data;
-    areaManager.load(tilemapKey, tilesetName, tilesetKey, 2);
-
-    /*
-    this.input.keyboard.once(`${Phaser.Input.Keyboard.Events.KEY_DOWN}SPACE`, () => {
-      this.scene.restart({
-        tilemapKey: 'house',
-        tilesetName: 'fantasy-platformer-core',
-        tilesetKey: 'fantasy-platformer-core',
-      });
-    });
-    */
+    areaManager.load(tilemapKey, tilesetName, tilesetKey, scale);
 
     const adventurer = areaManager.objects['adventurer'][0];
     const map = areaManager.map;

@@ -11,8 +11,9 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  registerEntity(entity: Systems.HasInteractionCircle.Entity, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasInteractionCircle.Entity, data: SystemsManager.EntityRegistrationData, tag: string): void {
     const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.interactionRadius);
+    entity.interactionControl = data.interactionControl;
 
     if (data.interactionDebug) {
       const debugCircle = this.scene.add.circle(data.x, data.y, data.interactionRadius, 0x00FF00, 0.5);
@@ -22,6 +23,7 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     }
 
     entity.interactionCircle = interactionCircle;
+    entity.activeInteractionIds = [];
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -43,11 +45,28 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
         }
       }
     });
+
+    entities.forEach(entity => {
+      entity.activeInteractionIds = this.getActiveInteractionIds(entity, entities);
+    })
   }
 
   destroy(entity: Systems.HasInteractionCircle.Entity) {
     if (entity.debugInteractionCircle) {
       entity.debugInteractionCircle.destroy();
+      entity.activeInteractionIds = [];
     }
+  }
+
+  private getActiveInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {
+    return allEntities
+      .filter(otherEntity => otherEntity.id !== entity.id)
+      .filter(otherEntity => {
+        const circle1 = entity.interactionCircle;
+        const circle2 = otherEntity.interactionCircle;
+
+        return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
+      })
+      .map(otherEntity => otherEntity.id);
   }
 }

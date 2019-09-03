@@ -1,24 +1,26 @@
 declare namespace Systems.HasSprite {
-  interface Entity {
+  interface Entity extends SystemsManager.Entity {
     sprite: Phaser.GameObjects.Sprite;
   }
 }
 
 declare namespace Systems.HasPhysicalSprite {
-  interface Entity extends Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     body: Phaser.Physics.Arcade.Body;
   }
 }
 
 declare namespace Systems.HasInteractionCircle {
-  interface Entity extends Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     interactionCircle: Phaser.Geom.Circle;
+    activeInteractionIds: string[];
+    interactionControl?: string;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
 
 declare namespace Systems.HasIndicator {
-  interface Entity extends Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     indicatorSprite: Phaser.GameObjects.Sprite;
     showIndicator: () => void;
     hideIndicator: () => void;
@@ -28,7 +30,7 @@ declare namespace Systems.HasIndicator {
 declare namespace Systems.HasControls {
   type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
 
-  interface Entity {
+  interface Entity extends SystemsManager.Entity {
     controls: Controls;
   }
 }
@@ -39,7 +41,7 @@ declare namespace Systems.HasAreaBoundary {
     right: number
   };
 
-  interface Entity {
+  interface Entity extends SystemsManager.Entity {
     areaBoundary: AreaBoundary;
   }
 }
@@ -62,7 +64,7 @@ declare namespace Systems.HasBounds {
     }
   }
 
-  interface Entity extends Systems.HasPhysicalSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasPhysicalSprite.Entity {
     boundsFrames: Frame[];
   }
 }
@@ -82,7 +84,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  interface Entity extends Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
@@ -96,7 +98,19 @@ declare namespace Systems.HasHurtboxes {
 }
 
 declare namespace Systems.HasPhiniteStateMachine {
-  interface Entity<T> {
+  interface Entity<T> extends SystemsManager.Entity {
     phiniteStateMachine: PhiniteStateMachine.PhiniteStateMachine<T>;
+  }
+}
+
+declare namespace Systems.DoorSystem {
+  interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
+    toMapKey: string,
+    toTilesetName: string,
+    toTilesetKey: string,
+    toScale: number,
+  }
+
+  interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
   }
 }

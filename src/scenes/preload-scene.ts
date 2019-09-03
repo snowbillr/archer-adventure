@@ -16,6 +16,9 @@ export class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
 
+    // doors
+    this.load.spritesheet('doors', '/assets/sprites/doors/doors.png', { frameWidth: 32, frameHeight: 41 })
+
     // tilemap spritesheet
     this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
 
