@@ -13,8 +13,6 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
-import { AreaManager } from '../lib/area-manager/area-manager';
-
 import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
@@ -22,8 +20,6 @@ import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 export class MovementTestScene extends BaseScene {
   constructor() {
     super({ key: 'movementTest' });
-
-    this.areaManager = new AreaManager(this);
   }
 
   create(data: any) {

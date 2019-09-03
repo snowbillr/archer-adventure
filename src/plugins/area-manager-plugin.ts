@@ -1,8 +1,7 @@
 import 'phaser';
-import { BaseScene } from '../../scenes/base-scene';
+import { BaseScene } from '../scenes/base-scene';
 
-export class AreaManager {
-  private scene: BaseScene;
+export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   private scale: number;
 
   public map!: Phaser.Tilemaps.Tilemap;
@@ -11,8 +10,9 @@ export class AreaManager {
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
 
-  constructor(scene: BaseScene) {
-    this.scene = scene;
+  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
+    super(scene, pluginManager);
+
     this.scale = 1;
 
     this.tileLayers = [];
@@ -86,7 +86,7 @@ export class AreaManager {
       tiledObject.properties = tileProperties;
 
       tileProperties.tags.split(',').forEach((tag: string) => {
-        this.registerEntity(tag, entity, tiledObject, this.scene.systemsManager);
+        this.registerEntity(tag, entity, tiledObject);
       });
 
       if (tileProperties.layerCollisions) {
@@ -103,10 +103,10 @@ export class AreaManager {
     });
   }
 
-  private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+  private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
-    systemsManager.registerEntity(entity, tag, {
+    (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
       x,
       y,
       scale: this.scale,
