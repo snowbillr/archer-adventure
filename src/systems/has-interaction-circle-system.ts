@@ -11,8 +11,9 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  registerEntity(entity: Systems.HasInteractionCircle.Entity, data: SystemsManager.EntityRegistrationData): void {
+  registerEntity(entity: Systems.HasInteractionCircle.Entity, data: SystemsManager.EntityRegistrationData, tag: string): void {
     const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.interactionRadius);
+    entity.interactionControl = data.interactionControl;
 
     if (data.interactionDebug) {
       const debugCircle = this.scene.add.circle(data.x, data.y, data.interactionRadius, 0x00FF00, 0.5);

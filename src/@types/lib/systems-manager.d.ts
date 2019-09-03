@@ -12,7 +12,7 @@ declare namespace SystemsManager {
 
   interface SystemsManager {
     registerSystem(system: System, tag: (string | string[])): void;
-    registerEntity(entity: Entity, tag: (string | string[]), data?: EntityRegistrationData): void;
+    registerEntity(entity: Entity, tag: (string | string[]), data: EntityRegistrationData): void;
 
     getEntities<T extends Entity>(tag: string): T[];
 
@@ -24,7 +24,7 @@ declare namespace SystemsManager {
   }
 
   interface System {
-    registerEntity?(entity: any, data: EntityRegistrationData): void;
+    registerEntity?(entity: any, data: EntityRegistrationData, tag: string): void;
 
     update?(systemsManager: SystemsManager): void;
 

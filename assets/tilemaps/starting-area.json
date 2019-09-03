@@ -286,8 +286,8 @@
                  "type":"adventurer",
                  "visible":true,
                  "width":0,
-                 "x":865.155657465385,
-                 "y":418.262457006791
+                 "x":865.156,
+                 "y":418.262
                 }],
          "opacity":1,
          "properties":[
@@ -295,6 +295,11 @@
                  "name":"depth",
                  "type":"int",
                  "value":2
+                }, 
+                {
+                 "name":"interactionKey",
+                 "type":"string",
+                 "value":"space"
                 }],
          "type":"objectgroup",
          "visible":true,
@@ -318,6 +323,11 @@
                          "value":1
                         }, 
                         {
+                         "name":"interactionControl",
+                         "type":"string",
+                         "value":"action"
+                        }, 
+                        {
                          "name":"interactionRadius",
                          "type":"int",
                          "value":40
@@ -336,8 +346,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":752.422264563992,
-                 "y":416.562330238781
+                 "x":752.422,
+                 "y":416.562
                 }],
          "opacity":1,
          "properties":[
@@ -352,7 +362,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":15,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",

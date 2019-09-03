@@ -14,6 +14,7 @@ declare namespace Systems.HasInteractionCircle {
   interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     interactionCircle: Phaser.Geom.Circle;
     activeInteractionIds: string[];
+    interactionControl?: string;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
@@ -107,7 +108,6 @@ declare namespace Systems.DoorSystem {
     toArea: string,
   }
 
-  interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity {
-
+  interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
   }
 }
