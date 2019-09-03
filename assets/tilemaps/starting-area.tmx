@@ -653,15 +653,10 @@
   <properties>
    <property name="depth" type="int" value="0"/>
   </properties>
-  <object id="14" x="752.422" y="416.562">
+  <object id="14" type="door" x="752.422" y="416.562">
    <properties>
     <property name="frame" type="int" value="1"/>
-    <property name="interactionControl" value="action"/>
-    <property name="interactionRadius" type="int" value="40"/>
-    <property name="tags" value="hasSprite,door,hasInteractionCircle,hasIndicator"/>
-    <property name="texture" value="doors"/>
     <property name="toMapKey" value="house"/>
-    <property name="toScale" type="int" value="2"/>
     <property name="toTilesetKey" value="fantasy-platformer-core"/>
     <property name="toTilesetName" value="fantasy-platformer-core"/>
    </properties>
