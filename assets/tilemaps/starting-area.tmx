@@ -660,6 +660,10 @@
     <property name="interactionRadius" type="int" value="40"/>
     <property name="tags" value="hasSprite,door,hasInteractionCircle,hasIndicator"/>
     <property name="texture" value="doors"/>
+    <property name="toMapKey" value="house"/>
+    <property name="toScale" type="int" value="2"/>
+    <property name="toTilesetKey" value="fantasy-platformer-core"/>
+    <property name="toTilesetName" value="fantasy-platformer-core"/>
    </properties>
    <point/>
   </object>

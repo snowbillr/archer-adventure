@@ -10,7 +10,7 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     this.entityMap = {};
     this.systemsMap = {};
 
-    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
+    // this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
   }
 
   destroy() {

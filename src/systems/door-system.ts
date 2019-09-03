@@ -1,8 +1,26 @@
+import { BaseScene } from '../scenes/base-scene';
+
 export class DoorSystem implements SystemsManager.System {
   static SystemTags = {
     door: 'door',
     doorInteractor: 'doorInteractor',
   };
+
+  private scene: BaseScene;
+
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene as BaseScene;
+  }
+
+  registerEntity(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), data: SystemsManager.EntityRegistrationData, tag: string) {
+    if (tag === DoorSystem.SystemTags.door) {
+      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
+      doorEntity.toMapKey = data.toMapKey;
+      doorEntity.toTilesetName = data.toTilesetName;
+      doorEntity.toTilesetKey = data.toTilesetKey;
+      doorEntity.toScale = data.toScale;
+    }
+  }
 
   update(systemsManager: SystemsManager.SystemsManager) {
     const doorInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.doorInteractor);
@@ -16,7 +34,7 @@ export class DoorSystem implements SystemsManager.System {
       activeDoors.forEach(activeDoor => {
         activeDoor!.showIndicator()
         if (doorInteractor.controls[activeDoor.interactionControl!].isDown) {
-          console.log('do transition')
+          this.scene.loadNewArea(activeDoor.toMapKey, activeDoor.toTilesetName, activeDoor.toTilesetKey, activeDoor.toScale);
         }
       });
       inactiveDoors.forEach(inactiveDoor => inactiveDoor!.hideIndicator());

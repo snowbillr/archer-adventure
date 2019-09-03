@@ -341,6 +341,26 @@
                          "name":"texture",
                          "type":"string",
                          "value":"doors"
+                        }, 
+                        {
+                         "name":"toMapKey",
+                         "type":"string",
+                         "value":"house"
+                        }, 
+                        {
+                         "name":"toScale",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"toTilesetKey",
+                         "type":"string",
+                         "value":"fantasy-platformer-core"
+                        }, 
+                        {
+                         "name":"toTilesetName",
+                         "type":"string",
+                         "value":"fantasy-platformer-core"
                         }],
                  "rotation":0,
                  "type":"",
