@@ -14,6 +14,9 @@ declare namespace SystemsManager {
     registerSystem(system: System, tag: (string | string[])): void;
     registerEntity(entity: Entity, tag: (string | string[]), data: EntityRegistrationData): void;
 
+    start(): void;
+    stop(): void;
+
     getEntities<T extends Entity>(tag: string): T[];
 
     update(): void;
@@ -25,6 +28,9 @@ declare namespace SystemsManager {
 
   interface System {
     registerEntity?(entity: any, data: EntityRegistrationData, tag: string): void;
+
+    start?(systemsManager: SystemsManager): void;
+    stop?(systemsManager: SystemsManager): void;
 
     update?(systemsManager: SystemsManager): void;
 

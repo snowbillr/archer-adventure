@@ -11,6 +11,28 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     this.systemsMap = {};
   }
 
+  start() {
+    Object.values(this.systemsMap)
+      .flat()
+      .filter((system, index, list) => {
+        return list.indexOf(system) === index;
+      })
+      .forEach(system => {
+        system.start && system.start(this);
+      })
+  }
+
+  stop() {
+    Object.values(this.systemsMap)
+      .flat()
+      .filter((system, index, list) => {
+        return list.indexOf(system) === index;
+      })
+      .forEach(system => {
+        system.stop && system.stop(this);
+      })
+  }
+
   destroyEntities() {
     Object.entries(this.entityMap).forEach(([tag, entities]) => {
       const systems = this.systemsMap[tag];

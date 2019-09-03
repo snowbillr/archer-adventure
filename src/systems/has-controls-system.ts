@@ -23,6 +23,16 @@ export class HasControlsSystem implements SystemsManager.System {
     entity.controls = controls;
   }
 
+  stop(systemsManager: SystemsManager.SystemsManager) {
+    const entities: Systems.HasControls.Entity[] = systemsManager.getEntities(HasControlsSystem.SystemTags.hasControls);
+
+    entities.forEach(entity => {
+      Object.values(entity.controls).forEach(key => {
+        key.removeAllListeners();
+      });
+    });
+  }
+
   destroy(entity: Systems.HasControls.Entity) {
     delete entity.controls;
   }

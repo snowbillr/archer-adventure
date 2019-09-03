@@ -22,6 +22,22 @@ export class DoorSystem implements SystemsManager.System {
     }
   }
 
+  start(systemsManager: SystemsManager.SystemsManager) {
+    const doorInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.doorInteractor);
+    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
+
+    const doorInteractor = doorInteractors[0];
+    doors.forEach(door => {
+      const controlKey = doorInteractor.controls[door.interactionControl!];
+
+      controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
+        if (door.activeInteractionIds.includes(doorInteractor.id)) {
+          this.scene.loadNewArea(door.toMapKey, door.toTilesetName, door.toTilesetKey, door.toScale);
+        }
+      });
+    });
+  }
+
   update(systemsManager: SystemsManager.SystemsManager) {
     const doorInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.doorInteractor);
     const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
@@ -33,9 +49,6 @@ export class DoorSystem implements SystemsManager.System {
 
       activeDoors.forEach(activeDoor => {
         activeDoor!.showIndicator()
-        if (doorInteractor.controls[activeDoor.interactionControl!].isDown) {
-          this.scene.loadNewArea(activeDoor.toMapKey, activeDoor.toTilesetName, activeDoor.toTilesetKey, activeDoor.toScale);
-        }
       });
       inactiveDoors.forEach(inactiveDoor => inactiveDoor!.hideIndicator());
     });
