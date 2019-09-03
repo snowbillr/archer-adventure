@@ -40,4 +40,14 @@ export class DoorSystem implements SystemsManager.System {
       inactiveDoors.forEach(inactiveDoor => inactiveDoor!.hideIndicator());
     });
   }
+
+  destroy(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), tag: string) {
+    if (tag === DoorSystem.SystemTags.door) {
+      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
+      delete doorEntity.toMapKey;
+      delete doorEntity.toTilesetName;
+      delete doorEntity.toTilesetKey;
+      delete doorEntity.toScale;
+    }
+  }
 }

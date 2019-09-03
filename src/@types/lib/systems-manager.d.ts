@@ -28,6 +28,6 @@ declare namespace SystemsManager {
 
     update?(systemsManager: SystemsManager): void;
 
-    destroy?(entity: any): void;
+    destroy?(entity: any, tag: string): void;
   }
 }

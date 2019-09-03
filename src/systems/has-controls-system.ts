@@ -22,4 +22,8 @@ export class HasControlsSystem implements SystemsManager.System {
 
     entity.controls = controls;
   }
+
+  destroy(entity: Systems.HasControls.Entity) {
+    delete entity.controls;
+  }
 }

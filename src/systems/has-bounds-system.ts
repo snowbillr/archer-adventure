@@ -45,4 +45,8 @@ export class HasBoundsSystem implements SystemsManager.System {
       entity.body.updateBounds();
     });
   }
+
+  destroy(entity: Systems.HasBounds.Entity) {
+    delete entity.boundsFrames;
+  }
 }

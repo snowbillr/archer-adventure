@@ -7,8 +7,6 @@ export class StateRegistrarPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.states = {};
     this.sets = {};
-
-    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
   }
 
   destroy() {

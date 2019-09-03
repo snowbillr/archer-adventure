@@ -9,24 +9,21 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
 
     this.entityMap = {};
     this.systemsMap = {};
-
-    // this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.destroy());
   }
 
-  destroy() {
+  destroyEntities() {
     Object.entries(this.entityMap).forEach(([tag, entities]) => {
       const systems = this.systemsMap[tag];
       systems.forEach(system => {
         entities.forEach(entity => {
           if (system.destroy) {
-            system.destroy(entity);
+            system.destroy(entity, tag);
           }
         });
       });
     });
 
     this.entityMap = {};
-    this.systemsMap = {};
   }
 
   registerSystems(systemsList: {klass: SystemsManager.SystemConstructor, tags: (string | string[])}[]) {

@@ -11,4 +11,8 @@ export class HasAreaBoundarySystem implements SystemsManager.System {
       right: data.areaBoundaryRight
     };
   }
+
+  destroy(entity: Systems.HasAreaBoundary.Entity) {
+    delete entity.areaBoundary;
+  }
 }

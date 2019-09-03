@@ -34,6 +34,19 @@ export class AreaManager {
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
 
+  unload() {
+    this.objects = {};
+
+    this.tileLayers.forEach(layer => layer.destroy());
+    this.tileLayers = [];
+
+    delete this.tileset;
+
+    if (this.map) {
+      this.map.destroy();
+    }
+  }
+
   createTileLayers(layerNames: string[]) {
     layerNames.forEach(layerName => {
       const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);

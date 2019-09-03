@@ -22,6 +22,8 @@ import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 export class MovementTestScene extends BaseScene {
   constructor() {
     super({ key: 'movementTest' });
+
+    this.areaManager = new AreaManager(this);
   }
 
   create(data: any) {
@@ -47,16 +49,17 @@ export class MovementTestScene extends BaseScene {
     );
 
     const { tilemapKey, tilesetName, tilesetKey, scale = 2 } = data;
-    const areaManager = new AreaManager(this);
+    this.loadNewArea(tilemapKey, tilesetName, tilesetKey, scale);
+    /*
+    this.areaManager.load(tilemapKey, tilesetName, tilesetKey, scale);
 
-    areaManager.load(tilemapKey, tilesetName, tilesetKey, scale);
-
-    const adventurer = areaManager.objects['adventurer'][0];
-    const map = areaManager.map;
-    const tileset = areaManager.tileset;
+    const adventurer = this.areaManager.objects['adventurer'][0];
+    const map = this.areaManager.map;
+    const tileset = this.areaManager.tileset;
     this.cameras.main.setBackgroundColor(0xCCCCCC);
     this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
     this.cameras.main.startFollow(adventurer.sprite, true);
+    */
   }
 
   update() {

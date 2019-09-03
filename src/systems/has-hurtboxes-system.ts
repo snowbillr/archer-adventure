@@ -54,6 +54,10 @@ export class HasHurtboxesSystem implements SystemsManager.System {
     entity.rectanglePool = [];
     entity.activeRectangles = [];
     entity.debugRectangles.forEach(rectangle => rectangle.destroy());
+
+    delete entity.rectanglePool;
+    delete entity.activeRectangles;
+    delete entity.debugRectangles;
   }
 
   private renderDebugHitboxes(entity: Systems.HasHurtboxes.Entity) {

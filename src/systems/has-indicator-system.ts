@@ -39,5 +39,7 @@ export class HasIndicatorSystem implements SystemsManager.System {
 
   destroy(entity: Systems.HasIndicator.Entity) {
     entity.indicatorSprite.destroy();
+
+    delete entity.indicatorSprite;
   }
 }

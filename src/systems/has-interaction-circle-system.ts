@@ -52,10 +52,14 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
   }
 
   destroy(entity: Systems.HasInteractionCircle.Entity) {
+    entity.activeInteractionIds = [];
+
     if (entity.debugInteractionCircle) {
       entity.debugInteractionCircle.destroy();
-      entity.activeInteractionIds = [];
     }
+
+    delete entity.activeInteractionIds;
+    delete entity.debugInteractionCircle;
   }
 
   private getActiveInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {

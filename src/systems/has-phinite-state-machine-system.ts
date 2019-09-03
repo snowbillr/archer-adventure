@@ -39,5 +39,7 @@ export class HasPhiniteStateMachineSystem implements SystemsManager.System {
 
   destroy(entity: Systems.HasPhiniteStateMachine.Entity<any>) {
     entity.phiniteStateMachine.destroy();
+
+    delete entity.phiniteStateMachine;
   }
 }

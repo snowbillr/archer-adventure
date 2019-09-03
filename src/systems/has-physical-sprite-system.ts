@@ -32,5 +32,7 @@ export class HasPhysicalSpriteSystem implements SystemsManager.System {
 
   destroy(entity: Systems.HasPhysicalSprite.Entity) {
     entity.sprite.destroy();
+
+    delete entity.sprite;
   }
 }
