@@ -9,12 +9,12 @@ export abstract class BaseScene extends Phaser.Scene {
   stateRegistrar!: StateRegistrarPlugin;
   areaManager!: AreaManagerPlugin;
 
-  loadNewArea(tilemapKey: string, tilesetName: string, tilesetKey: string, scale: number) {
+  loadNewArea(key: string) {
     this.systemsManager.stop();
     this.systemsManager.destroyEntities();
 
     this.areaManager.unload();
-    this.areaManager.load(tilemapKey, tilesetName, tilesetKey, scale);
+    this.areaManager.load(key);
     this.systemsManager.start();
 
     const adventurer = this.areaManager.objects['adventurer'][0];

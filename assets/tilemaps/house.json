@@ -182,6 +182,11 @@
                          "value":"doors"
                         }, 
                         {
+                         "name":"toKey",
+                         "type":"string",
+                         "value":"starting-area"
+                        }, 
+                        {
                          "name":"toMapKey",
                          "type":"string",
                          "value":"starting-area"
@@ -205,7 +210,7 @@
                  "type":"door",
                  "visible":true,
                  "width":0,
-                 "x":144.791,
+                 "x":194.312294156487,
                  "y":241.475631372919
                 }],
          "opacity":1,

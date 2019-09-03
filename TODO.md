@@ -1,5 +1,3 @@
-- make an AreaRegistrar so that doors only need to have a single key rather than multiple
-
 - when coming back through a door, should go to the corresponding door's location in the other map
 
 - should the hasInteractionCircle have concepts for 'entering' and 'leaving'? right now the indicator animation is force-played and it shouldn't be

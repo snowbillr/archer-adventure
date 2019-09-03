@@ -10,6 +10,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
 
+  private areaMap: { [areaName: string]: any };
+
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
 
@@ -17,15 +19,28 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.tileLayers = [];
     this.objects = {};
+
+    this.areaMap = {};
   }
 
-  load(mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
-    const map = this.scene.make.tilemap({ key: mapKey });
-    const tileset = map.addTilesetImage(tilesetName, tilesetKey);
+  registerArea(key: string, mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
+    this.areaMap[key] = {
+      mapKey,
+      tilesetName,
+      tilesetKey,
+      scale
+    };
+  }
+
+  load(key: string) {
+    const area = this.areaMap[key];
+
+    const map = this.scene.make.tilemap({ key: area.mapKey });
+    const tileset = map.addTilesetImage(area.tilesetName, area.tilesetKey);
 
     this.map = map;
     this.tileset = tileset;
-    this.scale = scale;
+    this.scale = area.scale;
 
     this.tileLayers = [];
     this.objects = {};

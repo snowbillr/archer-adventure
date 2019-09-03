@@ -656,6 +656,7 @@
   <object id="14" type="door" x="752.422" y="416.562">
    <properties>
     <property name="frame" type="int" value="1"/>
+    <property name="toKey" value="house"/>
     <property name="toMapKey" value="house"/>
     <property name="toTilesetKey" value="fantasy-platformer-core"/>
     <property name="toTilesetName" value="fantasy-platformer-core"/>

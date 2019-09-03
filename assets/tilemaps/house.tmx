@@ -607,8 +607,9 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="doors">
-  <object id="2" type="door" x="144.791" y="241.476">
+  <object id="2" type="door" x="194.312" y="241.476">
    <properties>
+    <property name="toKey" value="starting-area"/>
     <property name="toMapKey" value="starting-area"/>
     <property name="toTilesetKey" value="fantasy-platformer-core"/>
     <property name="toTilesetName" value="fantasy-platformer-core"/>

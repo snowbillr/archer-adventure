@@ -31,12 +31,6 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    const data = {
-      tilemapKey: 'starting-area',
-      tilesetName: 'fantasy-platformer-core',
-      tilesetKey: 'fantasy-platformer-core',
-    };
-
-    this.scene.start('movementTest', data);
+    this.scene.start('movementTest', { areaKey: 'starting-area' });
   }
 }

@@ -15,10 +15,7 @@ export class DoorSystem implements SystemsManager.System {
   registerEntity(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), data: SystemsManager.EntityRegistrationData, tag: string) {
     if (tag === DoorSystem.SystemTags.door) {
       const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      doorEntity.toMapKey = data.toMapKey;
-      doorEntity.toTilesetName = data.toTilesetName;
-      doorEntity.toTilesetKey = data.toTilesetKey;
-      doorEntity.toScale = data.toScale;
+      doorEntity.toKey = data.toKey;
     }
   }
 
@@ -32,7 +29,7 @@ export class DoorSystem implements SystemsManager.System {
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
         if (door.activeInteractionIds.includes(doorInteractor.id)) {
-          this.scene.loadNewArea(door.toMapKey, door.toTilesetName, door.toTilesetKey, door.toScale);
+          this.scene.loadNewArea(door.toKey);
         }
       });
     });
@@ -57,10 +54,7 @@ export class DoorSystem implements SystemsManager.System {
   destroy(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), tag: string) {
     if (tag === DoorSystem.SystemTags.door) {
       const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      delete doorEntity.toMapKey;
-      delete doorEntity.toTilesetName;
-      delete doorEntity.toTilesetKey;
-      delete doorEntity.toScale;
+      delete doorEntity.toKey;
     }
   }
 }

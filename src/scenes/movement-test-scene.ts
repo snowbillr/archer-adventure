@@ -44,8 +44,10 @@ export class MovementTestScene extends BaseScene {
       ]
     );
 
-    const { tilemapKey, tilesetName, tilesetKey, scale = 2 } = data;
-    this.loadNewArea(tilemapKey, tilesetName, tilesetKey, scale);
+    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+
+    this.loadNewArea(data.areaKey);
   }
 
   update() {
