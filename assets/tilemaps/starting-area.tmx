@@ -656,7 +656,7 @@
    <properties>
     <property name="frame" type="int" value="1"/>
     <property name="interactionRadius" type="int" value="40"/>
-    <property name="tags" value="hasSprite,door,hasInteractionCircle"/>
+    <property name="tags" value="hasSprite,door,hasInteractionCircle,hasIndicator"/>
     <property name="texture" value="doors"/>
    </properties>
    <point/>

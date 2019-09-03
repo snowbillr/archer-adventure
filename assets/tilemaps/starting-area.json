@@ -325,7 +325,7 @@
                         {
                          "name":"tags",
                          "type":"string",
-                         "value":"hasSprite,door,hasInteractionCircle"
+                         "value":"hasSprite,door,hasInteractionCircle,hasIndicator"
                         }, 
                         {
                          "name":"texture",

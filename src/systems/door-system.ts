@@ -13,17 +13,12 @@ export class DoorSystem implements SystemsManager.System {
     const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
 
     doorInteractors.forEach(doorInteractor => {
-      doors.forEach(door => {
-        const circle1 = doorInteractor.interactionCircle;
-        const circle2 = door.interactionCircle;
+      const activeDoorIds = doorInteractor.activeInteractionIds;
+      const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
+      const inactiveDoors = doors.filter(door => !activeDoorIds.includes(door.id));
 
-        if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-          console.log(doorInteractor.id);
-          console.log(door.id);
-        } else {
-
-        }
-      })
+      activeDoors.forEach(activeDoor => activeDoor!.showIndicator());
+      inactiveDoors.forEach(inactiveDoor => inactiveDoor!.hideIndicator());
     });
   }
 

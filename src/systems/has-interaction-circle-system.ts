@@ -22,6 +22,7 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     }
 
     entity.interactionCircle = interactionCircle;
+    entity.activeInteractionIds = [];
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -43,11 +44,28 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
         }
       }
     });
+
+    entities.forEach(entity => {
+      entity.activeInteractionIds = this.getActiveInteractionIds(entity, entities);
+    })
   }
 
   destroy(entity: Systems.HasInteractionCircle.Entity) {
     if (entity.debugInteractionCircle) {
       entity.debugInteractionCircle.destroy();
+      entity.activeInteractionIds = [];
     }
+  }
+
+  private getActiveInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {
+    return allEntities
+      .filter(otherEntity => otherEntity.id !== entity.id)
+      .filter(otherEntity => {
+        const circle1 = entity.interactionCircle;
+        const circle2 = otherEntity.interactionCircle;
+
+        return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
+      })
+      .map(otherEntity => otherEntity.id);
   }
 }
