@@ -90,7 +90,7 @@ export class AreaManager {
     });
   }
 
-  private registerEntity(tag: string, entity: Systems.HasSprite.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
+  private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject, systemsManager: SystemsManager.SystemsManager) {
     const { x, y } = this.getObjectPosition(tiledObject);
 
     systemsManager.registerEntity(entity, tag, {

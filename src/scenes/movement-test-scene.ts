@@ -3,6 +3,7 @@ import 'phaser';
 import { BaseScene } from './base-scene';
 
 import { SignSystem } from '../systems/sign-system';
+import { DoorSystem } from '../systems/door-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
@@ -31,6 +32,7 @@ export class MovementTestScene extends BaseScene {
 
     this.systemsManager.registerSystems(
       [
+        { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
         { klass: HasSpriteSystem, tags: HasSpriteSystem.SystemTags.hasSprite },
         { klass: HasPhysicalSpriteSystem, tags: HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite },

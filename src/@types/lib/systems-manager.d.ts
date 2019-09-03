@@ -1,4 +1,8 @@
 declare namespace SystemsManager {
+  type Entity = {
+    id: string;
+  }
+
   type EntityRegistrationData = {
     x: number,
     y: number,
@@ -7,10 +11,10 @@ declare namespace SystemsManager {
   };
 
   interface SystemsManager {
-    registerSystem(tagSystem: System, tag: (string | string[])): void;
-    registerEntity<T>(entity: T, tag: (string | string[]), data?: EntityRegistrationData): void;
+    registerSystem(system: System, tag: (string | string[])): void;
+    registerEntity(entity: Entity, tag: (string | string[]), data?: EntityRegistrationData): void;
 
-    getEntities<T>(tag: string): T[];
+    getEntities<T extends Entity>(tag: string): T[];
 
     update(): void;
   }
@@ -22,7 +26,7 @@ declare namespace SystemsManager {
   interface System {
     registerEntity?(entity: any, data: EntityRegistrationData): void;
 
-    update?(tagManager: SystemsManager): void;
+    update?(systemsManager: SystemsManager): void;
 
     destroy?(entity: any): void;
   }

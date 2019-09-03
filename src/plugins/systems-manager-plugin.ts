@@ -1,7 +1,7 @@
 import 'phaser';
 
 export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements SystemsManager.SystemsManager {
-  private entityMap: { [tag: string]: any[] };
+  private entityMap: { [tag: string]: SystemsManager.Entity[] };
   private systemsMap: { [tag: string]: SystemsManager.System[] };
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
@@ -44,7 +44,9 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     });
   };
 
-  registerEntity(entity: any, tags: (string | string[]), data: SystemsManager.EntityRegistrationData) {
+  registerEntity(entity: SystemsManager.Entity, tags: (string | string[]), data: SystemsManager.EntityRegistrationData) {
+    entity.id = this.uuid();
+
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
@@ -56,13 +58,20 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
     });
   }
 
-  getEntities(tag: string) {
-    return this.entityMap[tag] || [];
+  getEntities<T extends SystemsManager.Entity>(tag: string) {
+    return (this.entityMap[tag] || []) as T[];
   }
 
   update() {
     Object.entries(this.systemsMap).forEach(([tag, systems]) => {
       systems.forEach(system => system.update && system.update(this));
+    });
+  }
+
+  private uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
     });
   }
 }
