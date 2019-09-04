@@ -1,5 +1,3 @@
-- when coming back through a door, should go to the corresponding door's location in the other map
-
 - should the hasInteractionCircle have concepts for 'entering' and 'leaving'? right now the indicator animation is force-played and it shouldn't be
 
 - systems probably should put their vars on the entities in buckets, rather than keep them all on the same flat level

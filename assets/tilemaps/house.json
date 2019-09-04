@@ -153,7 +153,7 @@
                 {
                  "height":0,
                  "id":2,
-                 "name":"",
+                 "name":"door",
                  "point":true,
                  "properties":[
                         {
@@ -172,6 +172,11 @@
                          "value":40
                         }, 
                         {
+                         "name":"marker",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"tags",
                          "type":"string",
                          "value":"hasSprite,door,hasInteractionCircle,hasIndicator"
@@ -187,30 +192,15 @@
                          "value":"starting-area"
                         }, 
                         {
-                         "name":"toMapKey",
+                         "name":"toMarker",
                          "type":"string",
-                         "value":"starting-area"
-                        }, 
-                        {
-                         "name":"toScale",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"toTilesetKey",
-                         "type":"string",
-                         "value":"fantasy-platformer-core"
-                        }, 
-                        {
-                         "name":"toTilesetName",
-                         "type":"string",
-                         "value":"fantasy-platformer-core"
+                         "value":"houseDoor"
                         }],
                  "rotation":0,
                  "type":"door",
                  "visible":true,
                  "width":0,
-                 "x":194.312294156487,
+                 "x":144.319368627081,
                  "y":241.475631372919
                 }],
          "opacity":1,

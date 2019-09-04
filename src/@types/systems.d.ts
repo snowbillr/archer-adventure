@@ -106,13 +106,7 @@ declare namespace Systems.HasPhiniteStateMachine {
 declare namespace Systems.DoorSystem {
   interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
     toKey: string;
-
-    /*
-    toMapKey: string,
-    toTilesetName: string,
-    toTilesetKey: string,
-    toScale: number,
-    */
+    toMarker: string;
   }
 
   interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {

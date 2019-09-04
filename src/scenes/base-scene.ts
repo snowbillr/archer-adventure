@@ -9,7 +9,7 @@ export abstract class BaseScene extends Phaser.Scene {
   stateRegistrar!: StateRegistrarPlugin;
   areaManager!: AreaManagerPlugin;
 
-  loadNewArea(key: string) {
+  loadNewArea(key: string, markerName?: string) {
     this.systemsManager.stop();
     this.systemsManager.destroyEntities();
 
@@ -17,7 +17,11 @@ export abstract class BaseScene extends Phaser.Scene {
     this.areaManager.load(key);
     this.systemsManager.start();
 
-    const adventurer = this.areaManager.objects['adventurer'][0];
+    const adventurer: Entities.Adventurer = this.areaManager.objects['adventurer'][0];
+    if (markerName) {
+      const marker = this.areaManager.markers.find(m => m.name === markerName);
+      adventurer.sprite.setPosition(marker!.x, marker!.y - adventurer.sprite.displayHeight / 2);
+    }
 
     const map = this.areaManager.map;
     const tileset = this.areaManager.tileset;

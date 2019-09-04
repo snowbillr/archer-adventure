@@ -16,6 +16,7 @@ export class DoorSystem implements SystemsManager.System {
     if (tag === DoorSystem.SystemTags.door) {
       const doorEntity = entity as Systems.DoorSystem.DoorEntity;
       doorEntity.toKey = data.toKey;
+      doorEntity.toMarker = data.toMarker;
     }
   }
 
@@ -29,7 +30,7 @@ export class DoorSystem implements SystemsManager.System {
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
         if (door.activeInteractionIds.includes(doorInteractor.id)) {
-          this.scene.loadNewArea(door.toKey);
+          this.scene.loadNewArea(door.toKey, door.toMarker);
         }
       });
     });

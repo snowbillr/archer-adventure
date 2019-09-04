@@ -9,6 +9,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
+  public markers: { name: string, x: number, y: number }[];
 
   private areaMap: { [areaName: string]: any };
 
@@ -19,6 +20,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.tileLayers = [];
     this.objects = {};
+    this.markers = [];
 
     this.areaMap = {};
   }
@@ -47,6 +49,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
+    this.readMarkers();
   }
 
   unload() {
@@ -115,6 +118,21 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       }
 
       this.objects[layerName].push(entity);
+    });
+  }
+
+  private readMarkers() {
+    this.map.objects.forEach(objectLayer => {
+      objectLayer.objects.forEach(object => {
+        const properties = this.normalizeProperties(object.properties);
+        if (properties.marker) {
+          this.markers.push({
+            name: object.name,
+            x: object.x! * this.scale,
+            y: object.y! * this.scale
+          });
+        }
+      });
     });
   }
 
