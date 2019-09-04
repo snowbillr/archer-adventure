@@ -1,3 +1,7 @@
+- map areas shouldn't have an adventurer layer, but instead declare it needs an adventurer
+  - should have a marker where the adventurer should start
+- adventurer should be a prefab that gets created by the area manager
+
 - should the hasInteractionCircle have concepts for 'entering' and 'leaving'? right now the indicator animation is force-played and it shouldn't be
 
 - systems probably should put their vars on the entities in buckets, rather than keep them all on the same flat level
