@@ -47,9 +47,9 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.tileLayers = [];
     this.objects = {};
 
+    this.loadMarkers();
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
-    this.readMarkers();
   }
 
   unload() {
@@ -65,32 +65,49 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
   }
 
-  createTileLayers(layerNames: string[]) {
-    layerNames.forEach(layerName => {
-      const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
-      layer.setScale(this.scale);
-
-      const layerProperties: any = this.normalizeProperties(layer.layer.properties);
-
-      if (layerProperties.collides) {
-        layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-          tile.setCollision(true, true, true, true, false);
-        }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
-
-        layer.calculateFacesWithin(0, 0, layer.width, layer.height);
-      }
-
-      layer.setDepth(layerProperties.depth);
-
-      this.tileLayers.push(layer);
+  private loadMarkers() {
+    this.map.objects.forEach(objectLayer => {
+      objectLayer.objects.forEach(object => {
+        const properties = this.normalizeProperties(object.properties);
+        if (properties.marker) {
+          this.markers.push({
+            name: object.name,
+            x: object.x! * this.scale,
+            y: object.y! * this.scale
+          });
+        }
+      });
     });
   }
 
-  createObjectLayers(layerNames: string[]) {
+  private createTileLayers(layerNames: string[]) {
+    layerNames.forEach(layerName => this.createTileLayer(layerName));
+  }
+
+  private createTileLayer(layerName: string): void {
+    const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
+    layer.setScale(this.scale);
+
+    const layerProperties: any = this.normalizeProperties(layer.layer.properties);
+
+    if (layerProperties.collides) {
+      layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+        tile.setCollision(true, true, true, true, false);
+      }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
+
+      layer.calculateFacesWithin(0, 0, layer.width, layer.height);
+    }
+
+    layer.setDepth(layerProperties.depth)
+
+    this.tileLayers.push(layer);
+  }
+
+  private createObjectLayers(layerNames: string[]) {
     layerNames.forEach(layerName => this.createObjects(layerName));
   }
 
-  createObjects(layerName: string): void {
+  private createObjects(layerName: string): void {
     const layer = this.map.getObjectLayer(layerName);
     const layerProperties = this.normalizeProperties(layer.properties);
     const tiledObjects = layer.objects;
@@ -121,19 +138,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     });
   }
 
-  private readMarkers() {
-    this.map.objects.forEach(objectLayer => {
-      objectLayer.objects.forEach(object => {
-        const properties = this.normalizeProperties(object.properties);
-        if (properties.marker) {
-          this.markers.push({
-            name: object.name,
-            x: object.x! * this.scale,
-            y: object.y! * this.scale
-          });
-        }
-      });
-    });
+  private createPrefabs() {
+
   }
 
   private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject) {
