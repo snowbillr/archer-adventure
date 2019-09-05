@@ -5,7 +5,14 @@ export const baseGround: Partial<PhiniteStateMachine.States.State<Entities.Adven
     {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
-        return entity.body.velocity.y > 5;
+        const threshold = 20;
+        if (entity.body.velocity.y > 5) {
+          console.log('falling old threshold')
+        }
+        if (entity.body.velocity.y > threshold) {
+          console.log('ground to fall - body.velocity.y', entity.body.velocity.y);
+        }
+        return entity.body.velocity.y > threshold;
       },
       to: (entity: Entities.Adventurer) => {
         entity.body.velocity.y = 100;
