@@ -598,13 +598,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="adventurer">
-  <properties>
-   <property name="depth" type="int" value="2"/>
-  </properties>
- </objectgroup>
  <objectgroup id="5" name="doors">
-  <object id="2" name="door" type="door" x="185.823" y="241.476">
+  <object id="2" name="door" type="door" x="147.621" y="241.476">
    <properties>
     <property name="marker" type="bool" value="true"/>
     <property name="toKey" value="starting-area"/>

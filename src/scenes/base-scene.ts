@@ -17,10 +17,9 @@ export abstract class BaseScene extends Phaser.Scene {
     this.areaManager.load(key);
     this.systemsManager.start();
 
-    // const adventurer: Entities.Adventurer = this.areaManager.objects['adventurer'][0];
     const adventurer: Entities.Adventurer = this.areaManager.adventurer;
     if (markerName) {
-      const marker = this.areaManager.markers.find(m => m.name === markerName);
+      const marker = this.areaManager.markers[markerName];
       adventurer.sprite.setPosition(marker!.x, marker!.y - adventurer.sprite.displayHeight / 2);
     }
 

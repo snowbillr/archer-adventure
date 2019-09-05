@@ -644,12 +644,6 @@
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="8" name="adventurer">
-  <properties>
-   <property name="depth" type="int" value="2"/>
-   <property name="interactionKey" value="space"/>
-  </properties>
- </objectgroup>
  <objectgroup id="10" name="markers">
   <object id="16" name="adventurerStart" x="859.416" y="417.915">
    <properties>

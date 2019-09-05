@@ -218,28 +218,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":8,
-         "name":"adventurer",
-         "objects":[],
-         "opacity":1,
-         "properties":[
-                {
-                 "name":"depth",
-                 "type":"int",
-                 "value":2
-                }, 
-                {
-                 "name":"interactionKey",
-                 "type":"string",
-                 "value":"space"
-                }],
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":10,
          "name":"markers",
          "objects":[

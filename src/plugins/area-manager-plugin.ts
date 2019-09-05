@@ -9,7 +9,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
-  public markers: { name: string, x: number, y: number }[];
+  public markers: { [name: string]: { x: number, y: number } };
 
   private areaMap: { [areaName: string]: any };
 
@@ -22,7 +22,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.tileLayers = [];
     this.objects = {};
-    this.markers = [];
+    this.markers = {};
 
     this.areaMap = {};
   }
@@ -73,11 +73,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       objectLayer.objects.forEach(object => {
         const properties = this.normalizeProperties(object.properties);
         if (properties.marker) {
-          this.markers.push({
-            name: object.name,
+          this.markers[object.name] = {
             x: object.x! * this.scale,
             y: object.y! * this.scale
-          });
+          };
         }
       });
     });
@@ -175,10 +174,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   private placeAdventurerAtStart() {
     const mapProperties = this.normalizeProperties(this.map.properties);
     if (mapProperties.startingMarker) {
-      console.log(mapProperties.startingMarker)
-      console.log(this.markers)
-      const marker = this.markers.find(m => m.name === mapProperties.startingMarker);
-      // const adventurer = this.objects['adventurer'][0];
+      const marker = this.markers[mapProperties.startingMarker];
       const adventurer = this.adventurer;
       adventurer.sprite.setPosition(marker!.x, marker!.y - adventurer.sprite.displayHeight / this.scale);
     }

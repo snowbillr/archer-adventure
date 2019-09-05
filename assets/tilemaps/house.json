@@ -62,23 +62,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":4,
-         "name":"adventurer",
-         "objects":[],
-         "opacity":1,
-         "properties":[
-                {
-                 "name":"depth",
-                 "type":"int",
-                 "value":2
-                }],
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":5,
          "name":"doors",
          "objects":[
@@ -132,7 +115,7 @@
                  "type":"door",
                  "visible":true,
                  "width":0,
-                 "x":185.822929443947,
+                 "x":147.620788237514,
                  "y":241.475631372919
                 }],
          "opacity":1,
