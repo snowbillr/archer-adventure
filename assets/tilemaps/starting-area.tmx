@@ -645,7 +645,7 @@
    <property name="depth" type="int" value="2"/>
    <property name="interactionKey" value="space"/>
   </properties>
-  <object id="12" name="adventurer" type="adventurer" x="22.1852" y="81.331">
+  <object id="12" name="adventurer" type="adventurer" x="365.421" y="416.609">
    <point/>
   </object>
  </objectgroup>

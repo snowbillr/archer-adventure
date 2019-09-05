@@ -8,9 +8,13 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
   onEnter(adventurer: Entities.Adventurer) {
     adventurer.sprite.anims.play('adventurer-slide')
 
+    adventurer.body.maxVelocity.x = movementAttributes.slideVelocity;
+
     if (adventurer.body.velocity.x > 0) {
+      adventurer.body.velocity.x = movementAttributes.slideVelocity;
       adventurer.body.acceleration.x = -1 * movementAttributes.slideDeceleration;
     } else {
+      adventurer.body.velocity.x = -1 * movementAttributes.slideVelocity;
       adventurer.body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
@@ -35,6 +39,9 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
         } else {
           return 'adventurer-stand';
         }
+      },
+      onTransition: (entity: Entities.Adventurer) => {
+        entity.body.maxVelocity.x = movementAttributes.maxVelocity;
       }
     },
     {
