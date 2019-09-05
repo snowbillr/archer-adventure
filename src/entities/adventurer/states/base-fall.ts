@@ -6,6 +6,8 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 
 export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseAerial, {
   onEnter(entity: Entities.Adventurer) {
+    console.log('fall - body.blocked.down', entity.body.blocked.down);
+    console.log('fall - body.velocity.y', entity.body.velocity.y);
     entity.sprite.anims.play('adventurer-fall');
   },
   transitions: [
