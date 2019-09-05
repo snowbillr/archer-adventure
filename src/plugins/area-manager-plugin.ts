@@ -129,7 +129,11 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     if (props.tags) {
       props.tags.split(',').forEach((tag: string) => {
-        this.registerEntity(tag, entity, props, { x, y });
+        (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
+          scale: this.scale,
+          ...this.getObjectPosition({ x, y }),
+          ...props
+        });
       });
     }
 
@@ -173,17 +177,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       const adventurer = this.adventurer;
       adventurer.sprite.setPosition(marker.x, marker.y - adventurer.sprite.displayHeight / this.scale);
     }
-  }
-
-  private registerEntity(tag: string, entity: SystemsManager.Entity, properties: { [key: string]: any }, position: { x: number, y: number }) {
-    const { x, y } = this.getObjectPosition(position);
-
-    (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
-      x,
-      y,
-      scale: this.scale,
-      ...properties
-    });
   }
 
   private normalizeProperties(properties: any): { [key: string]: any } {
