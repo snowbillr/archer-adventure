@@ -64,75 +64,7 @@
          "draworder":"topdown",
          "id":4,
          "name":"adventurer",
-         "objects":[
-                {
-                 "height":0,
-                 "id":1,
-                 "name":"adventurer",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"boundsKey",
-                         "type":"string",
-                         "value":"adventurer-bounds"
-                        }, 
-                        {
-                         "name":"frame",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"hurtboxesDebug",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"hurtboxesKey",
-                         "type":"string",
-                         "value":"adventurer-hurtboxes"
-                        }, 
-                        {
-                         "name":"initialStateId",
-                         "type":"string",
-                         "value":"adventurer-stand"
-                        }, 
-                        {
-                         "name":"interactionRadius",
-                         "type":"int",
-                         "value":30
-                        }, 
-                        {
-                         "name":"layerCollisions",
-                         "type":"string",
-                         "value":"ground"
-                        }, 
-                        {
-                         "name":"maxVelocityX",
-                         "type":"int",
-                         "value":350
-                        }, 
-                        {
-                         "name":"stateSet",
-                         "type":"string",
-                         "value":"adventurer"
-                        }, 
-                        {
-                         "name":"tags",
-                         "type":"string",
-                         "value":"hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor"
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"adventurer-core"
-                        }],
-                 "rotation":0,
-                 "type":"adventurer",
-                 "visible":true,
-                 "width":0,
-                 "x":144.791,
-                 "y":241.344
-                }],
+         "objects":[],
          "opacity":1,
          "properties":[
                 {
@@ -200,7 +132,7 @@
                  "type":"door",
                  "visible":true,
                  "width":0,
-                 "x":144.319368627081,
+                 "x":185.822929443947,
                  "y":241.475631372919
                 }],
          "opacity":1,

@@ -602,12 +602,9 @@
   <properties>
    <property name="depth" type="int" value="2"/>
   </properties>
-  <object id="1" name="adventurer" type="adventurer" x="144.791" y="241.344">
-   <point/>
-  </object>
  </objectgroup>
  <objectgroup id="5" name="doors">
-  <object id="2" name="door" type="door" x="144.319" y="241.476">
+  <object id="2" name="door" type="door" x="185.823" y="241.476">
    <properties>
     <property name="marker" type="bool" value="true"/>
     <property name="toKey" value="starting-area"/>
