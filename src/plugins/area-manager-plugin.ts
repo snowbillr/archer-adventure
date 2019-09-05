@@ -123,18 +123,13 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     });
   }
 
-  private createObject(properties: { [key: string]: any }, depth?: number, x?: number, y?: number) {
+  private createObject(properties: { [key: string]: any }, depth: number = 0, x: number = 0, y: number = 0) {
     const entity = {} as any;
     const props = this.normalizeProperties(properties);
-    const fakeTiledObject = {
-      x: x,
-      y: y,
-      properties: props,
-    };
 
     if (props.tags) {
       props.tags.split(',').forEach((tag: string) => {
-        this.registerEntity(tag, entity, fakeTiledObject as Phaser.Types.Tilemaps.TiledObject);
+        this.registerEntity(tag, entity, props, { x, y });
       });
     }
 
@@ -144,7 +139,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       });
     }
 
-    if (depth && entity.sprite) {
+    if (entity.sprite) {
       entity.sprite.setDepth(depth);
     }
 
@@ -176,18 +171,18 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     if (mapProperties.startingMarker) {
       const marker = this.markers[mapProperties.startingMarker];
       const adventurer = this.adventurer;
-      adventurer.sprite.setPosition(marker!.x, marker!.y - adventurer.sprite.displayHeight / this.scale);
+      adventurer.sprite.setPosition(marker.x, marker.y - adventurer.sprite.displayHeight / this.scale);
     }
   }
 
-  private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject) {
-    const { x, y } = this.getObjectPosition(tiledObject);
+  private registerEntity(tag: string, entity: SystemsManager.Entity, properties: { [key: string]: any }, position: { x: number, y: number }) {
+    const { x, y } = this.getObjectPosition(position);
 
     (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
       x,
       y,
       scale: this.scale,
-      ...tiledObject.properties
+      ...properties
     });
   }
 
@@ -202,10 +197,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
   }
 
-  private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {
+  private getObjectPosition(position: { x: number, y: number }) {
     return {
-      x: tiledObject.x! * this.scale,
-      y: tiledObject.y! * this.scale,
+      x: position.x * this.scale,
+      y: position.y * this.scale,
     };
   }
 }
