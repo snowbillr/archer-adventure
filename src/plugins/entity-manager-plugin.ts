@@ -1,5 +1,7 @@
 import { BaseScene } from '../scenes/base-scene';
 
+import { adventurerPrefab } from '../entities/adventurer/adventurer';
+
 type propertiesMap = { [key: string]: any };
 
 export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
@@ -10,19 +12,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.prefabs = {};
 
-    this.registerPrefab('adventurer', {
-      boundsKey: "adventurer-bounds",
-      frame: 0,
-      hurtboxesDebug: false,
-      hurtboxesKey: "adventurer-hurtboxes",
-      initialStateId: "adventurer-stand",
-      interactionRadius: 30,
-      layerCollisions: "ground",
-      maxVelocityX: 350,
-      stateSet: "adventurer",
-      tags: "hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor",
-      texture: "adventurer-core",
-    });
+    this.registerPrefab('adventurer', adventurerPrefab);
   }
 
   registerPrefab(key: string, properties: propertiesMap) {
