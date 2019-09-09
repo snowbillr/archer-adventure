@@ -3,11 +3,13 @@ import 'phaser';
 import { SystemsManagerPlugin } from '../plugins/systems-manager-plugin';
 import { StateRegistrarPlugin } from '../plugins/state-registrar-plugin';
 import { AreaManagerPlugin } from '../plugins/area-manager-plugin';
+import { EntityCreatorPlugin } from '../plugins/entity-creator-plugin';
 
 export abstract class BaseScene extends Phaser.Scene {
-  systemsManager!: SystemsManagerPlugin;
-  stateRegistrar!: StateRegistrarPlugin;
   areaManager!: AreaManagerPlugin;
+  entityCreator!: EntityCreatorPlugin;
+  stateRegistrar!: StateRegistrarPlugin;
+  systemsManager!: SystemsManagerPlugin;
 
   loadNewArea(key: string, markerName?: string) {
     this.systemsManager.stop();
