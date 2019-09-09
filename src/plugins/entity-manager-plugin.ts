@@ -13,20 +13,31 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.prefabs = {};
 
     this.registerPrefab('adventurer', adventurerPrefab);
+    this.registerPrefab('door', {
+      tags: 'hasSprite,door,hasInteractionCircle,hasIndicator',
+      texture: 'doors',
+      frame: 1,
+      interactionControl: 'action',
+      interactionRadius: 40,
+      marker: true,
+      // toKey: 'house',
+      // toMarker: 'door'
+    });
   }
 
   registerPrefab(key: string, properties: propertiesMap) {
     this.prefabs[key] = properties;
   }
 
-  createPrefab(key: string, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+  createPrefab(key: string, overrides: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
     const prefabProperties = this.prefabs[key];
-    return this.createEntity(prefabProperties, scale, depth, x, y);
+    return this.createEntity(prefabProperties, overrides, scale, depth, x, y);
   }
 
-  createEntity(rawProperties: { [key: string]: any }, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+  createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
     const entity = {} as any;
-    const properties = this.normalizeProperties(rawProperties);
+    const overrideProperties = this.normalizeProperties(rawOverrideProperties);
+    const properties = {...this.normalizeProperties(rawProperties), ...overrideProperties};
     const baseScene = this.scene as BaseScene;
 
     if (properties.tags) {

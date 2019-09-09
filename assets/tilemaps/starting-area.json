@@ -236,8 +236,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":859.416445623342,
-                 "y":417.915119363395
+                 "x":859.416,
+                 "y":417.915
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -257,34 +257,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"frame",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"interactionControl",
-                         "type":"string",
-                         "value":"action"
-                        }, 
-                        {
-                         "name":"interactionRadius",
-                         "type":"int",
-                         "value":40
-                        }, 
-                        {
                          "name":"marker",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"tags",
-                         "type":"string",
-                         "value":"hasSprite,door,hasInteractionCircle,hasIndicator"
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"doors"
                         }, 
                         {
                          "name":"toKey",
