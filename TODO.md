@@ -1,6 +1,7 @@
 - CURRENT BRANCH SPECIFIC
   - define adventurer prefab somewhere
   - maybe extract an EntityCreator class from the area manager plugin
+  - basescene should be the one responsible for creating the adventurer, not the areamanager
 
 - map areas shouldn't have an adventurer layer, but instead declare it needs an adventurer
   - should have a marker where the adventurer should start

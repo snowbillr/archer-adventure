@@ -1,8 +1,37 @@
 import { BaseScene } from '../scenes/base-scene';
 
+type propertiesMap = { [key: string]: any };
+
 export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
+  private prefabs: propertiesMap;
+
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
+
+    this.prefabs = {};
+
+    this.registerPrefab('adventurer', {
+      boundsKey: "adventurer-bounds",
+      frame: 0,
+      hurtboxesDebug: false,
+      hurtboxesKey: "adventurer-hurtboxes",
+      initialStateId: "adventurer-stand",
+      interactionRadius: 30,
+      layerCollisions: "ground",
+      maxVelocityX: 350,
+      stateSet: "adventurer",
+      tags: "hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor",
+      texture: "adventurer-core",
+    });
+  }
+
+  registerPrefab(key: string, properties: propertiesMap) {
+    this.prefabs[key] = properties;
+  }
+
+  createPrefab(key: string, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+    const prefabProperties = this.prefabs[key];
+    return this.createEntity(prefabProperties, scale, depth, x, y);
   }
 
   createEntity(rawProperties: { [key: string]: any }, scale: number, depth: number = 0, x: number = 0, y: number = 0) {

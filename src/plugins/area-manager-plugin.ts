@@ -124,21 +124,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   private createAdventurer() {
-    const adventurerProps = {
-      boundsKey: "adventurer-bounds",
-      frame: 0,
-      hurtboxesDebug: false,
-      hurtboxesKey: "adventurer-hurtboxes",
-      initialStateId: "adventurer-stand",
-      interactionRadius: 30,
-      layerCollisions: "ground",
-      maxVelocityX: 350,
-      stateSet: "adventurer",
-      tags: "hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor",
-      texture: "adventurer-core",
-    };
-
-    this.adventurer = (this.scene as BaseScene).entityManager.createEntity(adventurerProps, this.scale, 2, 0, 0) as Entities.Adventurer;
+    this.adventurer = (this.scene as BaseScene).entityManager.createPrefab('adventurer', this.scale, 2, 0, 0) as Entities.Adventurer;
     this.placeAdventurerAtStart();
   }
 
