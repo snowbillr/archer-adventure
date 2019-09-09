@@ -106,29 +106,8 @@
                  "height":16,
                  "id":4,
                  "name":"",
-                 "properties":[
-                        {
-                         "name":"frame",
-                         "type":"int",
-                         "value":1128
-                        }, 
-                        {
-                         "name":"interactionRadius",
-                         "type":"int",
-                         "value":30
-                        }, 
-                        {
-                         "name":"tags",
-                         "type":"string",
-                         "value":"hasSprite,hasInteractionCircle,hasIndicator,sign-interactive"
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"fantasy-platformer-core-spritesheet"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"sign",
                  "visible":true,
                  "width":16,
                  "x":528,

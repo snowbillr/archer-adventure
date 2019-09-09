@@ -617,14 +617,7 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="4" gid="1129" x="528" y="112" width="16" height="16">
-   <properties>
-    <property name="frame" type="int" value="1128"/>
-    <property name="interactionRadius" type="int" value="30"/>
-    <property name="tags" value="hasSprite,hasInteractionCircle,hasIndicator,sign-interactive"/>
-    <property name="texture" value="fantasy-platformer-core-spritesheet"/>
-   </properties>
-  </object>
+  <object id="4" type="sign" gid="1129" x="528" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="npcs">
   <properties>
