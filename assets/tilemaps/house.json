@@ -72,34 +72,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"frame",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"interactionControl",
-                         "type":"string",
-                         "value":"action"
-                        }, 
-                        {
-                         "name":"interactionRadius",
-                         "type":"int",
-                         "value":40
-                        }, 
-                        {
                          "name":"marker",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"tags",
-                         "type":"string",
-                         "value":"hasSprite,door,hasInteractionCircle,hasIndicator"
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"doors"
                         }, 
                         {
                          "name":"toKey",
@@ -115,8 +90,8 @@
                  "type":"door",
                  "visible":true,
                  "width":0,
-                 "x":147.620788237514,
-                 "y":241.475631372919
+                 "x":147.621,
+                 "y":242.476
                 }],
          "opacity":1,
          "type":"objectgroup",

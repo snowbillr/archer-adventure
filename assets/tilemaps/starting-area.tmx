@@ -639,7 +639,7 @@
   <properties>
    <property name="depth" type="int" value="0"/>
   </properties>
-  <object id="14" name="houseDoor" type="door" x="752.422" y="416.562">
+  <object id="14" name="houseDoor" type="door" x="752.422" y="417.562">
    <properties>
     <property name="marker" type="bool" value="true"/>
     <property name="toKey" value="house"/>
