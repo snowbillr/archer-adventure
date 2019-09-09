@@ -1,6 +1,6 @@
 import { BaseScene } from '../scenes/base-scene';
 
-export class EntityCreatorPlugin extends Phaser.Plugins.ScenePlugin {
+export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
   }

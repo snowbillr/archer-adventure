@@ -1,7 +1,7 @@
 import 'phaser';
 
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
-import { EntityCreatorPlugin } from './plugins/entity-creator-plugin';
+import { EntityManagerPlugin } from './plugins/entity-manager-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 
@@ -32,9 +32,9 @@ const gameConfig = {
         mapping: 'areaManager',
       },
       {
-        key: 'EntityCreator',
-        plugin: EntityCreatorPlugin,
-        mapping: 'entityCreator',
+        key: 'EntityManager',
+        plugin: EntityManagerPlugin,
+        mapping: 'entityManager',
       },
     ]
   },

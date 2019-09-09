@@ -117,7 +117,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.objects[layerName] = [];
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
-      const entity = (this.scene as BaseScene).entityCreator.createEntity(tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
+      const entity = (this.scene as BaseScene).entityManager.createEntity(tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
 
       this.objects[layerName].push(entity);
     });
@@ -138,7 +138,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       texture: "adventurer-core",
     };
 
-    this.adventurer = (this.scene as BaseScene).entityCreator.createEntity(adventurerProps, this.scale, 2, 0, 0) as Entities.Adventurer;
+    this.adventurer = (this.scene as BaseScene).entityManager.createEntity(adventurerProps, this.scale, 2, 0, 0) as Entities.Adventurer;
     this.placeAdventurerAtStart();
   }
 
