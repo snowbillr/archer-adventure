@@ -150,7 +150,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         return acc;
       }, {});
     } else {
-      return properties;
+      return properties || {};
     }
   }
 }

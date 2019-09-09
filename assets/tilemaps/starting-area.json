@@ -156,49 +156,8 @@
                  "id":8,
                  "name":"sheep",
                  "point":true,
-                 "properties":[
-                        {
-                         "name":"areaBoundaryLeft",
-                         "type":"int",
-                         "value":1850
-                        }, 
-                        {
-                         "name":"areaBoundaryRight",
-                         "type":"int",
-                         "value":2100
-                        }, 
-                        {
-                         "name":"frame",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"initialStateId",
-                         "type":"string",
-                         "value":"sheep-walk-right"
-                        }, 
-                        {
-                         "name":"layerCollisions",
-                         "type":"string",
-                         "value":"ground"
-                        }, 
-                        {
-                         "name":"stateSet",
-                         "type":"string",
-                         "value":"sheep"
-                        }, 
-                        {
-                         "name":"tags",
-                         "type":"string",
-                         "value":"hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary"
-                        }, 
-                        {
-                         "name":"texture",
-                         "type":"string",
-                         "value":"sheep-walk"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"sheep",
                  "visible":true,
                  "width":0,
                  "x":953.545,

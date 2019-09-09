@@ -630,17 +630,7 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="8" name="sheep" x="953.545" y="416.871">
-   <properties>
-    <property name="areaBoundaryLeft" type="int" value="1850"/>
-    <property name="areaBoundaryRight" type="int" value="2100"/>
-    <property name="frame" type="int" value="0"/>
-    <property name="initialStateId" value="sheep-walk-right"/>
-    <property name="layerCollisions" value="ground"/>
-    <property name="stateSet" value="sheep"/>
-    <property name="tags" value="hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary"/>
-    <property name="texture" value="sheep-walk"/>
-   </properties>
+  <object id="8" name="sheep" type="sheep" x="953.545" y="416.871">
    <point/>
   </object>
  </objectgroup>

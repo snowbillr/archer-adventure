@@ -2,6 +2,7 @@ import { BaseScene } from '../scenes/base-scene';
 
 import { adventurerPrefab } from '../entities/adventurer/adventurer';
 import { doorPrefab } from '../entities/door/prefab';
+import { sheepPrefab } from '../entities/sheep/prefab';
 
 type propertiesMap = { [key: string]: any };
 
@@ -15,6 +16,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.registerPrefab('adventurer', adventurerPrefab);
     this.registerPrefab('door', doorPrefab);
+    this.registerPrefab('sheep', sheepPrefab);
   }
 
   registerPrefab(key: string, properties: propertiesMap) {
