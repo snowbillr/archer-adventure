@@ -1,6 +1,7 @@
 import { BaseScene } from '../scenes/base-scene';
 
 import { adventurerPrefab } from '../entities/adventurer/adventurer';
+import { doorPrefab } from '../entities/door/prefab';
 
 type propertiesMap = { [key: string]: any };
 
@@ -13,16 +14,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.prefabs = {};
 
     this.registerPrefab('adventurer', adventurerPrefab);
-    this.registerPrefab('door', {
-      tags: 'hasSprite,door,hasInteractionCircle,hasIndicator',
-      texture: 'doors',
-      frame: 1,
-      interactionControl: 'action',
-      interactionRadius: 40,
-      marker: true,
-      // toKey: 'house',
-      // toMarker: 'door'
-    });
+    this.registerPrefab('door', doorPrefab);
   }
 
   registerPrefab(key: string, properties: propertiesMap) {
