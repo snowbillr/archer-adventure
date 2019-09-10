@@ -1,6 +1,6 @@
 import { BaseScene } from '../scenes/base-scene';
 
-import { adventurerPrefab } from '../entities/adventurer/adventurer';
+import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';

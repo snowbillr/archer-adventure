@@ -130,7 +130,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   private createAdventurer() {
-    this.adventurer = (this.scene as BaseScene).entityManager.createPrefab('adventurer', this.scale, 2, 0, 0) as Entities.Adventurer;
+    this.adventurer = (this.scene as BaseScene).entityManager.createPrefab('adventurer', {}, this.scale, 2, 0, 0) as Entities.Adventurer;
     this.placeAdventurerAtStart();
   }
 
