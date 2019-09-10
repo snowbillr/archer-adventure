@@ -1,7 +1,5 @@
 - CURRENT BRANCH SPECIFIC
   - almost only creating things by prefab - markers still get 'created' when they shouldn't
-  - `layerCollisions` and `depth` shouldn't be a part of the prefab definition
-  - basescene should be the one responsible for creating the adventurer, not the areamanager
 
 - map areas shouldn't have an adventurer layer, but instead declare it needs an adventurer
   - should have a marker where the adventurer should start

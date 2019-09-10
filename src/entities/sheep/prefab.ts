@@ -11,6 +11,4 @@ export const sheepPrefab = {
 
   stateSet: 'sheep',
   initialStateId: 'sheep-walk-right',
-
-  layerCollisions: 'ground',
 };

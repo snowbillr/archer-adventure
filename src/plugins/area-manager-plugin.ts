@@ -2,7 +2,7 @@ import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
-  private scale: number;
+  public scale: number;
 
   public map!: Phaser.Tilemaps.Tilemap;
   public tileset!: Phaser.Tilemaps.Tileset;

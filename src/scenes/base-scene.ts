@@ -21,8 +21,7 @@ export abstract class BaseScene extends Phaser.Scene {
     const map = this.areaManager.map;
     const tileset = this.areaManager.tileset;
 
-    // the first 2 is the scale. where does that come from? probably from the prefab?
-    const adventurer = this.entityManager.createPrefab('adventurer', {}, 2, 2, 0, 0) as Entities.Adventurer;
+    const adventurer = this.entityManager.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
     const mapProperties = this.normalizeProperties(map.properties);
 
     if (markerName) {

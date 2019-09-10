@@ -16,6 +16,4 @@ export const adventurerPrefab = {
 
   stateSet: "adventurer",
   initialStateId: "adventurer-stand",
-
-  layerCollisions: "ground",
 }
