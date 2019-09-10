@@ -15,6 +15,7 @@ export abstract class BaseScene extends Phaser.Scene {
     this.systemsManager.stop();
     this.systemsManager.destroyEntities();
     this.areaManager.unload();
+    this.entityManager.unload();
 
     this.areaManager.load(key);
 

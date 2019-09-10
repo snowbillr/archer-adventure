@@ -25,6 +25,10 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.registerPrefab('sign', signPrefab);
   }
 
+  unload() {
+    this.entitiesByName = {};
+  }
+
   registerPrefab(key: string, properties: PropertiesMap) {
     this.prefabs[key] = properties;
   }
