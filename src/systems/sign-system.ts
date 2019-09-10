@@ -5,20 +5,17 @@ export class SignSystem implements SystemsManager.System {
   }
 
   update(systemsManager: SystemsManager.SystemsManager) {
-    const interactors: Systems.HasInteractionCircle.Entity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
-    const signs: Entities.Sign[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
+   const signInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+   const signs: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
-    interactors.forEach(interactor => {
-      signs.forEach(sign => {
-        const circle1 = interactor.interactionCircle;
-        const circle2 = sign.interactionCircle;
+   signInteractors.forEach(signInteractor => {
+     const enteringSignIds = signInteractor.enteringInteractionIds;
+     const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
+     enteringSigns.forEach(enteringSign => enteringSign.showIndicator());
 
-        if (Phaser.Geom.Intersects.CircleToCircle(circle1, circle2)) {
-          sign.showIndicator();
-        } else {
-          sign.hideIndicator();
-        }
-      })
-    });
+     const exitingSignIds = signInteractor.exitingInteractionIds;
+     const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
+     exitingSigns.forEach(exitingSign => exitingSign.hideIndicator());
+   });
   }
 }

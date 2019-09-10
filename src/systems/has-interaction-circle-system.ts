@@ -23,7 +23,9 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     }
 
     entity.interactionCircle = interactionCircle;
+    entity.enteringInteractionIds = [];
     entity.activeInteractionIds = [];
+    entity.exitingInteractionIds = [];
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -46,9 +48,28 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       }
     });
 
-    entities.forEach(entity => {
-      entity.activeInteractionIds = this.getActiveInteractionIds(entity, entities);
-    })
+    /*
+      * entering -> active -> exiting
+    */
+    for (let entity of entities) {
+      const intersectingEntityIds = this.getIntersectingInteractionIds(entity, entities);
+      const newEntityIds = [...intersectingEntityIds];
+
+      entity.exitingInteractionIds = [];
+      for (let activeInteractionId of entity.activeInteractionIds) {
+        if (!intersectingEntityIds.includes(activeInteractionId)) {
+          this.moveBetweenLists(activeInteractionId, entity.activeInteractionIds, entity.exitingInteractionIds);
+          this.moveBetweenLists(activeInteractionId, newEntityIds, []);
+        }
+      };
+
+      for (let enteringInteractionId of entity.enteringInteractionIds) {
+        this.moveBetweenLists(enteringInteractionId, entity.enteringInteractionIds, entity.activeInteractionIds);
+          this.moveBetweenLists(enteringInteractionId, newEntityIds, []);
+      };
+
+      entity.enteringInteractionIds = newEntityIds;
+    };
   }
 
   destroy(entity: Systems.HasInteractionCircle.Entity) {
@@ -58,11 +79,13 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       entity.debugInteractionCircle.destroy();
     }
 
+    delete entity.enteringInteractionIds;
     delete entity.activeInteractionIds;
+    delete entity.exitingInteractionIds;
     delete entity.debugInteractionCircle;
   }
 
-  private getActiveInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {
+  private getIntersectingInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {
     return allEntities
       .filter(otherEntity => otherEntity.id !== entity.id)
       .filter(otherEntity => {
@@ -72,5 +95,10 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
         return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
       })
       .map(otherEntity => otherEntity.id);
+  }
+
+  private moveBetweenLists(value: string, fromList: string[], toList: string[]) {
+    fromList.splice(fromList.indexOf(value), 1);
+    toList.push(value);
   }
 }

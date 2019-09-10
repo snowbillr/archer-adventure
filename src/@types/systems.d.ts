@@ -13,7 +13,9 @@ declare namespace Systems.HasPhysicalSprite {
 declare namespace Systems.HasInteractionCircle {
   interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     interactionCircle: Phaser.Geom.Circle;
+    enteringInteractionIds: string[],
     activeInteractionIds: string[];
+    exitingInteractionIds: string[],
     interactionControl?: string;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
   }

@@ -35,6 +35,8 @@ export class HasIndicatorSystem implements SystemsManager.System {
     entity.indicatorSprite = indicatorSprite;
     entity.showIndicator = showIndicator;
     entity.hideIndicator = hideIndicator;
+
+    hideIndicator();
   }
 
   destroy(entity: Systems.HasIndicator.Entity) {

@@ -41,14 +41,13 @@ export class DoorSystem implements SystemsManager.System {
     const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
 
     doorInteractors.forEach(doorInteractor => {
-      const activeDoorIds = doorInteractor.activeInteractionIds;
-      const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
-      const inactiveDoors = doors.filter(door => !activeDoorIds.includes(door.id));
+      const enteringDoorIds = doorInteractor.enteringInteractionIds;
+      const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
+      enteringDoors.forEach(enteringDoor => enteringDoor.showIndicator());
 
-      activeDoors.forEach(activeDoor => {
-        activeDoor!.showIndicator()
-      });
-      inactiveDoors.forEach(inactiveDoor => inactiveDoor!.hideIndicator());
+      const exitingDoorIds = doorInteractor.exitingInteractionIds;
+      const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
+      exitingDoors.forEach(exitingDoor => exitingDoor.hideIndicator());
     });
   }
 
