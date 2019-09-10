@@ -126,8 +126,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
       if (tiledObject.type) {
         entity = (this.scene as BaseScene).entityManager.createPrefab(tiledObject.type, tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
-      } else {
-        entity = (this.scene as BaseScene).entityManager.createEntity(tiledObject.properties, {}, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
       }
 
       this.objects[layerName].push(entity);

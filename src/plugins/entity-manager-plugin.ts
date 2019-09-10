@@ -38,7 +38,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     return entity;
   }
 
-  createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+  private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
     const entity = {} as any;
     const overrideProperties = this.normalizeProperties(rawOverrideProperties);
     const properties = {...this.normalizeProperties(rawProperties), ...overrideProperties};
