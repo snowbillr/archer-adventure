@@ -31,7 +31,7 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
   update(tagManager: SystemsManager.SystemsManager) {
     const entities: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
 
-    entities.forEach(entity => {
+    for (let entity of entities) {
       entity.interactionCircle.setPosition(entity.sprite.x, entity.sprite.y);
 
       if (entity.debugInteractionCircle) {
@@ -46,7 +46,7 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
           }
         }
       }
-    });
+    };
 
     /*
       * entering -> active -> exiting

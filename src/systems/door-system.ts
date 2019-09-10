@@ -40,15 +40,19 @@ export class DoorSystem implements SystemsManager.System {
     const doorInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.doorInteractor);
     const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
 
-    doorInteractors.forEach(doorInteractor => {
+    for (let doorInteractor of doorInteractors) {
       const enteringDoorIds = doorInteractor.enteringInteractionIds;
       const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
-      enteringDoors.forEach(enteringDoor => enteringDoor.showIndicator());
+      for (let enteringDoor of enteringDoors) {
+        enteringDoor.showIndicator();
+      }
 
       const exitingDoorIds = doorInteractor.exitingInteractionIds;
       const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
-      exitingDoors.forEach(exitingDoor => exitingDoor.hideIndicator());
-    });
+      for (let enteringDoor of exitingDoors) {
+        enteringDoor.hideIndicator();
+      }
+    };
   }
 
   destroy(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), tag: string) {

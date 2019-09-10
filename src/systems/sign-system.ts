@@ -8,14 +8,18 @@ export class SignSystem implements SystemsManager.System {
    const signInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
    const signs: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
-   signInteractors.forEach(signInteractor => {
+   for (let signInteractor of signInteractors) {
      const enteringSignIds = signInteractor.enteringInteractionIds;
      const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
-     enteringSigns.forEach(enteringSign => enteringSign.showIndicator());
+     for (let enteringSign of enteringSigns) {
+       enteringSign.showIndicator();
+     }
 
      const exitingSignIds = signInteractor.exitingInteractionIds;
      const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
-     exitingSigns.forEach(exitingSign => exitingSign.hideIndicator());
-   });
+     for (let exitingSign of exitingSigns) {
+       exitingSign.hideIndicator();
+     }
+   };
   }
 }
