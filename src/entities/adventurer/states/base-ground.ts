@@ -10,12 +10,6 @@ export const baseGround: Partial<PhiniteStateMachine.States.State<Entities.Adven
         // state unless they are moving faster than that value.
         // This doesn't negatively impact running off of a platform.
         const threshold = 20;
-        if (entity.body.velocity.y > 5) {
-          console.log('falling old threshold')
-        }
-        if (entity.body.velocity.y > threshold) {
-          console.log('ground to fall - body.velocity.y', entity.body.velocity.y);
-        }
         return entity.body.velocity.y > threshold;
       },
       to: (entity: Entities.Adventurer) => {

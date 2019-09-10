@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="3">
+ <properties>
+  <property name="entityLayerCollisions" value="adventurer:ground"/>
+ </properties>
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
  </tileset>
@@ -598,16 +601,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="adventurer">
-  <properties>
-   <property name="depth" type="int" value="2"/>
-  </properties>
-  <object id="1" name="adventurer" type="adventurer" x="144.791" y="241.344">
-   <point/>
-  </object>
- </objectgroup>
  <objectgroup id="5" name="doors">
-  <object id="2" name="door" type="door" x="144.319" y="241.476">
+  <object id="2" name="door" type="door" x="147.621" y="242.476">
    <properties>
     <property name="marker" type="bool" value="true"/>
     <property name="toKey" value="starting-area"/>

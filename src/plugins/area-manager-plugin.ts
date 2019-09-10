@@ -2,16 +2,18 @@ import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
-  private scale: number;
+  public scale: number;
 
   public map!: Phaser.Tilemaps.Tilemap;
   public tileset!: Phaser.Tilemaps.Tileset;
 
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
-  public markers: { name: string, x: number, y: number }[];
+  public markers: { [name: string]: { x: number, y: number } };
 
   private areaMap: { [areaName: string]: any };
+
+  public adventurer!: Entities.Adventurer;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
@@ -20,7 +22,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.tileLayers = [];
     this.objects = {};
-    this.markers = [];
+    this.markers = {};
 
     this.areaMap = {};
   }
@@ -65,16 +67,21 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
   }
 
+  placeEntityAtMarker(entity: Systems.HasSprite.Entity, markerName: string) {
+    const marker = this.markers[markerName];
+
+    entity.sprite.setPosition(marker.x, marker.y - entity.sprite.displayHeight / this.scale);
+  }
+
   private loadMarkers() {
     this.map.objects.forEach(objectLayer => {
       objectLayer.objects.forEach(object => {
         const properties = this.normalizeProperties(object.properties);
         if (properties.marker) {
-          this.markers.push({
-            name: object.name,
+          this.markers[object.name] = {
             x: object.x! * this.scale,
             y: object.y! * this.scale
-          });
+          };
         }
       });
     });
@@ -115,59 +122,24 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.objects[layerName] = [];
 
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
-      const entity = {} as any;
+      let entity = null;
 
-      const tileProperties: any = this.normalizeProperties(tiledObject.properties);
-      tiledObject.properties = tileProperties;
-
-      tileProperties.tags.split(',').forEach((tag: string) => {
-        this.registerEntity(tag, entity, tiledObject);
-      });
-
-      if (tileProperties.layerCollisions) {
-        tileProperties.layerCollisions.split(',').forEach((layerName: string) => {
-          this.scene.physics.add.collider(entity.sprite, this.tileLayers.find(layer => layer.layer.name === layerName)!);
-        });
-      }
-
-      if (layerProperties.depth && entity.sprite) {
-        entity.sprite.setDepth(layerProperties.depth);
+      if (tiledObject.type) {
+        entity = (this.scene as BaseScene).entityManager.createPrefab(tiledObject.type, tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
       }
 
       this.objects[layerName].push(entity);
     });
   }
 
-  private createPrefabs() {
-
-  }
-
-  private registerEntity(tag: string, entity: SystemsManager.Entity, tiledObject: Phaser.Types.Tilemaps.TiledObject) {
-    const { x, y } = this.getObjectPosition(tiledObject);
-
-    (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
-      x,
-      y,
-      scale: this.scale,
-      ...tiledObject.properties
-    });
-  }
-
-  private normalizeProperties(properties: any) {
+  private normalizeProperties(properties: any): { [key: string]: any } {
     if (Array.isArray(properties)) {
       return properties.reduce((acc: any, propertyMap: any) => {
         acc[propertyMap.name] = propertyMap.value;
         return acc;
       }, {});
     } else {
-      return properties;
+      return properties || {};
     }
-  }
-
-  private getObjectPosition(tiledObject: Phaser.Types.Tilemaps.TiledObject) {
-    return {
-      x: tiledObject.x! * this.scale,
-      y: tiledObject.y! * this.scale,
-    };
   }
 }

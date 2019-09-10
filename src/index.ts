@@ -1,14 +1,15 @@
 import 'phaser';
 
-import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
+import { AreaManagerPlugin } from './plugins/area-manager-plugin';
+import { EntityManagerPlugin } from './plugins/entity-manager-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
+import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 
 import { PreloadScene } from './scenes/preload-scene';
 import { MovementTestScene } from './scenes/movement-test-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 import { BoundsTestScene } from './scenes/bounds-test-scene';
 import { HitboxTestScene } from './scenes/hitbox-test-scene';
-import { AreaManagerPlugin } from './plugins/area-manager-plugin';
 
 const gameConfig = {
   width: 800,
@@ -29,6 +30,11 @@ const gameConfig = {
         key: 'AreaManager',
         plugin: AreaManagerPlugin,
         mapping: 'areaManager',
+      },
+      {
+        key: 'EntityManager',
+        plugin: EntityManagerPlugin,
+        mapping: 'entityManager',
       },
     ]
   },

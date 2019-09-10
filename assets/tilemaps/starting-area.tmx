@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="16">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="17">
+ <properties>
+  <property name="entityLayerCollisions" value="adventurer:ground,sheep:ground"/>
+  <property name="startingMarker" value="adventurerStart"/>
+ </properties>
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>
   <tile id="258">
@@ -613,39 +617,21 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="4" gid="1129" x="528" y="112" width="16" height="16">
-   <properties>
-    <property name="frame" type="int" value="1128"/>
-    <property name="interactionRadius" type="int" value="30"/>
-    <property name="tags" value="hasSprite,hasInteractionCircle,hasIndicator,sign-interactive"/>
-    <property name="texture" value="fantasy-platformer-core-spritesheet"/>
-   </properties>
-  </object>
+  <object id="4" type="sign" gid="1129" x="528" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="npcs">
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="8" name="sheep" x="953.545" y="416.871">
-   <properties>
-    <property name="areaBoundaryLeft" type="int" value="1850"/>
-    <property name="areaBoundaryRight" type="int" value="2100"/>
-    <property name="frame" type="int" value="0"/>
-    <property name="initialStateId" value="sheep-walk-right"/>
-    <property name="layerCollisions" value="ground"/>
-    <property name="stateSet" value="sheep"/>
-    <property name="tags" value="hasPhysicalSprite,hasPhiniteStateMachine,hasAreaBoundary"/>
-    <property name="texture" value="sheep-walk"/>
-   </properties>
+  <object id="8" name="sheep" type="sheep" x="953.545" y="416.871">
    <point/>
   </object>
  </objectgroup>
- <objectgroup id="8" name="adventurer">
-  <properties>
-   <property name="depth" type="int" value="2"/>
-   <property name="interactionKey" value="space"/>
-  </properties>
-  <object id="12" name="adventurer" type="adventurer" x="365.421" y="416.609">
+ <objectgroup id="10" name="markers">
+  <object id="16" name="adventurerStart" x="859.416" y="416.915">
+   <properties>
+    <property name="marker" type="bool" value="true"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
@@ -653,9 +639,8 @@
   <properties>
    <property name="depth" type="int" value="0"/>
   </properties>
-  <object id="14" name="houseDoor" type="door" x="752.422" y="416.562">
+  <object id="14" name="houseDoor" type="door" x="752.422" y="417.562">
    <properties>
-    <property name="frame" type="int" value="1"/>
     <property name="marker" type="bool" value="true"/>
     <property name="toKey" value="house"/>
     <property name="toMarker" value="door"/>
