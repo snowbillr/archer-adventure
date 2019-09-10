@@ -23,6 +23,9 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
       entity.body.acceleration.x = 0;
     }
   },
+  onLeave(entity: Entities.Adventurer) {
+    entity.body.maxVelocity.x = movementAttributes.maxVelocity;
+  },
   transitions: [
     {
       type: TransitionType.Conditional,
@@ -39,9 +42,6 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
         } else {
           return 'adventurer-stand';
         }
-      },
-      onTransition: (entity: Entities.Adventurer) => {
-        entity.body.maxVelocity.x = movementAttributes.maxVelocity;
       }
     },
     {

@@ -28,6 +28,10 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   doTransition(transition: PhiniteStateMachine.Transitions.Transition<T>) {
     this.cancelTransitionTriggers();
 
+    if (this.currentState.onLeave) {
+      this.currentState.onLeave(this.entity, this.currentState.data || {});
+    }
+
     const nextStateId = typeof transition.to === 'string' ? transition.to : transition.to(this.entity);
     this.currentState = this.states.find(state => state.id === nextStateId) as PhiniteStateMachine.States.State<T>;
 

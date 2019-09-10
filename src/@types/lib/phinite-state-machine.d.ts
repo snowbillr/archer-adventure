@@ -14,6 +14,7 @@ declare namespace PhiniteStateMachine {
       data?: {[key: string]: any},
       onEnter?: (entity: T, data: StateData) => void;
       onUpdate?: (entity: T, data: StateData) => void;
+      onLeave?: (entity: T, data: StateData) => void;
     }
 
     type StateData = {
