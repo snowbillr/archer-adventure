@@ -1,4 +1,6 @@
 export const adventurerPrefab = {
+  name: 'adventurer',
+
   tags: "hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor",
 
   boundsKey: "adventurer-bounds",

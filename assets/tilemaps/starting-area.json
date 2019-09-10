@@ -233,9 +233,9 @@
  "orientation":"orthogonal",
  "properties":[
         {
-         "name":"hasAdventurer",
-         "type":"bool",
-         "value":true
+         "name":"entityLayerCollisions",
+         "type":"string",
+         "value":"adventurer:ground,sheep:ground"
         }, 
         {
          "name":"startingMarker",

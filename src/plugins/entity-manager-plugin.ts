@@ -5,15 +5,19 @@ import { doorPrefab } from '../entities/door/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 
-type propertiesMap = { [key: string]: any };
+type PropertiesMap = { [key: string]: any };
+type EntitiesMap = { [name: string]: any };
 
 export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
-  private prefabs: propertiesMap;
+  private prefabs: PropertiesMap;
+
+  private entitiesByName: EntitiesMap;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
 
     this.prefabs = {};
+    this.entitiesByName = {};
 
     this.registerPrefab('adventurer', adventurerPrefab);
     this.registerPrefab('door', doorPrefab);
@@ -21,13 +25,17 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.registerPrefab('sign', signPrefab);
   }
 
-  registerPrefab(key: string, properties: propertiesMap) {
+  registerPrefab(key: string, properties: PropertiesMap) {
     this.prefabs[key] = properties;
   }
 
   createPrefab(key: string, overrides: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
     const prefabProperties = this.prefabs[key];
-    return this.createEntity(prefabProperties, overrides, scale, depth, x, y);
+    const entity = this.createEntity(prefabProperties, overrides, scale, depth, x, y);
+
+    this.entitiesByName[key] = entity;
+
+    return entity;
   }
 
   createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
@@ -38,17 +46,11 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     if (properties.tags) {
       properties.tags.split(',').forEach((tag: string) => {
-        (this.scene as BaseScene).systemsManager.registerEntity(entity, tag, {
+        baseScene.systemsManager.registerEntity(entity, tag, {
           scale,
           ...this.getObjectPosition({ x, y }, scale),
           ...properties
         });
-      });
-    }
-
-    if (properties.layerCollisions) {
-      properties.layerCollisions.split(',').forEach((layerName: string) => {
-        this.scene.physics.add.collider(entity.sprite, baseScene.areaManager.tileLayers.find(layer => layer.layer.name === layerName)!);
       });
     }
 
@@ -57,6 +59,10 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     return entity;
+  }
+
+  getEntity(name: string) {
+    return this.entitiesByName[name];
   }
 
   private normalizeProperties(properties: any): { [key: string]: any } {

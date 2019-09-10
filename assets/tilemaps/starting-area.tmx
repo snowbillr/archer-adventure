@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="17">
  <properties>
-  <property name="hasAdventurer" type="bool" value="true"/>
+  <property name="entityLayerCollisions" value="adventurer:ground,sheep:ground"/>
   <property name="startingMarker" value="adventurerStart"/>
  </properties>
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">

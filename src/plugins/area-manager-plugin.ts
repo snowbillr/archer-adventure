@@ -52,7 +52,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.loadMarkers();
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
-    this.createAdventurer();
   }
 
   unload() {
@@ -66,6 +65,12 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     if (this.map) {
       this.map.destroy();
     }
+  }
+
+  placeEntityAtMarker(entity: Systems.HasSprite.Entity, markerName: string) {
+    const marker = this.markers[markerName];
+
+    entity.sprite.setPosition(marker.x, marker.y - entity.sprite.displayHeight / this.scale);
   }
 
   private loadMarkers() {
@@ -127,20 +132,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
       this.objects[layerName].push(entity);
     });
-  }
-
-  private createAdventurer() {
-    this.adventurer = (this.scene as BaseScene).entityManager.createPrefab('adventurer', {}, this.scale, 2, 0, 0) as Entities.Adventurer;
-    this.placeAdventurerAtStart();
-  }
-
-  private placeAdventurerAtStart() {
-    const mapProperties = this.normalizeProperties(this.map.properties);
-    if (mapProperties.startingMarker) {
-      const marker = this.markers[mapProperties.startingMarker];
-      const adventurer = this.adventurer;
-      adventurer.sprite.setPosition(marker.x, marker.y - adventurer.sprite.displayHeight / this.scale);
-    }
   }
 
   private normalizeProperties(properties: any): { [key: string]: any } {
