@@ -12,6 +12,23 @@ export class SignSystem implements SystemsManager.System {
     this.scene = scene as BaseScene;
   }
 
+  registerEntity(entity: any, data: SystemsManager.EntityRegistrationData, tag: string) {
+    if (tag === SignSystem.SystemTags.sign) {
+      const sign = entity as Systems.SignSystem.SignEntity;
+      sign.textboxSprite = (this.scene.add as any).ninePatch(0, 0, 200, 50, 'textbox', null, {
+        top: 5,
+        bottom: 5,
+        left: 3,
+        right: 5
+      });
+      sign.textboxSprite
+        .setScale(2)
+        .setScrollFactor(0);
+
+      sign.textboxSprite.visible = false;
+    }
+  }
+
   start(systemsManager: SystemsManager.SystemsManager) {
     const signInteractors: Systems.SignSystem.SignInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
     const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
@@ -22,7 +39,13 @@ export class SignSystem implements SystemsManager.System {
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
         if (sign.activeInteractionIds.has(signInteractor.id)) {
-          console.log('reading it')
+          if (sign.textboxSprite.visible) {
+            sign.textboxSprite.visible = false;
+            sign.showIndicator();
+          } else {
+            sign.textboxSprite.visible = true;
+            sign.hideIndicator();
+          }
         }
       });
     });

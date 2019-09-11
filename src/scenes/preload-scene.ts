@@ -33,6 +33,9 @@ export class PreloadScene extends Phaser.Scene {
     // tilemap
     this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
     this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
+
+    // conversations
+    this.load.image('textbox', '/assets/sprites/conversations/textbox.png');
   }
 
   create() {

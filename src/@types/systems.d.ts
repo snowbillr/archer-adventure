@@ -106,7 +106,9 @@ declare namespace Systems.HasPhiniteStateMachine {
 }
 
 declare namespace Systems.SignSystem {
-  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {}
+  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
+    textboxSprite: Phaser.GameObjects.Container;
+  }
 
   interface SignInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {}
 }

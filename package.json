@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.0.0"
   },
   "dependencies": {
+    "@koreez/phaser3-ninepatch": "^2.0.2",
     "phaser": "^3.0.0"
   },
   "scripts": {

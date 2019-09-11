@@ -1,5 +1,7 @@
 import 'phaser';
 
+import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
+
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
 import { EntityManagerPlugin } from './plugins/entity-manager-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
@@ -15,6 +17,9 @@ const gameConfig = {
   width: 800,
   height: 450,
   plugins: {
+    global: [
+      { key: 'NinePatchPlugin', plugin: NinePatchPlugin, start: true },
+    ],
     scene: [
       {
         key: 'StateRegistrar',
