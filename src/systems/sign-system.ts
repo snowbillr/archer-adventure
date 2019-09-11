@@ -52,8 +52,8 @@ export class SignSystem implements SystemsManager.System {
   }
 
   update(systemsManager: SystemsManager.SystemsManager) {
-   const signInteractors: Systems.DoorSystem.DoorInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
-   const signs: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
+   const signInteractors: Systems.SignSystem.SignInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+   const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
    for (let signInteractor of signInteractors) {
      const enteringSignIds = signInteractor.enteringInteractionIds;
@@ -66,6 +66,7 @@ export class SignSystem implements SystemsManager.System {
      const exitingSigns = signs.filter(sign => exitingSignIds.has(sign.id));
      for (let exitingSign of exitingSigns) {
        exitingSign.hideIndicator();
+        exitingSign.textboxSprite.visible = false;
      }
    };
   }
