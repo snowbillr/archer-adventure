@@ -23,7 +23,7 @@ export class HasIndicatorSystem implements SystemsManager.System {
     function showIndicator() {
       indicatorSprite.visible = true;
       indicatorSprite.active = true;
-      indicatorSprite.anims.play('indicator-down', true);
+      indicatorSprite.anims.play('indicator-down');
     }
 
     function hideIndicator() {
