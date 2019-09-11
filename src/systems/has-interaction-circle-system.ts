@@ -23,9 +23,9 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     }
 
     entity.interactionCircle = interactionCircle;
-    entity.enteringInteractionIds = [];
-    entity.activeInteractionIds = [];
-    entity.exitingInteractionIds = [];
+    entity.enteringInteractionIds = new Set();
+    entity.activeInteractionIds = new Set();
+    entity.exitingInteractionIds = new Set();
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -53,8 +53,39 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     */
     for (let entity of entities) {
       const intersectingEntityIds = this.getIntersectingInteractionIds(entity, entities);
-      const newEntityIds = [...intersectingEntityIds];
+      const newEntityIds = new Set(intersectingEntityIds);
 
+      if (entity.exitingInteractionIds.size > 0) {
+        entity.exitingInteractionIds.clear();
+      }
+
+      if (entity.activeInteractionIds.size > 0) {
+        for (let activeInteractionId of entity.activeInteractionIds) {
+          if (!intersectingEntityIds.includes(activeInteractionId)) {
+            entity.activeInteractionIds.delete(activeInteractionId);
+            entity.exitingInteractionIds.add(activeInteractionId);
+          } else {
+            newEntityIds.delete(activeInteractionId);
+          }
+        }
+      }
+
+      if (entity.enteringInteractionIds.size > 0) {
+        for (let enteringInteractionId of entity.enteringInteractionIds) {
+          entity.activeInteractionIds.add(enteringInteractionId);
+          newEntityIds.delete(enteringInteractionId);
+        }
+        entity.enteringInteractionIds.clear();
+      }
+
+      if (newEntityIds.size > 0) {
+        for (let newEntityId of newEntityIds) {
+          entity.enteringInteractionIds.add(newEntityId);
+        }
+      }
+
+
+      /*
       entity.exitingInteractionIds = [];
       for (let activeInteractionId of entity.activeInteractionIds) {
         if (!intersectingEntityIds.includes(activeInteractionId)) {
@@ -69,12 +100,11 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       };
 
       entity.enteringInteractionIds = newEntityIds;
+      */
     };
   }
 
   destroy(entity: Systems.HasInteractionCircle.Entity) {
-    entity.activeInteractionIds = [];
-
     if (entity.debugInteractionCircle) {
       entity.debugInteractionCircle.destroy();
     }

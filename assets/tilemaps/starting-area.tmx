@@ -628,7 +628,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="markers">
-  <object id="16" name="adventurerStart" x="859.416" y="416.915">
+  <object id="16" name="adventurerStart" x="487.259" y="112.865">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>
