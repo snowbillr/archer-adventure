@@ -2,6 +2,7 @@
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="3">
  <properties>
   <property name="entityLayerCollisions" value="adventurer:ground"/>
+  <property name="map-test" value="house"/>
  </properties>
  <tileset firstgid="1" name="fantasy-platformer-core" tilewidth="16" tileheight="16" tilecount="4816" columns="86">
   <image source="../tilesets/fantasy-platformer-core.png" width="1376" height="896"/>

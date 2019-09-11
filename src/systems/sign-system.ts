@@ -1,7 +1,31 @@
+import { BaseScene } from '../scenes/base-scene';
+
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
     interactor: 'sign-interactor',
     sign: 'sign-interactive',
+  }
+
+  private scene: BaseScene;
+
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene as BaseScene;
+  }
+
+  start(systemsManager: SystemsManager.SystemsManager) {
+    const signInteractors: Systems.SignSystem.SignInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+    const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
+
+    const signInteractor = signInteractors[0];
+    signs.forEach(sign => {
+      const controlKey = signInteractor.controls[sign.interactionControl!];
+
+      controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
+        if (sign.activeInteractionIds.has(signInteractor.id)) {
+          console.log('reading it')
+        }
+      });
+    });
   }
 
   update(systemsManager: SystemsManager.SystemsManager) {

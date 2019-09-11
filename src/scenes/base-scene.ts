@@ -12,38 +12,47 @@ export abstract class BaseScene extends Phaser.Scene {
   systemsManager!: SystemsManagerPlugin;
 
   loadNewArea(key: string, markerName?: string) {
-    this.systemsManager.stop();
-    this.systemsManager.destroyEntities();
-    this.areaManager.unload();
-    this.entityManager.unload();
+    // Loading a new area needs to be 'enqueued' as an action.
+    // When this happens, the entities get destroyed, but their event listeners will still be called.
+    // They must be queued up or something in the event emitter, and even when all the events are cleared,
+    // they still get called.
 
-    this.areaManager.load(key);
+    // This manifested as a problem when you entered a door and the sign interaction check got called for the
+    // previous scene.
+    this.time.delayedCall(0, () => {
+      this.systemsManager.stop();
+      this.systemsManager.destroyEntities();
+      this.areaManager.unload();
+      this.entityManager.unload();
 
-    const map = this.areaManager.map;
-    const tileset = this.areaManager.tileset;
+      this.areaManager.load(key);
 
-    const adventurer = this.entityManager.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
-    const mapProperties = this.normalizeProperties(map.properties);
+      const map = this.areaManager.map;
+      const tileset = this.areaManager.tileset;
 
-    if (markerName) {
-      this.areaManager.placeEntityAtMarker(adventurer, markerName);
-    } else if (mapProperties.startingMarker) {
-      this.areaManager.placeEntityAtMarker(adventurer, mapProperties.startingMarker);
-    }
+      const adventurer = this.entityManager.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
+      const mapProperties = this.normalizeProperties(map.properties);
 
-    if (mapProperties.entityLayerCollisions) {
-      mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
-        const [entityName, layerName] = entityLayerPair.split(':');
-        const entity = this.entityManager.getEntity(entityName);
-        this.physics.add.collider(entity.sprite, this.areaManager.tileLayers.find(layer => layer.layer.name === layerName)!);
-      });
-    }
+      if (markerName) {
+        this.areaManager.placeEntityAtMarker(adventurer, markerName);
+      } else if (mapProperties.startingMarker) {
+        this.areaManager.placeEntityAtMarker(adventurer, mapProperties.startingMarker);
+      }
 
-    this.systemsManager.start();
+      if (mapProperties.entityLayerCollisions) {
+        mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
+          const [entityName, layerName] = entityLayerPair.split(':');
+          const entity = this.entityManager.getEntity(entityName);
+          this.physics.add.collider(entity.sprite, this.areaManager.tileLayers.find(layer => layer.layer.name === layerName)!);
+        });
+      }
 
-    this.cameras.main.setBackgroundColor(0xCCCCCC);
-    this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
-    this.cameras.main.startFollow(adventurer.sprite, true);
+      this.systemsManager.start();
+
+      this.cameras.main.setBackgroundColor(0xCCCCCC);
+      this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
+      this.cameras.main.startFollow(adventurer.sprite, true);
+    }, [], null);
   }
 
   private normalizeProperties(properties: any): { [key: string]: any } {

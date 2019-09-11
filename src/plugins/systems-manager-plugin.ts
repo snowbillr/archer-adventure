@@ -19,7 +19,7 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
       })
       .forEach(system => {
         system.start && system.start(this);
-      })
+      });
   }
 
   stop() {
