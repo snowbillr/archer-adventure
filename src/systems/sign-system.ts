@@ -28,6 +28,10 @@ export class SignSystem implements SystemsManager.System {
         .setDepth(10)
         .setScrollFactor(0);
 
+      const textboxText = this.scene.add.bitmapText(0, 0, 'compass-18', 'Here is a message');
+      textboxText.setOrigin(0.5);
+      sign.textboxSprite.add(textboxText);
+
       sign.isTextboxShowing = false;
 
       sign.textboxShowTween = this.scene.tweens.add({
