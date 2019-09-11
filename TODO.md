@@ -1,4 +1,6 @@
-- interact with the sign
+BRANCH SPECIFIC:
+  - show message in sign
+  - add one by farm with different message
 
 - state graph visualization
 
