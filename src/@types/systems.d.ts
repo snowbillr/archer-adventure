@@ -108,6 +108,8 @@ declare namespace Systems.HasPhiniteStateMachine {
 declare namespace Systems.SignSystem {
   interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
     textboxSprite: Phaser.GameObjects.Container;
+    textboxShowTween: Phaser.Tweens.Tween;
+    textboxHideTween: Phaser.Tweens.Tween;
     isTextboxShowing: boolean;
     showTextbox: () => void;
     hideTextbox: () => void;

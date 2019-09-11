@@ -1,4 +1,5 @@
 import { BaseScene } from '../scenes/base-scene';
+import { sign } from 'crypto';
 
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
@@ -29,29 +30,32 @@ export class SignSystem implements SystemsManager.System {
 
       sign.isTextboxShowing = false;
 
+      sign.textboxShowTween = this.scene.tweens.add({
+        targets: sign.textboxSprite,
+        y: 75,
+        duration: 300,
+        ease: Phaser.Math.Easing.Quadratic.Out,
+      }).pause();
+
+      sign.textboxHideTween = this.scene.tweens.add({
+        targets: [sign.textboxSprite],
+        y: -100,
+        duration: 300,
+        ease: Phaser.Math.Easing.Quadratic.In,
+      }).pause();
+
       sign.showTextbox = () => {
         sign.isTextboxShowing = true;
 
-        this.scene.tweens.add({
-          targets: sign.textboxSprite,
-          y: 75,
-          duration: 300,
-          ease: Phaser.Math.Easing.Quadratic.Out,
-        });
+        sign.textboxHideTween.pause();
+        sign.textboxShowTween.restart();
       }
 
       sign.hideTextbox = () => {
         sign.isTextboxShowing = false;
 
-        this.scene.tweens.add({
-          targets: [sign.textboxSprite],
-          y: -100,
-          props: {
-            y: -100
-          },
-          duration: 300,
-          ease: Phaser.Math.Easing.Quadratic.In,
-        });
+        sign.textboxShowTween.pause();
+        sign.textboxHideTween.restart();
       }
     }
   }
@@ -93,8 +97,25 @@ export class SignSystem implements SystemsManager.System {
       const exitingSigns = signs.filter(sign => exitingSignIds.has(sign.id));
       for (let exitingSign of exitingSigns) {
         exitingSign.hideIndicator();
-        exitingSign.hideTextbox();
+
+        if (exitingSign.isTextboxShowing) {
+          exitingSign.hideTextbox();
+        }
       }
     };
+  }
+
+  destroy(entity: any, tag: string) {
+    if (tag === SignSystem.SystemTags.sign) {
+      const sign = entity as Systems.SignSystem.SignEntity;
+
+      sign.textboxShowTween.remove();
+      sign.textboxHideTween.remove();
+      sign.textboxSprite.destroy();
+
+      delete sign.textboxShowTween;
+      delete sign.textboxHideTween;
+      delete sign.textboxSprite;
+    }
   }
 }
