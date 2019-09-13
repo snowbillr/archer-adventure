@@ -1,5 +1,4 @@
 import { BaseScene } from '../scenes/base-scene';
-import { sign } from 'crypto';
 
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
@@ -8,14 +7,17 @@ export class SignSystem implements SystemsManager.System {
   }
 
   private scene: BaseScene;
+  private signs: Systems.SignSystem.SignData[];
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as BaseScene;
+    this.signs = this.scene.cache.json.get('signs');
   }
 
   registerEntity(entity: any, data: SystemsManager.EntityRegistrationData, tag: string) {
     if (tag === SignSystem.SystemTags.sign) {
       const sign = entity as Systems.SignSystem.SignEntity;
+
       const centerX = this.scene.cameras.main.width / 2;
       sign.textboxSprite = (this.scene.add as any).ninePatch(centerX, -100, 300, 50, 'textbox', null, {
         top: 5,
@@ -28,7 +30,7 @@ export class SignSystem implements SystemsManager.System {
         .setDepth(10)
         .setScrollFactor(0);
 
-      const textboxText = this.scene.add.bitmapText(0, 0, 'compass-24', 'Here is a message');
+      const textboxText = this.scene.add.bitmapText(0, 0, 'compass-24', this.signs[data.signId].message);
       textboxText.setOrigin(0.5).setScale(0.5);
       sign.textboxSprite.add(textboxText);
 

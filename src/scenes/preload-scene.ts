@@ -36,6 +36,7 @@ export class PreloadScene extends Phaser.Scene {
 
     // conversations
     this.load.image('textbox', '/assets/sprites/conversations/textbox.png');
+    this.load.json('signs', '/assets/signs.json');
   }
 
   create() {
