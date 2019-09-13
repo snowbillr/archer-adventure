@@ -1,6 +1,3 @@
-BRANCH SPECIFIC:
-  - add one by farm with different message
-
 - state graph visualization
 
 - enemy
