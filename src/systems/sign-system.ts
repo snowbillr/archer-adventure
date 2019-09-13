@@ -20,7 +20,7 @@ export class SignSystem implements SystemsManager.System {
       sign.textboxSprite = (this.scene.add as any).ninePatch(centerX, -100, 300, 50, 'textbox', null, {
         top: 5,
         bottom: 5,
-        left: 3,
+        left: 5,
         right: 5
       });
       sign.textboxSprite
