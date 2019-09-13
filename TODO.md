@@ -1,5 +1,3 @@
-- interact with the sign
-
 - state graph visualization
 
 - enemy

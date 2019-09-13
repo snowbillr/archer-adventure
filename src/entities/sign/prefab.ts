@@ -5,4 +5,5 @@ export const signPrefab = {
   frame: 1128,
 
   interactionRadius: 30,
+  interactionControl: 'action',
 }

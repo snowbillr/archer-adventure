@@ -106,12 +106,36 @@
                  "height":16,
                  "id":4,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"signId",
+                         "type":"string",
+                         "value":"top-hill"
+                        }],
                  "rotation":0,
                  "type":"sign",
                  "visible":true,
                  "width":16,
                  "x":528,
                  "y":112
+                }, 
+                {
+                 "gid":1129,
+                 "height":16,
+                 "id":17,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"signId",
+                         "type":"string",
+                         "value":"farmhouse"
+                        }],
+                 "rotation":0,
+                 "type":"sign",
+                 "visible":true,
+                 "width":16,
+                 "x":607.991689301496,
+                 "y":416.642923744274
                 }],
          "opacity":1,
          "properties":[
@@ -174,8 +198,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":487.258866988284,
-                 "y":112.86505472899
+                 "x":487.259,
+                 "y":112.865
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -229,7 +253,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "properties":[
         {

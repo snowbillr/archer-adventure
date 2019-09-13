@@ -105,6 +105,23 @@ declare namespace Systems.HasPhiniteStateMachine {
   }
 }
 
+declare namespace Systems.SignSystem {
+  interface SignData {
+    message: string;
+  }
+
+  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
+    textboxSprite: Phaser.GameObjects.Container;
+    textboxShowTween: Phaser.Tweens.Tween;
+    textboxHideTween: Phaser.Tweens.Tween;
+    isTextboxShowing: boolean;
+    showTextbox: () => void;
+    hideTextbox: () => void;
+  }
+
+  interface SignInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {}
+}
+
 declare namespace Systems.DoorSystem {
   interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
     toKey: string;

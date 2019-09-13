@@ -107,6 +107,11 @@
          "name":"entityLayerCollisions",
          "type":"string",
          "value":"adventurer:ground"
+        }, 
+        {
+         "name":"map-test",
+         "type":"string",
+         "value":"house"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
