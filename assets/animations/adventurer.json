@@ -72,6 +72,36 @@
       ],
       "frameRate": 9,
       "repeat": -1
+    },
+    {
+      "key": "adventurer-stand-draw",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 0 },
+        { "key": "adventurer-bow", "frame": 1 },
+        { "key": "adventurer-bow", "frame": 2 },
+        { "key": "adventurer-bow", "frame": 3 },
+        { "key": "adventurer-bow", "frame": 4 }
+      ],
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "adventurer-stand-hold",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 5 },
+        { "key": "adventurer-bow", "frame": 6 }
+      ],
+      "frameRate": 3,
+      "repeat": -1
+    },
+    {
+      "key": "adventurer-stand-shoot",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 7 },
+        { "key": "adventurer-bow", "frame": 8 }
+      ],
+      "frameRate": 10,
+      "repeat": 0
     }
   ]
 }

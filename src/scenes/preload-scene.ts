@@ -1,4 +1,8 @@
 export class PreloadScene extends Phaser.Scene {
+  constructor() {
+    super({ key: 'preload' });
+  }
+
   preload() {
     // fonts
     this.load.bitmapFont('compass-72', '/assets/fonts/compass-72.png', '/assets/fonts/compass-72.xml');
