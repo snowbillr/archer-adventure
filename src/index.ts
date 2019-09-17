@@ -44,8 +44,8 @@ const gameConfig = {
     ]
   },
   // scene: BoundsTestScene,
-  // scene: [PreloadScene, MovementTestScene],
-  scene: AnimTestScene,
+  scene: [PreloadScene, MovementTestScene],
+  // scene: AnimTestScene,
   // scene: HitboxTestScene,
   pixelArt: true,
   physics: {

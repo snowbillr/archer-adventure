@@ -18,6 +18,7 @@ export class HasControlsSystem implements SystemsManager.System {
       'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
       'right': Phaser.Input.Keyboard.KeyCodes.RIGHT,
       'action': Phaser.Input.Keyboard.KeyCodes.SPACE,
+      'attack': Phaser.Input.Keyboard.KeyCodes.SPACE,
     }) as Systems.HasControls.Controls;
 
     entity.controls = controls;

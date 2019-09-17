@@ -31,6 +31,12 @@ export const adventurerStand: PhiniteStateMachine.States.State<Entities.Adventur
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: 'ArrowUp',
       to: 'adventurer-jump-prep',
+    },
+    {
+      type: TransitionType.Input,
+      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+      key: ' ',
+      to: 'adventurer-stand-draw'
     }
   ],
 });
