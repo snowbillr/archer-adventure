@@ -348,5 +348,131 @@
         "height": 17
       }
     }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 0,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 10
+      },
+      "size": {
+        "width": 22,
+        "height": 26
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 1,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 11
+      },
+      "size": {
+        "width": 23,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 2,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 12
+      },
+      "size": {
+        "width": 22,
+        "height": 24
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 3,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 11
+      },
+      "size": {
+        "width": 24,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 4,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 11
+      },
+      "size": {
+        "width": 24,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 5,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 11
+      },
+      "size": {
+        "width": 24,
+        "height": 25
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 6,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 10
+      },
+      "size": {
+        "width": 24,
+        "height": 26
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 7,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 10
+      },
+      "size": {
+        "width": 23,
+        "height": 26
+      }
+    }
+  },
+  {
+    "key": "adventurer-bow",
+    "frame": 8,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 10
+      },
+      "size": {
+        "width": 25,
+        "height": 26
+      }
+    }
   }
 ]

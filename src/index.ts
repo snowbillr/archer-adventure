@@ -43,15 +43,15 @@ const gameConfig = {
       },
     ]
   },
-  // scene: BoundsTestScene,
-  scene: [PreloadScene, MovementTestScene],
+  scene: [PreloadScene, BoundsTestScene],
+  // scene: [PreloadScene, MovementTestScene],
   // scene: AnimTestScene,
   // scene: HitboxTestScene,
   pixelArt: true,
   physics: {
     default: 'arcade',
     arcade: {
-      // debug: true,
+      debug: true,
       // timeScale: 4,
       gravity: {
         y: 1100,

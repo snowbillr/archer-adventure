@@ -44,6 +44,7 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('movementTest', { areaKey: 'starting-area' });
+    // this.scene.start('movementTest', { areaKey: 'starting-area' });
+    this.scene.start('boundsTest', { areaKey: 'starting-area' });
   }
 }
