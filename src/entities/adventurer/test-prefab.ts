@@ -9,6 +9,6 @@ export const adventurerTestPrefab = {
   frame: 0,
   maxVelocityX: 350,
 
-  hurtboxesDebug: false,
+  hurtboxesDebug: true,
   hurtboxesKey: "adventurer-hurtboxes",
 }

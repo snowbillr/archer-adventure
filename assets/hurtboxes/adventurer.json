@@ -562,6 +562,242 @@
           "height": 3
         }
       ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 0,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 8,
+          "width": 15,
+          "height": 18
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 1,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 1,
+          "y": 5,
+          "width": 12,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 2,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 1,
+          "y": 5,
+          "width": 12,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 3,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 4,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 5,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 6,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -3,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 7,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": -4,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -3,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 8,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -4,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 5,
+          "width": 8,
+          "height": 9
+        },
+        {
+          "type": "rectangle",
+          "x": -1,
+          "y": 13,
+          "width": 13,
+          "height": 7
+        }
+      ]
     }
   ]
 }

@@ -1,21 +1,32 @@
 import 'phaser';
-import { TestAdventurer } from '../entities/test-adventurer';
 
-export class HitboxTestScene extends Phaser.Scene {
-  preload() {
-    this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
-    this.load.json('adventurer-hitboxes', '/assets/hurtboxes/adventurer.json');
+import { adventurerStates } from '../entities/adventurer/states';
+import { adventurerTestPrefab } from '../entities/adventurer/test-prefab';
+import { BaseScene } from './base-scene';
+
+export class HitboxTestScene extends BaseScene {
+  constructor() {
+    super({ key: 'hitboxTest' })
   }
 
-  create() {
-    let frameIndex = 28;
-    const frameText = this.add.text(100, 200, `Frame ${frameIndex}`);
+  create(data: any) {
+    super.create(data);
 
-    const testAdventurer = new TestAdventurer();
-    testAdventurer.create(this);
-    testAdventurer.sprite.x = 100;
-    testAdventurer.sprite.y = 100;
-    testAdventurer.sprite.setFrame(frameIndex);
+    this.entityManager.registerPrefab('test-adventurer', adventurerTestPrefab);
+    this.stateRegistrar.registerSets([
+      { id: 'adventurer', states: adventurerStates },
+    ]);
+
+    const adventurer = this.entityManager.createPrefab('test-adventurer', {}, 5, 0, 0, 0) as Entities.Adventurer;
+
+    let frameIndex = 8;
+    const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
+
+    adventurer.sprite.x = 150;
+    adventurer.sprite.y = 200;
+    adventurer.sprite.setTexture('adventurer-bow');
+    adventurer.sprite.setFrame(frameIndex);
+    adventurer.body.allowGravity = false;
 
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
@@ -27,7 +38,7 @@ export class HitboxTestScene extends Phaser.Scene {
           break;
       }
 
-      testAdventurer.sprite.setFrame(frameIndex);
+      adventurer.sprite.setFrame(frameIndex);
       frameText.setText(`Frame ${frameIndex}`);
     });
   }

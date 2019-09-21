@@ -43,10 +43,10 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, BoundsTestScene],
+  // scene: [PreloadScene, BoundsTestScene],
   // scene: [PreloadScene, MovementTestScene],
+  scene: [PreloadScene, HitboxTestScene],
   // scene: AnimTestScene,
-  // scene: HitboxTestScene,
   pixelArt: true,
   physics: {
     default: 'arcade',
