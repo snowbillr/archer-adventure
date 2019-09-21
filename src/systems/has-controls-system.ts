@@ -17,7 +17,7 @@ export class HasControlsSystem implements SystemsManager.System {
       'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
       'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
       'right': Phaser.Input.Keyboard.KeyCodes.RIGHT,
-      'action': Phaser.Input.Keyboard.KeyCodes.SPACE,
+      'action': Phaser.Input.Keyboard.KeyCodes.F,
       'attack': Phaser.Input.Keyboard.KeyCodes.SPACE,
     }) as Systems.HasControls.Controls;
 
@@ -26,7 +26,7 @@ export class HasControlsSystem implements SystemsManager.System {
       'down': 'ArrowDown',
       'left': 'ArrowLeft',
       'right': 'ArrowRight',
-      'action': ' ',
+      'action': 'f',
       'attack': ' ',
     }
 

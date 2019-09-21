@@ -79,7 +79,7 @@ export abstract class BaseScene extends Phaser.Scene {
 
       this.systemsManager.start();
 
-      this.cameras.main.setBackgroundColor(0xCCCCCC);
+      this.cameras.main.setBackgroundColor(0x888888);
       this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
       this.cameras.main.startFollow(adventurer.sprite, true);
     }, [], null);
