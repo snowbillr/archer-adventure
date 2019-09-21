@@ -5,8 +5,6 @@
   - hurtboxes
   - projectiles
 
-- sys manager plugin shouldn't need to have its `update` method called by the scene
-
 - dash instead of slide
 
 - enemy
