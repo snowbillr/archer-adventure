@@ -69,7 +69,8 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
 
   private registerInputTransitionTrigger(transition: PhiniteStateMachine.Transitions.InputTransition<T>) {
     const listener = (e: KeyboardEvent) => {
-      if (e.key === transition.key) {
+      const key = typeof transition.key === 'string' ? transition.key : transition.key(this.entity);
+      if (e.key === key) {
         this.doTransition(transition);
       }
     }

@@ -11,31 +11,31 @@ export const adventurerStand: PhiniteStateMachine.States.State<Entities.Adventur
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowRight',
+      key: entity => entity.codes.right,
       to: 'adventurer-run-right',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowLeft',
+      key: entity => entity.codes.left,
       to: 'adventurer-run-left',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowDown',
+      key: entity => entity.codes.down,
       to: 'adventurer-crouch',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowUp',
+      key: entity => entity.codes.up,
       to: 'adventurer-jump-prep',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: ' ',
+      key: entity => entity.codes.attack,
       to: 'adventurer-stand-draw'
     }
   ],

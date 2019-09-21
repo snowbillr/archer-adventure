@@ -14,13 +14,13 @@ export const adventurerRunRight: PhiniteStateMachine.States.State<Entities.Adven
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: 'ArrowRight',
+      key: entity => entity.codes.right,
       to: 'adventurer-stand',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowLeft',
+      key: entity => entity.codes.left,
       to: 'adventurer-run-left',
     },
   ]

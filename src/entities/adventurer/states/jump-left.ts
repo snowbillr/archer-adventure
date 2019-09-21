@@ -15,7 +15,7 @@ export const adventurerJumpLeft: PhiniteStateMachine.States.State<Entities.Adven
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowRight',
+      key: entity => entity.codes.right,
       to: 'adventurer-jump-right',
     },
     {

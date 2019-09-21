@@ -21,7 +21,17 @@ export class HasControlsSystem implements SystemsManager.System {
       'attack': Phaser.Input.Keyboard.KeyCodes.SPACE,
     }) as Systems.HasControls.Controls;
 
+    const codes = {
+      'up': 'ArrowUp',
+      'down': 'ArrowDown',
+      'left': 'ArrowLeft',
+      'right': 'ArrowRight',
+      'action': ' ',
+      'attack': ' ',
+    }
+
     entity.controls = controls;
+    entity.codes = codes;
   }
 
   stop(systemsManager: SystemsManager.SystemsManager) {

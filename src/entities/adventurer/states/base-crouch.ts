@@ -10,7 +10,7 @@ export const baseCrouch: PhiniteStateMachine.States.State<Entities.Adventurer> =
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: 'ArrowDown',
+      key: entity => entity.codes.down,
       to: (entity: Entities.Adventurer) => {
         if (entity.controls.left.isDown) {
           return 'adventurer-run-left';

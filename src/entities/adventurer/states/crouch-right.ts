@@ -11,7 +11,7 @@ export const adventurerCrouchRight: PhiniteStateMachine.States.State<Entities.Ad
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: 'ArrowLeft',
+      key: entity => entity.codes.left,
       to: 'adventurer-crouch-left'
     }
   ]

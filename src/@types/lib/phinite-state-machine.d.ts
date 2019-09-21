@@ -39,7 +39,7 @@ declare namespace PhiniteStateMachine {
 
     type InputTransition<T> = BaseTransition<T> & {
       event: string;
-      key: string;
+      key: string | ((entity: T) => string);
     }
 
     type CurrentAnimationEndTransition<T> = BaseTransition<T> & {

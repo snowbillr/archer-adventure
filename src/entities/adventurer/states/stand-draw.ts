@@ -18,7 +18,7 @@ export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adve
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: ' ',
+      key: entity => entity.codes.attack,
       to: 'adventurer-stand-shoot',
     }
   ]

@@ -31,9 +31,11 @@ declare namespace Systems.HasIndicator {
 
 declare namespace Systems.HasControls {
   type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
+  type Codes = { [code: string]: string };
 
   interface Entity extends SystemsManager.Entity {
     controls: Controls;
+    codes: Codes;
   }
 }
 
