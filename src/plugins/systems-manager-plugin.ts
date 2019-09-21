@@ -9,6 +9,8 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
 
     this.entityMap = {};
     this.systemsMap = {};
+
+    this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, this.update, this);
   }
 
   start() {

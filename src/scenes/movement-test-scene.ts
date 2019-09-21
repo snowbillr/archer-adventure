@@ -49,8 +49,4 @@ export class MovementTestScene extends BaseScene {
 
     this.loadNewArea(data.areaKey);
   }
-
-  update() {
-    this.systemsManager.update();
-  }
 }

@@ -79,8 +79,4 @@ export class BoundsTestScene extends Phaser.Scene {
 
     this.systemsManager.start();
   }
-
-  update() {
-    this.systemsManager.update();
-  }
 }
