@@ -43,8 +43,8 @@ const gameConfig = {
       },
     ]
   },
-  // scene: [PreloadScene, BoundsTestScene],
-  scene: [PreloadScene, MovementTestScene],
+  scene: [PreloadScene, BoundsTestScene],
+  // scene: [PreloadScene, MovementTestScene],
   // scene: AnimTestScene,
   // scene: HitboxTestScene,
   pixelArt: true,
