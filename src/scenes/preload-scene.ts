@@ -17,6 +17,9 @@ export class PreloadScene extends Phaser.Scene {
     this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
+    // projectiles
+    this.load.image('arrow', '/assets/sprites/projectiles/arrow.png');
+
     // sheep
     this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');

@@ -4,6 +4,7 @@ import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
+import { arrowPrefab } from '../entities/arrow/prefab';
 
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any };
@@ -20,6 +21,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.entitiesByName = {};
 
     this.registerPrefab('adventurer', adventurerPrefab);
+    this.registerPrefab('arrow', arrowPrefab);
     this.registerPrefab('door', doorPrefab);
     this.registerPrefab('sheep', sheepPrefab);
     this.registerPrefab('sign', signPrefab);
@@ -33,16 +35,16 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.prefabs[key] = properties;
   }
 
-  createPrefab(key: string, overrides: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+  createPrefab(key: string, overrides: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
     const prefabProperties = this.prefabs[key];
-    const entity = this.createEntity(prefabProperties, overrides, scale, depth, x, y);
+    const entity = this.createEntity(prefabProperties, overrides, scale, depth, x, y, scalePosition);
 
     this.entitiesByName[key] = entity;
 
     return entity;
   }
 
-  private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0) {
+  private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
     const entity = {} as any;
     const overrideProperties = this.normalizeProperties(rawOverrideProperties);
     const properties = {...this.normalizeProperties(rawProperties), ...overrideProperties};
@@ -52,7 +54,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
       properties.tags.split(',').forEach((tag: string) => {
         baseScene.systemsManager.registerEntity(entity, tag, {
           scale,
-          ...this.getObjectPosition({ x, y }, scale),
+          ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
           ...properties
         });
       });
