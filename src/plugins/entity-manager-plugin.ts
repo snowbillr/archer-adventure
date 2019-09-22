@@ -7,7 +7,7 @@ import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
 type PropertiesMap = { [key: string]: any };
-type EntitiesMap = { [name: string]: any };
+type EntitiesMap = { [name: string]: any[] };
 
 export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
   private prefabs: PropertiesMap;
@@ -39,9 +39,14 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     const prefabProperties = this.prefabs[key];
     const entity = this.createEntity(prefabProperties, overrides, scale, depth, x, y, scalePosition);
 
-    this.entitiesByName[key] = entity;
+    this.entitiesByName[key] = this.entitiesByName[key] || [];
+    this.entitiesByName[key].push(entity);
 
     return entity;
+  }
+
+  getEntities(name: string) {
+    return this.entitiesByName[name] || [];
   }
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
@@ -65,10 +70,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     return entity;
-  }
-
-  getEntity(name: string) {
-    return this.entitiesByName[name];
   }
 
   private normalizeProperties(properties: any): { [key: string]: any } {

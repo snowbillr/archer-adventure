@@ -72,8 +72,10 @@ export abstract class BaseScene extends Phaser.Scene {
       if (mapProperties.entityLayerCollisions) {
         mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
           const [entityName, layerName] = entityLayerPair.split(':');
-          const entity = this.entityManager.getEntity(entityName);
-          this.physics.add.collider(entity.sprite, this.areaManager.tileLayers.find(layer => layer.layer.name === layerName)!);
+          const entities = this.entityManager.getEntities(entityName);
+          for (let entity of entities) {
+            this.physics.add.collider(entity.sprite, this.areaManager.getTileLayer(layerName)!);
+          }
         });
       }
 

@@ -134,8 +134,8 @@
                  "type":"sign",
                  "visible":true,
                  "width":16,
-                 "x":607.991689301496,
-                 "y":416.642923744274
+                 "x":607.992,
+                 "y":416.643
                 }],
          "opacity":1,
          "properties":[
@@ -259,7 +259,7 @@
         {
          "name":"entityLayerCollisions",
          "type":"string",
-         "value":"adventurer:ground,sheep:ground"
+         "value":"adventurer:ground,sheep:ground,arrow:ground"
         }, 
         {
          "name":"startingMarker",
