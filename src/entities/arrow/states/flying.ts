@@ -6,9 +6,6 @@ export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
     {
       type: TransitionType.Conditional,
       condition(arrow) {
-        if (!arrow.body.blocked.none) {
-          console.log('transitioning')
-        }
         return !arrow.body.blocked.none;
       },
       to: 'arrow-hit',
