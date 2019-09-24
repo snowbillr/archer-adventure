@@ -26,17 +26,26 @@ export class HasBoundsSystem implements SystemsManager.System {
       if (boundsFrame) {
         const bounds: Systems.HasBounds.Bounds = boundsFrame.bounds;
 
-        let offsetX = bounds.offset.x;
-        let offsetY = bounds.offset.y;
+        const offset = {
+          x: bounds.offset.x,
+          y: bounds.offset.y,
+        }
         if (entity.sprite.flipX) {
-          offsetX = entity.sprite.width - offsetX - bounds.size.width;
+          offset.x = entity.sprite.width - bounds.offset.x - bounds.size.width;
         }
         if (entity.sprite.flipY) {
-          offsetY = entity.sprite.height - offsetY - bounds.size.height;
+          offset.y = entity.sprite.height - bounds.offset.y - bounds.size.height;
         }
 
+        // I have no idea why this needs the `scale` part, but it does
+        const rotationPoint = {
+          x: entity.sprite.displayWidth * entity.sprite.originX / entity.sprite.scale,
+          y: entity.sprite.displayHeight * entity.sprite.originY / entity.sprite.scale,
+        }
+        Phaser.Math.RotateAround(offset, rotationPoint.x, rotationPoint.y, entity.sprite.rotation);
+
         entity.body.setSize(bounds.size.width, bounds.size.height);
-        entity.body.setOffset(offsetX, offsetY);
+        entity.body.setOffset(offset.x, offset.y);
       } else {
         entity.body.setSize(entity.sprite.width, entity.sprite.height);
         entity.body.setOffset(0, 0);
