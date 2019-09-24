@@ -8,4 +8,6 @@ declare namespace Entities {
     & Systems.HasBounds.Entity;
 
   type Sheep = Systems.HasPhysicalSprite.Entity & Systems.HasAreaBoundary.Entity;
+
+  type Arrow = Systems.HasPhysicalSprite.Entity;
 }
