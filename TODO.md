@@ -1,3 +1,6 @@
+CURRENT BRANCH:
+  - shoot left and shoot right states
+
 - npcs and dialog
 
 - bow attacks
