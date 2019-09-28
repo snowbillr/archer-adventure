@@ -1,5 +1,4 @@
-CURRENT BRANCH:
-  - shoot left and shoot right states
+- shooting in the air
 
 - npcs and dialog
 
