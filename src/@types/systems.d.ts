@@ -135,8 +135,10 @@ declare namespace Systems.DoorSystem {
 }
 
 declare namespace Systems.ShootsArrows {
-  interface Entity extends SystemsManager.Entity {
-    arrows: Entities.Arrow[];
-    shootArrow: (x: number, y: number, depth: number) => void;
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+    availableArrows: Entities.Arrow[];
+    shotArrows: Entities.Arrow[];
+    shootArrow: () => void;
+    reclaimArrowIfRequired: () => void;
   }
 }

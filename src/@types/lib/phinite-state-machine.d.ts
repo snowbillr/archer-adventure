@@ -32,7 +32,7 @@ declare namespace PhiniteStateMachine {
     }
 
     type BaseTransition<T> = {
-      type: TransitionType;
+      type?: TransitionType;
       to: string | ((entity: T) => string);
       onTransition?: (entity: T) => void;
     }

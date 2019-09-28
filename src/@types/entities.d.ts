@@ -10,5 +10,5 @@ declare namespace Entities {
 
   type Sheep = Systems.HasPhysicalSprite.Entity & Systems.HasAreaBoundary.Entity;
 
-  type Arrow = Systems.HasPhysicalSprite.Entity;
+  type Arrow = Systems.HasPhysicalSprite.Entity & Systems.HasPhiniteStateMachine.Entity<any>;
 }

@@ -6,6 +6,7 @@ export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adve
   id: 'adventurer-stand-draw',
   onEnter(entity: Entities.Adventurer) {
     entity.sprite.anims.play('adventurer-stand-draw');
+    entity.reclaimArrowIfRequired();
   },
   transitions: [
     {
