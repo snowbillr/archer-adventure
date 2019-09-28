@@ -5,7 +5,8 @@ declare namespace Entities {
     & Systems.HasInteractionCircle.Entity
     & Systems.HasHurtboxes.Entity
     & Systems.HasControls.Entity
-    & Systems.HasBounds.Entity;
+    & Systems.HasBounds.Entity
+    & Systems.ShootsArrows.Entity;
 
   type Sheep = Systems.HasPhysicalSprite.Entity & Systems.HasAreaBoundary.Entity;
 

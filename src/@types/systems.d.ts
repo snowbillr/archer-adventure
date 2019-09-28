@@ -133,3 +133,10 @@ declare namespace Systems.DoorSystem {
   interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
   }
 }
+
+declare namespace Systems.ShootsArrows {
+  interface Entity extends SystemsManager.Entity {
+    arrows: Entities.Arrow[];
+    shootArrow: (x: number, y: number, depth: number) => void;
+  }
+}

@@ -9,10 +9,7 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adv
     entity.sprite.anims.play('adventurer-stand-shoot');
   },
   onLeave(entity) {
-    const baseScene = entity.sprite.scene as BaseScene;
-    const arrow = baseScene.entityManager.createPrefab('arrow', {}, 2, entity.sprite.depth, entity.sprite.x, entity.sprite.y, false);
-
-    baseScene.physics.add.collider(arrow.sprite, baseScene.areaManager.getTileLayer('ground')!);
+    entity.shootArrow(entity.sprite.x, entity.sprite.y, entity.sprite.depth);
   },
   transitions: [
     {

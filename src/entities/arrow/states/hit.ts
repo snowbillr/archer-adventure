@@ -1,5 +1,4 @@
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
-import { SSL_OP_PKCS1_CHECK_1 } from 'constants';
 
 export const hit: PhiniteStateMachine.States.State<Entities.Arrow> = {
   id: 'arrow-hit',

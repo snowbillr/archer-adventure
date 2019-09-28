@@ -16,6 +16,7 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
+import { ShootsArrowsSystem } from '../systems/shoots-arrows-system';
 
 export abstract class BaseScene extends Phaser.Scene {
   areaManager!: AreaManagerPlugin;
@@ -37,6 +38,7 @@ export abstract class BaseScene extends Phaser.Scene {
         { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
         { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
+        { klass: ShootsArrowsSystem, tags: ShootsArrowsSystem.SystemTags.shootsArrows },
       ]
     );
   }
