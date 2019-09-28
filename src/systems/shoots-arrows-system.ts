@@ -14,36 +14,31 @@ export class ShootsArrowsSystem implements SystemsManager.System {
   }
 
   registerEntity(entity: Systems.ShootsArrows.Entity, data: SystemsManager.EntityRegistrationData): void {
-    entity.shotArrows = [];
-    entity.availableArrows = [];
+    entity.arrows = [];
     for (let i = 0; i < 2; i++) {
       const arrow = this.scene.entityManager.createPrefab('arrow', {}, 2, entity.sprite.depth, 0, 0) as Entities.Arrow;
       this.scene.physics.add.collider(arrow!.sprite, this.scene.areaManager.getTileLayer('ground')!);
 
       arrow.phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
-      entity.availableArrows.push(arrow);
+      entity.arrows.push(arrow);
     }
 
     entity.shootArrow = () => {
-      if (entity.availableArrows.length) {
-        const arrow = entity.availableArrows.pop() as Entities.Arrow;
-        entity.shotArrows.push(arrow);
+      let availableArrow = null;
+      for (let arrow of entity.arrows.reverse()) {
+        if (arrow.phiniteStateMachine.currentState.id != 'arrow-flying') {
+          availableArrow = arrow;
+          break;
+        }
+      }
 
-        arrow.phiniteStateMachine.doTransition({ to: 'arrow-flying' });
+      if (availableArrow) {
+        availableArrow.phiniteStateMachine.doTransition({ to: 'arrow-flying' });
 
-        arrow.sprite.x = entity.sprite.x;
-        arrow.sprite.y = entity.sprite.y;
+        availableArrow.sprite.x = entity.sprite.x;
+        availableArrow.sprite.y = entity.sprite.y;
       } else {
         throw new Error('ShootsArrows::shootArrow::NO_AVAILABLE_ARROWS')
-      }
-    }
-
-    entity.reclaimArrowIfRequired = () => {
-      if (entity.availableArrows.length === 0) {
-        const reclaimedArrow = entity.shotArrows.splice(0, 1)[0];
-        reclaimedArrow.phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
-
-        entity.availableArrows.push(reclaimedArrow);
       }
     }
   }

@@ -12,6 +12,11 @@ export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
     }
   ],
   onEnter(arrow) {
+    arrow.sprite.active = true;
+    arrow.sprite.visible = true;
+    arrow.body.enable = true;
+    arrow.body.allowGravity = true;
+
     arrow.body.setVelocity(400, 0);
   },
   onUpdate(arrow) {

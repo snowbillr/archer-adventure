@@ -7,8 +7,9 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   private entity: T;
   private states: PhiniteStateMachine.States.State<T>[];
 
-  private currentState: PhiniteStateMachine.States.State<T>;
   private triggerCancelers: (() => void)[];
+
+  public currentState: PhiniteStateMachine.States.State<T>;
 
   constructor(scene: Phaser.Scene, entity: T, states: PhiniteStateMachine.States.State<T>[]) {
     this.scene = scene;
