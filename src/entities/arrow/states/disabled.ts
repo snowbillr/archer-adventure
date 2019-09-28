@@ -1,5 +1,3 @@
-import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
-
 export const disabled: PhiniteStateMachine.States.State<Entities.Arrow> = {
   id: 'arrow-disabled',
   transitions: [],

@@ -1,10 +1,9 @@
 CURRENT BRANCH:
+  - bow attacks
+    - power based on how long attack is held down
   - shoot left and shoot right states
 
 - npcs and dialog
-
-- bow attacks
-  - projectiles
 
 
 - enemy

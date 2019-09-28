@@ -7,6 +7,9 @@ export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adve
   onEnter(entity: Entities.Adventurer) {
     entity.sprite.anims.play('adventurer-stand-draw');
   },
+  onUpdate(entity) {
+    entity.shotPower += entity.shotChargeRate;
+  },
   transitions: [
     {
       type: TransitionType.Conditional,
