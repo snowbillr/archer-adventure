@@ -44,7 +44,10 @@ export class ShootsArrowsSystem implements SystemsManager.System {
         availableArrow.sprite.x = entity.sprite.x;
         availableArrow.sprite.y = entity.sprite.y;
 
-        const power = Phaser.Math.Clamp(entity.shotPower, entity.minShotPower, entity.maxShotPower);
+        let power = Phaser.Math.Clamp(entity.shotPower, entity.minShotPower, entity.maxShotPower);
+        if (entity.sprite.flipX) {
+          power *= -1;
+        }
         availableArrow.body.setVelocity(power, 0);
 
         entity.shotPower = entity.minShotPower;
