@@ -142,6 +142,7 @@ declare namespace Systems.ShootsArrows {
     shotChargeRate: number;
 
     arrows: Entities.Arrow[];
+    arrowColliders: Phaser.Physics.Arcade.Collider[];
     shootArrow: () => void;
   }
 }

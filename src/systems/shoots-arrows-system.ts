@@ -20,9 +20,10 @@ export class ShootsArrowsSystem implements SystemsManager.System {
     entity.shotPower = entity.minShotPower;
 
     entity.arrows = [];
+    entity.arrowColliders = [];
     for (let i = 0; i < 3; i++) {
       const arrow = this.scene.entityManager.createPrefab('arrow', {}, 2, entity.sprite.depth, 0, 0) as Entities.Arrow;
-      this.scene.physics.add.collider(arrow!.sprite, this.scene.areaManager.getTileLayer('ground')!);
+      entity.arrowColliders.push(this.scene.physics.add.collider(arrow!.sprite, this.scene.areaManager.getTileLayer('ground')!));
 
       arrow.phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
       entity.arrows.push(arrow);
@@ -51,5 +52,14 @@ export class ShootsArrowsSystem implements SystemsManager.System {
         throw new Error('ShootsArrows::shootArrow::NO_AVAILABLE_ARROWS')
       }
     }
+  }
+
+  destroy(entity: Systems.ShootsArrows.Entity) {
+    for (let collider of entity.arrowColliders) {
+      collider.destroy();
+    }
+
+    entity.arrows = [];
+    entity.arrowColliders = [];
   }
 }
