@@ -133,3 +133,16 @@ declare namespace Systems.DoorSystem {
   interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
   }
 }
+
+declare namespace Systems.ShootsArrows {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+    shotPower: number;
+    minShotPower: number;
+    maxShotPower: number;
+    shotChargeRate: number;
+
+    arrows: Entities.Arrow[];
+    arrowColliders: Phaser.Physics.Arcade.Collider[];
+    shootArrow: () => void;
+  }
+}

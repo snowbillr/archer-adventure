@@ -1,0 +1,16 @@
+[
+  {
+    "key": "arrow",
+    "frame": "__BASE",
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 0
+      },
+      "size": {
+        "width": 2,
+        "height": 1
+      }
+    }
+  }
+]

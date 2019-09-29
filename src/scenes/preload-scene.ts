@@ -17,6 +17,10 @@ export class PreloadScene extends Phaser.Scene {
     this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
     this.load.json('adventurer-bounds', '/assets/bounds/adventurer.json');
 
+    // arrow
+    this.load.image('arrow', '/assets/sprites/projectiles/arrow.png');
+    this.load.json('arrow-bounds', '/assets/bounds/arrow.json');
+
     // sheep
     this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');
@@ -45,7 +49,7 @@ export class PreloadScene extends Phaser.Scene {
 
   create() {
     this.scene.start('movementTest', { areaKey: 'starting-area' });
-    // this.scene.start('boundsTest', { areaKey: 'starting-area' });
+    // this.scene.start('boundsTest');
     // this.scene.start('hitboxTest');
   }
 }

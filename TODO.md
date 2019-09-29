@@ -1,8 +1,6 @@
+- shooting in the air
+
 - npcs and dialog
-
-- bow attacks
-  - projectiles
-
 
 - enemy
 

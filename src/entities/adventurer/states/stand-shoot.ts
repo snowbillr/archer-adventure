@@ -7,6 +7,9 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adv
   onEnter(entity: Entities.Adventurer) {
     entity.sprite.anims.play('adventurer-stand-shoot');
   },
+  onLeave(entity) {
+    entity.shootArrow();
+  },
   transitions: [
     {
       type: TransitionType.Conditional,

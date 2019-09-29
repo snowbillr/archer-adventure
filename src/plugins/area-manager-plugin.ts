@@ -73,6 +73,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     entity.sprite.setPosition(marker.x, marker.y - entity.sprite.displayHeight / this.scale);
   }
 
+  getTileLayer(name: string) {
+    return this.tileLayers.find(layer => layer.layer.name === name);
+  }
+
   private loadMarkers() {
     this.map.objects.forEach(objectLayer => {
       objectLayer.objects.forEach(object => {

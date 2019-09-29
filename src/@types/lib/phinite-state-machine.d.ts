@@ -2,6 +2,7 @@ declare namespace PhiniteStateMachine {
   type Entity = object;
 
   interface PhiniteStateMachine<T> {
+    currentState: States.State<T>;
     doTransition: (transition: PhiniteStateMachine.Transitions.Transition<T>) => void;
     update: () => void;
     destroy: () => void;
@@ -32,7 +33,7 @@ declare namespace PhiniteStateMachine {
     }
 
     type BaseTransition<T> = {
-      type: TransitionType;
+      type?: TransitionType;
       to: string | ((entity: T) => string);
       onTransition?: (entity: T) => void;
     }
