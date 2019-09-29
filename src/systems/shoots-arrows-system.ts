@@ -15,8 +15,8 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
   registerEntity(entity: Systems.ShootsArrows.Entity, data: SystemsManager.EntityRegistrationData): void {
     entity.minShotPower = 300;
-    entity.maxShotPower = 700;
-    entity.shotChargeRate = 10;
+    entity.maxShotPower = 900;
+    entity.shotChargeRate = 15;
     entity.shotPower = entity.minShotPower;
 
     entity.arrows = [];
