@@ -56,6 +56,5 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
   destroy(entity: Systems.ShootsArrows.Entity) {
     entity.arrows = [];
-    entity.arrowColliders = [];
   }
 }
