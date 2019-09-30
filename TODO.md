@@ -6,7 +6,7 @@
 
 - state graph visualization
 
-- get rid of slide state
+- reset slide state to old movement values
 - replace with 'ability'
 
 ability is either dash or anchor
