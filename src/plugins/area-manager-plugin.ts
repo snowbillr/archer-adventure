@@ -77,6 +77,19 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     return this.tileLayers.find(layer => layer.layer.name === name);
   }
 
+  getCollisionMap() {
+    const rawCollisions = this.normalizeProperties(this.map.properties).entityLayerCollisions;
+    const entityLayerPairs = rawCollisions.split(',');
+    return entityLayerPairs.reduce((map: { [key: string]: string[] }, pair: string) => {
+      const [entity, layer] = pair.split(':');
+
+      map[entity] = map[entity] || [];
+      map[entity].push(layer);
+
+      return map;
+    }, {});
+  }
+
   private loadMarkers() {
     this.map.objects.forEach(objectLayer => {
       objectLayer.objects.forEach(object => {
