@@ -1,8 +1,14 @@
 - shooting in the air
 
+- move camera to be more towards the direction the player is facing
+
 - npcs and dialog
 
 - enemy
+
+- replace hurtboxes, bounding box, interaction circle all with an `Attachment` class that takes care of syncing location/offset/rotation/scale
+
+- use an `InteractionTracker` for the entered/active/exiting states of entity ids
 
 - state graph visualization
 
