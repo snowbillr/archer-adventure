@@ -5,7 +5,6 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 export const adventurerAirShoot: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-shoot',
   onEnter(entity) {
-    console.log('enter air shoot')
     entity.sprite.anims.play('adventurer-air-shoot');
   },
   onLeave(entity) {

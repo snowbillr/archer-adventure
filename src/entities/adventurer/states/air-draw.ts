@@ -12,6 +12,13 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
   },
   transitions: [
     {
+      type: TransitionType.Conditional,
+      condition(entity) {
+        return Phaser.Math.Within(entity.body.velocity.y, 0, 5);
+      },
+      to: 'adventurer-stand-hold',
+    },
+    {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
       key: entity => entity.codes.attack,
