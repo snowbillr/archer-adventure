@@ -13,6 +13,12 @@ export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = St
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+      key: entity => entity.codes.attack,
+      to: 'adventurer-stand-draw',
+    },
+    {
+      type: TransitionType.Input,
+      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: entity => entity.codes.down,
       to: (entity: Entities.Adventurer) => {
         if (Math.abs(entity.body.velocity.x) < movementAttributes.slideVelocityThreshold) {

@@ -9,7 +9,12 @@ export const baseGround: Partial<PhiniteStateMachine.States.State<Entities.Adven
         // no idea why, but their speed upon falling is 18.333. So this threshold doesn't trigger the fall
         // state unless they are moving faster than that value.
         // This doesn't negatively impact running off of a platform.
+
+        // If you see this happening while landing from a jump, adjust the bounding boxes
+        // in the air animations to have some padding for landing.
+
         const threshold = 20;
+
         return entity.body.velocity.y > threshold;
       },
       to: (entity: Entities.Adventurer) => {

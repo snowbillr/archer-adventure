@@ -102,6 +102,33 @@
       ],
       "frameRate": 10,
       "repeat": 0
+    },
+    {
+      "key": "adventurer-air-draw",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 9 },
+        { "key": "adventurer-bow", "frame": 10 },
+        { "key": "adventurer-bow", "frame": 11 }
+      ],
+      "repeat": 0
+    },
+    {
+      "key": "adventurer-air-hold",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 12 },
+        { "key": "adventurer-bow", "frame": 11 }
+      ],
+      "frameRate": 3,
+      "repeat": -1
+    },
+    {
+      "key": "adventurer-air-shoot",
+      "frames": [
+        { "key": "adventurer-bow", "frame": 13 },
+        { "key": "adventurer-bow", "frame": 14 }
+      ],
+      "frameRate": 10,
+      "repeat": 0
     }
   ]
 }

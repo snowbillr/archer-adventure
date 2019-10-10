@@ -22,23 +22,17 @@ export class BoundsTestScene extends BaseScene {
       { id: 'arrow', states: arrowStates },
     ]);
 
-    const arrow = this.entityManager.createPrefab('arrow', {}, 5, 0, 0, 0) as Entities.Adventurer;
-    arrow.sprite.x = 400;
-    arrow.sprite.y = 200;
-    arrow.body.setVelocity(0, 0);
-    arrow.body.allowGravity = false;
-
-    let frameIndex = 8;
+    let frameIndex = 14;
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
-    // const adventurer = this.entityManager.createPrefab('test-adventurer', {}, 5, 0, 0, 0) as Entities.Adventurer;
+    const adventurer = this.entityManager.createPrefab('test-adventurer', {}, 5, 0, 0, 0) as Entities.Adventurer;
 
-    // adventurer.sprite.x = 150;
-    // adventurer.sprite.y = 200;
-    // adventurer.sprite.setTexture('adventurer-bow')
-    // adventurer.sprite.setFrame(frameIndex);
+    adventurer.sprite.x = 150;
+    adventurer.sprite.y = 200;
+    adventurer.sprite.setTexture('adventurer-bow')
+    adventurer.sprite.setFrame(frameIndex);
 
-    // adventurer.body.allowGravity = false;
+    adventurer.body.allowGravity = false;
 
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
@@ -50,7 +44,7 @@ export class BoundsTestScene extends BaseScene {
           break;
       }
 
-      // adventurer.sprite.setFrame(frameIndex);
+      adventurer.sprite.setFrame(frameIndex);
       frameText.setText(`Frame ${frameIndex}`);
     });
 

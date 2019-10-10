@@ -15,7 +15,7 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
   registerEntity(entity: Systems.ShootsArrows.Entity, data: SystemsManager.EntityRegistrationData): void {
     entity.minShotPower = 300;
-    entity.maxShotPower = 900;
+    entity.maxShotPower = 700;
     entity.shotChargeRate = 15;
     entity.shotPower = entity.minShotPower;
 
@@ -46,6 +46,7 @@ export class ShootsArrowsSystem implements SystemsManager.System {
           power *= -1;
         }
         availableArrow.body.setVelocity(power, 0);
+        availableArrow.body.setGravityY(-500); // entity gravity = world gravity + this
 
         entity.shotPower = entity.minShotPower;
       } else {
