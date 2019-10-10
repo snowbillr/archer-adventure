@@ -13,11 +13,13 @@ declare namespace Systems.HasPhysicalSprite {
 declare namespace Systems.HasInteractionCircle {
   interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
     interactionCircle: Phaser.Geom.Circle;
+    interactionTracker: InteractionTracker;
+    interactionControl?: string;
+    debugInteractionCircle?: Phaser.GameObjects.Shape;
+
     enteringInteractionIds: Set<string>;
     activeInteractionIds: Set<string>;
     exitingInteractionIds: Set<string>;
-    interactionControl?: string;
-    debugInteractionCircle?: Phaser.GameObjects.Shape;
   }
 }
 

@@ -1,4 +1,5 @@
 import 'phaser';
+import { InteractionTracker } from '../lib/interaction-tracker';
 
 export class HasInteracionCircleSystem implements SystemsManager.System {
   static SystemTags = {
@@ -22,6 +23,7 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       entity.debugInteractionCircle = debugCircle;
     }
 
+    entity.interactionTracker = new InteractionTracker();
     entity.interactionCircle = interactionCircle;
     entity.enteringInteractionIds = new Set();
     entity.activeInteractionIds = new Set();
@@ -53,6 +55,19 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     */
     for (let entity of entities) {
       const intersectingEntityIds = this.getIntersectingInteractionIds(entity, entities);
+
+      /*
+       *
+       * KEEP THIS - its the new stuff
+       *
+       */
+      entity.interactionTracker.update(intersectingEntityIds);
+
+      /*
+       *
+       * GET RID OF THIS - its the old stuff
+       *
+       */
       const newEntityIds = new Set(intersectingEntityIds);
 
       if (entity.exitingInteractionIds.size > 0) {
@@ -83,24 +98,6 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
           entity.enteringInteractionIds.add(newEntityId);
         }
       }
-
-
-      /*
-      entity.exitingInteractionIds = [];
-      for (let activeInteractionId of entity.activeInteractionIds) {
-        if (!intersectingEntityIds.includes(activeInteractionId)) {
-          this.moveBetweenLists(activeInteractionId, entity.activeInteractionIds, entity.exitingInteractionIds);
-          this.moveBetweenLists(activeInteractionId, newEntityIds, []);
-        }
-      };
-
-      for (let enteringInteractionId of entity.enteringInteractionIds) {
-        this.moveBetweenLists(enteringInteractionId, entity.enteringInteractionIds, entity.activeInteractionIds);
-          this.moveBetweenLists(enteringInteractionId, newEntityIds, []);
-      };
-
-      entity.enteringInteractionIds = newEntityIds;
-      */
     };
   }
 
