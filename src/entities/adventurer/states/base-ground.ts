@@ -18,7 +18,6 @@ export const baseGround: Partial<PhiniteStateMachine.States.State<Entities.Adven
         return entity.body.velocity.y > threshold;
       },
       to: (entity: Entities.Adventurer) => {
-        console.log('going to falling from ground')
         entity.body.velocity.y = 100;
 
         if (entity.body.velocity.x > 0) {
