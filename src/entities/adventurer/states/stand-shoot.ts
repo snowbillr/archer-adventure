@@ -16,7 +16,15 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adv
       condition(entity: Entities.Adventurer) {
         return !entity.sprite.anims.isPlaying;
       },
-      to: 'adventurer-stand'
+      to(entity) {
+        if (entity.controls.right.isDown) {
+          return 'adventurer-run-right';
+        } else if (entity.controls.left.isDown) {
+          return 'adventurer-run-left';
+        } else {
+          return 'adventurer-stand';
+        }
+      }
     },
   ]
 });
