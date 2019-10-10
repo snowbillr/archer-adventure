@@ -7,6 +7,9 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
   onEnter(entity) {
     entity.sprite.anims.play('adventurer-air-draw', true);
   },
+  onUpdate(entity) {
+    entity.shotPower += entity.shotChargeRate;
+  },
   transitions: [
     {
       type: TransitionType.Input,

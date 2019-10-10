@@ -10,6 +10,12 @@ export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = S
   },
   transitions: [
     {
+      type: TransitionType.Input,
+      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
+      key: entity => entity.codes.attack,
+      to: 'adventurer-air-draw',
+    },
+    {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
         return Phaser.Math.Within(entity.body.velocity.y, 0, 5);
