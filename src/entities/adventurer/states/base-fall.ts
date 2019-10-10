@@ -18,7 +18,7 @@ export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = S
     {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
-        return Phaser.Math.Within(entity.body.velocity.y, 0, 5);
+        return entity.body.blocked.down;
       },
       to(entity: Entities.Adventurer) {
         if (entity.controls.down.isDown) {

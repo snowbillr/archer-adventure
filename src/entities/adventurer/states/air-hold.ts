@@ -14,7 +14,7 @@ export const adventurerAirHold: PhiniteStateMachine.States.State<Entities.Advent
     {
       type: TransitionType.Conditional,
       condition(entity) {
-        return Phaser.Math.Within(entity.body.velocity.y, 0, 5);
+        return entity.body.blocked.down;
       },
       to: 'adventurer-stand-hold',
     },
