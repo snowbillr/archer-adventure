@@ -29,7 +29,8 @@ export class DoorSystem implements SystemsManager.System {
       const controlKey = doorInteractor.controls[door.interactionControl!];
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
-        if (door.activeInteractionIds.has(doorInteractor.id)) {
+        const activeInteractionIds = door.interactionTracker.getEntityIds('active');
+        if (activeInteractionIds.includes(doorInteractor.id)) {
           this.scene.loadNewArea(door.toKey, door.toMarker);
         }
       });
@@ -41,14 +42,14 @@ export class DoorSystem implements SystemsManager.System {
     const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
 
     for (let doorInteractor of doorInteractors) {
-      const enteringDoorIds = doorInteractor.enteringInteractionIds;
-      const enteringDoors = doors.filter(door => enteringDoorIds.has(door.id));
+      const enteringDoorIds = doorInteractor.interactionTracker.getEntityIds('entering');
+      const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
       for (let enteringDoor of enteringDoors) {
         enteringDoor.showIndicator();
       }
 
-      const exitingDoorIds = doorInteractor.exitingInteractionIds;
-      const exitingDoors = doors.filter(door => exitingDoorIds.has(door.id));
+      const exitingDoorIds = doorInteractor.interactionTracker.getEntityIds('exiting');
+      const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
       for (let enteringDoor of exitingDoors) {
         enteringDoor.hideIndicator();
       }

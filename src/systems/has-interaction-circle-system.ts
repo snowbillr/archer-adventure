@@ -1,4 +1,5 @@
 import 'phaser';
+import { InteractionTracker } from '../lib/interaction-tracker';
 
 export class HasInteracionCircleSystem implements SystemsManager.System {
   static SystemTags = {
@@ -22,10 +23,8 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       entity.debugInteractionCircle = debugCircle;
     }
 
+    entity.interactionTracker = new InteractionTracker();
     entity.interactionCircle = interactionCircle;
-    entity.enteringInteractionIds = new Set();
-    entity.activeInteractionIds = new Set();
-    entity.exitingInteractionIds = new Set();
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -53,54 +52,8 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     */
     for (let entity of entities) {
       const intersectingEntityIds = this.getIntersectingInteractionIds(entity, entities);
-      const newEntityIds = new Set(intersectingEntityIds);
 
-      if (entity.exitingInteractionIds.size > 0) {
-        entity.exitingInteractionIds.clear();
-      }
-
-      if (entity.activeInteractionIds.size > 0) {
-        for (let activeInteractionId of entity.activeInteractionIds) {
-          if (!intersectingEntityIds.includes(activeInteractionId)) {
-            entity.activeInteractionIds.delete(activeInteractionId);
-            entity.exitingInteractionIds.add(activeInteractionId);
-          } else {
-            newEntityIds.delete(activeInteractionId);
-          }
-        }
-      }
-
-      if (entity.enteringInteractionIds.size > 0) {
-        for (let enteringInteractionId of entity.enteringInteractionIds) {
-          entity.activeInteractionIds.add(enteringInteractionId);
-          newEntityIds.delete(enteringInteractionId);
-        }
-        entity.enteringInteractionIds.clear();
-      }
-
-      if (newEntityIds.size > 0) {
-        for (let newEntityId of newEntityIds) {
-          entity.enteringInteractionIds.add(newEntityId);
-        }
-      }
-
-
-      /*
-      entity.exitingInteractionIds = [];
-      for (let activeInteractionId of entity.activeInteractionIds) {
-        if (!intersectingEntityIds.includes(activeInteractionId)) {
-          this.moveBetweenLists(activeInteractionId, entity.activeInteractionIds, entity.exitingInteractionIds);
-          this.moveBetweenLists(activeInteractionId, newEntityIds, []);
-        }
-      };
-
-      for (let enteringInteractionId of entity.enteringInteractionIds) {
-        this.moveBetweenLists(enteringInteractionId, entity.enteringInteractionIds, entity.activeInteractionIds);
-          this.moveBetweenLists(enteringInteractionId, newEntityIds, []);
-      };
-
-      entity.enteringInteractionIds = newEntityIds;
-      */
+      entity.interactionTracker.update(intersectingEntityIds);
     };
   }
 
@@ -109,9 +62,9 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       entity.debugInteractionCircle.destroy();
     }
 
-    delete entity.enteringInteractionIds;
-    delete entity.activeInteractionIds;
-    delete entity.exitingInteractionIds;
+    entity.interactionTracker.destroy();
+    delete entity.interactionTracker;
+
     delete entity.debugInteractionCircle;
   }
 
