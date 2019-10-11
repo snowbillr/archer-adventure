@@ -16,10 +16,6 @@ declare namespace Systems.HasInteractionCircle {
     interactionTracker: InteractionTracker;
     interactionControl?: string;
     debugInteractionCircle?: Phaser.GameObjects.Shape;
-
-    enteringInteractionIds: Set<string>;
-    activeInteractionIds: Set<string>;
-    exitingInteractionIds: Set<string>;
   }
 }
 

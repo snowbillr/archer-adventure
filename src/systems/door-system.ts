@@ -29,7 +29,8 @@ export class DoorSystem implements SystemsManager.System {
       const controlKey = doorInteractor.controls[door.interactionControl!];
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
-        if (door.activeInteractionIds.has(doorInteractor.id)) {
+        const activeInteractionIds = door.interactionTracker.getEntityIds('active');
+        if (activeInteractionIds.includes(doorInteractor.id)) {
           this.scene.loadNewArea(door.toKey, door.toMarker);
         }
       });

@@ -34,4 +34,8 @@ export class InteractionTracker implements InteractionTracker {
       .map(([id]) => id);
 
   }
+
+  destroy() {
+    this.entities = {};
+  }
 }

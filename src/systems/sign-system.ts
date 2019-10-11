@@ -75,7 +75,8 @@ export class SignSystem implements SystemsManager.System {
       const controlKey = signInteractor.controls[sign.interactionControl!];
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
-        if (sign.activeInteractionIds.has(signInteractor.id)) {
+        const activeInteractionIds = sign.interactionTracker.getEntityIds('active');
+        if (activeInteractionIds.includes(signInteractor.id)) {
           if (sign.isTextboxShowing) {
             sign.hideTextbox();
             sign.showIndicator();
