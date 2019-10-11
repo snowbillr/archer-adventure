@@ -1,5 +1,5 @@
 export class InteractionTracker implements InteractionTracker {
-  public entities: { [id: string]: InteractionState | null };
+  private entities: { [id: string]: InteractionState | null };
 
   constructor() {
     this.entities = {};
@@ -26,5 +26,12 @@ export class InteractionTracker implements InteractionTracker {
         this.entities[entityId] = 'inactive';
       }
     });
+  }
+
+  getEntityIds(interactionState: InteractionState) {
+    return Object.entries(this.entities)
+      .filter(([id, state]) => state === interactionState)
+      .map(([id]) => id);
+
   }
 }
