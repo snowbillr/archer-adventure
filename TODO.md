@@ -2,6 +2,8 @@
 
 - scale up graphics 2x
   - change the actual sprites and get rid of the `scale` property
+  - gives a chance to do some asset cleanup work
+  - use a mouse
 
 - hitboxes
 
