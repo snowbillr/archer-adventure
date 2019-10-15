@@ -10,5 +10,5 @@ export const enemyPrefab = {
   initialStateId: 'enemy-idle',
 
   hurtboxesKey: 'enemy-hurtboxes',
-  hurtboxesDebug: true,
+  hurtboxesDebug: false,
 };
