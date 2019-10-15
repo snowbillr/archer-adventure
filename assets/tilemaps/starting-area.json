@@ -165,6 +165,24 @@
                  "width":0,
                  "x":953.545,
                  "y":416.871
+                }, 
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"enemy",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"scale",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":1178.3865040922,
+                 "y":415.890262234842
                 }],
          "opacity":1,
          "properties":[
@@ -198,8 +216,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":487.259,
-                 "y":112.865
+                 "x":1101.088964924,
+                 "y":417.516411391348
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -253,13 +271,13 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"entityLayerCollisions",
          "type":"string",
-         "value":"adventurer:ground,sheep:ground,arrow:ground"
+         "value":"adventurer:ground,sheep:ground,enemy:ground,arrow:ground"
         }, 
         {
          "name":"startingMarker",

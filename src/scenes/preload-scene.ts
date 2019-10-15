@@ -25,6 +25,9 @@ export class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');
 
+    // enemy
+    this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy-2x.png', { frameWidth: 32, frameHeight: 32 });
+
     // indicators
     this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
