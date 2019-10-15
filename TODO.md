@@ -35,3 +35,4 @@ Abilities:
       - if you kill an enemy behind another one, you refill a charge immediately
 
 - refactor: register prefabs in one place, register state sets in another. need to make uniform
+- each system should define a shape for its EntityRegistrationData. makes it easy to find the list of properties to put in the prefab
