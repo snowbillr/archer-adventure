@@ -43,7 +43,6 @@ const gameConfig = {
     ]
   },
   scene: [PreloadScene, MovementTestScene, PrefabTestScene],
-  // scene: AnimTestScene,
   pixelArt: true,
   physics: {
     default: 'arcade',
