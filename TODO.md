@@ -33,3 +33,5 @@ Abilities:
       - take less damage when hit
       - arrows pass through 1 enemy
       - if you kill an enemy behind another one, you refill a charge immediately
+
+- refactor: register prefabs in one place, register state sets in another. need to make uniform
