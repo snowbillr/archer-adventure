@@ -71,6 +71,14 @@ export abstract class BaseScene extends Phaser.Scene {
         this.areaManager.placeEntityAtMarker(adventurer, mapProperties.startingMarker);
       }
 
+      // At one point, I had a question about why arrows were colliding with tilemap layers.
+      // I wasn't explicitly setting up that collider anywhere.
+      // Turns out, the colliders were getting created because of the entry of `arrow:ground`
+      // in the map properties.
+      //
+      // Then I asked, why was it even working, setting up the colliders before the player
+      // even shoots an arrow? It took me a little while to realize that the arrows were already
+      // created at this point, due to the `ShootsArrowSystem#registerEntity` method.
       if (mapProperties.entityLayerCollisions) {
         mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
           const [entityName, layerName] = entityLayerPair.split(':');
