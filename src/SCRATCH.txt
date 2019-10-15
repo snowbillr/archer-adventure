@@ -1,0 +1,19 @@
+HasAttachmentsSystem
+  # Responsible for syncing attachments to Sprites
+  - attachments: Attachment[]
+  + getByTag(tag: string): Attachment[]
+
+  Attachment
+    + shape: 'rectangle' | 'circle'
+    + type: 'hurtbox' | 'hitbox'    // used by different systems to identify attachment
+    + properties                    // for hitbox properties, needs to be accessible by other systems
+
+HasHurtboxesSystem
+  # Responsible for creating hurtbox attachments
+
+HasHitboxesSystem
+  # Responsible for creating hitbox attachments
+
+DamageSystem
+  # uses both the hurtbox and hitbox type Attachments
+  # checks for hitbox overlaps with hurtboxes for given pairs of entities
