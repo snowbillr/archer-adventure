@@ -1,5 +1,8 @@
 - enemy
 
+- scale up graphics 2x
+  - change the actual sprites and get rid of the `scale` property
+
 - hitboxes
 
 - replace hurtboxes, bounding box, interaction circle, hitboxes all with an `Attachment` class that takes care of syncing location/offset/rotation/scale
@@ -10,8 +13,6 @@
 
 - state graph visualization
 
-- scale up graphics 2x
-  - change the actual sprites and get rid of the `scale` property
 
 - create Abilities
 
