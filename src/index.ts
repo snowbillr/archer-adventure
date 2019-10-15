@@ -10,8 +10,7 @@ import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 import { PreloadScene } from './scenes/preload-scene';
 import { MovementTestScene } from './scenes/movement-test-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
-import { BoundsTestScene } from './scenes/bounds-test-scene';
-import { HitboxTestScene } from './scenes/hitbox-test-scene';
+import { PrefabTestScene } from './scenes/prefab-test-scene';
 
 const gameConfig = {
   width: 800,
@@ -43,7 +42,7 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, MovementTestScene, BoundsTestScene, HitboxTestScene],
+  scene: [PreloadScene, MovementTestScene, PrefabTestScene],
   // scene: AnimTestScene,
   pixelArt: true,
   physics: {
