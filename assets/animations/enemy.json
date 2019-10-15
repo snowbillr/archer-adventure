@@ -1,0 +1,23 @@
+{
+  "anims": [
+    {
+      "key": "enemy-idle",
+      "frames": [
+        { "key": "enemy", "frame": 0 },
+        { "key": "enemy", "frame": 1 },
+        { "key": "enemy", "frame": 2 },
+        { "key": "enemy", "frame": 3 },
+        { "key": "enemy", "frame": 4 },
+        { "key": "enemy", "frame": 5 },
+        { "key": "enemy", "frame": 6 },
+        { "key": "enemy", "frame": 7 },
+        { "key": "enemy", "frame": 8 },
+        { "key": "enemy", "frame": 9 },
+        { "key": "enemy", "frame": 10 },
+        { "key": "enemy", "frame": 11 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    }
+  ]
+}

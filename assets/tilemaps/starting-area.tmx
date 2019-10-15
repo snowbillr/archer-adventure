@@ -635,7 +635,7 @@
   <object id="8" name="sheep" type="sheep" x="953.545" y="416.871">
    <point/>
   </object>
-  <object id="18" name="enemy" type="enemy" x="1178.39" y="415.89">
+  <object id="18" name="enemy" type="enemy" x="1178.39" y="416.89">
    <properties>
     <property name="scale" type="int" value="1"/>
    </properties>

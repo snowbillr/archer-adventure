@@ -5,6 +5,7 @@ import { BaseScene } from './base-scene';
 import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
 import { arrowStates } from '../entities/arrow/states';
+import { enemyStates } from '../entities/enemy/states';
 
 export class MovementTestScene extends BaseScene {
   constructor() {
@@ -16,6 +17,7 @@ export class MovementTestScene extends BaseScene {
 
     this.stateRegistrar.registerSets([
       { id: 'adventurer', states: adventurerStates },
+      { id: 'enemy', states: enemyStates },
       { id: 'sheep', states: sheepStates },
       { id: 'arrow', states: arrowStates },
     ]);
