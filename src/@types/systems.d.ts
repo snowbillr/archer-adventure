@@ -143,3 +143,27 @@ declare namespace Systems.ShootsArrows {
     shootArrow: () => void;
   }
 }
+
+declare namespace Systems.HasAttachments {
+  interface Entity extends SystemsManager.Entity, HasSprite.Entity {
+    attachments: Attachment[];
+    createAttachment(type: string, config: AttachmentConfig): Attachment;
+    getAttachmentsByType: (type: string) => Attachment[];
+  }
+
+  interface Attachment {
+    properties: AttachmentProperties;
+    syncToSprite: (sprite: Phaser.GameObjects.Sprite) => void;
+  }
+
+  interface AttachmentConfig {
+    offsetX: number;
+    offsetY: number;
+    width: number;
+    height: number;
+  }
+
+  interface AttachmentProperties {
+    [key: string]: string;
+  }
+}

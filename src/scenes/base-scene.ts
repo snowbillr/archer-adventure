@@ -7,6 +7,7 @@ import { EntityManagerPlugin } from '../plugins/entity-manager-plugin';
 
 import { SignSystem } from '../systems/sign-system';
 import { DoorSystem } from '../systems/door-system';
+import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasSpriteSystem } from '../systems/has-sprite-system';
 import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
@@ -39,6 +40,7 @@ export abstract class BaseScene extends Phaser.Scene {
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
         { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
         { klass: ShootsArrowsSystem, tags: ShootsArrowsSystem.SystemTags.shootsArrows },
+        { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
       ]
     );
   }

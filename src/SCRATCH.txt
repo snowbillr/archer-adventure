@@ -1,7 +1,25 @@
+Adding a new system
+- create new system file
+  - implements `SystemsManager.System`
+  - has static SystemTags object used to reference the system tag
+    - `SystemTags: { [key: string]: string }`
+  - has constructor taking in a Phaser Scene. stores in a private field
+
+- import new system into `BaseScene`
+  - register it with its system tag
+
+- create a new entry in `systems.d.ts` for the new system
+  # should have at least an `Entity` declaring the properties the system will add
+
+
+
+------------
+
 HasAttachmentsSystem
   # Responsible for syncing attachments to Sprites
   - attachments: Attachment[]
   + getByTag(tag: string): Attachment[]
+  + createAttachment(config: AttachmentConfig, type: string)
 
   Attachment
     + shape: 'rectangle' | 'circle'
