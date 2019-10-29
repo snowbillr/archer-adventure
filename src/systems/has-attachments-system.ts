@@ -59,6 +59,7 @@ class Attachment implements Systems.HasAttachments.Attachment {
       this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
       if (debug && scene) {
         this.debugRect = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
+        this.debugRect.setDepth(5);
       }
   }
 
@@ -106,8 +107,6 @@ class Attachment implements Systems.HasAttachments.Attachment {
       this.debugRect.y = y;
       this.debugRect.width = width;
       this.debugRect.height = height;
-
-      console.log(this.shape, this.debugRect)
     }
   }
 }
