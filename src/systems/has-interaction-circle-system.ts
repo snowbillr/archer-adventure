@@ -79,9 +79,4 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
       })
       .map(otherEntity => otherEntity.id);
   }
-
-  private moveBetweenLists(value: string, fromList: string[], toList: string[]) {
-    fromList.splice(fromList.indexOf(value), 1);
-    toList.push(value);
-  }
 }
