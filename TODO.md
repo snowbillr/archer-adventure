@@ -9,6 +9,7 @@
   - gives a chance to do some asset cleanup work
   - use a mouse
 
+- wall cling and wall jump
 
 - replace hurtboxes, bounding box, interaction circle, hitboxes all with an `Attachment` class that takes care of syncing location/offset/rotation/scale
 
@@ -17,7 +18,6 @@
 - npcs and dialog
 
 - state graph visualization
-
 
 - create Abilities
 
