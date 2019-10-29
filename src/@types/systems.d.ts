@@ -152,6 +152,7 @@ declare namespace Systems.HasAttachments {
   }
 
   interface Attachment {
+    type: string;
     properties: AttachmentProperties;
     syncToSprite: (sprite: Phaser.GameObjects.Sprite) => void;
     setConfig: (config: AttachmentConfig) => void;

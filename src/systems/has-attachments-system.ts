@@ -20,16 +20,6 @@ export class HasAttachmentsSystem implements SystemsManager.System {
     entity.getAttachmentsByType = (type: string) => {
       return entity.attachments.filter(attachment => attachment.type === type);
     }
-
-    /*
-    console.log('creating attachment')
-    entity.createAttachment('a', {
-      offsetX: 10,
-      offsetY: 10,
-      width: 10,
-      height: 10,
-    });
-    */
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -44,19 +34,23 @@ export class HasAttachmentsSystem implements SystemsManager.System {
 }
 
 class Attachment implements Systems.HasAttachments.Attachment {
+  public type: string;
+  public properties: Systems.HasAttachments.AttachmentProperties;
+
+  private config: Systems.HasAttachments.AttachmentConfig;
   private shape: Phaser.Geom.Rectangle;
   private enabled: boolean;
 
   private debugRect?: Phaser.GameObjects.Rectangle;
 
-  constructor(
-    public type: string,
-    private config: Systems.HasAttachments.AttachmentConfig,
-    public properties: {} = {},
-    debug: boolean = false,
-    scene: Phaser.Scene) {
+  constructor(type: string, config: Systems.HasAttachments.AttachmentConfig, properties: {} = {}, debug: boolean = false, scene: Phaser.Scene) {
+      this.type = type;
+      this.config = config;
+      this.properties = properties;
+
       this.enabled = true;
       this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
+
       if (debug && scene) {
         this.debugRect = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
         this.debugRect.setDepth(5);

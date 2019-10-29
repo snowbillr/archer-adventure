@@ -16,7 +16,7 @@ export class HasHurtboxesSystem implements SystemsManager.System {
 
     const maxAttachmentCount = entity.hurtboxFrames
       .map(frame => frame.hurtboxes.length)
-      .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), -1);
+      .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), 0);
 
     for (let i = 0; i < maxAttachmentCount; i++) {
       entity.createAttachment('hurtbox', {
@@ -35,11 +35,11 @@ export class HasHurtboxesSystem implements SystemsManager.System {
       const key = entity.sprite.frame.texture.key;
       const frame = entity.sprite.frame.name;
 
-      const hitboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((h: Systems.HasHurtboxes.Frame) => h.key === key && h.frame === frame) as Systems.HasHurtboxes.Frame;
-      if (hitboxFrame && hitboxFrame.hurtboxes) {
+      const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((h: Systems.HasHurtboxes.Frame) => h.key === key && h.frame === frame) as Systems.HasHurtboxes.Frame;
+      if (hurtboxFrame && hurtboxFrame.hurtboxes) {
         const attachments = entity.getAttachmentsByType('hurtbox');
         attachments.forEach(attachment => attachment.disable());
-        hitboxFrame.hurtboxes.forEach((hurtbox, index) => {
+        hurtboxFrame.hurtboxes.forEach((hurtbox, index) => {
           attachments[index].enable();
           attachments[index].setConfig({
             offsetX: hurtbox.x,
