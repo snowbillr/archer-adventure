@@ -86,7 +86,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity, Systems.HasAttachments.Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
@@ -141,5 +141,33 @@ declare namespace Systems.ShootsArrows {
 
     arrows: Entities.Arrow[];
     shootArrow: () => void;
+  }
+}
+
+declare namespace Systems.HasAttachments {
+  interface Entity extends SystemsManager.Entity, HasSprite.Entity {
+    attachments: Attachment[];
+    createAttachment(type: string, config: AttachmentConfig): Attachment;
+    getAttachmentsByType: (type: string) => Attachment[];
+  }
+
+  interface Attachment {
+    type: string;
+    properties: AttachmentProperties;
+    syncToSprite: (sprite: Phaser.GameObjects.Sprite) => void;
+    setConfig: (config: AttachmentConfig) => void;
+    enable: () => void;
+    disable: () => void;
+  }
+
+  interface AttachmentConfig {
+    offsetX: number;
+    offsetY: number;
+    width: number;
+    height: number;
+  }
+
+  interface AttachmentProperties {
+    [key: string]: string;
   }
 }

@@ -1,7 +1,7 @@
 export const adventurerPrefab = {
   name: 'adventurer',
 
-  tags: "hasPhysicalSprite,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor,shootsArrows",
+  tags: "hasPhysicalSprite,hasAttachments,hasHurtboxes,hasBounds,hasControls,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,doorInteractor,shootsArrows",
 
   boundsKey: "adventurer-bounds",
 
@@ -9,7 +9,7 @@ export const adventurerPrefab = {
   frame: 0,
   maxVelocityX: 350,
 
-  hurtboxesDebug: false,
+  hurtboxesDebug: true,
   hurtboxesKey: "adventurer-hurtboxes",
 
   interactionRadius: 30,

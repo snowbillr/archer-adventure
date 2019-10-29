@@ -1,15 +1,17 @@
-HasAttachmentsSystem
-  # Responsible for syncing attachments to Sprites
-  - attachments: Attachment[]
-  + getByTag(tag: string): Attachment[]
+Adding a new system
+- create new system file
+  - implements `SystemsManager.System`
+  - has static SystemTags object used to reference the system tag
+    - `SystemTags: { [key: string]: string }`
+  - has constructor taking in a Phaser Scene. stores in a private field
 
-  Attachment
-    + shape: 'rectangle' | 'circle'
-    + type: 'hurtbox' | 'hitbox'    // used by different systems to identify attachment
-    + properties                    // for hitbox properties, needs to be accessible by other systems
+- import new system into `BaseScene`
+  - register it with its system tag
 
-HasHurtboxesSystem
-  # Responsible for creating hurtbox attachments
+- create a new entry in `systems.d.ts` for the new system
+  # should have at least an `Entity` declaring the properties the system will add
+
+
 
 HasHitboxesSystem
   # Responsible for creating hitbox attachments
