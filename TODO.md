@@ -1,7 +1,3 @@
-- upgrade to 3.20.0
-  - might fix the falling through the floor issue:
-    > Removed blocked checks from TileCheckX and TileCheckY. Originally, this prevented multiple checks when an object had come to rest on a floor. However, when multiple steps run per frame, the object will accelerate again, the floor won't stop it on steps 2+, and it will end the frame a short distance into the floor. Removing the blocked checks will fix the floor dip issue and the rest velocity issue. Although this opens up multiple checks, this is probably very rare: how many times does an object hit two different floors in a single frame?
-
 - enemy
 
 - scale up graphics 2x
