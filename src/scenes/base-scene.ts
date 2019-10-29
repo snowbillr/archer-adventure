@@ -32,6 +32,7 @@ export abstract class BaseScene extends Phaser.Scene {
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
         { klass: HasSpriteSystem, tags: HasSpriteSystem.SystemTags.hasSprite },
         { klass: HasPhysicalSpriteSystem, tags: HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite },
+        { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
         { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
         { klass: HasIndicatorSystem, tags: HasIndicatorSystem.SystemTags.hasIndicator },
         { klass: HasAreaBoundarySystem, tags: HasAreaBoundarySystem.SystemTags.hasAreaBoundary },
@@ -40,7 +41,6 @@ export abstract class BaseScene extends Phaser.Scene {
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
         { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
         { klass: ShootsArrowsSystem, tags: ShootsArrowsSystem.SystemTags.shootsArrows },
-        { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
       ]
     );
   }

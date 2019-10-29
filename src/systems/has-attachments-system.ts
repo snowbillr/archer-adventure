@@ -17,13 +17,19 @@ export class HasAttachmentsSystem implements SystemsManager.System {
 
       return attachment;
     }
+    entity.getAttachmentsByType = (type: string) => {
+      return entity.attachments.filter(attachment => attachment.type === type);
+    }
 
+    /*
+    console.log('creating attachment')
     entity.createAttachment('a', {
       offsetX: 10,
       offsetY: 10,
       width: 10,
       height: 10,
     });
+    */
   }
 
   update(tagManager: SystemsManager.SystemsManager) {
@@ -39,22 +45,40 @@ export class HasAttachmentsSystem implements SystemsManager.System {
 
 class Attachment implements Systems.HasAttachments.Attachment {
   private shape: Phaser.Geom.Rectangle;
+  private enabled: boolean;
 
   private debugRect?: Phaser.GameObjects.Rectangle;
 
   constructor(
-    private type: string,
+    public type: string,
     private config: Systems.HasAttachments.AttachmentConfig,
     public properties: {} = {},
     debug: boolean = false,
     scene: Phaser.Scene) {
+      this.enabled = true;
       this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
       if (debug && scene) {
-        this.debugRect = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF);
+        this.debugRect = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
       }
   }
 
+  enable() {
+    this.enabled = true;
+  }
+
+  disable() {
+    this.enabled = false;
+  }
+
+  setConfig(config: Systems.HasAttachments.AttachmentConfig) {
+    this.config = config;
+  }
+
   syncToSprite(sprite: Phaser.GameObjects.Sprite) {
+    if (!this.enabled) {
+      return;
+    }
+
     const scaleX = sprite.scaleX;
     const scaleY = sprite.scaleY;
 
@@ -71,14 +95,19 @@ class Attachment implements Systems.HasAttachments.Attachment {
     this.shape.width = width;
     this.shape.height = height;
 
-    console.log('sprite x y', sprite.x, sprite.y)
-    console.log('shape x y', this.shape.x, this.shape.y)
-
     if (this.debugRect) {
+      if (this.enabled) {
+        this.debugRect.fillColor = 0x0000FF;
+      } else {
+        this.debugRect.fillColor = 0xFF0000;
+      }
+
       this.debugRect.x = x;
       this.debugRect.y = y;
       this.debugRect.width = width;
       this.debugRect.height = height;
+
+      console.log(this.shape, this.debugRect)
     }
   }
 }
