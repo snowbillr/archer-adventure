@@ -3,6 +3,8 @@ export const enemyPrefab = {
 
   tags: 'hasPhysicalSprite,hasAttachments,hasPhiniteStateMachine,hasHurtboxes',
 
+  attachmentDebug: false,
+
   texture: 'enemy',
   frame: 0,
 
@@ -10,5 +12,4 @@ export const enemyPrefab = {
   initialStateId: 'enemy-idle',
 
   hurtboxesKey: 'enemy-hurtboxes',
-  hurtboxesDebug: false,
 };

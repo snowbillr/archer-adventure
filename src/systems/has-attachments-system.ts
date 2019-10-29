@@ -12,7 +12,7 @@ export class HasAttachmentsSystem implements SystemsManager.System {
   registerEntity(entity: Systems.HasAttachments.Entity, data: SystemsManager.EntityRegistrationData, tag: string) {
     entity.attachments = [];
     entity.createAttachment = (type: string, config: Systems.HasAttachments.AttachmentConfig) => {
-      const attachment = new Attachment(type, config, {}, true, this.scene);
+      const attachment = new Attachment(type, config, {}, data.attachmentDebug, this.scene);
       entity.attachments.push(attachment);
 
       return attachment;
