@@ -158,6 +158,7 @@ declare namespace Systems.HasAttachments {
     setConfig: (config: AttachmentConfig) => void;
     enable: () => void;
     disable: () => void;
+    destroy: () => void;
   }
 
   interface AttachmentConfig {

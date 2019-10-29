@@ -31,6 +31,14 @@ export class HasAttachmentsSystem implements SystemsManager.System {
       }
     }
   }
+
+  destroy(entity: Systems.HasAttachments.Entity) {
+    entity.attachments.forEach(attachment => attachment.destroy());
+
+    delete entity.attachments;
+    delete entity.getAttachmentsByType;
+    delete entity.createAttachment;
+  }
 }
 
 class Attachment implements Systems.HasAttachments.Attachment {
@@ -101,6 +109,12 @@ class Attachment implements Systems.HasAttachments.Attachment {
       this.debugRect.y = y;
       this.debugRect.width = width;
       this.debugRect.height = height;
+    }
+  }
+
+  destroy() {
+    if (this.debugRect) {
+      this.debugRect.destroy();
     }
   }
 }
