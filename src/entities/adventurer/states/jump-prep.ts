@@ -28,7 +28,11 @@ export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adven
         }
       },
       onTransition: (entity: Entities.Adventurer) => {
-        entity.body.velocity.y = movementAttributes.jumpVelocity;
+        if (entity.controls.up.isDown) {
+          entity.body.velocity.y = movementAttributes.jumpVelocity;
+        } else {
+          entity.body.velocity.y = movementAttributes.shortJumpVelocity;
+        }
       },
     }
   ]
