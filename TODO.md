@@ -19,6 +19,8 @@
 
 - state graph visualization
 
+- BUG: not picking arrows to recycle correctly
+
 - create Abilities
 
 Abilities:
