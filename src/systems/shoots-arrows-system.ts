@@ -58,10 +58,8 @@ export class ShootsArrowsSystem implements SystemsManager.System {
       .filter(arrow => arrow.phiniteStateMachine.currentState.id === 'arrow-hit')
 
     if (disabledArrows.length) {
-      console.log('disabled one')
       return disabledArrows[0];
     } else if (hitArrows.length) {
-      console.log('hit one')
       return hitArrows[0];
     } else {
       throw new Error('ShootsArrows::shootArrow::NO_AVAILABLE_ARROWS')
