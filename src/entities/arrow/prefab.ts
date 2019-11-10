@@ -1,7 +1,7 @@
 export const arrowPrefab = {
   name: 'arrow',
 
-  tags: 'hasPhysicalSprite,hasPhiniteStateMachine,hasBounds',
+  tags: 'hasPhysicalSprite,hasPhiniteStateMachine,hasBounds,hasAttachments,hasHitboxes',
 
   texture: 'arrow',
   frame: 0,
@@ -9,5 +9,9 @@ export const arrowPrefab = {
   stateSet: 'arrow',
   initialStateId: 'arrow-flying',
 
-  boundsKey: 'arrow-bounds'
+  boundsKey: 'arrow-bounds',
+
+  hitboxesKey: 'arrow-hitboxes',
+
+  attachmentDebug: false,
 };

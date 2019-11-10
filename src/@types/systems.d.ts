@@ -98,6 +98,25 @@ declare namespace Systems.HasHurtboxes {
     debugColor: number;
   }
 }
+declare namespace Systems.HasHitboxes {
+  type Shape = {
+    type: "rectangle";
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  }
+
+  type Frame = {
+    key: string;
+    frame: number | string;
+    hitboxes: Shape[];
+  }
+
+  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity, Systems.HasAttachments.Entity {
+    hitboxFrames: Frame[];
+  }
+}
 
 declare namespace Systems.HasPhiniteStateMachine {
   interface Entity<T> extends SystemsManager.Entity {

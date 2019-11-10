@@ -20,6 +20,7 @@ export class PreloadScene extends Phaser.Scene {
     // arrow
     this.load.image('arrow', '/assets/sprites/projectiles/arrow.png');
     this.load.json('arrow-bounds', '/assets/bounds/arrow.json');
+    this.load.json('arrow-hitboxes', '/assets/hitboxes/arrow.json');
 
     // sheep
     this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
