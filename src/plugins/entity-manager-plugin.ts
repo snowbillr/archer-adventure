@@ -7,6 +7,8 @@ import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
+import { TiledUtil } from '../utilities/tiled-util';
+
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
 
@@ -53,8 +55,8 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
     const entity = {} as any;
-    const overrideProperties = this.normalizeProperties(rawOverrideProperties);
-    const properties = {...this.normalizeProperties(rawProperties), ...overrideProperties};
+    const overrideProperties = TiledUtil.normalizeProperties(rawOverrideProperties);
+    const properties = {...TiledUtil.normalizeProperties(rawProperties), ...overrideProperties};
     const baseScene = this.scene as BaseScene;
 
     if (properties.tags) {
@@ -72,17 +74,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     return entity;
-  }
-
-  private normalizeProperties(properties: any): { [key: string]: any } {
-    if (Array.isArray(properties)) {
-      return properties.reduce((acc: any, propertyMap: any) => {
-        acc[propertyMap.name] = propertyMap.value;
-        return acc;
-      }, {});
-    } else {
-      return properties;
-    }
   }
 
   private getObjectPosition(position: { x: number, y: number }, scale: number = 1) {

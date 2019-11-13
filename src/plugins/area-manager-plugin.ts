@@ -1,5 +1,6 @@
 import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
+import { TiledUtil } from '../utilities/tiled-util';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public scale: number;
@@ -78,7 +79,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   getCollisionMap() {
-    const rawCollisions = this.normalizeProperties(this.map.properties).entityLayerCollisions;
+    const rawCollisions = TiledUtil.normalizeProperties(this.map.properties).entityLayerCollisions;
     const entityLayerPairs = rawCollisions.split(',');
     return entityLayerPairs.reduce((map: { [key: string]: string[] }, pair: string) => {
       const [entity, layer] = pair.split(':');
@@ -93,7 +94,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   private loadMarkers() {
     this.map.objects.forEach(objectLayer => {
       objectLayer.objects.forEach(object => {
-        const properties = this.normalizeProperties(object.properties);
+        const properties = TiledUtil.normalizeProperties(object.properties);
         if (properties.marker) {
           this.markers[object.name] = {
             x: object.x! * this.scale,
@@ -112,7 +113,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
     layer.setScale(this.scale);
 
-    const layerProperties: any = this.normalizeProperties(layer.layer.properties);
+    const layerProperties: any = TiledUtil.normalizeProperties(layer.layer.properties);
 
     if (layerProperties.collides) {
       layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
@@ -133,7 +134,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   private createObjects(layerName: string): void {
     const layer = this.map.getObjectLayer(layerName);
-    const layerProperties = this.normalizeProperties(layer.properties);
+    const layerProperties = TiledUtil.normalizeProperties(layer.properties);
     const tiledObjects = layer.objects;
 
     this.objects[layerName] = [];
@@ -147,16 +148,5 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
       this.objects[layerName].push(entity);
     });
-  }
-
-  private normalizeProperties(properties: any): { [key: string]: any } {
-    if (Array.isArray(properties)) {
-      return properties.reduce((acc: any, propertyMap: any) => {
-        acc[propertyMap.name] = propertyMap.value;
-        return acc;
-      }, {});
-    } else {
-      return properties || {};
-    }
   }
 }

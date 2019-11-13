@@ -6,6 +6,8 @@
 
 - land and shoot
 
+- enemies need to be stunned whenever they get hit. that's the only way that only having a bow as a weapon will work
+
 - scale up graphics 2x
   - change the actual sprites and get rid of the `scale` property
   - gives a chance to do some asset cleanup work
