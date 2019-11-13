@@ -1,8 +1,10 @@
+- damage system
+  - hitboxes and hurtboxes interacting
+
 - hitboxes
   - enemy
 
-- damage system
-  - hitboxes and hurtboxes interacting
+- land and shoot
 
 - scale up graphics 2x
   - change the actual sprites and get rid of the `scale` property
