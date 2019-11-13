@@ -90,11 +90,22 @@ class Attachment implements Systems.HasAttachments.Attachment {
 
     const width = scaleX * this.config.width;
     const height = scaleY * this.config.height;
-    const x = (sprite.x + (offsetX * scaleX)) - (width * sprite.originX);
-    const y = (sprite.y + (offsetY * scaleY)) - (height * sprite.originY);
 
-    this.shape.x = x;
-    this.shape.y = y;
+    const spriteCenter = sprite.getCenter();
+
+    const coords = new Phaser.Geom.Point(
+      spriteCenter.x + offsetX,
+      spriteCenter.y + offsetY
+    );
+
+    Phaser.Math.RotateAround(coords, spriteCenter.x, spriteCenter.y, sprite.rotation);
+
+    // Center the hitbox on the offset values
+    coords.x -= width / 2;
+    coords.y -= height / 2;
+
+    this.shape.x = coords.x;
+    this.shape.y = coords.y;
     this.shape.width = width;
     this.shape.height = height;
 
@@ -105,8 +116,18 @@ class Attachment implements Systems.HasAttachments.Attachment {
         this.debugRect.fillColor = 0xFF0000;
       }
 
-      this.debugRect.x = x;
-      this.debugRect.y = y;
+      /*
+      const mousepoint = this.debugRect.scene.input.activePointer
+      const worldpoint = this.debugRect.scene.cameras.main.getWorldPoint(mousepoint.x, mousepoint.y)
+      if (this.shape.contains(worldpoint.x, worldpoint.y)) {
+        this.debugRect.fillColor = 0xFF0000;
+      } else {
+        this.debugRect.fillColor = 0x0000FF;
+      }
+      */
+
+      this.debugRect.x = coords.x;
+      this.debugRect.y = coords.y;
       this.debugRect.width = width;
       this.debugRect.height = height;
     }

@@ -15,6 +15,7 @@ import { HasIndicatorSystem } from '../systems/has-indicator-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
+import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 import { ShootsArrowsSystem } from '../systems/shoots-arrows-system';
@@ -39,6 +40,7 @@ export abstract class BaseScene extends Phaser.Scene {
         { klass: HasBoundsSystem, tags: HasBoundsSystem.SystemTags.hasBounds },
         { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
+        { klass: HasHitboxesSystem, tags: HasHitboxesSystem.SystemTags.hasHitboxes },
         { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
         { klass: ShootsArrowsSystem, tags: ShootsArrowsSystem.SystemTags.shootsArrows },
       ]

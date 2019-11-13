@@ -28,17 +28,19 @@ export class HasHurtboxesSystem implements SystemsManager.System {
     }
   }
 
-  update(tagManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasHurtboxes.Entity[] = tagManager.getEntities(HasHurtboxesSystem.SystemTags.hasHurtboxes);
+  update(systemsManager: SystemsManager.SystemsManager) {
+    const entities: Systems.HasHurtboxes.Entity[] = systemsManager.getEntities(HasHurtboxesSystem.SystemTags.hasHurtboxes);
 
     entities.forEach(entity => {
-      const key = entity.sprite.frame.texture.key;
-      const frame = entity.sprite.frame.name;
+      const textureKey = entity.sprite.frame.texture.key;
+      const frameName = entity.sprite.frame.name;
 
-      const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((h: Systems.HasHurtboxes.Frame) => h.key === key && h.frame === frame) as Systems.HasHurtboxes.Frame;
+      const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((f: Systems.HasHurtboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHurtboxes.Frame;
+
       if (hurtboxFrame && hurtboxFrame.hurtboxes) {
         const attachments = entity.getAttachmentsByType('hurtbox');
         attachments.forEach(attachment => attachment.disable());
+
         hurtboxFrame.hurtboxes.forEach((hurtbox, index) => {
           attachments[index].enable();
           attachments[index].setConfig({
