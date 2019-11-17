@@ -28,7 +28,7 @@ export abstract class BaseScene extends Phaser.Scene {
   stateRegistrar!: StateRegistrarPlugin;
   systemsManager!: SystemsManagerPlugin;
 
-  create(data: any) {
+  create() {
     this.systemsManager.registerSystems(
       [
         { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },

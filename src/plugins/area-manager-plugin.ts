@@ -120,6 +120,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         tile.setCollision(true, true, true, true, false);
       }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
 
+      // B:this is an optimization for not calculating the faces immediately at L120
       layer.calculateFacesWithin(0, 0, layer.width, layer.height);
     }
 
