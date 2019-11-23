@@ -1,4 +1,4 @@
-import { BaseScene } from '../scenes/base-scene';
+import { MovementTestScene } from '../scenes/movement-test-scene';
 
 export class DoorSystem implements SystemsManager.System {
   static SystemTags = {
@@ -6,10 +6,10 @@ export class DoorSystem implements SystemsManager.System {
     doorInteractor: 'doorInteractor',
   };
 
-  private scene: BaseScene;
+  private scene: MovementTestScene;
 
   constructor(scene: Phaser.Scene) {
-    this.scene = scene as BaseScene;
+    this.scene = scene as MovementTestScene;
   }
 
   registerEntity(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), data: SystemsManager.EntityRegistrationData, tag: string) {

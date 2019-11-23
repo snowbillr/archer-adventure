@@ -1,12 +1,5 @@
 import { BaseScene } from '../scenes/base-scene';
 
-import { adventurerPrefab } from '../entities/adventurer/prefab';
-import { doorPrefab } from '../entities/door/prefab';
-import { enemyPrefab } from '../entities/enemy/prefab';
-import { sheepPrefab } from '../entities/sheep/prefab';
-import { signPrefab } from '../entities/sign/prefab';
-import { arrowPrefab } from '../entities/arrow/prefab';
-
 import { TiledUtil } from '../utilities/tiled-util';
 
 type PropertiesMap = { [key: string]: any };
@@ -22,13 +15,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.prefabs = {};
     this.entitiesByName = {};
-
-    this.registerPrefab('adventurer', adventurerPrefab);
-    this.registerPrefab('arrow', arrowPrefab);
-    this.registerPrefab('door', doorPrefab);
-    this.registerPrefab('enemy', enemyPrefab);
-    this.registerPrefab('sheep', sheepPrefab);
-    this.registerPrefab('sign', signPrefab);
   }
 
   unload() {

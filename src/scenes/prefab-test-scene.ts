@@ -9,9 +9,7 @@ export class PrefabTestScene extends BaseScene {
     super({key: 'prefabTest'})
   }
 
-  create(data: any) {
-    super.create(data.any);
-
+  create() {
     this.entityManager.registerPrefab('enemy', enemyPrefab);
 
     this.stateRegistrar.registerSets([
