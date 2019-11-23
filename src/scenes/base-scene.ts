@@ -28,7 +28,7 @@ export abstract class BaseScene extends Phaser.Scene {
   stateRegistrar!: StateRegistrarPlugin;
   systemsManager!: SystemsManagerPlugin;
 
-  create() {
+  create(data: any) {
     this.systemsManager.registerSystems(
       [
         { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
@@ -51,8 +51,9 @@ export abstract class BaseScene extends Phaser.Scene {
 
   loadNewArea(key: string, markerName?: string) {
     // Loading a new area needs to be 'enqueued' as an action.
-    // When this happens, the entities get destroyed, but their event listeners will still be called.
-    // They must be queued up or something in the event emitter, and even when all the events are cleared,
+
+    // This is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
+    // The events must be queued up or something in the event emitter, and even when all the events are cleared,
     // they still get called.
 
     // This manifested as a problem when you entered a door and the sign interaction check got called for the
@@ -89,8 +90,14 @@ export abstract class BaseScene extends Phaser.Scene {
         mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
           const [entityName, layerName] = entityLayerPair.split(':');
           const entities = this.entityManager.getEntities(entityName);
+          const layer = this.areaManager.getTileLayer(layerName);
+
+          if (layer == null) {
+            throw new Error(`Layer does not exist for collision pair: ${entityLayerPair}`);
+          }
+
           for (let entity of entities) {
-            this.physics.add.collider(entity.sprite, this.areaManager.getTileLayer(layerName)!);
+            this.physics.add.collider(entity.sprite, layer);
           }
         });
       }
