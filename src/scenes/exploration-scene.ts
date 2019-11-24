@@ -31,7 +31,7 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 import { TiledUtil } from '../utilities/tiled-util';
 
 
-export class MovementTestScene extends BaseScene {
+export class ExplorationScene extends BaseScene {
   constructor() {
     super({ key: 'movementTest' });
   }

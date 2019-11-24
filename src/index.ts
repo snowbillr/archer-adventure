@@ -8,7 +8,7 @@ import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 
 import { PreloadScene } from './scenes/preload-scene';
-import { MovementTestScene } from './scenes/movement-test-scene';
+import { ExplorationScene } from './scenes/exploration-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 
@@ -42,7 +42,7 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, MovementTestScene, PrefabTestScene],
+  scene: [PreloadScene, ExplorationScene, PrefabTestScene],
   pixelArt: true,
   physics: {
     default: 'arcade',
