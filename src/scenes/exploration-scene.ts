@@ -32,8 +32,12 @@ import { TiledUtil } from '../utilities/tiled-util';
 
 
 export class ExplorationScene extends BaseScene {
+  private isLoadingArea: boolean;
+
   constructor() {
     super({ key: 'movementTest' });
+
+    this.isLoadingArea = false;
   }
 
   create(data: any) {
@@ -78,7 +82,11 @@ export class ExplorationScene extends BaseScene {
   }
 
   loadNewArea(key: string, markerName?: string) {
-    // Loading a new area needs to be 'enqueued' as an action.
+    if (this.isLoadingArea) {
+      return;
+    } else {
+      this.isLoadingArea = true;
+    }
 
     // This is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
     // The events must be queued up or something in the event emitter, and even when all the events are cleared,
@@ -135,6 +143,8 @@ export class ExplorationScene extends BaseScene {
       this.cameras.main.setBackgroundColor(0x888888);
       this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
       this.cameras.main.startFollow(adventurer.sprite, true);
+
+      this.isLoadingArea = false;
     }, [], null);
   }
 }
