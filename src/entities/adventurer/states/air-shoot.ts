@@ -14,21 +14,7 @@ export const adventurerAirShoot: PhiniteStateMachine.States.State<Entities.Adven
       condition(entity: Entities.Adventurer) {
         return entity.body.blocked.down;
       },
-      to(entity) {
-        if (entity.controls.down.isDown) {
-          if (Math.abs(entity.body.velocity.x) < movementAttributes.slideVelocityThreshold) {
-            return 'adventurer-crouch';
-          } else {
-            return 'adventurer-slide';
-          }
-        } else if (entity.controls.left.isDown) {
-          return 'adventurer-run-left';
-        } else if (entity.controls.right.isDown) {
-          return 'adventurer-run-right';
-        }  else {
-          return 'adventurer-stand';
-        }
-      }
+      to: 'adventurer-stand-shoot',
     },
     {
       type: TransitionType.Conditional,
