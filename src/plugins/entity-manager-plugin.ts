@@ -74,10 +74,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
       });
     }
 
-    if (entity.components[SpriteComponent.tag]) {
-      entity.components[SpriteComponent.tag].sprite.setDepth(depth);
-    }
-
     return entity;
   }
 
