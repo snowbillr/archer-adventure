@@ -1,4 +1,5 @@
 import 'phaser';
+import { SpriteComponent } from '../components/sprite-component';
 
 export class HasHurtboxesSystem implements SystemsManager.System {
   static SystemTags = {
@@ -32,8 +33,8 @@ export class HasHurtboxesSystem implements SystemsManager.System {
     const entities: Systems.HasHurtboxes.Entity[] = systemsManager.getEntities(HasHurtboxesSystem.SystemTags.hasHurtboxes);
 
     entities.forEach(entity => {
-      const textureKey = entity.sprite.frame.texture.key;
-      const frameName = entity.sprite.frame.name;
+      const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
+      const frameName = entity.components[SpriteComponent.tag].sprite.frame.name;
 
       const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((f: Systems.HasHurtboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHurtboxes.Frame;
 

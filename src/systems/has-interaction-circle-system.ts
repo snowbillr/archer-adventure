@@ -1,5 +1,6 @@
 import 'phaser';
 import { InteractionTracker } from '../lib/interaction-tracker';
+import { SpriteComponent } from '../components/sprite-component';
 
 export class HasInteracionCircleSystem implements SystemsManager.System {
   static SystemTags = {
@@ -31,11 +32,11 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     const entities: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(HasInteracionCircleSystem.SystemTags.hasInteractionCircle);
 
     for (let entity of entities) {
-      entity.interactionCircle.setPosition(entity.sprite.x, entity.sprite.y);
+      entity.interactionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
 
       if (entity.debugInteractionCircle) {
         const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
-        entity.debugInteractionCircle.setPosition(entity.sprite.x, entity.sprite.y);
+        entity.debugInteractionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
 
         if (entity.debugInteractionCircle) {
           if (Phaser.Geom.Intersects.CircleToCircle(entity.interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {

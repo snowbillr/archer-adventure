@@ -1,6 +1,7 @@
 import 'phaser';
 
 import { BaseScene } from '../scenes/base-scene';
+import { SpriteComponent } from '../components/sprite-component';
 
 const ARROW_POOL_COUNT = 3;
 
@@ -23,7 +24,7 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
     entity.arrows = [];
     for (let i = 0; i < ARROW_POOL_COUNT; i++) {
-      const arrow = this.scene.entityManager.createPrefab('arrow', {}, 2, entity.sprite.depth, 0, 0) as Entities.Arrow;
+      const arrow = this.scene.entityManager.createPrefab('arrow', {}, 2, entity.components[SpriteComponent.tag].sprite.depth, 0, 0) as Entities.Arrow;
       arrow.phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
       entity.arrows.push(arrow);
     }
@@ -33,11 +34,11 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
       availableArrow.phiniteStateMachine.doTransition({ to: 'arrow-flying' });
 
-      availableArrow.sprite.x = entity.sprite.x;
-      availableArrow.sprite.y = entity.sprite.y;
+      availableArrow.components[SpriteComponent.tag].sprite.x = entity.components[SpriteComponent.tag].sprite.x;
+      availableArrow.components[SpriteComponent.tag].sprite.y = entity.components[SpriteComponent.tag].sprite.y;
 
       let power = Phaser.Math.Clamp(entity.shotPower, entity.minShotPower, entity.maxShotPower);
-      if (entity.sprite.flipX) {
+      if (entity.components[SpriteComponent.tag].sprite.flipX) {
         power *= -1;
       }
       availableArrow.body.setVelocity(power, 0);

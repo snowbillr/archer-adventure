@@ -1,6 +1,7 @@
 declare namespace Systems.HasSprite {
   interface Entity extends SystemsManager.Entity {
     sprite: Phaser.GameObjects.Sprite;
+    components: any;
   }
 }
 

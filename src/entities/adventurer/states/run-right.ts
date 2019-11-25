@@ -1,12 +1,13 @@
 import { baseRun, startRunning } from './base-run';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerRunRight: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseRun, {
   id: 'adventurer-run-right',
   onEnter(entity: Entities.Adventurer) {
-    entity.sprite.flipX = false;
-    entity.sprite.anims.play('adventurer-run');
+    entity.components[SpriteComponent.tag].sprite.flipX = false;
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-run');
 
     startRunning(entity, "right");
   },

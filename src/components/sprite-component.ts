@@ -18,4 +18,10 @@ export class SpriteComponent implements Phecs.Component {
       this.sprite.setDepth(data.depth);
     }
   }
+
+  destroy() {
+    this.sprite.destroy();
+
+    delete this.sprite;
+  }
 }

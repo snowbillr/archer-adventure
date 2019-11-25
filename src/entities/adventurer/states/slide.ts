@@ -2,11 +2,12 @@ import { movementAttributes } from '../movement-attributes';
 import { baseGround } from './base-ground';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
   id: 'adventurer-slide',
   onEnter(adventurer: Entities.Adventurer) {
-    adventurer.sprite.anims.play('adventurer-slide')
+    adventurer.components[SpriteComponent.tag].sprite.anims.play('adventurer-slide')
 
     if (adventurer.body.velocity.x > 0) {
       adventurer.body.acceleration.x = -1 * movementAttributes.slideDeceleration;
@@ -23,7 +24,7 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
     {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
-        return !entity.sprite.anims.isPlaying;
+        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to: (entity: Entities.Adventurer) => {
         if (entity.controls.left.isDown) {

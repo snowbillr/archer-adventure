@@ -1,4 +1,5 @@
 import 'phaser';
+import { SpriteComponent } from '../components/sprite-component';
 
 export class HasIndicatorSystem implements SystemsManager.System {
   static SystemTags = {
@@ -13,7 +14,7 @@ export class HasIndicatorSystem implements SystemsManager.System {
 
   registerEntity(entity: Systems.HasIndicator.Entity, data: SystemsManager.EntityRegistrationData): void {
     let { x, y } = data;
-    y = y - entity.sprite.displayHeight - 20;
+    y = y - entity.components[SpriteComponent.tag].sprite.displayHeight - 20;
 
     const indicatorSprite = this.scene.add.sprite(x, y, 'indicator-down');
     if (data.scale) {

@@ -21,4 +21,10 @@ export class PhysicsBodyComponent implements Phecs.Component {
       this.body.maxVelocity.x = data.maxVelocityX;
     }
   }
+
+  destroy() {
+    this.body.destroy();
+
+    delete this.body;
+  }
 }

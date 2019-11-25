@@ -1,18 +1,19 @@
 import { movementAttributes } from '../movement-attributes';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adventurer> = {
   id: 'adventurer-jump-prep',
   onEnter(entity: Entities.Adventurer) {
     entity.body.acceleration.x = 0;
 
-    entity.sprite.anims.play('adventurer-jump-prep');
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-jump-prep');
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
-        return !entity.sprite.anims.isPlaying;
+        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to: (entity: Entities.Adventurer) => {
         if (entity.controls.right.isDown) {

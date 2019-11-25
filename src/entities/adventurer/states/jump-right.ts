@@ -2,6 +2,7 @@ import { baseJump } from './base-jump';
 import { movementAttributes } from '../movement-attributes';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerJumpRight: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
   id: 'adventurer-jump-right',
@@ -9,7 +10,7 @@ export const adventurerJumpRight: PhiniteStateMachine.States.State<Entities.Adve
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
   onEnter(entity: Entities.Adventurer) {
-    entity.sprite.flipX = false;
+    entity.components[SpriteComponent.tag].sprite.flipX = false;
   },
   transitions: [
     {

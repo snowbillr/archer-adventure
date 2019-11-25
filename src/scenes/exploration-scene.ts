@@ -107,8 +107,8 @@ export class ExplorationScene extends BaseScene {
     this.time.delayedCall(0, () => {
       this.systemsManager.stop();
       this.systemsManager.destroyEntities();
+      this.entityManager.destroy();
       this.areaManager.unload();
-      this.entityManager.unload();
 
       this.areaManager.load(key);
 
@@ -143,7 +143,7 @@ export class ExplorationScene extends BaseScene {
           }
 
           for (let entity of entities) {
-            this.physics.add.collider(entity.sprite, layer);
+            this.physics.add.collider(entity.components[SpriteComponent.tag].sprite, layer);
           }
         });
       }
@@ -152,7 +152,7 @@ export class ExplorationScene extends BaseScene {
 
       this.cameras.main.setBackgroundColor(0x888888);
       this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);
-      this.cameras.main.startFollow(adventurer.sprite, true);
+      this.cameras.main.startFollow(adventurer.components[SpriteComponent.tag].sprite, true);
 
       this.isLoadingArea = false;
     }, [], null);

@@ -19,10 +19,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.entitiesByName = {};
   }
 
-  unload() {
-    this.entitiesByName = {};
-  }
-
   registerPrefab(key: string, properties: PropertiesMap) {
     this.prefabs[key] = properties;
   }
@@ -67,9 +63,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
             ...properties
           }, entity);
 
-          if (tag === SpriteComponent.tag) {
-            entity.sprite = entity.components[tag].sprite;
-          } else if (tag === PhysicsBodyComponent.tag) {
+          if (tag === PhysicsBodyComponent.tag) {
             entity.body = entity.components[tag].body;
           }
         }
@@ -84,11 +78,21 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
       });
     }
 
-    if (entity.sprite) {
-      entity.sprite.setDepth(depth);
+    if (entity.components[SpriteComponent.tag]) {
+      entity.components[SpriteComponent.tag].sprite.setDepth(depth);
     }
 
     return entity;
+  }
+
+  destroy() {
+    Object.values(this.entitiesByName).flat().forEach(entity => {
+      Object.values(entity.components).forEach(component => {
+        (component as Phecs.Component).destroy();
+      });
+    });
+
+    this.entitiesByName = {};
   }
 
   private getObjectPosition(position: { x: number, y: number }, scale: number = 1) {

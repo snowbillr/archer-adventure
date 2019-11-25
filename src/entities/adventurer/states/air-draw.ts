@@ -1,11 +1,12 @@
 import { baseAerial } from './base-aerial';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-draw',
   onEnter(entity) {
-    entity.sprite.anims.play('adventurer-air-draw', true);
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-air-draw', true);
   },
   onUpdate(entity) {
     entity.shotPower += entity.shotChargeRate;
@@ -27,7 +28,7 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
     {
       type: TransitionType.Conditional,
       condition(entity) {
-        return !entity.sprite.anims.isPlaying;
+        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to: 'adventurer-air-hold'
     },
@@ -37,7 +38,7 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
       key: entity => entity.codes.left,
       to: 'adventurer-air-draw',
       onTransition(entity) {
-        entity.sprite.flipX = true;
+        entity.components[SpriteComponent.tag].sprite.flipX = true;
       }
     },
     {
@@ -46,7 +47,7 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
       key: entity => entity.codes.right,
       to: 'adventurer-air-draw',
       onTransition(entity) {
-        entity.sprite.flipX = false;
+        entity.components[SpriteComponent.tag].sprite.flipX = false;
       }
     }
   ]

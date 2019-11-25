@@ -1,6 +1,7 @@
 import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
 import { TiledUtil } from '../utilities/tiled-util';
+import { SpriteComponent } from '../components/sprite-component';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public scale: number;
@@ -71,7 +72,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   placeEntityAtMarker(entity: Systems.HasSprite.Entity, markerName: string) {
     const marker = this.markers[markerName];
 
-    entity.sprite.setPosition(marker.x, marker.y - entity.sprite.displayHeight / this.scale);
+    entity.components[SpriteComponent.tag].sprite.setPosition(marker.x, marker.y - entity.components[SpriteComponent.tag].sprite.displayHeight / this.scale);
   }
 
   getTileLayer(name: string) {

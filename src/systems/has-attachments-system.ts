@@ -1,3 +1,5 @@
+import { SpriteComponent } from '../components/sprite-component';
+
 export class HasAttachmentsSystem implements SystemsManager.System {
   static SystemTags = {
     hasAttachments: 'hasAttachments',
@@ -27,7 +29,7 @@ export class HasAttachmentsSystem implements SystemsManager.System {
 
     for (let entity of entities) {
       for (let attachment of entity.attachments) {
-        attachment.syncToSprite(entity.sprite);
+        attachment.syncToSprite(entity.components[SpriteComponent.tag].sprite);
       }
     }
   }

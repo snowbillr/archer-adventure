@@ -2,11 +2,12 @@ import { baseAerial } from './base-aerial';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { movementAttributes } from '../movement-attributes';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerAirShoot: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-shoot',
   onEnter(entity) {
-    entity.sprite.anims.play('adventurer-air-shoot');
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-air-shoot');
   },
   transitions: [
     {
@@ -19,7 +20,7 @@ export const adventurerAirShoot: PhiniteStateMachine.States.State<Entities.Adven
     {
       type: TransitionType.Conditional,
       condition(entity: Entities.Adventurer) {
-        return !entity.sprite.anims.isPlaying;
+        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to(entity) {
         if (entity.body.velocity.y < 0) {

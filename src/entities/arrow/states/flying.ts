@@ -1,4 +1,5 @@
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
   id: 'arrow-flying',
@@ -12,8 +13,8 @@ export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
     }
   ],
   onEnter(arrow) {
-    arrow.sprite.active = true;
-    arrow.sprite.visible = true;
+    arrow.components[SpriteComponent.tag].sprite.active = true;
+    arrow.components[SpriteComponent.tag].sprite.visible = true;
     arrow.body.enable = true;
     arrow.body.allowGravity = true;
 
@@ -22,7 +23,7 @@ export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
   onUpdate(arrow) {
     if (arrow.body.blocked.none) {
       const angle = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x);
-      arrow.sprite.rotation = angle;
+      arrow.components[SpriteComponent.tag].sprite.rotation = angle;
     }
   }
 }

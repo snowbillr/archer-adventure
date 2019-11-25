@@ -3,10 +3,11 @@ import { movementAttributes } from '../movement-attributes';
 import { baseAerial } from './base-aerial';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseAerial, {
   onEnter(entity: Entities.Adventurer) {
-    entity.sprite.anims.play('adventurer-fall');
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-fall');
   },
   transitions: [
     {

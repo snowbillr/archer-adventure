@@ -1,11 +1,12 @@
 import { baseIdle } from './base-idle';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
 
 export const adventurerStand: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
   id: 'adventurer-stand',
   onEnter(entity: Entities.Adventurer) {
-    entity.sprite.anims.play('adventurer-stand');
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-stand');
   },
   transitions: [
     {

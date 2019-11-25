@@ -1,11 +1,11 @@
 declare module Phecs {
   interface Component {
     [key: string]: any;
+    destroy(): void;
   }
 
   interface Entity {
     id: string;
-    sprite: Phaser.GameObjects.Sprite; // all entities have a sprite
     body: Phaser.Physics.Arcade.Body;
     components: {
       [tag: string]: Component
