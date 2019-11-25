@@ -14,6 +14,8 @@ export class SpriteComponent implements Phecs.Component {
       this.sprite.setScale(data.scale);
     }
 
-    this.sprite.setDepth(data.depth);
+    if (data.depth) {
+      this.sprite.setDepth(data.depth);
+    }
   }
 }

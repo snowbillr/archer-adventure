@@ -2,6 +2,7 @@ import { BaseScene } from '../scenes/base-scene';
 
 import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
 
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
@@ -64,10 +65,12 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
             depth,
             ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
             ...properties
-          });
+          }, entity);
 
           if (tag === SpriteComponent.tag) {
             entity.sprite = entity.components[tag].sprite;
+          } else if (tag === PhysicsBodyComponent.tag) {
+            entity.body = entity.components[tag].body;
           }
         }
 

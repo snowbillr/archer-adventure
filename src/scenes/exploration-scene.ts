@@ -29,8 +29,10 @@ import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
-import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
+
+import { TiledUtil } from '../utilities/tiled-util';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -45,6 +47,7 @@ export class ExplorationScene extends BaseScene {
     this.componentManager.registerComponents(
       [
         { klass: SpriteComponent, tag: SpriteComponent.tag },
+        { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
       ]
     );
 
