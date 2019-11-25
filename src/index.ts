@@ -11,6 +11,7 @@ import { PreloadScene } from './scenes/preload-scene';
 import { ExplorationScene } from './scenes/exploration-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
+import { ComponentManagerPlugin } from './plugins/component-manager-plugin';
 
 const gameConfig = {
   width: 800,
@@ -40,6 +41,11 @@ const gameConfig = {
         plugin: EntityManagerPlugin,
         mapping: 'entityManager',
       },
+      {
+        key: 'ComponentManager',
+        plugin: ComponentManagerPlugin,
+        mapping: 'componentManager',
+      }
     ]
   },
   scene: [PreloadScene, ExplorationScene, PrefabTestScene],

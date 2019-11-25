@@ -28,8 +28,8 @@ import { enemyPrefab } from '../entities/enemy/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
-import { TiledUtil } from '../utilities/tiled-util';
 
+import { TiledUtil } from '../utilities/tiled-util';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -41,6 +41,14 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
+    /*
+    this.componentsManager.registerComponents(
+      [
+        { klass: HealthComponent, tags: HealthComponent.tag },
+      ]
+    );
+    */
+
     this.systemsManager.registerSystems(
       [
         { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },

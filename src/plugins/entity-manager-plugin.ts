@@ -40,13 +40,31 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
-    const entity = {} as any;
-    const overrideProperties = TiledUtil.normalizeProperties(rawOverrideProperties);
-    const properties = {...TiledUtil.normalizeProperties(rawProperties), ...overrideProperties};
     const baseScene = this.scene as BaseScene;
+
+    const entity = {
+      id: this.generateUuid(),
+    } as any;
+
+    const properties = {
+      ...TiledUtil.normalizeProperties(rawProperties),
+      ...TiledUtil.normalizeProperties(rawOverrideProperties)
+    };
 
     if (properties.tags) {
       properties.tags.split(',').forEach((tag: string) => {
+        const Component = baseScene.componentManager.getComponent(tag);
+
+        // Temporary condition
+        if (Component) {
+          entity.components[tag] = new Component(baseScene, {
+            scale,
+            ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
+            ...properties
+          });
+        }
+
+        // Will go away
         baseScene.systemsManager.registerEntity(entity, tag, {
           scale,
           ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
@@ -67,5 +85,12 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
       x: position.x * scale,
       y: position.y * scale,
     };
+  }
+
+  private generateUuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 }

@@ -140,11 +140,12 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.objects[layerName] = [];
 
+    const scene = (this.scene as BaseScene);
     tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
       let entity = null;
 
       if (tiledObject.type) {
-        entity = (this.scene as BaseScene).entityManager.createPrefab(tiledObject.type, tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
+        entity = scene.entityManager.createPrefab(tiledObject.type, tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
       }
 
       this.objects[layerName].push(entity);

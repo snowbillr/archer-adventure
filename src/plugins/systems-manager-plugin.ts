@@ -67,7 +67,6 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
   };
 
   registerEntity(entity: SystemsManager.Entity, tags: (string | string[]), data: SystemsManager.EntityRegistrationData) {
-    entity.id = this.uuid();
 
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
@@ -87,13 +86,6 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
   update() {
     Object.entries(this.systemsMap).forEach(([tag, systems]) => {
       systems.forEach(system => system.update && system.update(this));
-    });
-  }
-
-  private uuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
     });
   }
 }
