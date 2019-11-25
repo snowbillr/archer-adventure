@@ -69,7 +69,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     }
   }
 
-  placeEntityAtMarker(entity: Systems.HasSprite.Entity, markerName: string) {
+  placeEntityAtMarker(entity: Phecs.Entity, markerName: string) {
     const marker = this.markers[markerName];
 
     entity.components[SpriteComponent.tag].sprite.setPosition(marker.x, marker.y - entity.components[SpriteComponent.tag].sprite.displayHeight / this.scale);

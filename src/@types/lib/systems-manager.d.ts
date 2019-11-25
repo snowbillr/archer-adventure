@@ -1,7 +1,5 @@
 declare namespace SystemsManager {
-  type Entity = {
-    id: string;
-  }
+  interface Entity extends Phecs.Entity {}
 
   type EntityRegistrationData = {
     x: number,

@@ -10,8 +10,6 @@ import { enemyStates } from '../entities/enemy/states';
 import { SignSystem } from '../systems/sign-system';
 import { DoorSystem } from '../systems/door-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
-import { HasSpriteSystem } from '../systems/has-sprite-system';
-import { HasPhysicalSpriteSystem } from '../systems/has-physical-sprite-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasIndicatorSystem } from '../systems/has-indicator-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
@@ -55,8 +53,6 @@ export class ExplorationScene extends BaseScene {
       [
         { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
-        { klass: HasSpriteSystem, tags: HasSpriteSystem.SystemTags.hasSprite },
-        { klass: HasPhysicalSpriteSystem, tags: HasPhysicalSpriteSystem.SystemTags.hasPhysicalSprite },
         { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
         { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
         { klass: HasIndicatorSystem, tags: HasIndicatorSystem.SystemTags.hasIndicator },

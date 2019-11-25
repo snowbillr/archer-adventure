@@ -1,18 +1,11 @@
-declare namespace Systems.HasSprite {
-  interface Entity extends SystemsManager.Entity {
-    sprite: Phaser.GameObjects.Sprite;
-    components: any;
-  }
-}
-
 declare namespace Systems.HasPhysicalSprite {
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity {
     body: Phaser.Physics.Arcade.Body;
   }
 }
 
 declare namespace Systems.HasInteractionCircle {
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity {
     interactionCircle: Phaser.Geom.Circle;
     interactionTracker: InteractionTracker;
     interactionControl?: string;
@@ -21,7 +14,7 @@ declare namespace Systems.HasInteractionCircle {
 }
 
 declare namespace Systems.HasIndicator {
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity {
     indicatorSprite: Phaser.GameObjects.Sprite;
     showIndicator: () => void;
     hideIndicator: () => void;
@@ -87,7 +80,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity, Systems.HasAttachments.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasAttachments.Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
@@ -114,7 +107,7 @@ declare namespace Systems.HasHitboxes {
     hitboxes: Shape[];
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity, Systems.HasAttachments.Entity {
+  interface Entity extends SystemsManager.Entity, Systems.HasAttachments.Entity {
     hitboxFrames: Frame[];
   }
 }
@@ -153,7 +146,7 @@ declare namespace Systems.DoorSystem {
 }
 
 declare namespace Systems.ShootsArrows {
-  interface Entity extends SystemsManager.Entity, Systems.HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity {
     shotPower: number;
     minShotPower: number;
     maxShotPower: number;
@@ -165,7 +158,7 @@ declare namespace Systems.ShootsArrows {
 }
 
 declare namespace Systems.HasAttachments {
-  interface Entity extends SystemsManager.Entity, HasSprite.Entity {
+  interface Entity extends SystemsManager.Entity {
     attachments: Attachment[];
     createAttachment(type: string, config: AttachmentConfig): Attachment;
     getAttachmentsByType: (type: string) => Attachment[];
