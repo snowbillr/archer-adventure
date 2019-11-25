@@ -1,5 +1,6 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
 
 export class HasBoundsSystem implements SystemsManager.System {
   static SystemTags = {
@@ -45,14 +46,14 @@ export class HasBoundsSystem implements SystemsManager.System {
         }
         Phaser.Math.RotateAround(offset, rotationPoint.x, rotationPoint.y, entity.components[SpriteComponent.tag].sprite.rotation);
 
-        entity.body.setSize(bounds.size.width, bounds.size.height);
-        entity.body.setOffset(offset.x, offset.y);
+        entity.components[PhysicsBodyComponent.tag].body.setSize(bounds.size.width, bounds.size.height);
+        entity.components[PhysicsBodyComponent.tag].body.setOffset(offset.x, offset.y);
       } else {
-        entity.body.setSize(entity.components[SpriteComponent.tag].sprite.width, entity.components[SpriteComponent.tag].sprite.height);
-        entity.body.setOffset(0, 0);
+        entity.components[PhysicsBodyComponent.tag].body.setSize(entity.components[SpriteComponent.tag].sprite.width, entity.components[SpriteComponent.tag].sprite.height);
+        entity.components[PhysicsBodyComponent.tag].body.setOffset(0, 0);
       }
 
-      entity.body.updateBounds();
+      entity.components[PhysicsBodyComponent.tag].body.updateBounds();
     });
   }
 

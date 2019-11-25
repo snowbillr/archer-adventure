@@ -1,15 +1,14 @@
 declare module Phecs {
-  interface Component {
-    [key: string]: any;
-    destroy(): void;
-  }
-
   interface Entity {
     id: string;
-    body: Phaser.Physics.Arcade.Body;
     components: {
       [tag: string]: Component
     }
+  }
+
+  interface Component {
+    [key: string]: any;
+    destroy(): void;
   }
 
   interface ComponentConstructor {

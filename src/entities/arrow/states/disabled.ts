@@ -1,4 +1,5 @@
 import { SpriteComponent } from '../../../components/sprite-component';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 export const disabled: PhiniteStateMachine.States.State<Entities.Arrow> = {
   id: 'arrow-disabled',
@@ -6,13 +7,13 @@ export const disabled: PhiniteStateMachine.States.State<Entities.Arrow> = {
   onEnter(arrow) {
     arrow.components[SpriteComponent.tag].sprite.active = false;
     arrow.components[SpriteComponent.tag].sprite.visible = false;
-    arrow.body.enable = false;
-    arrow.body.allowGravity = false;
+    arrow.components[PhysicsBodyComponent.tag].body.enable = false;
+    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = false;
   },
   onLeave(arrow) {
     arrow.components[SpriteComponent.tag].sprite.active = true;
     arrow.components[SpriteComponent.tag].sprite.visible = true;
-    arrow.body.enable = true;
-    arrow.body.allowGravity = true;
+    arrow.components[PhysicsBodyComponent.tag].body.enable = true;
+    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = true;
   }
 }

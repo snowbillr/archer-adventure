@@ -2,15 +2,16 @@ import { movementAttributes } from '../movement-attributes';
 
 import { baseGround } from './base-ground';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 function decelerate(entity: Entities.Adventurer) {
-  entity.body.acceleration.x = entity.body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
+  entity.components[PhysicsBodyComponent.tag].body.acceleration.x = entity.components[PhysicsBodyComponent.tag].body.velocity.x < 0 ? movementAttributes.horizontalDeceleration : -movementAttributes.horizontalDeceleration;
 }
 
 function haltMovementWithinThreshold(entity: Entities.Adventurer) {
-  if (Phaser.Math.Within(entity.body.velocity.x, 0, 100)) {
-    entity.body.acceleration.x = 0;
-    entity.body.velocity.x = 0;
+  if (Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 100)) {
+    entity.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
+    entity.components[PhysicsBodyComponent.tag].body.velocity.x = 0;
   }
 }
 

@@ -4,6 +4,7 @@ import { BaseScene } from './base-scene';
 import { enemyPrefab } from '../entities/enemy/prefab';
 import { enemyStates } from '../entities/enemy/states';
 import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
 
 export class PrefabTestScene extends BaseScene {
   constructor() {
@@ -27,7 +28,7 @@ export class PrefabTestScene extends BaseScene {
     enemy.components[SpriteComponent.tag].sprite.y = 200;
     enemy.components[SpriteComponent.tag].sprite.setFrame(frameIndex);
 
-    enemy.body.allowGravity = false;
+    enemy.components[PhysicsBodyComponent.tag].body.allowGravity = false;
 
     enemy.components[SpriteComponent.tag].sprite.anims.stop();
 

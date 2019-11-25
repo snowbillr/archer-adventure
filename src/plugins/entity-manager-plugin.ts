@@ -62,10 +62,6 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
             ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
             ...properties
           }, entity);
-
-          if (tag === PhysicsBodyComponent.tag) {
-            entity.body = entity.components[tag].body;
-          }
         }
 
         // Will go away

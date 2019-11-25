@@ -2,6 +2,7 @@ import 'phaser';
 
 import { BaseScene } from '../scenes/base-scene';
 import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
 
 const ARROW_POOL_COUNT = 3;
 
@@ -41,8 +42,8 @@ export class ShootsArrowsSystem implements SystemsManager.System {
       if (entity.components[SpriteComponent.tag].sprite.flipX) {
         power *= -1;
       }
-      availableArrow.body.setVelocity(power, 0);
-      availableArrow.body.setGravityY(-500); // entity gravity = world gravity + this
+      availableArrow.components[PhysicsBodyComponent.tag].body.setVelocity(power, 0);
+      availableArrow.components[PhysicsBodyComponent.tag].body.setGravityY(-500); // entity gravity = world gravity + this
 
       entity.shotPower = entity.minShotPower;
     }

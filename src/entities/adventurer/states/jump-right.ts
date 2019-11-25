@@ -3,6 +3,7 @@ import { movementAttributes } from '../movement-attributes';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 export const adventurerJumpRight: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
   id: 'adventurer-jump-right',
@@ -22,7 +23,7 @@ export const adventurerJumpRight: PhiniteStateMachine.States.State<Entities.Adve
     {
       type: TransitionType.Conditional,
       condition: (entity: Entities.Adventurer) => {
-        return entity.body.velocity.y > 0;
+        return entity.components[PhysicsBodyComponent.tag].body.velocity.y > 0;
       },
       to: 'adventurer-fall-right',
     }

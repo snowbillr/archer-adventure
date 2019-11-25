@@ -3,21 +3,22 @@ import { baseGround } from './base-ground';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
   id: 'adventurer-slide',
   onEnter(adventurer: Entities.Adventurer) {
     adventurer.components[SpriteComponent.tag].sprite.anims.play('adventurer-slide')
 
-    if (adventurer.body.velocity.x > 0) {
-      adventurer.body.acceleration.x = -1 * movementAttributes.slideDeceleration;
+    if (adventurer.components[PhysicsBodyComponent.tag].body.velocity.x > 0) {
+      adventurer.components[PhysicsBodyComponent.tag].body.acceleration.x = -1 * movementAttributes.slideDeceleration;
     } else {
-      adventurer.body.acceleration.x = movementAttributes.slideDeceleration;
+      adventurer.components[PhysicsBodyComponent.tag].body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
   onUpdate(entity: Entities.Adventurer) {
-    if(Phaser.Math.Within(entity.body.velocity.x, 0, 5)) {
-      entity.body.acceleration.x = 0;
+    if(Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 5)) {
+      entity.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
     }
   },
   transitions: [

@@ -2,6 +2,7 @@ import { baseAerial } from './base-aerial';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-draw',
@@ -15,7 +16,7 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
     {
       type: TransitionType.Conditional,
       condition(entity) {
-        return entity.body.blocked.down;
+        return entity.components[PhysicsBodyComponent.tag].body.blocked.down;
       },
       to: 'adventurer-stand-hold',
     },

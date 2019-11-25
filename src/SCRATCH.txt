@@ -1,6 +1,3 @@
-remove usage of entity.body
-
-
 Adding a new system
 - create new system file
   - implements `SystemsManager.System`
