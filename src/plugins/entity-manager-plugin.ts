@@ -1,6 +1,7 @@
 import { BaseScene } from '../scenes/base-scene';
 
 import { TiledUtil } from '../utilities/tiled-util';
+import { SpriteComponent } from '../components/sprite-component';
 
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
@@ -44,6 +45,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     const entity = {
       id: this.generateUuid(),
+      components: [],
     } as any;
 
     const properties = {
@@ -59,14 +61,20 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
         if (Component) {
           entity.components[tag] = new Component(baseScene, {
             scale,
+            depth,
             ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
             ...properties
           });
+
+          if (tag === SpriteComponent.tag) {
+            entity.sprite = entity.components[tag].sprite;
+          }
         }
 
         // Will go away
         baseScene.systemsManager.registerEntity(entity, tag, {
           scale,
+          depth,
           ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
           ...properties
         });

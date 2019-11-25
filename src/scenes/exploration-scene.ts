@@ -30,6 +30,7 @@ import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
 import { TiledUtil } from '../utilities/tiled-util';
+import { SpriteComponent } from '../components/sprite-component';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -41,13 +42,11 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
-    /*
-    this.componentsManager.registerComponents(
+    this.componentManager.registerComponents(
       [
-        { klass: HealthComponent, tags: HealthComponent.tag },
+        { klass: SpriteComponent, tag: SpriteComponent.tag },
       ]
     );
-    */
 
     this.systemsManager.registerSystems(
       [

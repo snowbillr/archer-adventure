@@ -1,5 +1,5 @@
 export const signPrefab = {
-  tags: 'hasSprite,hasInteractionCircle,hasIndicator,sign-interactive',
+  tags: 'sprite,hasInteractionCircle,hasIndicator,sign-interactive',
 
   texture: 'fantasy-platformer-core-spritesheet',
   frame: 1128,
