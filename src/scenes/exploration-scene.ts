@@ -27,8 +27,10 @@ import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
-import { SpriteComponent } from '../components/sprite-component';
+import { AdventurerComponent } from '../components/adventurer-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
+import { PortalComponent } from '../components/portal-component';
+import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 
@@ -46,6 +48,8 @@ export class ExplorationScene extends BaseScene {
       [
         { klass: SpriteComponent, tag: SpriteComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
+        { klass: PortalComponent, tag: PortalComponent.tag },
+        { klass: AdventurerComponent, tag: AdventurerComponent.tag },
       ]
     );
 

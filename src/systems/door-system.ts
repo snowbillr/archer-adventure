@@ -1,4 +1,6 @@
 import { ExplorationScene } from '../scenes/exploration-scene';
+import { PortalComponent } from '../components/portal-component';
+import { AdventurerComponent } from '../components/adventurer-component';
 
 export class DoorSystem implements SystemsManager.System {
   static SystemTags = {
@@ -12,45 +14,29 @@ export class DoorSystem implements SystemsManager.System {
     this.scene = scene as ExplorationScene;
   }
 
-  registerEntity(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), data: SystemsManager.EntityRegistrationData, tag: string) {
-    if (tag === DoorSystem.SystemTags.door) {
-      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      doorEntity.toKey = data.toKey;
-      doorEntity.toMarker = data.toMarker;
-    }
-  }
-
   update(systemsManager: SystemsManager.SystemsManager) {
-    // there is only one interactor, the adventurer
-    const doorInteractor: Systems.DoorSystem.DoorInteractorEntity = systemsManager.getEntities<Systems.DoorSystem.DoorInteractorEntity>(DoorSystem.SystemTags.doorInteractor)[0];
-    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
+    const adventurer: Systems.DoorSystem.DoorInteractorEntity = systemsManager.getEntities<Systems.DoorSystem.DoorInteractorEntity>(AdventurerComponent.tag)[0];
+    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(PortalComponent.tag);
 
-    const enteringDoorIds = doorInteractor.interactionTracker.getEntityIds('entering');
+    const enteringDoorIds = adventurer.interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
     for (let enteringDoor of enteringDoors) {
       enteringDoor.showIndicator();
     }
 
-    const exitingDoorIds = doorInteractor.interactionTracker.getEntityIds('exiting');
+    const exitingDoorIds = adventurer.interactionTracker.getEntityIds('exiting');
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
       enteringDoor.hideIndicator();
     }
 
-    const activeDoorIds = doorInteractor.interactionTracker.getEntityIds('active');
+    const activeDoorIds = adventurer.interactionTracker.getEntityIds('active');
     const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
     for (let door of activeDoors) {
-      const interactionControlKey = doorInteractor.controls[door.interactionControl!];
+      const interactionControlKey = adventurer.controls[door.interactionControl!];
       if (interactionControlKey && interactionControlKey.isDown) {
-        this.scene.loadNewArea(door.toKey, door.toMarker);
+        this.scene.loadNewArea(door.components[PortalComponent.tag].toAreaKey, door.components[PortalComponent.tag].toMarker);
       }
-    }
-  }
-
-  destroy(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), tag: string) {
-    if (tag === DoorSystem.SystemTags.door) {
-      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      delete doorEntity.toKey;
     }
   }
 }
