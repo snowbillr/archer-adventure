@@ -1,7 +1,7 @@
 export const sheepPrefab = {
   name: 'sheep',
 
-  tags: 'sprite,physics-body,hasPhiniteStateMachine,hasAreaBoundary',
+  tags: 'sprite,physics-body,area-boundary,hasPhiniteStateMachine',
 
   areaBoundaryLeft: 1850,
   areaBoundaryRight: 2100,

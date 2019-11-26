@@ -31,17 +31,6 @@ declare namespace Systems.HasControls {
   }
 }
 
-declare namespace Systems.HasAreaBoundary {
-  type AreaBoundary = {
-    left: number,
-    right: number
-  };
-
-  interface Entity extends SystemsManager.Entity {
-    areaBoundary: AreaBoundary;
-  }
-}
-
 declare namespace Systems.HasBounds {
   type Frame = {
     key: string;

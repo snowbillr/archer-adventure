@@ -17,7 +17,6 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
-import { HasAreaBoundarySystem } from '../systems/has-area-boundary-system';
 import { ShootsArrowsSystem } from '../systems/shoots-arrows-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
@@ -28,6 +27,7 @@ import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
 import { AdventurerComponent } from '../components/adventurer-component';
+import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { PortalComponent } from '../components/portal-component';
 import { SpriteComponent } from '../components/sprite-component';
@@ -50,6 +50,7 @@ export class ExplorationScene extends BaseScene {
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
         { klass: PortalComponent, tag: PortalComponent.tag },
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
+        { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
       ]
     );
 
@@ -60,7 +61,6 @@ export class ExplorationScene extends BaseScene {
         { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
         { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
         { klass: HasIndicatorSystem, tags: HasIndicatorSystem.SystemTags.hasIndicator },
-        { klass: HasAreaBoundarySystem, tags: HasAreaBoundarySystem.SystemTags.hasAreaBoundary },
         { klass: HasBoundsSystem, tags: HasBoundsSystem.SystemTags.hasBounds },
         { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },

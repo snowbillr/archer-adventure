@@ -11,7 +11,7 @@ declare namespace Entities {
 
   type Enemy = Phecs.Entity & Systems.HasPhysicalSprite.Entity;
 
-  type Sheep = Phecs.Entity & Systems.HasPhysicalSprite.Entity & Systems.HasAreaBoundary.Entity;
+  type Sheep = Phecs.Entity & Systems.HasPhysicalSprite.Entity;
 
   type Arrow = Phecs.Entity & Systems.HasPhysicalSprite.Entity & Systems.HasPhiniteStateMachine.Entity<any>;
 }
