@@ -1,5 +1,5 @@
 declare namespace Entities {
-  type Sign = Phecs.Entity & Systems.HasInteractionCircle.Entity & Systems.HasIndicator.Entity;
+  type Sign = Phecs.Entity & Systems.HasInteractionCircle.Entity;
 
   type Adventurer = Phecs.Entity
     & Systems.HasPhysicalSprite.Entity

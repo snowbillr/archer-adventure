@@ -11,7 +11,6 @@ import { SignSystem } from '../systems/sign-system';
 import { DoorSystem } from '../systems/door-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
-import { HasIndicatorSystem } from '../systems/has-indicator-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
@@ -28,6 +27,7 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 
 import { AdventurerComponent } from '../components/adventurer-component';
 import { AreaBoundaryComponent } from '../components/area-boundary-component';
+import { IndicatorComponent } from '../components/indicator-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { PortalComponent } from '../components/portal-component';
 import { SpriteComponent } from '../components/sprite-component';
@@ -51,6 +51,7 @@ export class ExplorationScene extends BaseScene {
         { klass: PortalComponent, tag: PortalComponent.tag },
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
         { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
+        { klass: IndicatorComponent, tag: IndicatorComponent.tag },
       ]
     );
 
@@ -60,7 +61,6 @@ export class ExplorationScene extends BaseScene {
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
         { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
         { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
-        { klass: HasIndicatorSystem, tags: HasIndicatorSystem.SystemTags.hasIndicator },
         { klass: HasBoundsSystem, tags: HasBoundsSystem.SystemTags.hasBounds },
         { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },

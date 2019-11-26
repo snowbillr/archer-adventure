@@ -1,4 +1,5 @@
 import { BaseScene } from '../scenes/base-scene';
+import { IndicatorComponent } from '../components/indicator-component';
 
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
@@ -79,10 +80,10 @@ export class SignSystem implements SystemsManager.System {
         if (activeInteractionIds.includes(signInteractor.id)) {
           if (sign.isTextboxShowing) {
             sign.hideTextbox();
-            sign.showIndicator();
+            sign.components[IndicatorComponent.tag].showIndicator();
           } else {
             sign.showTextbox();
-            sign.hideIndicator();
+            sign.components[IndicatorComponent.tag].hideIndicator();
           }
         }
       });
@@ -97,13 +98,13 @@ export class SignSystem implements SystemsManager.System {
       const enteringSignIds = signInteractor.interactionTracker.getEntityIds('entering');
       const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
       for (let enteringSign of enteringSigns) {
-        enteringSign.showIndicator();
+        enteringSign.components[IndicatorComponent.tag].showIndicator();
       }
 
       const exitingSignIds = signInteractor.interactionTracker.getEntityIds('exiting');
       const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
       for (let exitingSign of exitingSigns) {
-        exitingSign.hideIndicator();
+        exitingSign.components[IndicatorComponent.tag].hideIndicator();
 
         if (exitingSign.isTextboxShowing) {
           exitingSign.hideTextbox();

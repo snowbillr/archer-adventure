@@ -13,14 +13,6 @@ declare namespace Systems.HasInteractionCircle {
   }
 }
 
-declare namespace Systems.HasIndicator {
-  interface Entity extends SystemsManager.Entity {
-    indicatorSprite: Phaser.GameObjects.Sprite;
-    showIndicator: () => void;
-    hideIndicator: () => void;
-  }
-}
-
 declare namespace Systems.HasControls {
   type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
   type Codes = { [code: string]: string };
@@ -112,7 +104,7 @@ declare namespace Systems.SignSystem {
     message: string;
   }
 
-  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
+  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity {
     textboxSprite: Phaser.GameObjects.Container;
     textboxShowTween: Phaser.Tweens.Tween;
     textboxHideTween: Phaser.Tweens.Tween;
@@ -125,7 +117,7 @@ declare namespace Systems.SignSystem {
 }
 
 declare namespace Systems.DoorSystem {
-  interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasIndicator.Entity {
+  interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity {
     toKey: string;
     toMarker: string;
   }

@@ -1,6 +1,7 @@
 import { ExplorationScene } from '../scenes/exploration-scene';
 import { PortalComponent } from '../components/portal-component';
 import { AdventurerComponent } from '../components/adventurer-component';
+import { IndicatorComponent } from '../components/indicator-component';
 
 export class DoorSystem implements SystemsManager.System {
   static SystemTags = {
@@ -21,13 +22,13 @@ export class DoorSystem implements SystemsManager.System {
     const enteringDoorIds = adventurer.interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
     for (let enteringDoor of enteringDoors) {
-      enteringDoor.showIndicator();
+      enteringDoor.components[IndicatorComponent.tag].showIndicator();
     }
 
     const exitingDoorIds = adventurer.interactionTracker.getEntityIds('exiting');
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
-      enteringDoor.hideIndicator();
+      enteringDoor.components[IndicatorComponent.tag].hideIndicator();
     }
 
     const activeDoorIds = adventurer.interactionTracker.getEntityIds('active');
