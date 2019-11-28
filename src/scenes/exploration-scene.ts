@@ -29,7 +29,7 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
-import { PortalComponent } from '../components/portal-component';
+import { DoorComponent } from '../components/door-component';
 import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
@@ -48,7 +48,7 @@ export class ExplorationScene extends BaseScene {
       [
         { klass: SpriteComponent, tag: SpriteComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
-        { klass: PortalComponent, tag: PortalComponent.tag },
+        { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
         { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },

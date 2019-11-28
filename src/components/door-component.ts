@@ -1,5 +1,5 @@
-export class PortalComponent implements Phecs.Component {
-  public static tag: string = 'portal';
+export class DoorComponent implements Phecs.Component {
+  public static tag: string = 'door';
 
   public toAreaKey: string;
   public toMarker: string;

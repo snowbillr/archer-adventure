@@ -1,5 +1,5 @@
 import { ExplorationScene } from '../scenes/exploration-scene';
-import { PortalComponent } from '../components/portal-component';
+import { DoorComponent } from '../components/door-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { IndicatorComponent } from '../components/indicator-component';
 
@@ -17,7 +17,7 @@ export class DoorSystem implements SystemsManager.System {
 
   update(systemsManager: SystemsManager.SystemsManager) {
     const adventurer: Systems.DoorSystem.DoorInteractorEntity = systemsManager.getEntities<Systems.DoorSystem.DoorInteractorEntity>(AdventurerComponent.tag)[0];
-    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(PortalComponent.tag);
+    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorComponent.tag);
 
     const enteringDoorIds = adventurer.interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
@@ -36,7 +36,7 @@ export class DoorSystem implements SystemsManager.System {
     for (let door of activeDoors) {
       const interactionControlKey = adventurer.controls[door.interactionControl!];
       if (interactionControlKey && interactionControlKey.isDown) {
-        this.scene.loadNewArea(door.components[PortalComponent.tag].toAreaKey, door.components[PortalComponent.tag].toMarker);
+        this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
       }
     }
   }
