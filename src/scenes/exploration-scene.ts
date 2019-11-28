@@ -27,6 +27,7 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 
 import { AdventurerComponent } from '../components/adventurer-component';
 import { AreaBoundaryComponent } from '../components/area-boundary-component';
+import { AttachmentComponent } from '../components/attachment-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
@@ -51,6 +52,7 @@ export class ExplorationScene extends BaseScene {
         { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
         { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
+        { klass: AttachmentComponent, tag: AttachmentComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
       ]
     );

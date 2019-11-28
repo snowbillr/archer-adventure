@@ -1,5 +1,6 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
+import { AttachmentComponent, Attachment } from '../components/attachment-component';
 
 export class HasHurtboxesSystem implements SystemsManager.System {
   static SystemTags = {
@@ -20,7 +21,7 @@ export class HasHurtboxesSystem implements SystemsManager.System {
       .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), 0);
 
     for (let i = 0; i < maxAttachmentCount; i++) {
-      entity.createAttachment('hurtbox', {
+      entity.components[AttachmentComponent.tag].createAttachment('hurtbox', {
         offsetX: 0,
         offsetY: 0,
         width: 0,
@@ -39,8 +40,8 @@ export class HasHurtboxesSystem implements SystemsManager.System {
       const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.hurtboxFrames.find((f: Systems.HasHurtboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHurtboxes.Frame;
 
       if (hurtboxFrame && hurtboxFrame.hurtboxes) {
-        const attachments = entity.getAttachmentsByType('hurtbox');
-        attachments.forEach(attachment => attachment.disable());
+        const attachments = entity.components[AttachmentComponent.tag].getAttachmentsByType('hurtbox');
+        attachments.forEach((attachment: Attachment) => attachment.disable());
 
         hurtboxFrame.hurtboxes.forEach((hurtbox, index) => {
           attachments[index].enable();

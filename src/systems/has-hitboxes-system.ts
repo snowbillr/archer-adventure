@@ -1,5 +1,6 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
+import { AttachmentComponent, Attachment } from '../components/attachment-component';
 
 export class HasHitboxesSystem implements SystemsManager.System {
   static SystemTags = {
@@ -20,7 +21,7 @@ export class HasHitboxesSystem implements SystemsManager.System {
       .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), 0);
 
     for (let i = 0; i < maxAttachmentCount; i++) {
-      entity.createAttachment('hitbox', {
+      entity.components[AttachmentComponent.tag].createAttachment('hitbox', {
         offsetX: 0,
         offsetY: 0,
         width: 0,
@@ -39,8 +40,8 @@ export class HasHitboxesSystem implements SystemsManager.System {
       const hitboxFrame: Systems.HasHitboxes.Frame = entity.hitboxFrames.find((f: Systems.HasHitboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHitboxes.Frame;
 
       if (hitboxFrame && hitboxFrame.hitboxes) {
-        const attachments = entity.getAttachmentsByType('hitbox');
-        attachments.forEach(attachment => attachment.disable());
+        const attachments = entity.components[AttachmentComponent.tag].getAttachmentsByType('hitbox');
+        attachments.forEach((attachment: Attachment) => attachment.disable());
 
         hitboxFrame.hitboxes.forEach((hitbox, index) => {
           attachments[index].enable();
