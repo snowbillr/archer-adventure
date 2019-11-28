@@ -1,6 +1,7 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
+import { BoundsComponent } from '../components/bounds-component';
 
 export class HasBoundsSystem implements SystemsManager.System {
   static SystemTags = {
@@ -13,18 +14,14 @@ export class HasBoundsSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  registerEntity(entity: Systems.HasBounds.Entity, data: SystemsManager.EntityRegistrationData): void {
-    entity.boundsFrames = this.scene.cache.json.get(data.boundsKey);
-  }
-
   update(tagManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasBounds.Entity[] = tagManager.getEntities(HasBoundsSystem.SystemTags.hasBounds);
+    const entities: Systems.HasBounds.Entity[] = tagManager.getEntities(BoundsComponent.tag);
 
     entities.forEach(entity => {
       const key = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
       const frame = entity.components[SpriteComponent.tag].sprite.frame.name;
 
-      const boundsFrame: Systems.HasBounds.Frame = entity.boundsFrames.find((b: Systems.HasBounds.Frame) => b.key === key && b.frame === frame) as Systems.HasBounds.Frame;
+      const boundsFrame: Systems.HasBounds.Frame = entity.components[BoundsComponent.tag].boundsFrames.find((b: Systems.HasBounds.Frame) => b.key === key && b.frame === frame) as Systems.HasBounds.Frame;
       if (boundsFrame) {
         const bounds: Systems.HasBounds.Bounds = boundsFrame.bounds;
 
@@ -55,9 +52,5 @@ export class HasBoundsSystem implements SystemsManager.System {
 
       entity.components[PhysicsBodyComponent.tag].body.updateBounds();
     });
-  }
-
-  destroy(entity: Systems.HasBounds.Entity) {
-    delete entity.boundsFrames;
   }
 }

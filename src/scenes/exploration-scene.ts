@@ -28,6 +28,7 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
+import { BoundsComponent } from '../components/bounds-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
@@ -47,13 +48,14 @@ export class ExplorationScene extends BaseScene {
   create(data: any) {
     this.componentManager.registerComponents(
       [
-        { klass: SpriteComponent, tag: SpriteComponent.tag },
-        { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
-        { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
         { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
         { klass: AttachmentComponent, tag: AttachmentComponent.tag },
+        { klass: BoundsComponent, tag: BoundsComponent.tag },
+        { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
+        { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
+        { klass: SpriteComponent, tag: SpriteComponent.tag },
       ]
     );
 
