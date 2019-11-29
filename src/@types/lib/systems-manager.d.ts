@@ -28,6 +28,6 @@ declare namespace SystemsManager {
     start?(systemsManager: SystemsManager): void;
     stop?(systemsManager: SystemsManager): void;
 
-    update?(systemsManager: SystemsManager): void;
+    // update?(phEntities: EntityManager): void;
   }
 }

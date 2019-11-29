@@ -32,8 +32,12 @@ export class EntityManager {
     return entity;
   }
 
-  getEntities(name: string) {
+  getEntitiesByName(name: string) {
     return this.entitiesByName[name] || [];
+  }
+
+  getEntitiesByTag(tag: string) {
+    return this.entitiesByTag[tag] || [];
   }
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
@@ -66,14 +70,6 @@ export class EntityManager {
             ...properties
           }, entity);
         }
-
-        // Will go away
-        baseScene.phecs.phSystems.registerEntity(entity, tag, {
-          scale,
-          depth,
-          ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
-          ...properties
-        });
       });
     }
 

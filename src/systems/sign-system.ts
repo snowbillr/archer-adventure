@@ -2,16 +2,18 @@ import { IndicatorComponent } from '../components/indicator-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { TextboxComponent } from '../components/textbox-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class SignSystem implements SystemsManager.System {
+export class SignSystem implements Phecs.System {
   static SystemTags = {
     interactor: 'sign-interactor',
     sign: 'sign-interactive',
   }
 
-  start(systemsManager: SystemsManager.SystemsManager) {
-    const adventurer: Phecs.Entity = systemsManager.getEntities(AdventurerComponent.tag)[0];
-    const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities('sign');
+  /*
+  start(phEntities: EntityManager) {
+    const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const signs: Systems.SignSystem.SignEntity[] = phEntities.getEntitiesByTag('sign');
 
     signs.forEach(sign => {
       const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl];
@@ -30,10 +32,11 @@ export class SignSystem implements SystemsManager.System {
       });
     });
   }
+  */
 
-  update(systemsManager: SystemsManager.SystemsManager) {
-    const adventurer: Phecs.Entity = systemsManager.getEntities(SignSystem.SystemTags.interactor)[0];
-    const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities('sign');
+  update(phEntities: EntityManager) {
+    const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(SignSystem.SystemTags.interactor)[0];
+    const signs: Systems.SignSystem.SignEntity[] = phEntities.getEntitiesByTag('sign');
 
     const enteringSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
     const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));

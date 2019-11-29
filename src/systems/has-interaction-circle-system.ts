@@ -2,8 +2,9 @@ import 'phaser';
 import { InteractionTracker } from '../lib/interaction-tracker';
 import { SpriteComponent } from '../components/sprite-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class HasInteracionCircleSystem implements SystemsManager.System {
+export class HasInteracionCircleSystem implements Phecs.System {
   static SystemTags = {
     hasInteractionCircle: 'hasInteractionCircle',
   };
@@ -14,8 +15,8 @@ export class HasInteracionCircleSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  update(tagManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasInteractionCircle.Entity[] = tagManager.getEntities(InteractionCircleComponent.tag);
+  update(phEntities: EntityManager) {
+    const entities: Systems.HasInteractionCircle.Entity[] = phEntities.getEntitiesByTag(InteractionCircleComponent.tag);
 
     for (let entity of entities) {
       entity.components[InteractionCircleComponent.tag].interactionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);

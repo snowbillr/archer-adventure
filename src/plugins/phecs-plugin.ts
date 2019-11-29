@@ -22,14 +22,14 @@ export class PhecsPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   stop() {
-
+    this.phSystems.stop();
   }
 
   update() {
-    this.phSystems.update();
+    this.phSystems.update(this.phEntities);
   }
 
   destroy() {
-
+    this.phEntities.destroy();
   }
 }

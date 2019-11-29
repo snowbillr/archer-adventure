@@ -2,8 +2,9 @@ import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { BoundsComponent } from '../components/bounds-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class HasBoundsSystem implements SystemsManager.System {
+export class HasBoundsSystem implements Phecs.System {
   static SystemTags = {
     hasBounds: 'hasBounds',
   };
@@ -14,8 +15,8 @@ export class HasBoundsSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  update(tagManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasBounds.Entity[] = tagManager.getEntities(BoundsComponent.tag);
+  update(phEntities: EntityManager) {
+    const entities: Systems.HasBounds.Entity[] = phEntities.getEntitiesByTag(BoundsComponent.tag);
 
     entities.forEach(entity => {
       const key = entity.components[SpriteComponent.tag].sprite.frame.texture.key;

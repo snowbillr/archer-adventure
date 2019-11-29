@@ -118,9 +118,11 @@ export class ExplorationScene extends BaseScene {
     // This manifested as a problem when you entered a door and the sign interaction check got called for the
     // previous scene.
     this.time.delayedCall(0, () => {
-      this.phecs.phSystems.stop();
-      this.phecs.phSystems.destroyEntities();
-      this.phecs.phEntities.destroy();
+      this.phecs.stop();
+      this.phecs.destroy();
+      // this.phecs.phSystems.stop();
+      // this.phecs.phSystems.destroyEntities();
+      // this.phecs.phEntities.destroy();
       this.areaManager.unload();
 
       this.areaManager.load(key);
@@ -148,7 +150,7 @@ export class ExplorationScene extends BaseScene {
       if (mapProperties.entityLayerCollisions) {
         mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
           const [entityName, layerName] = entityLayerPair.split(':');
-          const entities = this.phecs.phEntities.getEntities(entityName);
+          const entities = this.phecs.phEntities.getEntitiesByName(entityName);
           const layer = this.areaManager.getTileLayer(layerName);
 
           if (layer == null) {

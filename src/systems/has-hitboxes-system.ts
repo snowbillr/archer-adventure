@@ -2,8 +2,9 @@ import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
 import { AttachmentComponent, Attachment } from '../components/attachment-component';
 import { HitboxComponent } from '../components/hitbox-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class HasHitboxesSystem implements SystemsManager.System {
+export class HasHitboxesSystem implements Phecs.System {
   static SystemTags = {
     hasHitboxes: 'hasHitboxes',
   };
@@ -14,8 +15,8 @@ export class HasHitboxesSystem implements SystemsManager.System {
     this.scene = scene;
   }
 
-  update(systemsManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasHitboxes.Entity[] = systemsManager.getEntities(HitboxComponent.tag);
+  update(phEntities: EntityManager) {
+    const entities: Systems.HasHitboxes.Entity[] = phEntities.getEntitiesByTag(HitboxComponent.tag);
 
     entities.forEach(entity => {
       const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;

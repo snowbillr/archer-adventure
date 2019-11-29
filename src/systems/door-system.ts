@@ -3,8 +3,9 @@ import { DoorComponent } from '../components/door-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class DoorSystem implements SystemsManager.System {
+export class DoorSystem implements Phecs.System {
   static SystemTags = {
     door: 'door',
     doorInteractor: 'doorInteractor',
@@ -16,9 +17,9 @@ export class DoorSystem implements SystemsManager.System {
     this.scene = scene as ExplorationScene;
   }
 
-  update(systemsManager: SystemsManager.SystemsManager) {
-    const adventurer: Systems.DoorSystem.DoorInteractorEntity = systemsManager.getEntities<Systems.DoorSystem.DoorInteractorEntity>(AdventurerComponent.tag)[0];
-    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorComponent.tag);
+  update(phEntities: EntityManager) {
+    const adventurer: Systems.DoorSystem.DoorInteractorEntity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const doors: Systems.DoorSystem.DoorEntity[] = phEntities.getEntitiesByName(DoorComponent.tag);
 
     const enteringDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));

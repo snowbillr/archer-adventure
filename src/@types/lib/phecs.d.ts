@@ -15,6 +15,16 @@ declare module Phecs {
     new(scene: Phaser.Scene, data: EntityData, entity: Entity): Component;
   }
 
+  interface System {
+    start?(phEntities: any): void;
+    stop?(phEntities: any): void;
+    update?(phEntities: any): void;
+  }
+
+  interface SystemConstructor {
+    new(scene: Phaser.Scene): System;
+  }
+
   type EntityData = {
     x: number,
     y: number,

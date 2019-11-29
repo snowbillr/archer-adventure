@@ -1,13 +1,14 @@
 import { SpriteComponent } from '../components/sprite-component';
 import { AttachmentComponent } from '../components/attachment-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class HasAttachmentsSystem implements SystemsManager.System {
+export class HasAttachmentsSystem implements Phecs.System {
   static SystemTags = {
     hasAttachments: 'hasAttachments',
   };
 
-  update(tagManager: SystemsManager.SystemsManager) {
-    const entities: Systems.HasAttachments.Entity[] = tagManager.getEntities(AttachmentComponent.tag);
+  update(phEntities: EntityManager) {
+    const entities: Systems.HasAttachments.Entity[] = phEntities.getEntitiesByTag(AttachmentComponent.tag);
 
     for (let entity of entities) {
       for (let attachment of entity.components[AttachmentComponent.tag].attachments) {
