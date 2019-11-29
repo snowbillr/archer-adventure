@@ -29,6 +29,7 @@ import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { BoundsComponent } from '../components/bounds-component';
 import { HitboxComponent } from '../components/hitbox-component';
+import { HurtboxComponent } from '../components/hurtbox-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
@@ -58,6 +59,7 @@ export class ExplorationScene extends BaseScene {
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: HitboxComponent, tag: HitboxComponent.tag },
+        { klass: HurtboxComponent, tag: HurtboxComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
         { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
         { klass: PhiniteStateMachineComponent, tag: PhiniteStateMachineComponent.tag },
