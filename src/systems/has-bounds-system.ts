@@ -6,7 +6,7 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasBoundsSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities: Systems.HasBounds.Entity[] = phEntities.getEntitiesByTag(BoundsComponent.tag);
+    const entities = phEntities.getEntitiesByTag(BoundsComponent.tag);
 
     entities.forEach(entity => {
       const key = entity.components[SpriteComponent.tag].sprite.frame.texture.key;

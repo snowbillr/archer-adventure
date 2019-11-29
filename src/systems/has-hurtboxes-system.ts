@@ -6,7 +6,7 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasHurtboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities: Systems.HasHurtboxes.Entity[] = phEntities.getEntitiesByTag(HurtboxComponent.tag);
+    const entities = phEntities.getEntitiesByTag(HurtboxComponent.tag);
 
     entities.forEach(entity => {
       const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;

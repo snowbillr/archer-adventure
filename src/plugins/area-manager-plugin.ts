@@ -15,7 +15,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   private areaMap: { [areaName: string]: any };
 
-  public adventurer!: Entities.Adventurer;
+  public adventurer!: Phecs.Entity;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
