@@ -54,7 +54,8 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
       properties.tags.split(',').forEach((tag: string) => {
         const Component = baseScene.componentManager.getComponent(tag);
 
-        // Temporary condition
+        // Some entities have components with no functionality, just a tag. Like the `sign`
+        // The entity should still be added to the tag->entity map
         if (Component) {
           entity.components[tag] = new Component(baseScene, {
             scale,

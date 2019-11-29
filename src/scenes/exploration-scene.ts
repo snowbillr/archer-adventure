@@ -35,6 +35,7 @@ import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
 import { ShootsArrowsComponent } from '../components/shoots-arrows-component';
 import { SpriteComponent } from '../components/sprite-component';
+import { TextboxComponent } from '../components/textbox-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 
@@ -61,6 +62,7 @@ export class ExplorationScene extends BaseScene {
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
         { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },
         { klass: SpriteComponent, tag: SpriteComponent.tag },
+        { klass: TextboxComponent, tag: TextboxComponent.tag },
       ]
     );
 

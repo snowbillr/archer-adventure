@@ -6,8 +6,7 @@ declare namespace Entities {
     & Systems.HasInteractionCircle.Entity
     & Systems.HasHurtboxes.Entity
     & Systems.HasControls.Entity
-    & Systems.HasBounds.Entity
-    & Systems.ShootsArrows.Entity;
+    & Systems.HasBounds.Entity;
 
   type Enemy = Phecs.Entity & Systems.HasPhysicalSprite.Entity;
 
