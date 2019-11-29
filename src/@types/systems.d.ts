@@ -15,10 +15,6 @@ declare namespace Systems.HasBounds {
       height: number;
     }
   }
-
-  interface Entity extends Phecs.Entity {
-    boundsFrames: Frame[];
-  }
 }
 
 declare namespace Systems.HasHurtboxes {
@@ -35,19 +31,8 @@ declare namespace Systems.HasHurtboxes {
     frame: number | string;
     hurtboxes: Shape[];
   }
-
-  interface Entity extends Phecs.Entity {
-    hurtboxFrames: Frame[];
-
-    rectanglePool: Phaser.Geom.Rectangle[];
-    activeRectangles: Phaser.Geom.Rectangle[];
-
-    debugRectangles: Phaser.GameObjects.Rectangle[];
-    debug: boolean;
-    debugPointerPosition: any;
-    debugColor: number;
-  }
 }
+
 declare namespace Systems.HasHitboxes {
   type Shape = {
     type: "rectangle";
@@ -62,36 +47,15 @@ declare namespace Systems.HasHitboxes {
     frame: number | string;
     hitboxes: Shape[];
   }
-
-  interface Entity extends Phecs.Entity {
-    hitboxFrames: Frame[];
-  }
 }
 
 declare namespace Systems.SignSystem {
   interface SignData {
     message: string;
   }
-
-  interface SignEntity extends Phecs.Entity {
-    textboxSprite: Phaser.GameObjects.Container;
-    textboxShowTween: Phaser.Tweens.Tween;
-    textboxHideTween: Phaser.Tweens.Tween;
-    isTextboxShowing: boolean;
-    showTextbox: () => void;
-    hideTextbox: () => void;
-  }
-
-  interface SignInteractorEntity extends Phecs.Entity {}
 }
 
 declare namespace Systems.HasAttachments {
-  interface Entity extends Phecs.Entity {
-    attachments: Attachment[];
-    createAttachment(type: string, config: AttachmentConfig): Attachment;
-    getAttachmentsByType: (type: string) => Attachment[];
-  }
-
   interface Attachment {
     type: string;
     properties: AttachmentProperties;
