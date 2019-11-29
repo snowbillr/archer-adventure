@@ -82,15 +82,15 @@ export class ExplorationScene extends BaseScene {
 
     this.phecs.phSystems.registerSystems(
       [
-        { klass: DoorSystem },
-        { klass: SignSystem },
-        { klass: HasAttachmentsSystem },
-        { klass: HasInteracionCircleSystem },
-        { klass: HasBoundsSystem },
-        { klass: HasControlsSystem },
-        { klass: HasHurtboxesSystem },
-        { klass: HasHitboxesSystem },
-        { klass: HasPhiniteStateMachineSystem },
+        DoorSystem,
+        SignSystem,
+        HasAttachmentsSystem,
+        HasInteracionCircleSystem,
+        HasBoundsSystem,
+        HasControlsSystem,
+        HasHurtboxesSystem,
+        HasHitboxesSystem,
+        HasPhiniteStateMachineSystem,
       ]
     );
 

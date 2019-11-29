@@ -34,8 +34,8 @@ export class SystemsManager {
     this.entityMap = {};
   }
 
-  registerSystems(systemsList: {klass: SystemsManager.SystemConstructor}[]) {
-    systemsList.forEach(({ klass }) => {
+  registerSystems(systemsList: SystemsManager.SystemConstructor[]) {
+    systemsList.forEach((klass) => {
       this.registerSystem(new klass(this.scene));
     });
   }
