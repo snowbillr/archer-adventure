@@ -9,11 +9,13 @@ export class EntityManager {
 
   private prefabs: PropertiesMap;
   private entitiesByName: EntitiesMap;
+  private entitiesByTag: EntitiesMap;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as BaseScene;
     this.prefabs = {};
     this.entitiesByName = {};
+    this.entitiesByTag = {};
   }
 
   registerPrefab(key: string, properties: PropertiesMap) {
@@ -49,6 +51,9 @@ export class EntityManager {
 
     if (properties.tags) {
       properties.tags.split(',').forEach((tag: string) => {
+        this.entitiesByTag[tag] = this.entitiesByTag[tag] || [];
+        this.entitiesByTag[tag].push(entity);
+
         const Component = baseScene.phecs.phComponents.getComponent(tag);
 
         // Some entities have components with no functionality, just a tag. Like the `sign`
@@ -76,13 +81,19 @@ export class EntityManager {
   }
 
   destroy() {
-    Object.values(this.entitiesByName).flat().forEach(entity => {
-      Object.values(entity.components).forEach(component => {
-        (component as Phecs.Component).destroy();
-      });
+    const entities: Phecs.Entity[] = [];
+    Object.values(this.entitiesByTag).flat().forEach(entity => {
+      if (!entities.includes(entity)) {
+        entities.push(entity);
+      }
+    });
+
+    entities.forEach(entity => {
+      Object.values(entity.components).forEach(component => component.destroy());
     });
 
     this.entitiesByName = {};
+    this.entitiesByTag = {};
   }
 
   private getObjectPosition(position: { x: number, y: number }, scale: number = 1) {

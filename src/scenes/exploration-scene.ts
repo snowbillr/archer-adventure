@@ -82,15 +82,15 @@ export class ExplorationScene extends BaseScene {
 
     this.phecs.phSystems.registerSystems(
       [
-        { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
-        { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
-        { klass: HasAttachmentsSystem, tags: HasAttachmentsSystem.SystemTags.hasAttachments },
-        { klass: HasInteracionCircleSystem, tags: HasInteracionCircleSystem.SystemTags.hasInteractionCircle },
-        { klass: HasBoundsSystem, tags: HasBoundsSystem.SystemTags.hasBounds },
-        { klass: HasControlsSystem, tags: HasControlsSystem.SystemTags.hasControls },
-        { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
-        { klass: HasHitboxesSystem, tags: HasHitboxesSystem.SystemTags.hasHitboxes },
-        { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
+        { klass: DoorSystem },
+        { klass: SignSystem },
+        { klass: HasAttachmentsSystem },
+        { klass: HasInteracionCircleSystem },
+        { klass: HasBoundsSystem },
+        { klass: HasControlsSystem },
+        { klass: HasHurtboxesSystem },
+        { klass: HasHitboxesSystem },
+        { klass: HasPhiniteStateMachineSystem },
       ]
     );
 
@@ -121,8 +121,8 @@ export class ExplorationScene extends BaseScene {
       this.phecs.phSystems.stop();
       this.phecs.phSystems.destroyEntities();
       this.phecs.phEntities.destroy();
-
       this.areaManager.unload();
+
       this.areaManager.load(key);
 
       const map = this.areaManager.map;
