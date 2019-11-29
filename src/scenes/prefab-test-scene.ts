@@ -22,7 +22,7 @@ export class PrefabTestScene extends BaseScene {
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const scale = 5;
-    const enemy = this.phecs.phEntities.createPrefab('enemy', {}, scale, 0, 0, 0) as Entities.Enemy;
+    const enemy = this.phecs.phEntities.createPrefab('enemy', {}, scale, 0, 0, 0);
 
     enemy.components[SpriteComponent.tag].sprite.x = 150;
     enemy.components[SpriteComponent.tag].sprite.y = 200;
@@ -46,7 +46,7 @@ export class PrefabTestScene extends BaseScene {
       frameText.setText(`Frame ${frameIndex}`);
     });
 
-    this.phecs.phSystems.start();
+    this.phecs.start();
 
     this.cameras.main.setBackgroundColor('#cccccc');
   }
