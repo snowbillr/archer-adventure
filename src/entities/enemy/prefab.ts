@@ -1,7 +1,7 @@
 export const enemyPrefab = {
   name: 'enemy',
 
-  tags: 'hasPhysicalSprite,hasAttachments,hasPhiniteStateMachine,hasHurtboxes',
+  tags: 'sprite,physics-body,attachment,phinite-state-machine,hurtbox',
 
   attachmentDebug: false,
 

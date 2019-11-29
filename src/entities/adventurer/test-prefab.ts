@@ -1,7 +1,7 @@
 export const adventurerTestPrefab = {
   name: 'adventurer',
 
-  tags: "hasPhysicalSprite,hasHurtboxes,hasBounds",
+  tags: "sprite,physics-body,hurtbox,bounds",
 
   boundsKey: "adventurer-bounds",
 

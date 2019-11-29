@@ -606,7 +606,7 @@
   <object id="2" name="door" type="door" x="147.621" y="242.476">
    <properties>
     <property name="marker" type="bool" value="true"/>
-    <property name="toKey" value="starting-area"/>
+    <property name="toAreaKey" value="starting-area"/>
     <property name="toMarker" value="houseDoor"/>
    </properties>
    <point/>

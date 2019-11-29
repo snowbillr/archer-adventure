@@ -3,20 +3,22 @@ import { movementAttributes } from '../movement-attributes';
 import { baseFall } from './base-fall';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerFallLeft: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseFall, {
+export const adventurerFallLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseFall, {
   id: 'adventurer-fall-left',
   data: {
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity * -1,
   },
-  onEnter(entity: Entities.Adventurer) {
-    entity.sprite.flipX = true;
+  onEnter(entity: Phecs.Entity) {
+    entity.components[SpriteComponent.tag].sprite.flipX = true;
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.right,
+      key: entity => entity.components[AdventurerComponent.tag].codes.right,
       to: 'adventurer-fall-right',
     }
   ]

@@ -1,41 +1,43 @@
 import { baseIdle } from './base-idle';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { SpriteComponent } from '../../../components/sprite-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerStand: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
+export const adventurerStand: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   id: 'adventurer-stand',
-  onEnter(entity: Entities.Adventurer) {
-    entity.sprite.anims.play('adventurer-stand');
+  onEnter(entity: Phecs.Entity) {
+    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-stand');
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.right,
+      key: entity => entity.components[AdventurerComponent.tag].codes.right,
       to: 'adventurer-run-right',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.left,
+      key: entity => entity.components[AdventurerComponent.tag].codes.left,
       to: 'adventurer-run-left',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.down,
+      key: entity => entity.components[AdventurerComponent.tag].codes.down,
       to: 'adventurer-crouch',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.up,
+      key: entity => entity.components[AdventurerComponent.tag].codes.up,
       to: 'adventurer-jump-prep',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.attack,
+      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
       to: 'adventurer-stand-draw'
     }
   ],

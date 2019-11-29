@@ -3,6 +3,8 @@ import { BaseScene } from './base-scene';
 
 import { enemyPrefab } from '../entities/enemy/prefab';
 import { enemyStates } from '../entities/enemy/states';
+import { SpriteComponent } from '../components/sprite-component';
+import { PhysicsBodyComponent } from '../components/physics-body-component';
 
 export class PrefabTestScene extends BaseScene {
   constructor() {
@@ -10,7 +12,7 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.entityManager.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
 
     this.stateRegistrar.registerSets([
       { id: 'enemy', states: enemyStates },
@@ -20,15 +22,15 @@ export class PrefabTestScene extends BaseScene {
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const scale = 5;
-    const enemy = this.entityManager.createPrefab('enemy', {}, scale, 0, 0, 0) as Entities.Enemy;
+    const enemy = this.phecs.phEntities.createPrefab('enemy', {}, scale, 0, 0, 0);
 
-    enemy.sprite.x = 150;
-    enemy.sprite.y = 200;
-    enemy.sprite.setFrame(frameIndex);
+    enemy.components[SpriteComponent.tag].sprite.x = 150;
+    enemy.components[SpriteComponent.tag].sprite.y = 200;
+    enemy.components[SpriteComponent.tag].sprite.setFrame(frameIndex);
 
-    enemy.body.allowGravity = false;
+    enemy.components[PhysicsBodyComponent.tag].body.allowGravity = false;
 
-    enemy.sprite.anims.stop();
+    enemy.components[SpriteComponent.tag].sprite.anims.stop();
 
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
@@ -40,11 +42,11 @@ export class PrefabTestScene extends BaseScene {
           break;
       }
 
-      enemy.sprite.setFrame(frameIndex);
+      enemy.components[SpriteComponent.tag].sprite.setFrame(frameIndex);
       frameText.setText(`Frame ${frameIndex}`);
     });
 
-    this.systemsManager.start();
+    this.phecs.start();
 
     this.cameras.main.setBackgroundColor('#cccccc');
   }

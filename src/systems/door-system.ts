@@ -1,56 +1,40 @@
 import { ExplorationScene } from '../scenes/exploration-scene';
+import { DoorComponent } from '../components/door-component';
+import { AdventurerComponent } from '../components/adventurer-component';
+import { IndicatorComponent } from '../components/indicator-component';
+import { InteractionCircleComponent } from '../components/interaction-circle-component';
+import { EntityManager } from '../lib/phecs/entity-manager';
 
-export class DoorSystem implements SystemsManager.System {
-  static SystemTags = {
-    door: 'door',
-    doorInteractor: 'doorInteractor',
-  };
-
+export class DoorSystem implements Phecs.System {
   private scene: ExplorationScene;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as ExplorationScene;
   }
 
-  registerEntity(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), data: SystemsManager.EntityRegistrationData, tag: string) {
-    if (tag === DoorSystem.SystemTags.door) {
-      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      doorEntity.toKey = data.toKey;
-      doorEntity.toMarker = data.toMarker;
-    }
-  }
+  update(phEntities: EntityManager) {
+    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const doors = phEntities.getEntitiesByName(DoorComponent.tag);
 
-  update(systemsManager: SystemsManager.SystemsManager) {
-    // there is only one interactor, the adventurer
-    const doorInteractor: Systems.DoorSystem.DoorInteractorEntity = systemsManager.getEntities<Systems.DoorSystem.DoorInteractorEntity>(DoorSystem.SystemTags.doorInteractor)[0];
-    const doors: Systems.DoorSystem.DoorEntity[] = systemsManager.getEntities(DoorSystem.SystemTags.door);
-
-    const enteringDoorIds = doorInteractor.interactionTracker.getEntityIds('entering');
+    const enteringDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
     for (let enteringDoor of enteringDoors) {
-      enteringDoor.showIndicator();
+      enteringDoor.components[IndicatorComponent.tag].showIndicator();
     }
 
-    const exitingDoorIds = doorInteractor.interactionTracker.getEntityIds('exiting');
+    const exitingDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('exiting');
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
-      enteringDoor.hideIndicator();
+      enteringDoor.components[IndicatorComponent.tag].hideIndicator();
     }
 
-    const activeDoorIds = doorInteractor.interactionTracker.getEntityIds('active');
+    const activeDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
     const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
     for (let door of activeDoors) {
-      const interactionControlKey = doorInteractor.controls[door.interactionControl!];
+      const interactionControlKey = adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl];
       if (interactionControlKey && interactionControlKey.isDown) {
-        this.scene.loadNewArea(door.toKey, door.toMarker);
+        this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
       }
-    }
-  }
-
-  destroy(entity: (Systems.DoorSystem.DoorEntity | Systems.DoorSystem.DoorInteractorEntity), tag: string) {
-    if (tag === DoorSystem.SystemTags.door) {
-      const doorEntity = entity as Systems.DoorSystem.DoorEntity;
-      delete doorEntity.toKey;
     }
   }
 }

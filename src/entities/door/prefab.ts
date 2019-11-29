@@ -1,5 +1,5 @@
 export const doorPrefab = {
-  tags: 'hasSprite,door,hasInteractionCircle,hasIndicator',
+  tags: 'sprite,door,indicator,interaction-circle',
 
   texture: 'doors',
   frame: 1,

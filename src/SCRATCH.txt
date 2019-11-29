@@ -1,21 +1,3 @@
-Adding a new system
-- create new system file
-  - implements `SystemsManager.System`
-  - has static SystemTags object used to reference the system tag
-    - `SystemTags: { [key: string]: string }`
-  - has constructor taking in a Phaser Scene. stores in a private field
-
-- import new system into `BaseScene`
-  - register it with its system tag
-
-- create a new entry in `systems.d.ts` for the new system
-  # should have at least an `Entity` declaring the properties the system will add
-
-
-
-HasHitboxesSystem
-  # Responsible for creating hitbox attachments
-
 DamageSystem
   # uses both the hurtbox and hitbox type Attachments
   # checks for hitbox overlaps with hurtboxes for given pairs of entities

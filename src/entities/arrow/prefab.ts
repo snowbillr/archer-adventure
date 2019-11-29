@@ -1,7 +1,7 @@
 export const arrowPrefab = {
   name: 'arrow',
 
-  tags: 'hasPhysicalSprite,hasPhiniteStateMachine,hasBounds,hasAttachments,hasHitboxes',
+  tags: 'sprite,physics-body,phinite-state-machine,bounds,attachment,hitbox',
 
   texture: 'arrow',
   frame: 0,

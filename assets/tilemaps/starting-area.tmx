@@ -632,10 +632,10 @@
   <properties>
    <property name="depth" type="int" value="1"/>
   </properties>
-  <object id="8" name="sheep" type="sheep" x="953.545" y="416.871">
+  <object id="8" name="sheep" type="sheep" x="953.545" y="415.871">
    <point/>
   </object>
-  <object id="18" name="enemy" type="enemy" x="1178.39" y="416.89">
+  <object id="18" name="enemy" type="enemy" x="1178.39" y="417.89">
    <properties>
     <property name="scale" type="int" value="1"/>
    </properties>
@@ -657,7 +657,7 @@
   <object id="14" name="houseDoor" type="door" x="752.422" y="416.562">
    <properties>
     <property name="marker" type="bool" value="true"/>
-    <property name="toKey" value="house"/>
+    <property name="toAreaKey" value="house"/>
     <property name="toMarker" value="door"/>
    </properties>
    <point/>

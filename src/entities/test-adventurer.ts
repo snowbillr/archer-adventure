@@ -8,8 +8,8 @@ export class TestAdventurer {
     /*
     const renderable = new PhysicallyRenderable(scene, 100, 100, 'adventurer-core');
     renderable.create();
-    this.sprite = renderable.getSprite();
-    this.sprite.setScale(6);
+    this.components[SpriteComponent.tag].sprite = renderable.getSprite();
+    this.components[SpriteComponent.tag].sprite.setScale(6);
     this.body = renderable.getBody();
     this.body.allowGravity = false;
     */
