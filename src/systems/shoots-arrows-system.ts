@@ -3,6 +3,7 @@ import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
+import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
 
 const ARROW_POOL_COUNT = 3;
 
@@ -26,14 +27,14 @@ export class ShootsArrowsSystem implements SystemsManager.System {
     entity.arrows = [];
     for (let i = 0; i < ARROW_POOL_COUNT; i++) {
       const arrow = this.scene.entityManager.createPrefab('arrow', {}, 2, entity.components[SpriteComponent.tag].sprite.depth, 0, 0) as Entities.Arrow;
-      arrow.phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
+      arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
       entity.arrows.push(arrow);
     }
 
     entity.shootArrow = () => {
       const availableArrow = this.getAvailableArrow(entity);
 
-      availableArrow.phiniteStateMachine.doTransition({ to: 'arrow-flying' });
+      availableArrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-flying' });
 
       availableArrow.components[SpriteComponent.tag].sprite.x = entity.components[SpriteComponent.tag].sprite.x;
       availableArrow.components[SpriteComponent.tag].sprite.y = entity.components[SpriteComponent.tag].sprite.y;
@@ -55,9 +56,9 @@ export class ShootsArrowsSystem implements SystemsManager.System {
 
   private getAvailableArrow(entity: Systems.ShootsArrows.Entity) {
     const disabledArrows = entity.arrows
-      .filter(arrow => arrow.phiniteStateMachine.currentState.id === 'arrow-disabled');
+      .filter(arrow => arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.currentState.id === 'arrow-disabled');
     const hitArrows = entity.arrows
-      .filter(arrow => arrow.phiniteStateMachine.currentState.id === 'arrow-hit')
+      .filter(arrow => arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.currentState.id === 'arrow-hit')
 
     if (disabledArrows.length) {
       return disabledArrows[0];
