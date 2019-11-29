@@ -4,6 +4,7 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
   id: 'adventurer-slide',
@@ -28,11 +29,13 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
         return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to: (entity: Entities.Adventurer) => {
-        if (entity.controls.left.isDown) {
+        const controls = entity.components[AdventurerComponent.tag].controls;
+
+        if (controls.left.isDown) {
           return 'adventurer-run-left';
-        } else if (entity.controls.right.isDown) {
+        } else if (controls.right.isDown) {
           return 'adventurer-run-right';
-        } else if (entity.controls.down.isDown) {
+        } else if (controls.down.isDown) {
           return 'adventurer-crouch';
         } else {
           return 'adventurer-stand';
@@ -42,7 +45,7 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.up,
+      key: entity => entity.components[AdventurerComponent.tag].codes.up,
       to: 'adventurer-jump-prep',
     }
   ],

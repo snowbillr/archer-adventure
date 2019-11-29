@@ -3,6 +3,7 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerAirHold: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-hold',
@@ -23,13 +24,13 @@ export const adventurerAirHold: PhiniteStateMachine.States.State<Entities.Advent
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.codes.attack,
+      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
       to: 'adventurer-air-shoot',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.left,
+      key: entity => entity.components[AdventurerComponent.tag].codes.left,
       to: 'adventurer-air-hold',
       onTransition(entity) {
         entity.components[SpriteComponent.tag].sprite.flipX = true;
@@ -38,7 +39,7 @@ export const adventurerAirHold: PhiniteStateMachine.States.State<Entities.Advent
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.right,
+      key: entity => entity.components[AdventurerComponent.tag].codes.right,
       to: 'adventurer-air-hold',
       onTransition(entity) {
         entity.components[SpriteComponent.tag].sprite.flipX = false;

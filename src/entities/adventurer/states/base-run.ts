@@ -5,6 +5,7 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
   onEnter(entity: Entities.Adventurer) {
@@ -15,13 +16,13 @@ export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = St
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.attack,
+      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
       to: 'adventurer-stand-draw',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.down,
+      key: entity => entity.components[AdventurerComponent.tag].codes.down,
       to: (entity: Entities.Adventurer) => {
         if (Math.abs(entity.components[PhysicsBodyComponent.tag].body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
@@ -33,7 +34,7 @@ export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = St
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.up,
+      key: entity => entity.components[AdventurerComponent.tag].codes.up,
       to: 'adventurer-jump-prep',
     }
   ]

@@ -2,6 +2,7 @@ import { baseIdle } from './base-idle';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
   id: 'adventurer-stand-draw',
@@ -22,13 +23,13 @@ export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adve
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.codes.attack,
+      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
       to: 'adventurer-stand-shoot',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.left,
+      key: entity => entity.components[AdventurerComponent.tag].codes.left,
       to: 'adventurer-stand-draw',
       onTransition(entity) {
         entity.components[SpriteComponent.tag].sprite.flipX = true;
@@ -37,7 +38,7 @@ export const adventurerStandDraw: PhiniteStateMachine.States.State<Entities.Adve
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.codes.right,
+      key: entity => entity.components[AdventurerComponent.tag].codes.right,
       to: 'adventurer-stand-draw',
       onTransition(entity) {
         entity.components[SpriteComponent.tag].sprite.flipX = false;

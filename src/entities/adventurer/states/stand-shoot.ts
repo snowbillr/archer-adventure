@@ -2,6 +2,7 @@ import { baseIdle } from './base-idle';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
+import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
   id: 'adventurer-stand-shoot',
@@ -18,9 +19,11 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adv
         return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to(entity) {
-        if (entity.controls.right.isDown) {
+        const controls = entity.components[AdventurerComponent.tag].controls;
+
+        if (controls.right.isDown) {
           return 'adventurer-run-right';
-        } else if (entity.controls.left.isDown) {
+        } else if (controls.left.isDown) {
           return 'adventurer-run-left';
         } else {
           return 'adventurer-stand';

@@ -34,7 +34,7 @@ export class DoorSystem implements SystemsManager.System {
     const activeDoorIds = adventurer.interactionTracker.getEntityIds('active');
     const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
     for (let door of activeDoors) {
-      const interactionControlKey = adventurer.controls[door.interactionControl!];
+      const interactionControlKey = adventurer.components[AdventurerComponent.tag].controls[door.interactionControl!];
       if (interactionControlKey && interactionControlKey.isDown) {
         this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
       }

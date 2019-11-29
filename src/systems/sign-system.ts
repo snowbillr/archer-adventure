@@ -1,5 +1,6 @@
 import { BaseScene } from '../scenes/base-scene';
 import { IndicatorComponent } from '../components/indicator-component';
+import { AdventurerComponent } from '../components/adventurer-component';
 
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
@@ -68,16 +69,15 @@ export class SignSystem implements SystemsManager.System {
   }
 
   start(systemsManager: SystemsManager.SystemsManager) {
-    const signInteractors: Systems.SignSystem.SignInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+    const adventurer: Phecs.Entity = systemsManager.getEntities(AdventurerComponent.tag)[0];
     const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
-    const signInteractor = signInteractors[0];
     signs.forEach(sign => {
-      const controlKey = signInteractor.controls[sign.interactionControl!];
+      const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.interactionControl!];
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
         const activeInteractionIds = sign.interactionTracker.getEntityIds('active');
-        if (activeInteractionIds.includes(signInteractor.id)) {
+        if (activeInteractionIds.includes(adventurer.id)) {
           if (sign.isTextboxShowing) {
             sign.hideTextbox();
             sign.components[IndicatorComponent.tag].showIndicator();
