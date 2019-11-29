@@ -5,16 +5,6 @@ import { HitboxComponent } from '../components/hitbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasHitboxesSystem implements Phecs.System {
-  static SystemTags = {
-    hasHitboxes: 'hasHitboxes',
-  };
-
-  private scene: Phaser.Scene;
-
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-  }
-
   update(phEntities: EntityManager) {
     const entities: Systems.HasHitboxes.Entity[] = phEntities.getEntitiesByTag(HitboxComponent.tag);
 

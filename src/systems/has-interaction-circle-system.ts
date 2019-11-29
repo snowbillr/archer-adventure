@@ -1,14 +1,9 @@
 import 'phaser';
-import { InteractionTracker } from '../lib/interaction-tracker';
 import { SpriteComponent } from '../components/sprite-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasInteracionCircleSystem implements Phecs.System {
-  static SystemTags = {
-    hasInteractionCircle: 'hasInteractionCircle',
-  };
-
   private scene: Phaser.Scene;
 
   constructor(scene: Phaser.Scene) {
@@ -16,20 +11,20 @@ export class HasInteracionCircleSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const entities: Systems.HasInteractionCircle.Entity[] = phEntities.getEntitiesByTag(InteractionCircleComponent.tag);
+    const entities: Phecs.Entity[] = phEntities.getEntitiesByTag(InteractionCircleComponent.tag);
 
     for (let entity of entities) {
       entity.components[InteractionCircleComponent.tag].interactionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
 
-      if (entity.debugInteractionCircle) {
+      if (entity.components[InteractionCircleComponent.tag].debugInteractionCircle) {
         const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
-        entity.debugInteractionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
+        entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
 
-        if (entity.debugInteractionCircle) {
+        if (entity.components[InteractionCircleComponent.tag].debugInteractionCircle) {
           if (Phaser.Geom.Intersects.CircleToCircle(entity.components[InteractionCircleComponent.tag].interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
-            entity.debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
+            entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
           } else {
-            entity.debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
+            entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
           }
         }
       }
@@ -45,7 +40,7 @@ export class HasInteracionCircleSystem implements Phecs.System {
     };
   }
 
-  private getIntersectingInteractionIds(entity: Systems.HasInteractionCircle.Entity, allEntities: Systems.HasInteractionCircle.Entity[]): string[] {
+  private getIntersectingInteractionIds(entity: Phecs.Entity, allEntities: Phecs.Entity[]): string[] {
     return allEntities
       .filter(otherEntity => otherEntity.id !== entity.id)
       .filter(otherEntity => {

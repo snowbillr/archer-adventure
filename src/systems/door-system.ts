@@ -6,11 +6,6 @@ import { InteractionCircleComponent } from '../components/interaction-circle-com
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class DoorSystem implements Phecs.System {
-  static SystemTags = {
-    door: 'door',
-    doorInteractor: 'doorInteractor',
-  };
-
   private scene: ExplorationScene;
 
   constructor(scene: Phaser.Scene) {
@@ -18,8 +13,8 @@ export class DoorSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const adventurer: Systems.DoorSystem.DoorInteractorEntity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const doors: Systems.DoorSystem.DoorEntity[] = phEntities.getEntitiesByName(DoorComponent.tag);
+    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const doors = phEntities.getEntitiesByName(DoorComponent.tag);
 
     const enteringDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));

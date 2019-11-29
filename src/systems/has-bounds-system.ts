@@ -5,16 +5,6 @@ import { BoundsComponent } from '../components/bounds-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasBoundsSystem implements Phecs.System {
-  static SystemTags = {
-    hasBounds: 'hasBounds',
-  };
-
-  private scene: Phaser.Scene;
-
-  constructor(scene: Phaser.Scene) {
-    this.scene = scene;
-  }
-
   update(phEntities: EntityManager) {
     const entities: Systems.HasBounds.Entity[] = phEntities.getEntitiesByTag(BoundsComponent.tag);
 

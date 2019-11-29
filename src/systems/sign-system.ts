@@ -5,11 +5,6 @@ import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class SignSystem implements Phecs.System {
-  static SystemTags = {
-    interactor: 'sign-interactor',
-    sign: 'sign-interactive',
-  }
-
   start(phEntities: EntityManager) {
     const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
     const signs: Systems.SignSystem.SignEntity[] = phEntities.getEntitiesByTag('sign');
@@ -33,7 +28,7 @@ export class SignSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(SignSystem.SystemTags.interactor)[0];
+    const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
     const signs: Systems.SignSystem.SignEntity[] = phEntities.getEntitiesByTag('sign');
 
     const enteringSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');

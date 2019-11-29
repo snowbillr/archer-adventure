@@ -5,10 +5,6 @@ import { HurtboxComponent } from '../components/hurtbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasHurtboxesSystem implements Phecs.System {
-  static SystemTags = {
-    hasHurtboxes: 'hasHurtboxes',
-  };
-
   update(phEntities: EntityManager) {
     const entities: Systems.HasHurtboxes.Entity[] = phEntities.getEntitiesByTag(HurtboxComponent.tag);
 

@@ -3,10 +3,6 @@ import { AttachmentComponent } from '../components/attachment-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasAttachmentsSystem implements Phecs.System {
-  static SystemTags = {
-    hasAttachments: 'hasAttachments',
-  };
-
   update(phEntities: EntityManager) {
     const entities: Systems.HasAttachments.Entity[] = phEntities.getEntitiesByTag(AttachmentComponent.tag);
 
