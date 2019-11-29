@@ -7,8 +7,8 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
-  onEnter(entity: Entities.Adventurer) {
+export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.flipX = false;
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-run');
   },
@@ -23,7 +23,7 @@ export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = St
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       key: entity => entity.components[AdventurerComponent.tag].codes.down,
-      to: (entity: Entities.Adventurer) => {
+      to: (entity: Phecs.Entity) => {
         if (Math.abs(entity.components[PhysicsBodyComponent.tag].body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
         } else {
@@ -40,7 +40,7 @@ export const baseRun: PhiniteStateMachine.States.State<Entities.Adventurer> = St
   ]
 });
 
-export function startRunning(entity: Entities.Adventurer, direction: "left" | "right") {
+export function startRunning(entity: Phecs.Entity, direction: "left" | "right") {
   if (direction === "left") {
     entity.components[PhysicsBodyComponent.tag].body.acceleration.x = -movementAttributes.horizontalAcceleration;
   } else if (direction === "right") {
@@ -51,7 +51,7 @@ export function startRunning(entity: Entities.Adventurer, direction: "left" | "r
 }
 
 
-function boostTurnaroundVelocity(entity: Entities.Adventurer) {
+function boostTurnaroundVelocity(entity: Phecs.Entity) {
   if (!Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 5)) {
     entity.components[PhysicsBodyComponent.tag].body.velocity.x += entity.components[PhysicsBodyComponent.tag].body.velocity.x * 0.5 * -1;
   }

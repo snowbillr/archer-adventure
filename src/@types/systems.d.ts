@@ -1,11 +1,11 @@
 declare namespace Systems.HasPhysicalSprite {
-  interface Entity extends SystemsManager.Entity {
+  interface Entity extends Phecs.Entity {
     body: Phaser.Physics.Arcade.Body;
   }
 }
 
 declare namespace Systems.HasInteractionCircle {
-  interface Entity extends SystemsManager.Entity {
+  interface Entity extends Phecs.Entity {
     interactionCircle: Phaser.Geom.Circle;
     interactionTracker: InteractionTracker;
     interactionControl?: string;
@@ -17,7 +17,7 @@ declare namespace Systems.HasControls {
   type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
   type Codes = { [code: string]: string };
 
-  interface Entity extends SystemsManager.Entity {
+  interface Entity extends Phecs.Entity {
     controls: Controls;
     codes: Codes;
   }
@@ -41,7 +41,7 @@ declare namespace Systems.HasBounds {
     }
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasPhysicalSprite.Entity {
+  interface Entity extends Phecs.Entity, Systems.HasPhysicalSprite.Entity {
     boundsFrames: Frame[];
   }
 }
@@ -61,7 +61,7 @@ declare namespace Systems.HasHurtboxes {
     hurtboxes: Shape[];
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasAttachments.Entity {
+  interface Entity extends Phecs.Entity, Systems.HasAttachments.Entity {
     hurtboxFrames: Frame[];
 
     rectanglePool: Phaser.Geom.Rectangle[];
@@ -88,13 +88,13 @@ declare namespace Systems.HasHitboxes {
     hitboxes: Shape[];
   }
 
-  interface Entity extends SystemsManager.Entity, Systems.HasAttachments.Entity {
+  interface Entity extends Phecs.Entity, Systems.HasAttachments.Entity {
     hitboxFrames: Frame[];
   }
 }
 
 declare namespace Systems.HasPhiniteStateMachine {
-  interface Entity<T> extends SystemsManager.Entity {
+  interface Entity<T> extends Phecs.Entity {
     phiniteStateMachine: PhiniteStateMachine.PhiniteStateMachine<T>;
   }
 }
@@ -104,7 +104,7 @@ declare namespace Systems.SignSystem {
     message: string;
   }
 
-  interface SignEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity {
+  interface SignEntity extends Phecs.Entity, Systems.HasInteractionCircle.Entity {
     textboxSprite: Phaser.GameObjects.Container;
     textboxShowTween: Phaser.Tweens.Tween;
     textboxHideTween: Phaser.Tweens.Tween;
@@ -113,21 +113,21 @@ declare namespace Systems.SignSystem {
     hideTextbox: () => void;
   }
 
-  interface SignInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {}
+  interface SignInteractorEntity extends Phecs.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {}
 }
 
 declare namespace Systems.DoorSystem {
-  interface DoorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity {
+  interface DoorEntity extends Phecs.Entity, Systems.HasInteractionCircle.Entity {
     toKey: string;
     toMarker: string;
   }
 
-  interface DoorInteractorEntity extends SystemsManager.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
+  interface DoorInteractorEntity extends Phecs.Entity, Systems.HasInteractionCircle.Entity, Systems.HasControls.Entity {
   }
 }
 
 declare namespace Systems.HasAttachments {
-  interface Entity extends SystemsManager.Entity {
+  interface Entity extends Phecs.Entity {
     attachments: Attachment[];
     createAttachment(type: string, config: AttachmentConfig): Attachment;
     getAttachmentsByType: (type: string) => Attachment[];

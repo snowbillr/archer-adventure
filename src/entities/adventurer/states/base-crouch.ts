@@ -4,8 +4,8 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const baseCrouch: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
-  onEnter(entity: Entities.Adventurer) {
+export const baseCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-crouch');
   },
   transitions: [
@@ -13,7 +13,7 @@ export const baseCrouch: PhiniteStateMachine.States.State<Entities.Adventurer> =
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
       key: entity => entity.components[AdventurerComponent.tag].codes.down,
-      to: (entity: Entities.Adventurer) => {
+      to: (entity: Phecs.Entity) => {
         const controls = entity.components[AdventurerComponent.tag].controls;
 
         if (controls.left.isDown) {

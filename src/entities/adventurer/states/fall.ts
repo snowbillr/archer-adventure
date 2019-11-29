@@ -3,7 +3,7 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerFall: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseFall, {
+export const adventurerFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseFall, {
   id: 'adventurer-fall',
   data: {
     horizontalMaxVelocity: 0,

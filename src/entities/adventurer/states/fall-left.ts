@@ -6,12 +6,12 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerFallLeft: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseFall, {
+export const adventurerFallLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseFall, {
   id: 'adventurer-fall-left',
   data: {
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity * -1,
   },
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.flipX = true;
   },
   transitions: [

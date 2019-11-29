@@ -19,7 +19,7 @@ import { adventurerAirDraw } from './states/air-draw';
 import { adventurerAirHold } from './states/air-hold';
 import { adventurerAirShoot } from './states/air-shoot';
 
-export const adventurerStates: PhiniteStateMachine.States.State<Entities.Adventurer>[] = [
+export const adventurerStates: PhiniteStateMachine.States.State<Phecs.Entity>[] = [
   adventurerStand,
   adventurerStandDraw,
   adventurerStandHold,

@@ -4,8 +4,8 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const baseJump: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
-  onEnter(entity: Entities.Adventurer) {
+export const baseJump: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge<Phecs.Entity>(baseAerial, {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-jump-rise');
   },
   transitions: [

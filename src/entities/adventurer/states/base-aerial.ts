@@ -2,7 +2,7 @@ import { movementAttributes } from '../movement-attributes';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-function applyAirControls(entity: Entities.Adventurer, targetVelocity: number) {
+function applyAirControls(entity: Phecs.Entity, targetVelocity: number) {
   const body = entity.components[PhysicsBodyComponent.tag].body;
   const controls = entity.components[AdventurerComponent.tag].controls;
 
@@ -13,7 +13,7 @@ function applyAirControls(entity: Entities.Adventurer, targetVelocity: number) {
   }
 }
 
-function applyAirFriction(entity: Entities.Adventurer) {
+function applyAirFriction(entity: Phecs.Entity) {
   const body = entity.components[PhysicsBodyComponent.tag].body;
 
   if (body.velocity.x > 0) {
@@ -25,8 +25,8 @@ function applyAirFriction(entity: Entities.Adventurer) {
   }
 }
 
-export const baseAerial: Partial<PhiniteStateMachine.States.State<Entities.Adventurer>> = {
-  onUpdate(entity: Entities.Adventurer, data: PhiniteStateMachine.States.StateData) {
+export const baseAerial: Partial<PhiniteStateMachine.States.State<Phecs.Entity>> = {
+  onUpdate(entity: Phecs.Entity, data: PhiniteStateMachine.States.StateData) {
     const body = entity.components[PhysicsBodyComponent.tag].body;
     const controls = entity.components[AdventurerComponent.tag].controls;
     const controlsAreDown = controls.left.isDown || controls.right.isDown;

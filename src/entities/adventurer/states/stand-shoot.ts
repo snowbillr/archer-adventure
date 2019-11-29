@@ -5,9 +5,9 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 import { ShootsArrowsComponent } from '../../../components/shoots-arrows-component';
 
-export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseIdle, {
+export const adventurerStandShoot: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   id: 'adventurer-stand-shoot',
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-stand-shoot');
   },
   onLeave(entity) {
@@ -16,7 +16,7 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Entities.Adv
   transitions: [
     {
       type: TransitionType.Conditional,
-      condition(entity: Entities.Adventurer) {
+      condition(entity: Phecs.Entity) {
         return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
       to(entity) {

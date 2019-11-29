@@ -1,6 +1,6 @@
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
-export const hit: PhiniteStateMachine.States.State<Entities.Arrow> = {
+export const hit: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'arrow-hit',
   transitions: [],
   onEnter(arrow) {

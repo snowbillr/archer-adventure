@@ -127,7 +127,7 @@ export class ExplorationScene extends BaseScene {
       const map = this.areaManager.map;
       const tileset = this.areaManager.tileset;
 
-      const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
+      const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0);
       const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
       if (markerName) {

@@ -4,9 +4,9 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adventurer> = {
+export const adventurerJumpPrep: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'adventurer-jump-prep',
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
 
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-jump-prep');
@@ -14,10 +14,10 @@ export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adven
   transitions: [
     {
       type: TransitionType.Conditional,
-      condition: (entity: Entities.Adventurer) => {
+      condition: (entity: Phecs.Entity) => {
         return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
-      to: (entity: Entities.Adventurer) => {
+      to: (entity: Phecs.Entity) => {
         const controls = entity.components[AdventurerComponent.tag].controls;
 
         if (controls.right.isDown) {
@@ -32,7 +32,7 @@ export const adventurerJumpPrep: PhiniteStateMachine.States.State<Entities.Adven
           return 'adventurer-jump';
         }
       },
-      onTransition: (entity: Entities.Adventurer) => {
+      onTransition: (entity: Phecs.Entity) => {
         if (entity.components[AdventurerComponent.tag].controls.up.isDown) {
           entity.components[PhysicsBodyComponent.tag].body.velocity.y = movementAttributes.jumpVelocity;
         } else {

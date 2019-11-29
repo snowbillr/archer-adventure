@@ -1,7 +1,7 @@
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
-export const disabled: PhiniteStateMachine.States.State<Entities.Arrow> = {
+export const disabled: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'arrow-disabled',
   transitions: [],
   onEnter(arrow) {

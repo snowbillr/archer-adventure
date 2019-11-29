@@ -4,9 +4,9 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerRunLeft: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseRun, {
+export const adventurerRunLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseRun, {
   id: 'adventurer-run-left',
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.flipX = true;
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-run');
 

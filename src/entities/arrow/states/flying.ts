@@ -2,7 +2,7 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
-export const flying: PhiniteStateMachine.States.State<Entities.Arrow> = {
+export const flying: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'arrow-flying',
   transitions: [
     {

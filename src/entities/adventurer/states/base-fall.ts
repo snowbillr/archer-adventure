@@ -7,8 +7,8 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseAerial, {
-  onEnter(entity: Entities.Adventurer) {
+export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseAerial, {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-fall');
   },
   transitions: [
@@ -20,10 +20,10 @@ export const baseFall: PhiniteStateMachine.States.State<Entities.Adventurer> = S
     },
     {
       type: TransitionType.Conditional,
-      condition: (entity: Entities.Adventurer) => {
+      condition: (entity: Phecs.Entity) => {
         return entity.components[PhysicsBodyComponent.tag].body.blocked.down;
       },
-      to(entity: Entities.Adventurer) {
+      to(entity: Phecs.Entity) {
         const controls = entity.components[AdventurerComponent.tag].controls;
 
         if (controls.down.isDown) {

@@ -4,9 +4,9 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerCrouchLeft: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseCrouch, {
+export const adventurerCrouchLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseCrouch, {
   id: 'adventurer-crouch-left',
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.flipX = true;
   },
   transitions: [

@@ -6,9 +6,9 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseGround, {
+export const adventurerSlide: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
   id: 'adventurer-slide',
-  onEnter(adventurer: Entities.Adventurer) {
+  onEnter(adventurer: Phecs.Entity) {
     adventurer.components[SpriteComponent.tag].sprite.anims.play('adventurer-slide')
 
     if (adventurer.components[PhysicsBodyComponent.tag].body.velocity.x > 0) {
@@ -17,7 +17,7 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
       adventurer.components[PhysicsBodyComponent.tag].body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
-  onUpdate(entity: Entities.Adventurer) {
+  onUpdate(entity: Phecs.Entity) {
     if(Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 5)) {
       entity.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
     }
@@ -25,10 +25,10 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Entities.Adventur
   transitions: [
     {
       type: TransitionType.Conditional,
-      condition: (entity: Entities.Adventurer) => {
+      condition: (entity: Phecs.Entity) => {
         return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
       },
-      to: (entity: Entities.Adventurer) => {
+      to: (entity: Phecs.Entity) => {
         const controls = entity.components[AdventurerComponent.tag].controls;
 
         if (controls.left.isDown) {

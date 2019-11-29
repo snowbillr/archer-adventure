@@ -6,12 +6,12 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerJumpLeft: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
+export const adventurerJumpLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseJump, {
   id: 'adventurer-jump-left',
   data: {
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity * -1,
   },
-  onEnter(entity: Entities.Adventurer) {
+  onEnter(entity: Phecs.Entity) {
     entity.components[SpriteComponent.tag].sprite.flipX = true;
   },
   transitions: [
@@ -23,7 +23,7 @@ export const adventurerJumpLeft: PhiniteStateMachine.States.State<Entities.Adven
     },
     {
       type: TransitionType.Conditional,
-      condition: (entity: Entities.Adventurer) => {
+      condition: (entity: Phecs.Entity) => {
         return entity.components[PhysicsBodyComponent.tag].body.velocity.y > 0;
       },
       to: 'adventurer-fall-left',

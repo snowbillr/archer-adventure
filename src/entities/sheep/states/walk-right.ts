@@ -3,9 +3,9 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AreaBoundaryComponent } from '../../../components/area-boundary-component';
 
-export const walkRight: PhiniteStateMachine.States.State<Entities.Sheep> = {
+export const walkRight: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'sheep-walk-right',
-  onEnter(sheep: Entities.Sheep) {
+  onEnter(sheep: Phecs.Entity) {
     sheep.components[SpriteComponent.tag].sprite.anims.play('sheep-walk');
     sheep.components[SpriteComponent.tag].sprite.flipX = false;
 
@@ -14,7 +14,7 @@ export const walkRight: PhiniteStateMachine.States.State<Entities.Sheep> = {
   transitions: [
     {
       type: TransitionType.Conditional,
-      condition(sheep: Entities.Sheep) {
+      condition(sheep: Phecs.Entity) {
         return sheep.components[SpriteComponent.tag].sprite.x > sheep.components[AreaBoundaryComponent.tag].areaBoundary.right;
       },
       to: 'sheep-walk-left'

@@ -6,7 +6,7 @@ import { PhysicsBodyComponent } from '../../../components/physics-body-component
 import { AdventurerComponent } from '../../../components/adventurer-component';
 import { ShootsArrowsComponent } from '../../../components/shoots-arrows-component';
 
-export const adventurerAirHold: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
+export const adventurerAirHold: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge<Phecs.Entity>(baseAerial, {
   id: 'adventurer-air-hold',
   onEnter(entity) {
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-air-hold', true);

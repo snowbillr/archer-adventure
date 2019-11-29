@@ -4,7 +4,7 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 
-export const adventurerJump: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge(baseJump, {
+export const adventurerJump: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseJump, {
   id: 'adventurer-jump',
   data: {
     targetAerialHorizontalVelocity: 0,
@@ -24,7 +24,7 @@ export const adventurerJump: PhiniteStateMachine.States.State<Entities.Adventure
     },
     {
       type: TransitionType.Conditional,
-      condition: (entity: Entities.Adventurer) => {
+      condition: (entity: Phecs.Entity) => {
         return entity.components[PhysicsBodyComponent.tag].body.velocity.y > 1;
       },
       to: 'adventurer-fall'
