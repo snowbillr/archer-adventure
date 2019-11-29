@@ -4,7 +4,7 @@ import { TiledUtil } from '../../utilities/tiled-util';
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
 
-export class EntityManager implements Phecs.Manager {
+export class EntityManager {
   private scene: BaseScene;
 
   private prefabs: PropertiesMap;
@@ -39,12 +39,6 @@ export class EntityManager implements Phecs.Manager {
   getEntitiesByTag(tag: string) {
     return this.entitiesByTag[tag] || [];
   }
-
-  start(phEntities: EntityManager) {}
-
-  stop(phEntities: EntityManager) {}
-
-  update(phEntities: EntityManager) {}
 
   destroy() {
     const entities: Phecs.Entity[] = [];

@@ -2,7 +2,7 @@ import 'phaser';
 import { BaseScene } from '../../scenes/base-scene';
 import { EntityManager } from './entity-manager';
 
-export class SystemsManager implements Phecs.Manager {
+export class SystemsManager {
   private scene: BaseScene;
 
   private systems: Phecs.System[];
@@ -36,8 +36,6 @@ export class SystemsManager implements Phecs.Manager {
      }
    });
   }
-
-  destroy() {}
 
   registerSystems(systemsList: Phecs.SystemConstructor[]) {
     systemsList.forEach((klass) => {

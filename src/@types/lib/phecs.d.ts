@@ -32,11 +32,4 @@ declare module Phecs {
   interface SystemConstructor {
     new(scene: Phaser.Scene): System;
   }
-
-  interface Manager {
-    start(phEntities: any): void;
-    stop(phEntities: any): void;
-    update(phEntities: any): void;
-    destroy(phEntities: any): void;
-  }
 }

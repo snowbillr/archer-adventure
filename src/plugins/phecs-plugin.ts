@@ -18,26 +18,18 @@ export class PhecsPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   start() {
-    this.phEntities.start(this.phEntities);
-    this.phComponents.start(this.phEntities);
     this.phSystems.start(this.phEntities);
   }
 
   stop() {
-    this.phEntities.stop(this.phEntities);
-    this.phComponents.stop(this.phEntities);
     this.phSystems.stop(this.phEntities);
   }
 
   update() {
-    this.phEntities.update(this.phEntities);
-    this.phComponents.update(this.phEntities);
     this.phSystems.update(this.phEntities);
   }
 
   destroy() {
-    this.phEntities.destroy();
-    this.phComponents.destroy();
     this.phEntities.destroy();
   }
 }
