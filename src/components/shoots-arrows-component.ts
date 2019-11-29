@@ -27,7 +27,7 @@ export class ShootsArrowsComponent implements Phecs.Component {
 
     this.arrows = [];
     for (let i = 0; i < ARROW_POOL_COUNT; i++) {
-      const arrow = baseScene.entityManager.createPrefab('arrow', {}, 2, entity.components[SpriteComponent.tag].sprite.depth, 0, 0);
+      const arrow = baseScene.phecs.phEntities.createPrefab('arrow', {}, 2, entity.components[SpriteComponent.tag].sprite.depth, 0, 0);
       arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
       this.arrows.push(arrow);
     }

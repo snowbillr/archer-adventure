@@ -1,20 +1,17 @@
-import { BaseScene } from '../scenes/base-scene';
-
-import { TiledUtil } from '../utilities/tiled-util';
-import { SpriteComponent } from '../components/sprite-component';
-import { PhysicsBodyComponent } from '../components/physics-body-component';
+import { BaseScene } from '../../scenes/base-scene';
+import { TiledUtil } from '../../utilities/tiled-util';
 
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
 
-export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
-  private prefabs: PropertiesMap;
+export class EntityManager {
+  private scene: BaseScene;
 
+  private prefabs: PropertiesMap;
   private entitiesByName: EntitiesMap;
 
-  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
-    super(scene, pluginManager);
-
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene as BaseScene;
     this.prefabs = {};
     this.entitiesByName = {};
   }
@@ -52,7 +49,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     if (properties.tags) {
       properties.tags.split(',').forEach((tag: string) => {
-        const Component = baseScene.componentManager.getComponent(tag);
+        const Component = baseScene.phecs.phComponents.getComponent(tag);
 
         // Some entities have components with no functionality, just a tag. Like the `sign`
         // The entity should still be added to the tag->entity map
@@ -66,7 +63,7 @@ export class EntityManagerPlugin extends Phaser.Plugins.ScenePlugin {
         }
 
         // Will go away
-        baseScene.systemsManager.registerEntity(entity, tag, {
+        baseScene.phecs.phSystems.registerEntity(entity, tag, {
           scale,
           depth,
           ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),

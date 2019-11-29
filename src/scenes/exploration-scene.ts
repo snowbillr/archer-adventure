@@ -51,7 +51,17 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
-    this.componentManager.registerComponents(
+    this.stateRegistrar.registerSets([
+      { id: 'adventurer', states: adventurerStates },
+      { id: 'enemy', states: enemyStates },
+      { id: 'sheep', states: sheepStates },
+      { id: 'arrow', states: arrowStates },
+    ]);
+
+    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+
+    this.phecs.phComponents.registerComponents(
       [
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
         { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
@@ -70,7 +80,7 @@ export class ExplorationScene extends BaseScene {
       ]
     );
 
-    this.systemsManager.registerSystems(
+    this.phecs.phSystems.registerSystems(
       [
         { klass: DoorSystem, tags: [DoorSystem.SystemTags.door, DoorSystem.SystemTags.doorInteractor] },
         { klass: SignSystem, tags: [SignSystem.SystemTags.interactor, SignSystem.SystemTags.sign] },
@@ -84,23 +94,12 @@ export class ExplorationScene extends BaseScene {
       ]
     );
 
-    this.stateRegistrar.registerSets([
-      { id: 'adventurer', states: adventurerStates },
-      { id: 'enemy', states: enemyStates },
-      { id: 'sheep', states: sheepStates },
-      { id: 'arrow', states: arrowStates },
-    ]);
-
-    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-
-
-    this.entityManager.registerPrefab('adventurer', adventurerPrefab);
-    this.entityManager.registerPrefab('arrow', arrowPrefab);
-    this.entityManager.registerPrefab('door', doorPrefab);
-    this.entityManager.registerPrefab('enemy', enemyPrefab);
-    this.entityManager.registerPrefab('sheep', sheepPrefab);
-    this.entityManager.registerPrefab('sign', signPrefab);
+    this.phecs.phEntities.registerPrefab('adventurer', adventurerPrefab);
+    this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
+    this.phecs.phEntities.registerPrefab('door', doorPrefab);
+    this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
+    this.phecs.phEntities.registerPrefab('sign', signPrefab);
 
     this.loadNewArea(data.areaKey);
   }
@@ -119,17 +118,17 @@ export class ExplorationScene extends BaseScene {
     // This manifested as a problem when you entered a door and the sign interaction check got called for the
     // previous scene.
     this.time.delayedCall(0, () => {
-      this.systemsManager.stop();
-      this.systemsManager.destroyEntities();
-      this.entityManager.destroy();
-      this.areaManager.unload();
+      this.phecs.phSystems.stop();
+      this.phecs.phSystems.destroyEntities();
+      this.phecs.phEntities.destroy();
 
+      this.areaManager.unload();
       this.areaManager.load(key);
 
       const map = this.areaManager.map;
       const tileset = this.areaManager.tileset;
 
-      const adventurer = this.entityManager.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
+      const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0) as Entities.Adventurer;
       const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
       if (markerName) {
@@ -149,7 +148,7 @@ export class ExplorationScene extends BaseScene {
       if (mapProperties.entityLayerCollisions) {
         mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
           const [entityName, layerName] = entityLayerPair.split(':');
-          const entities = this.entityManager.getEntities(entityName);
+          const entities = this.phecs.phEntities.getEntities(entityName);
           const layer = this.areaManager.getTileLayer(layerName);
 
           if (layer == null) {
@@ -162,7 +161,7 @@ export class ExplorationScene extends BaseScene {
         });
       }
 
-      this.systemsManager.start();
+      this.phecs.phSystems.start();
 
       this.cameras.main.setBackgroundColor(0x888888);
       this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);

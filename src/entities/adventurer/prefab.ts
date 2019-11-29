@@ -3,7 +3,7 @@ export const adventurerPrefab = {
 
   tags: "sprite,physics-body,adventurer,attachment,hurtbox,bounds,interaction-circle,sign-interactor,phinite-state-machine,shoots-arrows",
 
-  attachmentDebug: true,
+  attachmentDebug: false,
 
   boundsKey: "adventurer-bounds",
 

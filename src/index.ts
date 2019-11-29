@@ -3,15 +3,13 @@ import 'phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
-import { EntityManagerPlugin } from './plugins/entity-manager-plugin';
+import { PhecsPlugin } from './plugins/phecs-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
-import { SystemsManagerPlugin } from './plugins/systems-manager-plugin';
 
 import { PreloadScene } from './scenes/preload-scene';
 import { ExplorationScene } from './scenes/exploration-scene';
 import { AnimTestScene } from './scenes/anim-test-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
-import { ComponentManagerPlugin } from './plugins/component-manager-plugin';
 
 const gameConfig = {
   width: 800,
@@ -27,25 +25,15 @@ const gameConfig = {
         mapping: 'stateRegistrar',
       },
       {
-        key: 'SystemsManager',
-        plugin: SystemsManagerPlugin,
-        mapping: 'systemsManager',
+        key: 'Phecs',
+        plugin: PhecsPlugin,
+        mapping: 'phecs',
       },
       {
         key: 'AreaManager',
         plugin: AreaManagerPlugin,
         mapping: 'areaManager',
       },
-      {
-        key: 'EntityManager',
-        plugin: EntityManagerPlugin,
-        mapping: 'entityManager',
-      },
-      {
-        key: 'ComponentManager',
-        plugin: ComponentManagerPlugin,
-        mapping: 'componentManager',
-      }
     ]
   },
   scene: [PreloadScene, ExplorationScene, PrefabTestScene],
@@ -53,7 +41,7 @@ const gameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       // timeScale: 4,
       gravity: {
         y: 1100,

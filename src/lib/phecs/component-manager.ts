@@ -1,11 +1,7 @@
-import { BaseScene } from '../scenes/base-scene';
-
-export class ComponentManagerPlugin extends Phaser.Plugins.ScenePlugin {
+export class ComponentManager {
   private components: { [tag: string]: Phecs.ComponentConstructor };
 
-  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
-    super(scene, pluginManager);
-
+  constructor() {
     this.components = {};
   }
 

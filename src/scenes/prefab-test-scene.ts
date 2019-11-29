@@ -12,7 +12,7 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.entityManager.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
 
     this.stateRegistrar.registerSets([
       { id: 'enemy', states: enemyStates },
@@ -22,7 +22,7 @@ export class PrefabTestScene extends BaseScene {
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const scale = 5;
-    const enemy = this.entityManager.createPrefab('enemy', {}, scale, 0, 0, 0) as Entities.Enemy;
+    const enemy = this.phecs.phEntities.createPrefab('enemy', {}, scale, 0, 0, 0) as Entities.Enemy;
 
     enemy.components[SpriteComponent.tag].sprite.x = 150;
     enemy.components[SpriteComponent.tag].sprite.y = 200;
@@ -46,7 +46,7 @@ export class PrefabTestScene extends BaseScene {
       frameText.setText(`Frame ${frameIndex}`);
     });
 
-    this.systemsManager.start();
+    this.phecs.phSystems.start();
 
     this.cameras.main.setBackgroundColor('#cccccc');
   }

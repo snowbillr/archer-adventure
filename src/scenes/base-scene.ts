@@ -5,11 +5,13 @@ import { StateRegistrarPlugin } from '../plugins/state-registrar-plugin';
 import { AreaManagerPlugin } from '../plugins/area-manager-plugin';
 import { EntityManagerPlugin } from '../plugins/entity-manager-plugin';
 import { ComponentManagerPlugin } from '../plugins/component-manager-plugin';
+import { PhecsPlugin } from '../plugins/phecs-plugin';
 
 export abstract class BaseScene extends Phaser.Scene {
+  phecs!: PhecsPlugin;
   areaManager!: AreaManagerPlugin;
-  entityManager!: EntityManagerPlugin;
-  componentManager!: ComponentManagerPlugin;
+  // entityManager!: EntityManagerPlugin;
+  // componentManager!: ComponentManagerPlugin;
   stateRegistrar!: StateRegistrarPlugin;
-  systemsManager!: SystemsManagerPlugin;
+  // systemsManager!: SystemsManagerPlugin;
 }

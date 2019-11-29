@@ -1,17 +1,17 @@
 import 'phaser';
+import { BaseScene } from '../../scenes/base-scene';
 
-export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements SystemsManager.SystemsManager {
+export class SystemsManager {
+  private scene: BaseScene;
+
   private entityMap: { [tag: string]: SystemsManager.Entity[] };
   private systemsMap: { [tag: string]: SystemsManager.System[] };
 
-  constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
-    super(scene, pluginManager);
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene as BaseScene;
 
     this.entityMap = {};
     this.systemsMap = {};
-
-    // will need to remove this listener somewhere when the scene is destroyed
-    this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, this.update, this);
   }
 
   start() {
@@ -67,7 +67,6 @@ export class SystemsManagerPlugin extends Phaser.Plugins.ScenePlugin implements 
   };
 
   registerEntity(entity: SystemsManager.Entity, tags: (string | string[]), data: SystemsManager.EntityRegistrationData) {
-
     const normalizedTags = Array.isArray(tags) ? tags : [tags];
 
     normalizedTags.forEach(tag => {
