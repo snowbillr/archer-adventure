@@ -4,6 +4,7 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
+import { ShootsArrowsComponent } from '../../../components/shoots-arrows-component';
 
 export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Adventurer> = StateMerge<Entities.Adventurer>(baseAerial, {
   id: 'adventurer-air-draw',
@@ -11,7 +12,7 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Entities.Advent
     entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-air-draw', true);
   },
   onUpdate(entity) {
-    entity.shotPower += entity.shotChargeRate;
+    entity.components[ShootsArrowsComponent.tag].shotPower += entity.components[ShootsArrowsComponent.tag].shotChargeRate;
   },
   transitions: [
     {

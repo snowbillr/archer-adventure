@@ -34,6 +34,7 @@ import { InteractionCircleComponent } from '../components/interaction-circle-com
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
+import { ShootsArrowsComponent } from '../components/shoots-arrows-component';
 import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
@@ -59,6 +60,7 @@ export class ExplorationScene extends BaseScene {
         { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
         { klass: PhiniteStateMachineComponent, tag: PhiniteStateMachineComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
+        { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },
         { klass: SpriteComponent, tag: SpriteComponent.tag },
       ]
     );
