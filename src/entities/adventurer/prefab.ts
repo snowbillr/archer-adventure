@@ -1,7 +1,7 @@
 export const adventurerPrefab = {
   name: 'adventurer',
 
-  tags: "sprite,physics-body,adventurer,attachment,hasHurtboxes,bounds,hasInteractionCircle,sign-interactor,hasPhiniteStateMachine,shootsArrows",
+  tags: "sprite,physics-body,adventurer,attachment,hasHurtboxes,bounds,interaction-circle,sign-interactor,hasPhiniteStateMachine,shootsArrows",
 
   attachmentDebug: false,
 

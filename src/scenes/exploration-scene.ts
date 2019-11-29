@@ -30,6 +30,7 @@ import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { BoundsComponent } from '../components/bounds-component';
 import { IndicatorComponent } from '../components/indicator-component';
+import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
 import { SpriteComponent } from '../components/sprite-component';
@@ -54,6 +55,7 @@ export class ExplorationScene extends BaseScene {
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
+        { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
         { klass: SpriteComponent, tag: SpriteComponent.tag },
       ]

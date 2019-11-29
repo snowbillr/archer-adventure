@@ -1,6 +1,7 @@
 import { BaseScene } from '../scenes/base-scene';
 import { IndicatorComponent } from '../components/indicator-component';
 import { AdventurerComponent } from '../components/adventurer-component';
+import { InteractionCircleComponent } from '../components/interaction-circle-component';
 
 export class SignSystem implements SystemsManager.System {
   static SystemTags = {
@@ -73,10 +74,10 @@ export class SignSystem implements SystemsManager.System {
     const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
     signs.forEach(sign => {
-      const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.interactionControl!];
+      const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl];
 
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
-        const activeInteractionIds = sign.interactionTracker.getEntityIds('active');
+        const activeInteractionIds = sign.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
         if (activeInteractionIds.includes(adventurer.id)) {
           if (sign.isTextboxShowing) {
             sign.hideTextbox();
@@ -91,26 +92,24 @@ export class SignSystem implements SystemsManager.System {
   }
 
   update(systemsManager: SystemsManager.SystemsManager) {
-    const signInteractors: Systems.SignSystem.SignInteractorEntity[] = systemsManager.getEntities(SignSystem.SystemTags.interactor);
+    const adventurer: Phecs.Entity = systemsManager.getEntities(SignSystem.SystemTags.interactor)[0];
     const signs: Systems.SignSystem.SignEntity[] = systemsManager.getEntities(SignSystem.SystemTags.sign);
 
-    for (let signInteractor of signInteractors) {
-      const enteringSignIds = signInteractor.interactionTracker.getEntityIds('entering');
-      const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
-      for (let enteringSign of enteringSigns) {
-        enteringSign.components[IndicatorComponent.tag].showIndicator();
-      }
+    const enteringSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
+    const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
+    for (let enteringSign of enteringSigns) {
+      enteringSign.components[IndicatorComponent.tag].showIndicator();
+    }
 
-      const exitingSignIds = signInteractor.interactionTracker.getEntityIds('exiting');
-      const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
-      for (let exitingSign of exitingSigns) {
-        exitingSign.components[IndicatorComponent.tag].hideIndicator();
+    const exitingSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('exiting');
+    const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
+    for (let exitingSign of exitingSigns) {
+      exitingSign.components[IndicatorComponent.tag].hideIndicator();
 
-        if (exitingSign.isTextboxShowing) {
-          exitingSign.hideTextbox();
-        }
+      if (exitingSign.isTextboxShowing) {
+        exitingSign.hideTextbox();
       }
-    };
+    }
   }
 
   destroy(entity: any, tag: string) {
