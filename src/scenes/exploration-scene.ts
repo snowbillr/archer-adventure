@@ -16,7 +16,6 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
-import { ShootsArrowsSystem } from '../systems/shoots-arrows-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { doorPrefab } from '../entities/door/prefab';
@@ -76,7 +75,6 @@ export class ExplorationScene extends BaseScene {
         { klass: HasHurtboxesSystem, tags: HasHurtboxesSystem.SystemTags.hasHurtboxes },
         { klass: HasHitboxesSystem, tags: HasHitboxesSystem.SystemTags.hasHitboxes },
         { klass: HasPhiniteStateMachineSystem, tags: HasPhiniteStateMachineSystem.SystemTags.hasPhiniteStateMachine },
-        { klass: ShootsArrowsSystem, tags: ShootsArrowsSystem.SystemTags.shootsArrows },
       ]
     );
 

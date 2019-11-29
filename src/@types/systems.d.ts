@@ -126,18 +126,6 @@ declare namespace Systems.DoorSystem {
   }
 }
 
-declare namespace Systems.ShootsArrows {
-  interface Entity extends SystemsManager.Entity {
-    shotPower: number;
-    minShotPower: number;
-    maxShotPower: number;
-    shotChargeRate: number;
-
-    arrows: Entities.Arrow[];
-    shootArrow: () => void;
-  }
-}
-
 declare namespace Systems.HasAttachments {
   interface Entity extends SystemsManager.Entity {
     attachments: Attachment[];
