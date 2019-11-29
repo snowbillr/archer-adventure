@@ -4,7 +4,7 @@ import { TiledUtil } from '../../utilities/tiled-util';
 type PropertiesMap = { [key: string]: any };
 type EntitiesMap = { [name: string]: any[] };
 
-export class EntityManager {
+export class EntityManager implements Phecs.Manager {
   private scene: BaseScene;
 
   private prefabs: PropertiesMap;
@@ -38,6 +38,28 @@ export class EntityManager {
 
   getEntitiesByTag(tag: string) {
     return this.entitiesByTag[tag] || [];
+  }
+
+  start(phEntities: EntityManager) {}
+
+  stop(phEntities: EntityManager) {}
+
+  update(phEntities: EntityManager) {}
+
+  destroy() {
+    const entities: Phecs.Entity[] = [];
+    Object.values(this.entitiesByTag).flat().forEach(entity => {
+      if (!entities.includes(entity)) {
+        entities.push(entity);
+      }
+    });
+
+    entities.forEach(entity => {
+      Object.values(entity.components).forEach(component => component.destroy());
+    });
+
+    this.entitiesByName = {};
+    this.entitiesByTag = {};
   }
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
@@ -74,22 +96,6 @@ export class EntityManager {
     }
 
     return entity;
-  }
-
-  destroy() {
-    const entities: Phecs.Entity[] = [];
-    Object.values(this.entitiesByTag).flat().forEach(entity => {
-      if (!entities.includes(entity)) {
-        entities.push(entity);
-      }
-    });
-
-    entities.forEach(entity => {
-      Object.values(entity.components).forEach(component => component.destroy());
-    });
-
-    this.entitiesByName = {};
-    this.entitiesByTag = {};
   }
 
   private getObjectPosition(position: { x: number, y: number }, scale: number = 1) {

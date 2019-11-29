@@ -2,7 +2,7 @@ import 'phaser';
 import { BaseScene } from '../../scenes/base-scene';
 import { EntityManager } from './entity-manager';
 
-export class SystemsManager {
+export class SystemsManager implements Phecs.Manager {
   private scene: BaseScene;
 
   private systems: Phecs.System[];
@@ -13,21 +13,31 @@ export class SystemsManager {
     this.systems = [];
   }
 
-  start() {
+  start(entityManager: EntityManager) {
     this.systems.forEach(system => {
       if (system.start) {
-        system.start(this);
+        system.start(entityManager);
       }
     })
   }
 
-  stop() {
+  stop(entityManager: EntityManager) {
     this.systems.forEach(system => {
       if (system.stop) {
-        system.stop(this);
+        system.stop(entityManager);
       }
     })
   }
+
+  update(entityManager: EntityManager) {
+   this.systems.forEach(system => {
+     if (system.update) {
+       system.update(entityManager);
+     }
+   });
+  }
+
+  destroy() {}
 
   registerSystems(systemsList: Phecs.SystemConstructor[]) {
     systemsList.forEach((klass) => {
@@ -38,12 +48,4 @@ export class SystemsManager {
   registerSystem(system: Phecs.System) {
     this.systems.push(system);
   };
-
-  update(entityManager: EntityManager) {
-   this.systems.forEach(system => {
-     if (system.update) {
-       system.update(entityManager);
-     }
-   });
-  }
 }

@@ -120,9 +120,6 @@ export class ExplorationScene extends BaseScene {
     this.time.delayedCall(0, () => {
       this.phecs.stop();
       this.phecs.destroy();
-      // this.phecs.phSystems.stop();
-      // this.phecs.phSystems.destroyEntities();
-      // this.phecs.phEntities.destroy();
       this.areaManager.unload();
 
       this.areaManager.load(key);
@@ -163,7 +160,7 @@ export class ExplorationScene extends BaseScene {
         });
       }
 
-      this.phecs.phSystems.start();
+      this.phecs.start();
 
       this.cameras.main.setBackgroundColor(0x888888);
       this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth * 2, map.height * tileset.tileHeight * 2);

@@ -1,4 +1,6 @@
-export class ComponentManager {
+import { EntityManager } from './entity-manager';
+
+export class ComponentManager implements Phecs.Manager {
   private components: { [tag: string]: Phecs.ComponentConstructor };
 
   constructor() {
@@ -12,4 +14,12 @@ export class ComponentManager {
   getComponent(tag: string): Phecs.ComponentConstructor {
     return this.components[tag];
   }
+
+  start(phEntities: EntityManager) {}
+
+  stop(phEntities: EntityManager) {}
+
+  update(phEntities: EntityManager) {}
+
+  destroy() {}
 }

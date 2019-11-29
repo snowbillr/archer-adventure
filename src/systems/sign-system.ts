@@ -10,7 +10,6 @@ export class SignSystem implements Phecs.System {
     sign: 'sign-interactive',
   }
 
-  /*
   start(phEntities: EntityManager) {
     const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
     const signs: Systems.SignSystem.SignEntity[] = phEntities.getEntitiesByTag('sign');
@@ -21,7 +20,7 @@ export class SignSystem implements Phecs.System {
       controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
         const activeInteractionIds = sign.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
         if (activeInteractionIds.includes(adventurer.id)) {
-          if (sign.isTextboxShowing) {
+          if (sign.components[TextboxComponent.tag].isTextboxShowing) {
             sign.components[TextboxComponent.tag].hideTextbox();
             sign.components[IndicatorComponent.tag].showIndicator();
           } else {
@@ -32,7 +31,6 @@ export class SignSystem implements Phecs.System {
       });
     });
   }
-  */
 
   update(phEntities: EntityManager) {
     const adventurer: Phecs.Entity = phEntities.getEntitiesByTag(SignSystem.SystemTags.interactor)[0];

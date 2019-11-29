@@ -6,6 +6,14 @@ declare module Phecs {
     }
   }
 
+  type EntityData = {
+    x: number,
+    y: number,
+    scale: number,
+    depth: number,
+    [key: string]: any
+  };
+
   interface Component {
     [key: string]: any;
     destroy(): void;
@@ -25,11 +33,10 @@ declare module Phecs {
     new(scene: Phaser.Scene): System;
   }
 
-  type EntityData = {
-    x: number,
-    y: number,
-    scale: number,
-    depth: number,
-    [key: string]: any
-  };
+  interface Manager {
+    start(phEntities: any): void;
+    stop(phEntities: any): void;
+    update(phEntities: any): void;
+    destroy(phEntities: any): void;
+  }
 }

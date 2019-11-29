@@ -7,7 +7,6 @@ export class HasControlsSystem implements Phecs.System {
     hasControls: 'hasControls',
   };
 
-  /*
   stop(phEntities: EntityManager) {
     const entities: Systems.HasControls.Entity[] = phEntities.getEntitiesByTag(AdventurerComponent.tag);
 
@@ -17,5 +16,4 @@ export class HasControlsSystem implements Phecs.System {
       });
     });
   }
-  */
 }
