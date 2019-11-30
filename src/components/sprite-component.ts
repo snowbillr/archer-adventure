@@ -7,9 +7,7 @@ export class SpriteComponent implements Phecs.Component {
     const { x, y, texture, frame } = data;
     this.sprite = scene.add.sprite(x, y, texture, frame);
 
-    if (data.tags.includes('sign') || data.tags.includes('door')) {
-      this.sprite.y -= this.sprite.height * this.sprite.originY;
-    }
+    this.sprite.y -= this.sprite.height * this.sprite.originY;
 
     if (data.scale) {
       this.sprite.setScale(data.scale);

@@ -64,10 +64,10 @@
 </data>
  </layer>
  <objectgroup id="3" name="entities">
-  <object id="2" name="sheep" type="sheep" x="294" y="190">
+  <object id="2" name="sheep" type="sheep" x="294" y="192">
    <point/>
   </object>
-  <object id="3" name="enemy" type="enemy" x="523" y="190">
+  <object id="3" name="enemy" type="enemy" x="523" y="192">
    <point/>
   </object>
  </objectgroup>
@@ -90,7 +90,7 @@
   </object>
  </objectgroup>
  <objectgroup id="2" name="markers">
-  <object id="1" name="adventurerStart" x="136" y="190">
+  <object id="1" name="adventurerStart" x="136" y="192">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>

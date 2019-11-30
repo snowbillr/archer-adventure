@@ -39,16 +39,14 @@ export class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('doors', '/assets/sprites/doors/doors.png', { frameWidth: 64, frameHeight: 82 })
 
     // tileset image
-    this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('core-tileset-spritesheet', '/assets/tilesets/core.png', { frameHeight: 32, frameWidth: 32 });
 
     // tileset
-    this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
     this.load.image('core-tileset', '/assets/tilesets/core.png');
 
     // tilemap
-    this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
-    this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
+    // this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
+    // this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
     this.load.tilemapTiledJSON('woollards-farm', '/assets/tilemaps/woollards-farm.json')
 
     // conversations
@@ -57,7 +55,6 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    // this.scene.start('exploration', { areaKey: 'starting-area' });
     this.scene.start('exploration', { areaKey: 'woollards-farm' });
     // this.scene.start('prefabTest');
   }
