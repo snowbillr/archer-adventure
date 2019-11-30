@@ -13,5 +13,5 @@ export const arrowPrefab = {
 
   hitboxesKey: 'arrow-hitboxes',
 
-  attachmentDebug: false,
+  attachmentDebug: true,
 };

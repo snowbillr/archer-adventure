@@ -26,6 +26,9 @@ import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
 export class PrefabTestScene extends BaseScene {
+  centerDebugCircle!: Phaser.GameObjects.Shape;
+  enemy!: Phecs.Entity;
+
   constructor() {
     super({key: 'prefabTest'})
   }
@@ -82,6 +85,9 @@ export class PrefabTestScene extends BaseScene {
 
     enemy.components[SpriteComponent.tag].sprite.anims.stop();
 
+    this.centerDebugCircle = this.add.circle(0, 0, 10, 0x00FF00);
+    this.centerDebugCircle.setDepth(100);
+
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
         case "ArrowUp":
@@ -95,6 +101,17 @@ export class PrefabTestScene extends BaseScene {
       enemy.components[SpriteComponent.tag].sprite.setFrame(frameIndex);
       frameText.setText(`Frame ${frameIndex}`);
     });
+
+    /*
+    this.tweens.add({
+      targets: [enemy.components[SpriteComponent.tag].sprite],
+      props: { x: 600 },
+      yoyo: true,
+      repeat: -1,
+    })
+    */
+
+    console.log(enemy)
 
     this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, e => {
       if (e.key === 'ArrowLeft') {
@@ -110,5 +127,12 @@ export class PrefabTestScene extends BaseScene {
     this.phecs.start();
 
     this.cameras.main.setBackgroundColor('#cccccc');
+
+    this.enemy = enemy;
+  }
+
+  update() {
+    const center = this.enemy.components[SpriteComponent.tag].sprite.getCenter();
+    this.centerDebugCircle.setPosition(center.x, center.y);
   }
 }
