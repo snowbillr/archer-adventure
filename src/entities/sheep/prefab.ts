@@ -3,11 +3,12 @@ export const sheepPrefab = {
 
   tags: 'sprite,physics-body,area-boundary,phinite-state-machine',
 
-  areaBoundaryLeft: 190,
-  areaBoundaryRight: 400,
+  areaBoundaryLeft: 1400,
+  areaBoundaryRight: 1630,
 
   texture: 'sheep-walk',
   frame: 0,
+  depth: 0,
 
   stateSet: 'sheep',
   initialStateId: 'sheep-walk-right',
