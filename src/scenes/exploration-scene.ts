@@ -45,7 +45,7 @@ export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
 
   constructor() {
-    super({ key: 'movementTest' });
+    super({ key: 'exploration' });
 
     this.isLoadingArea = false;
   }

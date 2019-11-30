@@ -8,7 +8,6 @@ import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 
 import { PreloadScene } from './scenes/preload-scene';
 import { ExplorationScene } from './scenes/exploration-scene';
-import { AnimTestScene } from './scenes/anim-test-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 
 const gameConfig = {
@@ -41,7 +40,7 @@ const gameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false,
+      debug: true,
       // timeScale: 4,
       gravity: {
         y: 1100,

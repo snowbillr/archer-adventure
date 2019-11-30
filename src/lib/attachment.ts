@@ -51,6 +51,12 @@ export class Attachment implements Systems.HasAttachments.Attachment {
       const height = scaleY * this.config.height;
 
       const spriteCenter = sprite.getCenter();
+      /*
+      const spriteCenter = {
+        x: sprite.body.x || sprite.x,
+        y: sprite.body.y || sprite.y
+      };
+      */
       const coords = new Phaser.Geom.Point(spriteCenter.x + offsetX, spriteCenter.y + offsetY);
       Phaser.Math.RotateAround(coords, spriteCenter.x, spriteCenter.y, sprite.rotation);
 
