@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="2">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="3">
  <properties>
-  <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground"/>
+  <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground,sheep:ground"/>
   <property name="startingMarker" value="adventurerStart"/>
  </properties>
  <tileset firstgid="1" source="core-tileset.tsx"/>
@@ -63,6 +63,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="3" name="entities">
+  <object id="2" type="sheep" x="294" y="186">
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="2" name="markers">
   <object id="1" name="adventurerStart" x="69" y="131">
    <properties>

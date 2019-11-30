@@ -23,7 +23,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.json('arrow-hitboxes', '/assets/hitboxes/arrow.json');
 
     // sheep
-    this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
+    this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 40, frameHeight: 34 });
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');
 
     // enemy

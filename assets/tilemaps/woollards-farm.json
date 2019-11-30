@@ -26,6 +26,29 @@
         }, 
         {
          "draworder":"topdown",
+         "id":3,
+         "name":"entities",
+         "objects":[
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"sheep",
+                 "visible":true,
+                 "width":0,
+                 "x":294,
+                 "y":186
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":2,
          "name":"markers",
          "objects":[
@@ -53,14 +76,14 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":2,
+ "nextlayerid":4,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"entityLayerCollisions",
          "type":"string",
-         "value":"adventurer:ground,arrow:ground"
+         "value":"adventurer:ground,arrow:ground,sheep:ground"
         }, 
         {
          "name":"startingMarker",
