@@ -4,8 +4,6 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
-  public scale: number;
-
   public map!: Phaser.Tilemaps.Tilemap;
   public tileset!: Phaser.Tilemaps.Tileset;
 
@@ -20,8 +18,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
 
-    this.scale = 1;
-
     this.tileLayers = [];
     this.objects = {};
     this.markers = {};
@@ -29,12 +25,11 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.areaMap = {};
   }
 
-  registerArea(key: string, mapKey: string, tilesetName: string, tilesetKey: string, scale: number = 1) {
+  registerArea(key: string, mapKey: string, tilesetName: string, tilesetKey: string) {
     this.areaMap[key] = {
       mapKey,
       tilesetName,
       tilesetKey,
-      scale
     };
   }
 
@@ -46,7 +41,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.map = map;
     this.tileset = tileset;
-    this.scale = area.scale;
 
     this.tileLayers = [];
     this.objects = {};
@@ -100,8 +94,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         const properties = TiledUtil.normalizeProperties(object.properties);
         if (properties.marker) {
           this.markers[object.name] = {
-            x: object.x! * this.scale,
-            y: object.y! * this.scale
+            x: object.x!,
+            y: object.y!,
           };
         }
       });
@@ -114,7 +108,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   private createTileLayer(layerName: string): void {
     const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
-    layer.setScale(this.scale);
 
     const layerProperties: any = TiledUtil.normalizeProperties(layer.layer.properties);
 
@@ -148,7 +141,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       let entity = null;
 
       if (tiledObject.type) {
-        entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, this.scale, layerProperties.depth, tiledObject.x, tiledObject.y);
+        entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, layerProperties.depth, tiledObject.x, tiledObject.y);
       }
 
       this.objects[layerName].push(entity);

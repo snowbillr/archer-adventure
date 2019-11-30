@@ -76,7 +76,7 @@ export class PrefabTestScene extends BaseScene {
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const scale = 5;
-    const enemy = this.phecs.phEntities.createPrefab('arrow', {}, scale, 0, 0, 0);
+    const enemy = this.phecs.phEntities.createPrefab('arrow', {}, scale, 0, 0);
 
     enemy.components[SpriteComponent.tag].sprite.x = 150;
     enemy.components[SpriteComponent.tag].sprite.y = 200;

@@ -12,9 +12,6 @@ export class IndicatorComponent implements Phecs.Component {
     y = y - entity.components[SpriteComponent.tag].sprite.displayHeight - 20;
 
     const indicatorSprite = scene.add.sprite(x, y, 'indicator-down');
-    if (data.scale) {
-      indicatorSprite.setScale(data.scale);
-    }
 
     function showIndicator() {
       indicatorSprite.visible = true;

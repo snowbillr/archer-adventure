@@ -9,7 +9,6 @@ declare module Phecs {
   type EntityData = {
     x: number,
     y: number,
-    scale: number,
     depth: number,
     [key: string]: any
   };
