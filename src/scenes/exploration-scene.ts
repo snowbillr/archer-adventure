@@ -60,6 +60,7 @@ export class ExplorationScene extends BaseScene {
 
     this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
     this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset', 1);
 
     this.phecs.phComponents.registerComponents(
       [
@@ -155,7 +156,8 @@ export class ExplorationScene extends BaseScene {
           }
 
           for (let entity of entities) {
-            this.physics.add.collider(entity.components[SpriteComponent.tag].sprite, layer);
+            const sprite = entity.components[SpriteComponent.tag].sprite;
+            this.physics.add.collider(sprite, layer);
           }
         });
       }
