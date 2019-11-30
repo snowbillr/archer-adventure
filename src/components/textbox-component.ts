@@ -17,19 +17,18 @@ export class TextboxComponent implements Phecs.Component {
     this.isTextboxShowing = false;
 
     const centerX = scene.cameras.main.width / 2;
-    this.textboxSprite = (scene.add as any).ninePatch(centerX, -100, 300, 50, 'textbox', null, {
-      top: 5,
-      bottom: 5,
-      left: 5,
-      right: 5
+    this.textboxSprite = (scene.add as any).ninePatch(centerX, -100, 400, 100, 'textbox', null, {
+      top: 10,
+      bottom: 10,
+      left: 10,
+      right: 10
     });
     this.textboxSprite
-      .setScale(2)
       .setDepth(10)
       .setScrollFactor(0);
 
     const textboxText = scene.add.bitmapText(0, 0, 'compass-24', this.signs[data.signId].message);
-    textboxText.setOrigin(0.5).setScale(0.5);
+    textboxText.setOrigin(0.5);
     this.textboxSprite.add(textboxText);
 
     this.textboxShowTween = scene.tweens.add({
