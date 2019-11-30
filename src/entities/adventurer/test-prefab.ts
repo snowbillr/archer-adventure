@@ -1,7 +1,7 @@
 export const adventurerTestPrefab = {
   name: 'adventurer',
 
-  tags: "sprite,physics-body,hurtbox,bounds",
+  tags: "sprite,physics-body,attachment,hurtbox",
 
   boundsKey: "adventurer-bounds",
 
@@ -10,4 +10,6 @@ export const adventurerTestPrefab = {
   maxVelocityX: 350,
 
   hurtboxesKey: "adventurer-hurtboxes",
+
+  attachmentDebug: true,
 }

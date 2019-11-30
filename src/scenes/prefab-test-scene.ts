@@ -24,6 +24,7 @@ import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
+import { adventurerTestPrefab } from '../entities/adventurer/test-prefab';
 
 export class PrefabTestScene extends BaseScene {
   centerDebugCircle!: Phaser.GameObjects.Shape;
@@ -34,7 +35,7 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('test-adventurer', adventurerTestPrefab);
 
     this.phecs.phComponents.registerComponents(
       [
@@ -74,8 +75,8 @@ export class PrefabTestScene extends BaseScene {
     let frameIndex = 0;
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
-    const scale = 2;
-    const enemy = this.phecs.phEntities.createPrefab('enemy', {}, scale, 0, 0, 0);
+    const scale = 5;
+    const enemy = this.phecs.phEntities.createPrefab('test-adventurer', {}, scale, 0, 0, 0);
 
     enemy.components[SpriteComponent.tag].sprite.x = 150;
     enemy.components[SpriteComponent.tag].sprite.y = 200;
@@ -113,12 +114,12 @@ export class PrefabTestScene extends BaseScene {
 
     console.log(enemy)
 
-    this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, e => {
+    this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, (e: { key: string; }) => {
       if (e.key === 'ArrowLeft') {
         enemy.components[PhysicsBodyComponent.tag].body.acceleration.x = -600;
       } else if (e.key === 'ArrowRight') {
         enemy.components[PhysicsBodyComponent.tag].body.acceleration.x = 600;
-      } else if (e.key === 'ArrowDown') {
+      } else if (e.key === ' ') {
         enemy.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
         enemy.components[PhysicsBodyComponent.tag].body.velocity.x = 0;
       }
@@ -129,9 +130,11 @@ export class PrefabTestScene extends BaseScene {
     this.cameras.main.setBackgroundColor('#cccccc');
 
     this.enemy = enemy;
+
+    this.events.on(Phaser.Scenes.Events.POST_UPDATE, this.myUpdate, this);
   }
 
-  update() {
+  myUpdate() {
     const center = this.enemy.components[SpriteComponent.tag].sprite.getCenter();
     this.centerDebugCircle.setPosition(center.x, center.y);
   }

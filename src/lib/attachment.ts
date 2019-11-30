@@ -44,16 +44,15 @@ export class Attachment implements Systems.HasAttachments.Attachment {
       const scaleX = sprite.scaleX;
       const scaleY = sprite.scaleY;
 
-      const offsetX = sprite.flipX ? this.config.offsetX * -1 : this.config.offsetX;
-      const offsetY = sprite.flipY ? this.config.offsetY * -1 : this.config.offsetY;
+      const offsetX = (sprite.flipX ? this.config.offsetX * -1 : this.config.offsetX) * scaleX;
+      const offsetY = (sprite.flipY ? this.config.offsetY * -1 : this.config.offsetY) * scaleY;
 
       const width = scaleX * this.config.width;
       const height = scaleY * this.config.height;
 
-      // We need to check the body's center first because of a bug in Arcade Physics.
-      // The sprite's center isn't accurately synced with the physics body at the end
-      // of every game loop. See [example]() and [bug report]().
-      // const spriteCenter = sprite.body.center || sprite.getCenter();
+      // This `getCenter` call only works if it is called against the scene's POST_UPDATE event.
+      // Arcade Physics only syncs up the sprite and the body in POST_UPDATE. Before then,
+      // the changes made from the physics system aren't propagated to the sprite.
       const spriteCenter = sprite.getCenter();
       const coords = new Phaser.Geom.Point(spriteCenter.x + offsetX, spriteCenter.y + offsetY);
       Phaser.Math.RotateAround(coords, spriteCenter.x, spriteCenter.y, sprite.rotation);
