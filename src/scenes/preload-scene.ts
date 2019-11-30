@@ -27,7 +27,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');
 
     // enemy
-    this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy-2x.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy.png', { frameWidth: 32, frameHeight: 32 });
     this.load.animation('enemy-animations', '/assets/animations/enemy.json');
     this.load.json('enemy-hurtboxes', '/assets/hurtboxes/enemy.json');
 

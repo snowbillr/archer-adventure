@@ -40,6 +40,18 @@
                  "width":0,
                  "x":294,
                  "y":186
+                }, 
+                {
+                 "height":0,
+                 "id":3,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":523,
+                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -77,13 +89,13 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":3,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"entityLayerCollisions",
          "type":"string",
-         "value":"adventurer:ground,arrow:ground,sheep:ground"
+         "value":"adventurer:ground,arrow:ground,sheep:ground,enemy:ground"
         }, 
         {
          "name":"startingMarker",
