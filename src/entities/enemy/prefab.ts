@@ -3,7 +3,7 @@ export const enemyPrefab = {
 
   tags: 'sprite,physics-body,attachment,phinite-state-machine,hurtbox',
 
-  attachmentDebug: true,
+  attachmentDebug: false,
 
   texture: 'enemy',
   frame: 0,

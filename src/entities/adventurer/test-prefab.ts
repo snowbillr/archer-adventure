@@ -11,5 +11,5 @@ export const adventurerTestPrefab = {
 
   hurtboxesKey: "adventurer-hurtboxes",
 
-  attachmentDebug: true,
+  attachmentDebug: false,
 }
