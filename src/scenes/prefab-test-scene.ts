@@ -25,6 +25,8 @@ import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 import { adventurerTestPrefab } from '../entities/adventurer/test-prefab';
+import { arrowPrefab } from '../entities/arrow/prefab';
+import { arrowStates } from '../entities/arrow/states';
 
 export class PrefabTestScene extends BaseScene {
   centerDebugCircle!: Phaser.GameObjects.Shape;
@@ -35,7 +37,7 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.phecs.phEntities.registerPrefab('test-adventurer', adventurerTestPrefab);
+    this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
 
     this.phecs.phComponents.registerComponents(
       [
@@ -48,7 +50,6 @@ export class PrefabTestScene extends BaseScene {
         { klass: HurtboxComponent, tag: HurtboxComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
         { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
-        { klass: PhiniteStateMachineComponent, tag: PhiniteStateMachineComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
         { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },
         { klass: SpriteComponent, tag: SpriteComponent.tag },
@@ -64,19 +65,18 @@ export class PrefabTestScene extends BaseScene {
         HasControlsSystem,
         HasHurtboxesSystem,
         HasHitboxesSystem,
-        HasPhiniteStateMachineSystem,
       ]
     );
 
     this.stateRegistrar.registerSets([
-      { id: 'enemy', states: enemyStates },
+      { id: 'arrow', states: arrowStates },
     ]);
 
     let frameIndex = 0;
     const frameText = this.add.text(200, 50, `Frame ${frameIndex}`);
 
     const scale = 5;
-    const enemy = this.phecs.phEntities.createPrefab('test-adventurer', {}, scale, 0, 0, 0);
+    const enemy = this.phecs.phEntities.createPrefab('arrow', {}, scale, 0, 0, 0);
 
     enemy.components[SpriteComponent.tag].sprite.x = 150;
     enemy.components[SpriteComponent.tag].sprite.y = 200;

@@ -6,10 +6,10 @@
       "hitboxes": [
         {
           "type": "rectangle",
-          "x": 14,
+          "x": 7,
           "y": 0,
-          "width": 6,
-          "height": 6
+          "width": 5,
+          "height": 5
         }
       ]
     }
