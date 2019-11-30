@@ -6,7 +6,6 @@ export class SpriteComponent implements Phecs.Component {
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
     const { x, y, texture, frame } = data;
     this.sprite = scene.add.sprite(x, y, texture, frame);
-
     this.sprite.y -= this.sprite.height * this.sprite.originY;
 
     if (data.scale) {

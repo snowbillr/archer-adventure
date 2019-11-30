@@ -64,6 +64,9 @@
 </data>
  </layer>
  <objectgroup id="3" name="entities">
+  <properties>
+   <property name="depth" type="int" value="1"/>
+  </properties>
   <object id="2" name="sheep" type="sheep" x="294" y="192">
    <point/>
   </object>
