@@ -32,7 +32,7 @@
                 {
                  "height":0,
                  "id":2,
-                 "name":"",
+                 "name":"sheep",
                  "point":true,
                  "rotation":0,
                  "type":"sheep",
@@ -44,7 +44,7 @@
                 {
                  "height":0,
                  "id":3,
-                 "name":"",
+                 "name":"enemy",
                  "point":true,
                  "rotation":0,
                  "type":"enemy",
@@ -52,6 +52,35 @@
                  "width":0,
                  "x":523,
                  "y":184
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":4,
+         "name":"signs",
+         "objects":[
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"topHillSign",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"signId",
+                         "type":"string",
+                         "value":"top-hill"
+                        }],
+                 "rotation":0,
+                 "type":"sign",
+                 "visible":true,
+                 "width":0,
+                 "x":21,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -79,8 +108,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":69,
-                 "y":131
+                 "x":134,
+                 "y":179
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -88,8 +117,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":4,
- "nextobjectid":4,
+ "nextlayerid":5,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "properties":[
         {

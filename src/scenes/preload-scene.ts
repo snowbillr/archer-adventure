@@ -32,7 +32,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.json('enemy-hurtboxes', '/assets/hurtboxes/enemy.json');
 
     // indicators
-    this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
+    this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 32, frameHeight: 32 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
 
     // doors
