@@ -22,9 +22,9 @@ export class EntityManager {
     this.prefabs[key] = properties;
   }
 
-  createPrefab(key: string, overrides: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
+  createPrefab(key: string, overrides: any, depth: number = 0, x: number = 0, y: number = 0) {
     const prefabProperties = this.prefabs[key];
-    const entity = this.createEntity(prefabProperties, overrides, scale, depth, x, y, scalePosition);
+    const entity = this.createEntity(prefabProperties, overrides, depth, x, y);
 
     this.entitiesByName[key] = this.entitiesByName[key] || [];
     this.entitiesByName[key].push(entity);
@@ -56,7 +56,7 @@ export class EntityManager {
     this.entitiesByTag = {};
   }
 
-  private createEntity(rawProperties: any, rawOverrideProperties: any, scale: number, depth: number = 0, x: number = 0, y: number = 0, scalePosition = true) {
+  private createEntity(rawProperties: any, rawOverrideProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
     const baseScene = this.scene as BaseScene;
 
     const entity = {
@@ -80,9 +80,9 @@ export class EntityManager {
         // The entity should still be added to the tag->entity map
         if (Component) {
           entity.components[tag] = new Component(baseScene, {
-            scale,
             depth,
-            ...this.getObjectPosition({ x, y }, scalePosition ? scale : 1),
+            x,
+            y,
             ...properties
           }, entity);
         }
@@ -90,13 +90,6 @@ export class EntityManager {
     }
 
     return entity;
-  }
-
-  private getObjectPosition(position: { x: number, y: number }, scale: number = 1) {
-    return {
-      x: position.x * scale,
-      y: position.y * scale,
-    };
   }
 
   private generateUuid() {

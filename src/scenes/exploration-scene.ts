@@ -58,8 +58,9 @@ export class ExplorationScene extends BaseScene {
       { id: 'arrow', states: arrowStates },
     ]);
 
-    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
-    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core', 2);
+    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core');
+    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core');
+    this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
 
     this.phecs.phComponents.registerComponents(
       [
@@ -127,7 +128,7 @@ export class ExplorationScene extends BaseScene {
       const map = this.areaManager.map;
       const tileset = this.areaManager.tileset;
 
-      const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, this.areaManager.scale, 2, 0, 0);
+      const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2, 0, 0);
       const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
       if (markerName) {
@@ -155,7 +156,8 @@ export class ExplorationScene extends BaseScene {
           }
 
           for (let entity of entities) {
-            this.physics.add.collider(entity.components[SpriteComponent.tag].sprite, layer);
+            const sprite = entity.components[SpriteComponent.tag].sprite;
+            this.physics.add.collider(sprite, layer);
           }
         });
       }

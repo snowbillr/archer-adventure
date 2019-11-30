@@ -10,8 +10,8 @@ export class PreloadScene extends Phaser.Scene {
     this.load.bitmapFont('compass-18', '/assets/fonts/compass-18.png', '/assets/fonts/compass-18.xml');
 
     // adventurer
-    this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 50, frameHeight: 37 })
-    this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 50, frameHeight: 37 })
+    this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 100, frameHeight: 74 })
+    this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 100, frameHeight: 74 })
 
     this.load.animation('adventurer-animations', '/assets/animations/adventurer.json');
     this.load.json('adventurer-hurtboxes', '/assets/hurtboxes/adventurer.json');
@@ -23,30 +23,31 @@ export class PreloadScene extends Phaser.Scene {
     this.load.json('arrow-hitboxes', '/assets/hitboxes/arrow.json');
 
     // sheep
-    this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 20, frameHeight: 17 });
+    this.load.spritesheet('sheep-walk', '/assets/sprites/sheep/sheep-walk.png', { frameWidth: 40, frameHeight: 34 });
     this.load.animation('sheep-animations', '/assets/animations/sheep.json');
 
     // enemy
-    this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy-2x.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy.png', { frameWidth: 32, frameHeight: 32 });
     this.load.animation('enemy-animations', '/assets/animations/enemy.json');
     this.load.json('enemy-hurtboxes', '/assets/hurtboxes/enemy.json');
 
     // indicators
-    this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 16, frameHeight: 16 })
+    this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 32, frameHeight: 32 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
 
     // doors
-    this.load.spritesheet('doors', '/assets/sprites/doors/doors.png', { frameWidth: 32, frameHeight: 41 })
+    this.load.spritesheet('doors', '/assets/sprites/doors/doors.png', { frameWidth: 64, frameHeight: 82 })
 
-    // tilemap spritesheet
-    this.load.spritesheet('fantasy-platformer-core-spritesheet', '/assets/tilesets/fantasy-platformer-core.png', { frameWidth: 16, frameHeight: 16 });
+    // tileset image
+    this.load.spritesheet('core-tileset-spritesheet', '/assets/tilesets/core.png', { frameHeight: 32, frameWidth: 32 });
 
     // tileset
-    this.load.image('fantasy-platformer-core', '/assets/tilesets/fantasy-platformer-core.png');
+    this.load.image('core-tileset', '/assets/tilesets/core.png');
 
     // tilemap
-    this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
-    this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
+    // this.load.tilemapTiledJSON('starting-area', '/assets/tilemaps/starting-area.json')
+    // this.load.tilemapTiledJSON('house', '/assets/tilemaps/house.json')
+    this.load.tilemapTiledJSON('woollards-farm', '/assets/tilemaps/woollards-farm.json')
 
     // conversations
     this.load.image('textbox', '/assets/sprites/conversations/textbox.png');
@@ -54,7 +55,7 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('exploration', { areaKey: 'starting-area' });
+    this.scene.start('exploration', { areaKey: 'woollards-farm' });
     // this.scene.start('prefabTest');
   }
 }
