@@ -1,6 +1,7 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
-import { AttachmentComponent, Attachment } from '../components/attachment-component';
+import { AttachmentComponent } from '../components/attachment-component';
+import { Attachment } from "../lib/attachment";
 import { HitboxComponent } from '../components/hitbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 

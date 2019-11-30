@@ -1,8 +1,9 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
-import { AttachmentComponent, Attachment } from '../components/attachment-component';
 import { HurtboxComponent } from '../components/hurtbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
+import { Attachment } from '../lib/attachment';
+import { AttachmentComponent } from '../components/attachment-component';
 
 export class HasHurtboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {

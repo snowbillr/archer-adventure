@@ -13,16 +13,16 @@ export class PhecsPlugin extends Phaser.Plugins.ScenePlugin {
     this.phEntities = new EntityManager(scene);
     this.phComponents = new ComponentManager();
     this.phSystems = new SystemsManager(scene);
-
-    this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, this.update, this);
   }
 
   start() {
     this.phSystems.start(this.phEntities);
+    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
   }
 
   stop() {
     this.phSystems.stop(this.phEntities);
+    this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
   }
 
   update() {

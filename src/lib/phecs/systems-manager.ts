@@ -30,11 +30,11 @@ export class SystemsManager {
   }
 
   update(entityManager: EntityManager) {
-   this.systems.forEach(system => {
-     if (system.update) {
-       system.update(entityManager);
-     }
-   });
+    this.systems.forEach(system => {
+      if (system.update) {
+        system.update(entityManager);
+      }
+    });
   }
 
   registerSystems(systemsList: Phecs.SystemConstructor[]) {
