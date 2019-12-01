@@ -7,6 +7,4 @@ export const doorPrefab = {
 
   interactionControl: 'action',
   interactionRadius: 40,
-
-  marker: true,
 }
