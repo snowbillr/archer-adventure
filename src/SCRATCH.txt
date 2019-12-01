@@ -1,3 +1,8 @@
-DamageSystem
-  # uses both the hurtbox and hitbox type Attachments
-  # checks for hitbox overlaps with hurtboxes for given pairs of entities
+ArrowSystem
+  # checks for arrow hitbox overlaps with hurtboxes for enemies
+  # arrow disappears (goes into disabled? state) on hitbox
+  # enemy's health goes down (uses a HealthComponent)
+
+EnemyDeathSystem
+  # on update checks for the enemies health to be <= 0
+  # remove enemy when that check is true
