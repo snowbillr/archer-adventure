@@ -7,9 +7,45 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class DoorSystem implements Phecs.System {
   private scene: ExplorationScene;
+  private listeners: (() => void)[];
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as ExplorationScene;
+    this.listeners = [];
+  }
+
+  start(phEntities: EntityManager) {
+    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const doors = phEntities.getEntitiesByName(DoorComponent.tag);
+
+    doors.forEach(door => {
+      const controlKey = adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl];
+
+      const listener = () => {
+        const activeInteractionIds = door.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
+        if (activeInteractionIds.includes(adventurer.id)) {
+          this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
+        }
+      };
+
+      this.listeners.push(listener);
+      controlKey.on(Phaser.Input.Keyboard.Events.DOWN, listener);
+    });
+  }
+
+  stop(phEntities: EntityManager) {
+    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const doors = phEntities.getEntitiesByTag('sign');
+
+    const controlKeys = new Set(doors.map(door => adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl]));
+
+    this.listeners.forEach(listener => {
+      controlKeys.forEach(controlKey => {
+        controlKey.off(Phaser.Input.Keyboard.Events.DOWN, listener);
+      });
+    });
+
+    this.listeners = [];
   }
 
   update(phEntities: EntityManager) {
@@ -26,15 +62,6 @@ export class DoorSystem implements Phecs.System {
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
       enteringDoor.components[IndicatorComponent.tag].hideIndicator();
-    }
-
-    const activeDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
-    const activeDoors = doors.filter(door => activeDoorIds.includes(door.id));
-    for (let door of activeDoors) {
-      const interactionControlKey = adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl];
-      if (interactionControlKey && interactionControlKey.isDown) {
-        this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
-      }
     }
   }
 }

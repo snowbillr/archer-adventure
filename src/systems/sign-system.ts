@@ -5,6 +5,12 @@ import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class SignSystem implements Phecs.System {
+  private listeners: (() => void)[];
+
+  constructor() {
+    this.listeners = [];
+  }
+
   start(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
     const signs = phEntities.getEntitiesByTag('sign');
@@ -12,7 +18,7 @@ export class SignSystem implements Phecs.System {
     signs.forEach(sign => {
       const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl];
 
-      controlKey.on(Phaser.Input.Keyboard.Events.DOWN, () => {
+      const listener = () => {
         const activeInteractionIds = sign.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
         if (activeInteractionIds.includes(adventurer.id)) {
           if (sign.components[TextboxComponent.tag].isTextboxShowing) {
@@ -23,8 +29,26 @@ export class SignSystem implements Phecs.System {
             sign.components[IndicatorComponent.tag].hideIndicator();
           }
         }
+      };
+
+      this.listeners.push(listener)
+      controlKey.on(Phaser.Input.Keyboard.Events.DOWN, listener);
+    });
+  }
+
+  stop(phEntities: EntityManager) {
+    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const signs = phEntities.getEntitiesByTag('sign');
+
+    const controlKeys = new Set(signs.map(sign => adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl]));
+
+    this.listeners.forEach(listener => {
+      controlKeys.forEach(controlKey => {
+        controlKey.off(Phaser.Input.Keyboard.Events.DOWN, listener);
       });
     });
+
+    this.listeners = [];
   }
 
   update(phEntities: EntityManager) {
