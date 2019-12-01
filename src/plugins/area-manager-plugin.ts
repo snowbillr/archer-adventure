@@ -52,6 +52,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   unload() {
     this.objects = {};
+    this.markers = {};
 
     this.tileLayers.forEach(layer => layer.destroy());
     this.tileLayers = [];

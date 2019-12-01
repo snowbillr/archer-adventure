@@ -109,8 +109,8 @@
                  "type":"sign",
                  "visible":true,
                  "width":0,
-                 "x":753,
-                 "y":767
+                 "x":722,
+                 "y":768
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -126,7 +126,7 @@
                 {
                  "height":0,
                  "id":7,
-                 "name":"woollardsDoor",
+                 "name":"woollardsHouseDoor",
                  "point":true,
                  "properties":[
                         {
@@ -137,12 +137,12 @@
                         {
                          "name":"toAreaKey",
                          "type":"string",
-                         "value":""
+                         "value":"woollards-house"
                         }, 
                         {
                          "name":"toMarker",
                          "type":"string",
-                         "value":""
+                         "value":"woollardsFarmDoor"
                         }],
                  "rotation":0,
                  "type":"door",

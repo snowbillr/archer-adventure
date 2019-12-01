@@ -58,9 +58,10 @@ export class ExplorationScene extends BaseScene {
       { id: 'arrow', states: arrowStates },
     ]);
 
-    this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core');
-    this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core');
+    // this.areaManager.registerArea('starting-area', 'starting-area', 'fantasy-platformer-core', 'fantasy-platformer-core');
+    // this.areaManager.registerArea('house', 'house', 'fantasy-platformer-core', 'fantasy-platformer-core');
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
+    this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
 
     this.phecs.phComponents.registerComponents(
       [
