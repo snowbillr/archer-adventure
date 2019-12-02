@@ -99,7 +99,8 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
       this.doTransition(transition);
     }
 
-    const timer = this.scene.time.delayedCall(transition.delay, listener);
+    const delay = (typeof transition.delay === 'number') ? transition.delay : transition.delay();
+    const timer = this.scene.time.delayedCall(delay, listener);
 
     this.triggerCancelers.push(() => timer.remove());
   }

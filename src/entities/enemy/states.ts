@@ -4,6 +4,7 @@ import { stun } from './states/stun';
 import { jump } from './states/jump';
 import { trackAdventurer } from './states/track-adventurer';
 import { fall } from './states/fall';
+import { wander } from './states/wander';
 
 export const enemyStates: PhiniteStateMachine.States.State<Phecs.Entity>[] = [
   idle,
@@ -12,4 +13,5 @@ export const enemyStates: PhiniteStateMachine.States.State<Phecs.Entity>[] = [
   jump,
   fall,
   trackAdventurer,
+  wander,
 ];

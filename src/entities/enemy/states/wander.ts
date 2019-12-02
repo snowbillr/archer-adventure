@@ -1,23 +1,29 @@
-import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { movementAttributes } from '../movement-attributes';
 import { InteractionCircleComponent } from '../../../components/interaction-circle-component';
+import { SpriteComponent } from '../../../components/sprite-component';
 import { BaseScene } from '../../../scenes/base-scene';
 import { AdventurerComponent } from '../../../components/adventurer-component';
-import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
-export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
-  id: 'enemy-idle',
+export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
+  id: 'enemy-wander',
   onEnter(enemy) {
+    const sprite = enemy.components[SpriteComponent.tag].sprite;
     const body = enemy.components[PhysicsBodyComponent.tag].body;
-    body.velocity.x = 0;
+    body.velocity.x = Phaser.Math.RND.pick([-1, 1]) * movementAttributes.wanderVelocity;
 
-    enemy.components[SpriteComponent.tag].sprite.anims.play('enemy-idle');
+    if (body.velocity.x < 0) {
+      sprite.flipX = true;
+    } else {
+      sprite.flipX = false;
+    }
   },
   transitions: [
     {
       type: TransitionType.Timer,
       delay: () => Phaser.Math.RND.between(500, 1500),
-      to() {
+      to(enemy) {
         return Phaser.Math.RND.pick(['enemy-wander', 'enemy-idle']);
       }
     },

@@ -52,7 +52,7 @@ declare namespace PhiniteStateMachine {
     }
 
     type TimerTransition<T> = BaseTransition<T> & {
-      delay: number;
+      delay: number | (() => number);
     }
 
     type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
