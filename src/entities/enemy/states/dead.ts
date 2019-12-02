@@ -6,6 +6,7 @@ export const dead: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-dead',
   onEnter(enemy) {
     const sprite = enemy.components[SpriteComponent.tag].sprite;
+    sprite.anims.stop();
 
     enemy.components[PhysicsBodyComponent.tag].body.enable = false;
     enemy.components[HurtboxComponent.tag].disable();
