@@ -6,21 +6,31 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
   onEnter(enemy) {
     const sprite = enemy.components[SpriteComponent.tag].sprite;
     sprite.anims.stop();
-    sprite.setFrame(0);
 
-    sprite.scene.tweens.add({
-      targets: [sprite],
-      props: {
-        alpha: 0,
-      },
-      duration: 200,
-      yoyo: true,
-      onComplete() {
-        enemy.components[PhiniteStateMachineComponent.tag]
-          .phiniteStateMachine
-          .doTransition({ to: 'enemy-idle' });
-      }
-    })
+    sprite.scene.tweens.timeline({
+      tweens: [
+        {
+          targets: sprite,
+          props: {
+            alpha: 0.5,
+          },
+          duration: 100,
+          completeDelay: 300,
+        },
+        {
+          targets: sprite,
+          props: {
+            alpha: 1,
+          },
+          duration: 100,
+          onComplete() {
+            enemy.components[PhiniteStateMachineComponent.tag]
+              .phiniteStateMachine
+              .doTransition({ to: 'enemy-idle' });
+          }
+        }
+      ]
+    });
   },
   transitions: [],
 }
