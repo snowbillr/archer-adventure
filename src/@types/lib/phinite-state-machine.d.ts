@@ -51,6 +51,10 @@ declare namespace PhiniteStateMachine {
       condition: (entity: T) => boolean;
     }
 
-    type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T>;
+    type TimerTransition<T> = BaseTransition<T> & {
+      delay: number;
+    }
+
+    type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
   }
 }

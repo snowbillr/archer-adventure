@@ -8,11 +8,9 @@ export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
   },
   transitions: [
     {
-      type: TransitionType.Conditional,
-      condition(enemy) {
-        return Math.random() < 0.02;
-      },
+      type: TransitionType.Timer,
+      delay: 1500,
       to: 'enemy-jump',
-    }
+   }
   ],
 }

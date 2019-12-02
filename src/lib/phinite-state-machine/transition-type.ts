@@ -3,4 +3,5 @@ export enum TransitionType {
 
   Input,
   Conditional,
+  Timer,
 }

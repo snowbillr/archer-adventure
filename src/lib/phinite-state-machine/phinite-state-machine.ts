@@ -64,6 +64,9 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
         case TransitionType.Conditional:
           this.registerConditionalTransitionTrigger(transition as PhiniteStateMachine.Transitions.ConditionalTransition<T>);
           break;
+        case TransitionType.Timer:
+          this.registerTimerTransitionTrigger(transition as PhiniteStateMachine.Transitions.TimerTransition<T>);
+          break;
       }
     });
   }
@@ -89,5 +92,15 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
 
     this.scene.events.on(Phaser.Scenes.Events.POST_UPDATE, listener);
     this.triggerCancelers.push(() => this.scene.events.off(Phaser.Scenes.Events.POST_UPDATE, listener));
+  }
+
+  private registerTimerTransitionTrigger(transition: PhiniteStateMachine.Transitions.TimerTransition<T>) {
+    const listener = () => {
+      this.doTransition(transition);
+    }
+
+    const timer = this.scene.time.delayedCall(transition.delay, listener);
+
+    this.triggerCancelers.push(() => timer.remove());
   }
 }
