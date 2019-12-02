@@ -23,10 +23,8 @@ export class SignSystem implements Phecs.System {
         if (activeInteractionIds.includes(adventurer.id)) {
           if (sign.components[TextboxComponent.tag].isTextboxShowing) {
             sign.components[TextboxComponent.tag].hideTextbox();
-            sign.components[IndicatorComponent.tag].showIndicator();
           } else {
             sign.components[TextboxComponent.tag].showTextbox();
-            sign.components[IndicatorComponent.tag].hideIndicator();
           }
         }
       };
