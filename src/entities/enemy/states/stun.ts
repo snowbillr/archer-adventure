@@ -1,5 +1,6 @@
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhiniteStateMachineComponent } from '../../../components/phinite-state-machine-component';
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
 export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-stun',
@@ -23,14 +24,19 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
             alpha: 1,
           },
           duration: 100,
-          onComplete() {
-            enemy.components[PhiniteStateMachineComponent.tag]
-              .phiniteStateMachine
-              .doTransition({ to: 'enemy-idle' });
-          }
         }
       ]
     });
   },
-  transitions: [],
+  transitions: [
+    {
+      type: TransitionType.Conditional,
+      condition(enemy) {
+        const sprite = enemy.components[SpriteComponent.tag].sprite;
+
+        return !sprite.scene.tweens.isTweening(sprite);
+      },
+      to: 'enemy-idle',
+    }
+  ],
 }
