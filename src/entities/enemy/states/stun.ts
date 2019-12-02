@@ -46,7 +46,15 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
 
         return !sprite.scene.tweens.isTweening(sprite);
       },
-      to: 'enemy-idle',
+      to(enemy) {
+        const body = enemy.components[PhysicsBodyComponent.tag].body;
+
+        if (body.blocked.down) {
+          return 'enemy-idle';
+        } else {
+          return 'enemy-idle'; // should be enemy-fall
+        }
+      }
     }
   ],
 }

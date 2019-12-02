@@ -15,7 +15,7 @@ export class InteractionCircleComponent implements Phecs.Component {
 
     if (data.interactionDebug) {
       const debugCircle = scene.add.circle(data.x, data.y, data.interactionRadius, 0x00FF00, 0.5);
-      debugCircle.setOrigin(0.25, 0.25);
+      debugCircle.setOrigin(0.5, 0.5);
 
       this.debugInteractionCircle = debugCircle;
     }

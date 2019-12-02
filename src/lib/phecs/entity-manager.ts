@@ -2,7 +2,8 @@ import { BaseScene } from '../../scenes/base-scene';
 import { TiledUtil } from '../../utilities/tiled-util';
 
 type PropertiesMap = { [key: string]: any };
-type EntitiesMap = { [name: string]: any[] };
+type EntitiesMap = { [name: string]: Phecs.Entity[] };
+type EntityMap = { [name: string]: Phecs.Entity };
 
 export class EntityManager {
   private scene: BaseScene;
@@ -10,12 +11,14 @@ export class EntityManager {
   private prefabs: PropertiesMap;
   private entitiesByName: EntitiesMap;
   private entitiesByTag: EntitiesMap;
+  private entitiesById: EntityMap;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as BaseScene;
     this.prefabs = {};
     this.entitiesByName = {};
     this.entitiesByTag = {};
+    this.entitiesById = {};
   }
 
   registerPrefab(key: string, properties: PropertiesMap) {
@@ -40,6 +43,10 @@ export class EntityManager {
     return this.entitiesByTag[tag] || [];
   }
 
+  getEntityById(id: string) {
+    return this.entitiesById[id];
+  }
+
   destroy() {
     const entities: Phecs.Entity[] = [];
     Object.values(this.entitiesByTag).flat().forEach(entity => {
@@ -54,6 +61,7 @@ export class EntityManager {
 
     this.entitiesByName = {};
     this.entitiesByTag = {};
+    this.entitiesById = {};
   }
 
   private createEntity(rawProperties: any, rawOverrideProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
@@ -88,6 +96,8 @@ export class EntityManager {
         }
       });
     }
+
+    this.entitiesById[entity.id] = entity;
 
     return entity;
   }

@@ -20,12 +20,10 @@ export class HasInteracionCircleSystem implements Phecs.System {
         const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
         entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setPosition(entity.components[SpriteComponent.tag].sprite.x, entity.components[SpriteComponent.tag].sprite.y);
 
-        if (entity.components[InteractionCircleComponent.tag].debugInteractionCircle) {
-          if (Phaser.Geom.Intersects.CircleToCircle(entity.components[InteractionCircleComponent.tag].interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
-            entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
-          } else {
-            entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
-          }
+        if (Phaser.Geom.Intersects.CircleToCircle(entity.components[InteractionCircleComponent.tag].interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
+          entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
+        } else {
+          entity.components[InteractionCircleComponent.tag].debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
         }
       }
     };

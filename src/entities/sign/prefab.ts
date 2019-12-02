@@ -6,4 +6,5 @@ export const signPrefab = {
 
   interactionRadius: 30,
   interactionControl: 'action',
+  interactionDebug: false,
 }

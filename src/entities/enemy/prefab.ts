@@ -1,7 +1,7 @@
 export const enemyPrefab = {
   name: 'enemy',
 
-  tags: 'sprite,physics-body,attachment,phinite-state-machine,hurtbox,health,enemy',
+  tags: 'sprite,physics-body,attachment,phinite-state-machine,hurtbox,health,interaction-circle,enemy',
 
   attachmentDebug: false,
 
@@ -14,4 +14,7 @@ export const enemyPrefab = {
   hurtboxesKey: 'enemy-hurtboxes',
 
   maxHealth: 2,
+
+  interactionRadius: 220,
+  interactionDebug: false,
 };
