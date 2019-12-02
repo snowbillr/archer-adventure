@@ -4,8 +4,11 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { Attachment } from '../lib/attachment';
+import { HealthComponent } from '../components/health-component';
 
-export class ArrowEnemySystem implements Phecs.System {
+const ARROW_DAMAGE = 1;
+
+export class ArrowEnemyDamageSystem implements Phecs.System {
   update(phEntities: EntityManager) {
     const enemies = phEntities.getEntitiesByName('enemy');
     const arrows = phEntities.getEntitiesByName('arrow')
@@ -33,7 +36,7 @@ export class ArrowEnemySystem implements Phecs.System {
 
         if (isHit) {
           arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
-          enemy.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'enemy-dead' });
+          enemy.components[HealthComponent.tag].decreaseHealth(ARROW_DAMAGE);
         }
       });
     });

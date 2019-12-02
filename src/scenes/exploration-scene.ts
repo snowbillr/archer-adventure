@@ -7,7 +7,7 @@ import { sheepStates } from '../entities/sheep/states';
 import { arrowStates } from '../entities/arrow/states';
 import { enemyStates } from '../entities/enemy/states';
 
-import { ArrowEnemySystem } from '../systems/arrow-enemy-system';
+import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { DoorSystem } from '../systems/door-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
@@ -29,6 +29,8 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { BoundsComponent } from '../components/bounds-component';
+import { EnemyComponent } from '../components/enemy-component';
+import { HealthComponent } from '../components/health-component';
 import { HitboxComponent } from '../components/hitbox-component';
 import { HurtboxComponent } from '../components/hurtbox-component';
 import { IndicatorComponent } from '../components/indicator-component';
@@ -41,7 +43,6 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TextboxComponent } from '../components/textbox-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
-import { HealthComponent } from '../components/health-component';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -70,6 +71,7 @@ export class ExplorationScene extends BaseScene {
         { klass: AttachmentComponent, tag: AttachmentComponent.tag },
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },
+        { klass: EnemyComponent, tag: EnemyComponent.tag },
         { klass: HealthComponent, tag: HealthComponent.tag },
         { klass: HitboxComponent, tag: HitboxComponent.tag },
         { klass: HurtboxComponent, tag: HurtboxComponent.tag },
@@ -85,7 +87,7 @@ export class ExplorationScene extends BaseScene {
 
     this.phecs.phSystems.registerSystems(
       [
-        ArrowEnemySystem,
+        ArrowEnemyDamageSystem,
         DoorSystem,
         HasAttachmentsSystem,
         HasBoundsSystem,
