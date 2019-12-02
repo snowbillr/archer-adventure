@@ -21,8 +21,10 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
 
     if (enemySprite.x < adventurerSprite.x) {
       enemyBody.velocity.x = movementAttributes.trackingVelocity;
+      enemySprite.flipX = false;
     } else if (enemySprite.x > adventurerSprite.x) {
       enemyBody.velocity.x = -movementAttributes.trackingVelocity;
+      enemySprite.flipX = true;
     }
   },
   transitions: [
