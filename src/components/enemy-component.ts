@@ -5,9 +5,15 @@ export class EnemyComponent implements Phecs.Component {
   public static tag: string = 'enemy';
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
-    entity.components[HealthComponent.tag].onDeath(() => {
-      entity.components[PhiniteStateMachineComponent.tag]
-        .phiniteStateMachine.doTransition({ to: 'enemy-dead' });
+    const healthComponent = entity.components[HealthComponent.tag];
+    const phiniteStateMachine = entity.components[PhiniteStateMachineComponent.tag].phiniteStateMachine;
+
+    healthComponent.onDamage(() => {
+      phiniteStateMachine.doTransition({ to: 'enemy-stun' });
+    });
+
+    healthComponent.onDeath(() => {
+      phiniteStateMachine.doTransition({ to: 'enemy-dead' });
     });
   }
 
