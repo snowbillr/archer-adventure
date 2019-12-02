@@ -36,10 +36,10 @@ export class ShootsArrowsComponent implements Phecs.Component {
   shootArrow() {
     const availableArrow = this.getAvailableArrow();
 
-    availableArrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-flying' });
-
     availableArrow.components[SpriteComponent.tag].sprite.x = this.entity.components[SpriteComponent.tag].sprite.x;
     availableArrow.components[SpriteComponent.tag].sprite.y = this.entity.components[SpriteComponent.tag].sprite.y;
+
+    availableArrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-flying' });
 
     let power = Phaser.Math.Clamp(this.shotPower, this.minShotPower, this.maxShotPower);
     if (this.entity.components[SpriteComponent.tag].sprite.flipX) {

@@ -7,7 +7,10 @@ import { AttachmentComponent } from '../components/attachment-component';
 
 export class HasHurtboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByTag(HurtboxComponent.tag);
+    const entities = phEntities.getEntitiesByTag(HurtboxComponent.tag)
+      .filter(entity => {
+        return entity.components[HurtboxComponent.tag].enabled;
+      });
 
     entities.forEach(entity => {
       const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
@@ -17,17 +20,23 @@ export class HasHurtboxesSystem implements Phecs.System {
 
       if (hurtboxFrame && hurtboxFrame.hurtboxes) {
         const attachments = entity.components[AttachmentComponent.tag].getAttachmentsByType('hurtbox');
-        attachments.forEach((attachment: Attachment) => attachment.disable());
 
-        hurtboxFrame.hurtboxes.forEach((hurtbox, index) => {
-          attachments[index].enable();
-          attachments[index].setConfig({
-            offsetX: hurtbox.x,
-            offsetY: hurtbox.y,
-            width: hurtbox.width,
-            height: hurtbox.height,
-          });
-        });
+        for (let i = 0; i < attachments.length; i++) {
+          const hurtbox = hurtboxFrame.hurtboxes[i];
+          const attachment = attachments[i];
+
+          if (hurtbox) {
+            attachment.enable();
+            attachment.setConfig({
+              offsetX: hurtbox.x,
+              offsetY: hurtbox.y,
+              width: hurtbox.width,
+              height: hurtbox.height,
+            });
+          } else {
+            attachment.disable();
+          }
+        }
       }
     });
   }

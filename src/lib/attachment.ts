@@ -1,9 +1,9 @@
 export class Attachment implements Systems.HasAttachments.Attachment {
   public type: string;
   public properties: Systems.HasAttachments.AttachmentProperties;
+  public shape: Phaser.Geom.Rectangle;
 
   private config: Systems.HasAttachments.AttachmentConfig;
-  private shape: Phaser.Geom.Rectangle;
   private enabled: boolean;
 
   private debugRect?: Phaser.GameObjects.Rectangle;
@@ -28,6 +28,26 @@ export class Attachment implements Systems.HasAttachments.Attachment {
 
   disable() {
     this.enabled = false;
+
+    this.shape.x = 0;
+    this.shape.y = 0;
+    this.shape.width = 0;
+    this.shape.height = 0;
+
+    if (this.debugRect) {
+      this.debugRect.x = this.shape.x;
+      this.debugRect.y = this.shape.y;
+      this.debugRect.width = this.shape.width;
+      this.debugRect.height = this.shape.height;
+    }
+  }
+
+  isEnabled() {
+    return this.enabled === true;
+  }
+
+  overlaps(attachment: Attachment) {
+    return Phaser.Geom.Rectangle.Overlaps(this.shape, attachment.shape);
   }
 
   setConfig(config: Systems.HasAttachments.AttachmentConfig) {
@@ -35,12 +55,7 @@ export class Attachment implements Systems.HasAttachments.Attachment {
   }
 
   syncToSprite(sprite: Phaser.GameObjects.Sprite) {
-    if (!this.enabled) {
-      this.shape.x = 0;
-      this.shape.y = 0;
-      this.shape.width = 0;
-      this.shape.height = 0;
-    } else {
+    if (this.enabled) {
       const scaleX = sprite.scaleX;
       const scaleY = sprite.scaleY;
 

@@ -7,15 +7,16 @@ import { sheepStates } from '../entities/sheep/states';
 import { arrowStates } from '../entities/arrow/states';
 import { enemyStates } from '../entities/enemy/states';
 
-import { SignSystem } from '../systems/sign-system';
+import { ArrowEnemySystem } from '../systems/arrow-enemy-system';
 import { DoorSystem } from '../systems/door-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
-import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasControlsSystem } from '../systems/has-controls-system';
-import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
+import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
+import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
+import { SignSystem } from '../systems/sign-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { doorPrefab } from '../entities/door/prefab';
@@ -84,15 +85,16 @@ export class ExplorationScene extends BaseScene {
 
     this.phecs.phSystems.registerSystems(
       [
+        ArrowEnemySystem,
         DoorSystem,
-        SignSystem,
         HasAttachmentsSystem,
-        HasInteracionCircleSystem,
         HasBoundsSystem,
         HasControlsSystem,
-        HasHurtboxesSystem,
         HasHitboxesSystem,
+        HasHurtboxesSystem,
+        HasInteracionCircleSystem,
         HasPhiniteStateMachineSystem,
+        SignSystem,
       ]
     );
 

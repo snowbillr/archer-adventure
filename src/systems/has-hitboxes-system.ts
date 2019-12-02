@@ -7,7 +7,10 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasHitboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByTag(HitboxComponent.tag);
+    const entities = phEntities.getEntitiesByTag(HitboxComponent.tag)
+      .filter(entity => {
+        return entity.components[HitboxComponent.tag].enabled;
+      });
 
     entities.forEach(entity => {
       const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
@@ -17,17 +20,23 @@ export class HasHitboxesSystem implements Phecs.System {
 
       if (hitboxFrame && hitboxFrame.hitboxes) {
         const attachments = entity.components[AttachmentComponent.tag].getAttachmentsByType('hitbox');
-        attachments.forEach((attachment: Attachment) => attachment.disable());
 
-        hitboxFrame.hitboxes.forEach((hitbox, index) => {
-          attachments[index].enable();
-          attachments[index].setConfig({
-            offsetX: hitbox.x,
-            offsetY: hitbox.y,
-            width: hitbox.width,
-            height: hitbox.height,
-          });
-        });
+        for (let i = 0; i < attachments.length; i++) {
+          const hitbox = hitboxFrame.hitboxes[i];
+          const attachment = attachments[i];
+
+          if (hitbox) {
+            attachment.enable();
+            attachment.setConfig({
+              offsetX: hitbox.x,
+              offsetY: hitbox.y,
+              width: hitbox.width,
+              height: hitbox.height,
+            });
+          } else {
+            attachment.disable();
+          }
+        }
       }
     });
   }

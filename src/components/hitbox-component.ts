@@ -1,12 +1,18 @@
 import { AttachmentComponent } from './attachment-component';
+import { Attachment } from '../lib/attachment';
 
 export class HitboxComponent implements Phecs.Component {
   public static tag: string = 'hitbox';
 
   public hitboxFrames: Systems.HasHitboxes.Frame[]
+  public enabled: boolean;
+
+  private entity: Phecs.Entity;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
+    this.entity = entity;
     this.hitboxFrames = scene.cache.json.get(data.hitboxesKey).frames;
+    this.enabled = true;
 
     const maxAttachmentCount = this.hitboxFrames
       .map(frame => frame.hitboxes.length)
@@ -20,6 +26,19 @@ export class HitboxComponent implements Phecs.Component {
         height: 0,
       });
     }
+  }
+
+  enable() {
+    this.enabled = true;
+  }
+
+  disable() {
+    this.enabled = false;
+
+    this.entity.components[AttachmentComponent.tag]
+      .getAttachmentsByType('hitbox').forEach((hitbox: Attachment) => {
+        hitbox.disable();
+    });
   }
 
   destroy() {
