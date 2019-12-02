@@ -1,5 +1,4 @@
 import { SpriteComponent } from '../../../components/sprite-component';
-import { PhiniteStateMachineComponent } from '../../../components/phinite-state-machine-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
 export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
