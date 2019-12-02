@@ -40,6 +40,7 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TextboxComponent } from '../components/textbox-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
+import { HealthComponent } from '../components/health-component';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -68,6 +69,7 @@ export class ExplorationScene extends BaseScene {
         { klass: AttachmentComponent, tag: AttachmentComponent.tag },
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },
+        { klass: HealthComponent, tag: HealthComponent.tag },
         { klass: HitboxComponent, tag: HitboxComponent.tag },
         { klass: HurtboxComponent, tag: HurtboxComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
