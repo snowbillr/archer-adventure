@@ -2,7 +2,6 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { InteractionCircleComponent } from '../../../components/interaction-circle-component';
 import { BaseScene } from '../../../scenes/base-scene';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { movementAttributes } from '../movement-attributes';
 
@@ -29,29 +28,24 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
   transitions: [
     {
       type: TransitionType.Timer,
-      delay: 1500,
+      delay: 1000,
       to: 'enemy-jump',
     },
     {
       type: TransitionType.Conditional,
       condition(enemy) {
+        const scene = enemy.components[SpriteComponent.tag].sprite.scene as BaseScene;
         const activeEntityIds = enemy.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
 
-        let seesAdventurer = false;
+        const adventurerId = scene.phecs.phEntities.getEntitiesByName('adventurer')[0].id;
 
-        // This is gross and there has to be a better way to get at Phecs
-        const scene = enemy.components[SpriteComponent.tag].sprite.scene as BaseScene;
-        for (let entityId of activeEntityIds) {
-          const entity = scene.phecs.phEntities.getEntityById(entityId);
-          if (entity && entity.components[AdventurerComponent.tag]) {
-            seesAdventurer = true;
-            break;
-          }
-        }
-
-        return !seesAdventurer;
+        return !activeEntityIds.includes(adventurerId);
       },
-      to: 'enemy-idle'
+      to: 'enemy-idle',
+      onTransition(enemy) {
+        const body = enemy.components[PhysicsBodyComponent.tag].body;
+        body.velocity.x = 0;
+      }
     }
   ],
 }
