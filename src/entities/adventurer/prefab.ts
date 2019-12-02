@@ -14,6 +14,7 @@ export const adventurerPrefab = {
   hurtboxesKey: "adventurer-hurtboxes",
 
   interactionRadius: 30,
+  interactionDebug: false,
 
   stateSet: "adventurer",
   initialStateId: "adventurer-stand",

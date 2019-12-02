@@ -42,10 +42,6 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
         return !activeEntityIds.includes(adventurerId);
       },
       to: 'enemy-idle',
-      onTransition(enemy) {
-        const body = enemy.components[PhysicsBodyComponent.tag].body;
-        body.velocity.x = 0;
-      }
     }
   ],
 }

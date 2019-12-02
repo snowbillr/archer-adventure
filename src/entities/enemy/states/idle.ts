@@ -3,10 +3,14 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { InteractionCircleComponent } from '../../../components/interaction-circle-component';
 import { BaseScene } from '../../../scenes/base-scene';
 import { AdventurerComponent } from '../../../components/adventurer-component';
+import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
 export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-idle',
   onEnter(enemy) {
+    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    body.velocity.x = 0;
+
     enemy.components[SpriteComponent.tag].sprite.anims.play('enemy-idle');
   },
   transitions: [
