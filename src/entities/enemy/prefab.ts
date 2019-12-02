@@ -13,5 +13,5 @@ export const enemyPrefab = {
 
   hurtboxesKey: 'enemy-hurtboxes',
 
-  maxHealth: 2,
+  maxHealth: 3,
 };

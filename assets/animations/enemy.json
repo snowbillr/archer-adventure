@@ -18,6 +18,25 @@
       ],
       "repeat": -1,
       "frameRate": 7
+    },
+    {
+      "key": "enemy-jump",
+      "frames": [
+        { "key": "enemy", "frame": 12 },
+        { "key": "enemy", "frame": 13 },
+        { "key": "enemy", "frame": 14 },
+        { "key": "enemy", "frame": 15 },
+        { "key": "enemy", "frame": 16 },
+        { "key": "enemy", "frame": 17 },
+        { "key": "enemy", "frame": 18 },
+        { "key": "enemy", "frame": 19 },
+        { "key": "enemy", "frame": 20 },
+        { "key": "enemy", "frame": 21 },
+        { "key": "enemy", "frame": 22 },
+        { "key": "enemy", "frame": 23 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
     }
   ]
 }
