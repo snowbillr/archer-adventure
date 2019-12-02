@@ -52,7 +52,7 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
         if (body.blocked.down) {
           return 'enemy-idle';
         } else {
-          return 'enemy-idle'; // should be enemy-fall
+          return 'enemy-fall';
         }
       }
     }

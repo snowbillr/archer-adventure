@@ -2,14 +2,10 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 
-import { movementAttributes } from '../movement-attributes';
-
-export const jump: PhiniteStateMachine.States.State<Phecs.Entity> = {
-  id: 'enemy-jump',
+export const fall: PhiniteStateMachine.States.State<Phecs.Entity> = {
+  id: 'enemy-fall',
   onEnter(enemy) {
     enemy.components[SpriteComponent.tag].sprite.anims.play('enemy-jump');
-
-    enemy.components[PhysicsBodyComponent.tag].body.velocity.y = movementAttributes.jumpVelocity;
   },
   transitions: [
     {
@@ -17,9 +13,9 @@ export const jump: PhiniteStateMachine.States.State<Phecs.Entity> = {
       condition(enemy) {
         const body = enemy.components[PhysicsBodyComponent.tag].body;
 
-        return body.velocity.y <= 0;
+        return body.blocked.down;
       },
-      to: 'enemy-fall',
+      to: 'enemy-idle',
     }
   ],
 }
