@@ -39,10 +39,10 @@ export class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('doors', '/assets/sprites/doors/doors.png', { frameWidth: 64, frameHeight: 82 })
 
     // tileset image
-    this.load.spritesheet('core-tileset-spritesheet', '/assets/tilesets/core.png', { frameHeight: 32, frameWidth: 32 });
+    this.load.spritesheet('core-tileset-spritesheet', '/assets/tilesets/core-tileset.png', { frameHeight: 32, frameWidth: 32 });
 
     // tileset
-    this.load.image('core-tileset', '/assets/tilesets/core.png');
+    this.load.image('core-tileset', '/assets/tilesets/core-tileset.png');
 
     // tilemap
     this.load.tilemapTiledJSON('woollards-farm', '/assets/tilemaps/woollards-farm.json')
