@@ -6,7 +6,6 @@ import { enemyStates } from '../entities/enemy/states';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { AdventurerComponent } from '../components/adventurer-component';
-import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { BoundsComponent } from '../components/bounds-component';
 import { DoorComponent } from '../components/door-component';
@@ -42,7 +41,6 @@ export class PrefabTestScene extends BaseScene {
     this.phecs.phComponents.registerComponents(
       [
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
-        { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
         { klass: AttachmentComponent, tag: AttachmentComponent.tag },
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },

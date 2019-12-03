@@ -122,6 +122,23 @@
                  "width":213,
                  "x":544,
                  "y":700
+                }, 
+                {
+                 "height":68,
+                 "id":12,
+                 "name":"sheepBounds",
+                 "properties":[
+                        {
+                         "name":"zone",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":222,
+                 "x":1422,
+                 "y":708
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -227,7 +244,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "properties":[
         {

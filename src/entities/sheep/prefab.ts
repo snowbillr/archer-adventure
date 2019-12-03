@@ -1,10 +1,9 @@
 export const sheepPrefab = {
   name: 'sheep',
 
-  tags: 'sprite,physics-body,area-boundary,phinite-state-machine',
+  tags: 'sprite,physics-body,phinite-state-machine,zone-boundary',
 
-  areaBoundaryLeft: 1400,
-  areaBoundaryRight: 1630,
+  zoneBoundaryName: 'sheepBounds',
 
   texture: 'sheep-walk',
   frame: 0,

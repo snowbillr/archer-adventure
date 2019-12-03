@@ -1,7 +1,7 @@
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AreaBoundaryComponent } from '../../../components/area-boundary-component';
+import { ZoneBoundaryComponent } from '../../../components/zone-boundary-component';
 
 export const walkRight: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'sheep-walk-right',
@@ -15,7 +15,10 @@ export const walkRight: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Conditional,
       condition(sheep: Phecs.Entity) {
-        return sheep.components[SpriteComponent.tag].sprite.x > sheep.components[AreaBoundaryComponent.tag].areaBoundary.right;
+        const sprite = sheep.components[SpriteComponent.tag].sprite;
+        const zone = sheep.components[ZoneBoundaryComponent.tag].zone;
+
+        return (sprite.x + sprite.width) > (zone.x + zone.width);
       },
       to: 'sheep-walk-left'
     }

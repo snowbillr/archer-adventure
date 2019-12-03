@@ -26,7 +26,6 @@ import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
 import { AdventurerComponent } from '../components/adventurer-component';
-import { AreaBoundaryComponent } from '../components/area-boundary-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { BoundsComponent } from '../components/bounds-component';
 import { EnemyComponent } from '../components/enemy-component';
@@ -68,7 +67,6 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phComponents.registerComponents(
       [
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
-        { klass: AreaBoundaryComponent, tag: AreaBoundaryComponent.tag },
         { klass: AttachmentComponent, tag: AttachmentComponent.tag },
         { klass: BoundsComponent, tag: BoundsComponent.tag },
         { klass: DoorComponent, tag: DoorComponent.tag },
