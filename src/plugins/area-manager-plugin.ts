@@ -10,6 +10,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public tileLayers: Phaser.Tilemaps.StaticTilemapLayer[];
   public objects: { [layerName: string]: any[] };
   public markers: { [name: string]: { x: number, y: number } };
+  public zones: { [name: string]: { x: number, y: number, width: number, height: number } };
 
   private areaMap: { [areaName: string]: any };
 
@@ -21,6 +22,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.tileLayers = [];
     this.objects = {};
     this.markers = {};
+    this.zones = {};
 
     this.areaMap = {};
   }
@@ -46,6 +48,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.objects = {};
 
     this.loadMarkers();
+    this.loadZones();
+
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
@@ -53,6 +57,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   unload() {
     this.objects = {};
     this.markers = {};
+    this.zones = {};
 
     this.tileLayers.forEach(layer => layer.destroy());
     this.tileLayers = [];
@@ -74,6 +79,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   getTileLayer(name: string) {
     return this.tileLayers.find(layer => layer.layer.name === name);
+  }
+
+  getZone(name: string) {
+    return this.zones[name];
   }
 
   getCollisionMap() {
@@ -101,6 +110,22 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         }
       });
     });
+  }
+
+  private loadZones() {
+    this.map.objects.forEach(objectLayer => {
+      objectLayer.objects.forEach(object => {
+        const properties = TiledUtil.normalizeProperties(object.properties);
+        if (properties.zone) {
+          this.zones[object.name] = {
+            x: object.x!,
+            y: object.y!,
+            width: object.width!,
+            height: object.height!,
+          };
+        }
+      });
+    })
   }
 
   private createTileLayers(layerNames: string[]) {

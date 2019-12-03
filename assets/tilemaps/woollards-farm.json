@@ -103,6 +103,34 @@
         }, 
         {
          "draworder":"topdown",
+         "id":14,
+         "name":"zones",
+         "objects":[
+                {
+                 "height":72,
+                 "id":11,
+                 "name":"enemyBounds",
+                 "properties":[
+                        {
+                         "name":"zone",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":213,
+                 "x":544,
+                 "y":700
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"signs",
          "objects":[
@@ -198,8 +226,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":14,
- "nextobjectid":11,
+ "nextlayerid":15,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "properties":[
         {

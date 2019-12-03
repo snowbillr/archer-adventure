@@ -5,6 +5,7 @@ import { InteractionCircleComponent } from '../../../components/interaction-circ
 import { SpriteComponent } from '../../../components/sprite-component';
 import { BaseScene } from '../../../scenes/base-scene';
 import { AdventurerComponent } from '../../../components/adventurer-component';
+import { ZoneBoundaryComponent } from '../../../components/zone-boundary-component';
 
 export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-wander',
@@ -17,6 +18,15 @@ export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
       sprite.flipX = true;
     } else {
       sprite.flipX = false;
+    }
+  },
+  onUpdate(enemy) {
+    const sprite = enemy.components[SpriteComponent.tag].sprite as Phaser.GameObjects.Sprite;
+    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    const zone = enemy.components[ZoneBoundaryComponent.tag].zone;
+
+    if (!Phaser.Geom.Rectangle.ContainsRect(zone, sprite.getBounds())) {
+      body.velocity.x *= -1;
     }
   },
   transitions: [
