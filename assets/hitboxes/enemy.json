@@ -1,0 +1,316 @@
+{
+  "frames": [
+    {
+      "key": "enemy",
+      "frame": 0,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 1,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 2,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 3,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 4,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 5,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 6,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 7,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 8,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 9,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 10,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 11,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 12,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 13,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 14,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 15,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 16,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 17,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 18,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 19,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 20,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 21,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 22,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "key": "enemy",
+      "frame": 23,
+      "hitboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    }
+  ]
+}

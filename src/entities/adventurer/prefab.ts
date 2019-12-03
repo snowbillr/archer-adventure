@@ -1,7 +1,7 @@
 export const adventurerPrefab = {
   name: 'adventurer',
 
-  tags: "sprite,physics-body,adventurer,attachment,hurtbox,bounds,interaction-circle,phinite-state-machine,shoots-arrows",
+  tags: "sprite,physics-body,adventurer,attachment,hurtbox,bounds,interaction-circle,phinite-state-machine,shoots-arrows,health",
 
   attachmentDebug: false,
 
@@ -18,4 +18,6 @@ export const adventurerPrefab = {
 
   stateSet: "adventurer",
   initialStateId: "adventurer-stand",
+
+  maxHealth: 5,
 }

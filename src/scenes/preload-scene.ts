@@ -30,6 +30,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('enemy', '/assets/sprites/enemy/enemy.png', { frameWidth: 32, frameHeight: 32 });
     this.load.animation('enemy-animations', '/assets/animations/enemy.json');
     this.load.json('enemy-hurtboxes', '/assets/hurtboxes/enemy.json');
+    this.load.json('enemy-hitboxes', '/assets/hitboxes/enemy.json');
 
     // indicators
     this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 32, frameHeight: 32 })
