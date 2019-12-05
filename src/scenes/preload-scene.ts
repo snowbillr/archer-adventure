@@ -52,10 +52,14 @@ export class PreloadScene extends Phaser.Scene {
     // conversations
     this.load.image('textbox', '/assets/sprites/conversations/textbox.png');
     this.load.json('signs', '/assets/signs.json');
+
+    // ui
+    this.load.spritesheet('healthbar', '/assets/sprites/ui/healthbar.png', { frameWidth: 124, frameHeight: 22 });
   }
 
   create() {
     this.scene.start('exploration', { areaKey: 'woollards-farm' });
+    this.scene.launch('ui');
     // this.scene.start('prefabTest');
   }
 }
