@@ -9,6 +9,7 @@ import { enemyStates } from '../entities/enemy/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { DoorSystem } from '../systems/door-system';
+import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasControlsSystem } from '../systems/has-controls-system';
@@ -43,7 +44,6 @@ import { TextboxComponent } from '../components/textbox-component';
 import { ZoneBoundaryComponent } from '../components/zone-boundary-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
-import { promises } from 'fs';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -90,6 +90,7 @@ export class ExplorationScene extends BaseScene {
       [
         ArrowEnemyDamageSystem,
         DoorSystem,
+        EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
         HasBoundsSystem,
         HasControlsSystem,
