@@ -59,7 +59,6 @@ export class PreloadScene extends Phaser.Scene {
 
   create() {
     this.scene.start('exploration', { areaKey: 'woollards-farm' });
-    this.scene.launch('ui');
     // this.scene.start('prefabTest');
   }
 }
