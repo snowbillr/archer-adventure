@@ -1,14 +1,18 @@
-import 'phaser';
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { EnemyComponent } from '../components/enemy-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { Attachment } from '../lib/attachment';
 import { InvulnerabilityComponent } from '../components/invulnerability-component';
+import { HealthComponent } from '../components/health-component';
+
+const ENEMY_DAMAGE = 1;
 
 export class EnemyAdventurerDamageSystem implements Phecs.System {
   update(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    if (adventurer.components[InvulnerabilityComponent.tag].isInvulnerable) return;
+
     const enemies = phEntities.getEntitiesByTag(EnemyComponent.tag);
 
     const adventurerHurtboxes = adventurer.components[AttachmentComponent.tag]
@@ -19,10 +23,8 @@ export class EnemyAdventurerDamageSystem implements Phecs.System {
                                  .getAttachmentsByType('hitbox');
 
       if (this.isAdventurerHit(adventurerHurtboxes, enemyHitboxes)) {
-        // console.log('hit')
         adventurer.components[InvulnerabilityComponent.tag].makeInvulnerable();
-        // turn on invulnerability component for a timed amount
-        // damage adventurer
+        adventurer.components[HealthComponent.tag].decreaseHealth(ENEMY_DAMAGE);
       }
     }
   }
