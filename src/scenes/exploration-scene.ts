@@ -35,6 +35,7 @@ import { HitboxComponent } from '../components/hitbox-component';
 import { HurtboxComponent } from '../components/hurtbox-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
+import { InvulnerabilityComponent } from '../components/invulnerability-component';
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
@@ -77,6 +78,7 @@ export class ExplorationScene extends BaseScene {
         { klass: HurtboxComponent, tag: HurtboxComponent.tag },
         { klass: IndicatorComponent, tag: IndicatorComponent.tag },
         { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
+        { klass: InvulnerabilityComponent, tag: InvulnerabilityComponent.tag },
         { klass: PhiniteStateMachineComponent, tag: PhiniteStateMachineComponent.tag },
         { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
         { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },

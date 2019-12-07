@@ -4,6 +4,7 @@ import { EnemyComponent } from '../components/enemy-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { AttachmentComponent } from '../components/attachment-component';
 import { Attachment } from '../lib/attachment';
+import { InvulnerabilityComponent } from '../components/invulnerability-component';
 
 export class EnemyAdventurerDamageSystem implements Phecs.System {
   update(phEntities: EntityManager) {
@@ -18,8 +19,9 @@ export class EnemyAdventurerDamageSystem implements Phecs.System {
                                  .getAttachmentsByType('hitbox');
 
       if (this.isAdventurerHit(adventurerHurtboxes, enemyHitboxes)) {
-        console.log('hit')
-        // put adventurer in hit state
+        // console.log('hit')
+        adventurer.components[InvulnerabilityComponent.tag].makeInvulnerable();
+        // turn on invulnerability component for a timed amount
         // damage adventurer
       }
     }
@@ -28,12 +30,12 @@ export class EnemyAdventurerDamageSystem implements Phecs.System {
   private isAdventurerHit(adventurerHurtboxes: Attachment[], enemyHitboxes: Attachment[]): boolean {
     let overlapping = false;
     for (let hurtbox of adventurerHurtboxes) {
+      if (overlapping) break;
+
       for (let hitbox of enemyHitboxes) {
-        if (!overlapping) {
-          overlapping = hurtbox.overlaps(hitbox);
-        } else {
-          break;
-        }
+        if (overlapping) break;
+
+        overlapping = hurtbox.overlaps(hitbox);
       }
     }
 

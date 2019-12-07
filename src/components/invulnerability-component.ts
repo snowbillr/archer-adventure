@@ -1,0 +1,37 @@
+import { SpriteComponent } from "./sprite-component";
+
+export class InvulnerabilityComponent implements Phecs.Component {
+  public static tag = 'invulnerability';
+  public isInvulnerable: boolean;
+
+  private invulnerabilityTimer: Phaser.Time.TimerEvent;
+  private sprite: Phaser.GameObjects.Sprite;
+
+  constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
+    this.isInvulnerable = false;
+    this.sprite = entity.components[SpriteComponent.tag].sprite;
+
+    this.invulnerabilityTimer = scene.time.addEvent({ paused: true });
+  }
+
+  makeInvulnerable() {
+    this.isInvulnerable = true;
+    this.sprite.alpha = 0.5;
+
+    this.invulnerabilityTimer = this.invulnerabilityTimer.reset({
+      paused: false,
+      delay: 500,
+      callback: () => {
+        this.sprite.alpha = 1;
+        this.isInvulnerable = false;
+      }
+    });
+  }
+
+  destroy() {
+    this.invulnerabilityTimer.destroy();
+
+    delete this.invulnerabilityTimer;
+    delete this.isInvulnerable;
+  }
+}
