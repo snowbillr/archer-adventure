@@ -4,6 +4,7 @@ import { InteractionCircleComponent } from '../../../components/interaction-circ
 import { BaseScene } from '../../../scenes/base-scene';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { SceneComponent } from '../../../components/scene-component';
 
 export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-idle',
@@ -26,8 +27,7 @@ export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
       condition(enemy) {
         const activeEntityIds = enemy.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
 
-        // This is gross and there has to be a better way to get at Phecs
-        const scene = enemy.getComponent(SpriteComponent).sprite.scene as BaseScene;
+        const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
         for (let entityId of activeEntityIds) {
           const entity = scene.phecs.phEntities.getEntityById(entityId);
           if (entity.hasComponent(AdventurerComponent)) {

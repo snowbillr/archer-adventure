@@ -5,6 +5,7 @@ import { BaseScene } from '../../../scenes/base-scene';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { movementAttributes } from '../movement-attributes';
 import { AdventurerComponent } from '../../../components/adventurer-component';
+import { SceneComponent } from '../../../components/scene-component';
 
 export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-track-adventurer',
@@ -12,7 +13,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
     enemy.getComponent(SpriteComponent).sprite.anims.play('enemy-jump');
   },
   onUpdate(enemy) {
-    const scene = enemy.getComponent(SpriteComponent).sprite.scene as BaseScene;
+    const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
 
     const adventurer = scene.phecs.phEntities.getEntitiesByComponent(AdventurerComponent)[0];
     const adventurerSprite = adventurer.getComponent(SpriteComponent).sprite;
@@ -37,7 +38,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Conditional,
       condition(enemy) {
-        const scene = enemy.getComponent(SpriteComponent).sprite.scene as BaseScene;
+        const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
         const activeEntityIds = enemy.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
 
         const adventurerId = scene.phecs.phEntities.getEntitiesByComponent(AdventurerComponent)[0].id;

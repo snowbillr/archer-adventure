@@ -1,6 +1,7 @@
 import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { SceneComponent } from '../../../components/scene-component';
 
 export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-stun',
@@ -13,7 +14,7 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
     body.velocity.x = 0;
     body.velocity.y = 0;
 
-    sprite.scene.tweens.timeline({
+    enemy.getComponent(SceneComponent).scene.tweens.timeline({
       tweens: [
         {
           targets: sprite,
@@ -44,7 +45,7 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
       condition(enemy) {
         const sprite = enemy.getComponent(SpriteComponent).sprite;
 
-        return !sprite.scene.tweens.isTweening(sprite);
+        return !enemy.getComponent(SceneComponent).scene.tweens.isTweening(sprite);
       },
       to(enemy) {
         const body = enemy.getComponent(PhysicsBodyComponent).body;

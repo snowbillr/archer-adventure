@@ -6,6 +6,7 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { BaseScene } from '../../../scenes/base-scene';
 import { AdventurerComponent } from '../../../components/adventurer-component';
 import { ZoneBoundaryComponent } from '../../../components/zone-boundary-component';
+import { SceneComponent } from '../../../components/scene-component';
 
 export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-wander',
@@ -42,8 +43,7 @@ export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
       condition(enemy) {
         const activeEntityIds = enemy.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
 
-        // This is gross and there has to be a better way to get at Phecs
-        const scene = enemy.getComponent(SpriteComponent).sprite.scene as BaseScene;
+        const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
         for (let entityId of activeEntityIds) {
           const entity = scene.phecs.phEntities.getEntityById(entityId);
           if (entity.hasComponent(AdventurerComponent)) {
