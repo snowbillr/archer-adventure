@@ -33,7 +33,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Timer,
       delay: 1000,
-      to: 'enemy-jump',
+      to: 'enemy-jump-prep',
     },
     {
       type: TransitionType.Conditional,
