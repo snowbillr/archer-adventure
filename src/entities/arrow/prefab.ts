@@ -14,9 +14,7 @@ export const arrowPrefab: Phecs.Prefab = {
         frame: 0,
       }
     },
-    {
-      component: PhysicsBodyComponent,
-    },
+    PhysicsBodyComponent,
     {
       component: AttachmentComponent,
       data: {

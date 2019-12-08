@@ -19,9 +19,7 @@ export const enemyPrefab: Phecs.Prefab = {
         frame: 0,
       }
     },
-    {
-      component: PhysicsBodyComponent,
-    },
+    PhysicsBodyComponent,
     {
       component: AttachmentComponent,
       data: {
@@ -60,9 +58,7 @@ export const enemyPrefab: Phecs.Prefab = {
         interactionDebug: false,
       }
     },
-    {
-      component: EnemyComponent,
-    },
+    EnemyComponent,
     {
       component: ZoneBoundaryComponent,
       data: {

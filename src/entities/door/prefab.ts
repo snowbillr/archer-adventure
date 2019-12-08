@@ -13,12 +13,8 @@ export const doorPrefab: Phecs.Prefab = {
         depth: 2,
       }
     },
-    {
-      component: DoorComponent,
-    },
-    {
-      component: IndicatorComponent,
-    },
+    DoorComponent,
+    IndicatorComponent,
     {
       component: InteractionCircleComponent,
       data: {

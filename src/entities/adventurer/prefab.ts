@@ -25,9 +25,7 @@ export const adventurerPrefab: Phecs.Prefab = {
         maxVelocityX: 350,
       }
     },
-    {
-      component: AdventurerComponent,
-    },
+    AdventurerComponent,
     {
       component: AttachmentComponent,
       data: {
@@ -69,11 +67,7 @@ export const adventurerPrefab: Phecs.Prefab = {
         maxHealth: 5,
       }
     },
-    {
-      component: HealthComponent,
-    },
-    {
-      component: InvulnerabilityComponent
-    }
+    HealthComponent,
+    InvulnerabilityComponent,
   ]
 }

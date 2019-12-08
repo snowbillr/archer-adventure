@@ -24,20 +24,20 @@ export class EntityManager {
     this.prefabs[key] = prefab;
   }
 
-  createPrefab(type: string, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
+  createPrefab(type: string, rawTiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
     const baseScene = this.scene as BaseScene;
     const entity = new BaseEntity(type);
     const prefab = this.prefabs[type];
 
     const properties = {
-      ...TiledUtil.normalizeProperties(tiledProperties)
+      x,
+      y,
+      depth,
+      ...TiledUtil.normalizeProperties(rawTiledProperties)
     };
 
-    prefab.components.forEach((componentDefinition: Phecs.PrefabComponentDefinition) => {
+    this.getComponentDefinitions(prefab).forEach((componentDefinition: Phecs.PrefabComponentDefinition) => {
       const component = new componentDefinition.component(baseScene, {
-        x,
-        y,
-        depth,
         ...properties,
         ...componentDefinition.data,
       }, entity);
@@ -73,4 +73,18 @@ export class EntityManager {
     this.entitiesById = {};
     this.entities = [];
   }
+
+  private getComponentDefinitions(prefab: Phecs.Prefab): Phecs.PrefabComponentDefinition[] {
+    return prefab.components.map(componentDefinition => {
+      if (typeof componentDefinition === 'function') {
+        return {
+          component: componentDefinition,
+        };
+      }
+      else {
+        return componentDefinition;
+      }
+    });
+  }
+
 }

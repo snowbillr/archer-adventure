@@ -13,9 +13,7 @@ export const sheepPrefab: Phecs.Prefab = {
         depth: 0,
       }
     },
-    {
-      component: PhysicsBodyComponent
-    },
+    PhysicsBodyComponent,
     {
       component: PhiniteStateMachineComponent,
       data: {

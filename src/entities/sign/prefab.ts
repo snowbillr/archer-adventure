@@ -20,11 +20,7 @@ export const signPrefab: Phecs.Prefab = {
         interactionDebug: false,
       }
     },
-    {
-      component: IndicatorComponent
-    },
-    {
-      component: TextboxComponent
-    }
+    IndicatorComponent,
+    TextboxComponent,
   ]
 }

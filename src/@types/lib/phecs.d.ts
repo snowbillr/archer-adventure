@@ -31,7 +31,7 @@ declare module Phecs {
   }
 
   type Prefab = {
-    components: PrefabComponentDefinition[];
+    components: (PrefabComponentDefinition | ComponentConstructor)[];
   }
 
   interface System {
