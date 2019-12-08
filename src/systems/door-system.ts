@@ -4,7 +4,6 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { IndicatorComponent } from '../components/indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
-import { SignComponent } from '../components/sign-component';
 
 export class DoorSystem implements Phecs.System {
   private scene: ExplorationScene;
@@ -36,7 +35,7 @@ export class DoorSystem implements Phecs.System {
 
   stop(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const doors = phEntities.getEntitiesByComponent(SignComponent);
+    const doors = phEntities.getEntitiesByComponent(DoorComponent);
 
     const controlKeys = new Set(doors.map(door => adventurer.getComponent(AdventurerComponent).controls[door.getComponent(InteractionCircleComponent).interactionControl]));
 

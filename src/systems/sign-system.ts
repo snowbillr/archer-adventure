@@ -3,7 +3,6 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
-import { SignComponent } from '../components/sign-component';
 
 export class SignSystem implements Phecs.System {
   private listeners: (() => void)[];
@@ -14,7 +13,7 @@ export class SignSystem implements Phecs.System {
 
   start(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByComponent(SignComponent);
+    const signs = phEntities.getEntitiesByType('sign');
 
     signs.forEach(sign => {
       const controlKey = adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl];
@@ -37,7 +36,7 @@ export class SignSystem implements Phecs.System {
 
   stop(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByComponent(SignComponent);
+    const signs = phEntities.getEntitiesByType('sign');
 
     const controlKeys = new Set(signs.map(sign => adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl]));
 
@@ -52,7 +51,7 @@ export class SignSystem implements Phecs.System {
 
   update(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByComponent(SignComponent);
+    const signs = phEntities.getEntitiesByType('sign');
 
     const enteringSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
     const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));

@@ -2,7 +2,6 @@ import { SpriteComponent } from "../../components/sprite-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { IndicatorComponent } from "../../components/indicator-component";
 import { TextboxComponent } from "../../components/textbox-component";
-import { SignComponent } from "../../components/sign-component";
 
 export const signPrefab: Phecs.Prefab = {
   components: [
@@ -23,9 +22,6 @@ export const signPrefab: Phecs.Prefab = {
     },
     {
       component: IndicatorComponent
-    },
-    {
-      component: SignComponent
     },
     {
       component: TextboxComponent

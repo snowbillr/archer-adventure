@@ -4,7 +4,6 @@ import { PhiniteStateMachineComponent } from '../components/phinite-state-machin
 import { HealthComponent } from '../components/health-component';
 
 import { BaseDamageSystem } from './base-damage-system';
-import { ArrowComponent } from '../components/arrow-component';
 import { EnemyComponent } from '../components/enemy-component';
 
 const ARROW_DAMAGE = 1;
@@ -14,7 +13,7 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
     super(
       {
         entityFetcher: phEntities => {
-          return phEntities.getEntitiesByComponent(ArrowComponent)
+          return phEntities.getEntitiesByType('arrow')
                            .filter(arrow => {
                              const arrowState = arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.currentState.id;
                              return arrowState === 'arrow-flying';
