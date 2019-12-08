@@ -1,10 +1,13 @@
+type OnDamageListener = (newHealth: number) => void;
+type OnDeathListener = () => void;
+
 export class HealthComponent implements Phecs.Component {
   public static tag: string = 'health';
 
   private maxHealth: number;
   private currentHealth: number;
-  private onDeathListeners: (() => void)[];
-  private onDamageListeners: ((newHealth: number) => void)[];
+  private onDeathListeners: OnDeathListener[];
+  private onDamageListeners: OnDamageListener[];
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
     this.maxHealth = data.maxHealth;
@@ -24,11 +27,11 @@ export class HealthComponent implements Phecs.Component {
     }
   }
 
-  onDamage(listener: () => void) {
+  onDamage(listener: OnDamageListener) {
     this.onDamageListeners.push(listener);
   }
 
-  onDeath(listener: () => void) {
+  onDeath(listener: OnDeathListener) {
     this.onDeathListeners.push(listener);
   }
 
