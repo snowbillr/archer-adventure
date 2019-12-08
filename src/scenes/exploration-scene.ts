@@ -41,6 +41,7 @@ import { PhiniteStateMachineComponent } from '../components/phinite-state-machin
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { DoorComponent } from '../components/door-component';
 import { ShootsArrowsComponent } from '../components/shoots-arrows-component';
+import { SignComponent } from '../components/sign-component';
 import { SpriteComponent } from '../components/sprite-component';
 import { TextboxComponent } from '../components/textbox-component';
 import { ZoneBoundaryComponent } from '../components/zone-boundary-component';
