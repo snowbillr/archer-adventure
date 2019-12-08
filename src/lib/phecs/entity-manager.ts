@@ -55,15 +55,10 @@ export class EntityManager {
     return this.entitiesById[id];
   }
 
-  // TODO: make this a util method
   getEntitiesByComponent(component: Phecs.ComponentConstructor) {
-    const entities = this.entities.filter(entity => {
-      return entity.components.some(entityComponent => {
-        return component.name === entityComponent.__proto__.constructor.name;
-      })
+    return this.entities.filter(entity => {
+      return entity.hasComponent(component);
     });
-
-    return entities;
   }
 
   getEntitiesByType(type: string) {
