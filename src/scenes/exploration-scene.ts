@@ -164,6 +164,7 @@ export class ExplorationScene extends BaseScene {
         // Then I asked, why was it even working, setting up the colliders before the player
         // even shoots an arrow? It took me a little while to realize that the arrows were already
         // created at this point, due to the `ShootsArrowSystem#registerEntity` method.
+        /*
         if (mapProperties.entityLayerCollisions) {
           mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
             const [entityName, layerName] = entityLayerPair.split(':');
@@ -180,6 +181,7 @@ export class ExplorationScene extends BaseScene {
             }
           });
         }
+        */
 
         this.phecs.start();
 

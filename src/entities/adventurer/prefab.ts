@@ -8,6 +8,7 @@ import { InteractionCircleComponent } from "../../components/interaction-circle-
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { ShootsArrowsComponent } from "../../components/shoots-arrows-component";
 import { HealthComponent } from "../../components/health-component";
+import { InvulnerabilityComponent } from "../../components/invulnerability-component";
 
 export const adventurerPrefab: Phecs.Prefab = {
   components: [
@@ -70,6 +71,9 @@ export const adventurerPrefab: Phecs.Prefab = {
     },
     {
       component: HealthComponent,
+    },
+    {
+      component: InvulnerabilityComponent
     }
   ]
 }

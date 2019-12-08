@@ -35,11 +35,13 @@ export class EntityManager {
   }
 
   getEntitiesByComponent(component: Phecs.ComponentConstructor) {
-    return this.entities.filter(entity => {
+    const entities = this.entities.filter(entity => {
       return entity.components.some(entityComponent => {
-        return typeof entityComponent === typeof component;
+        return component.name === entityComponent.__proto__.constructor.name;
       })
     });
+
+    return entities;
   }
 
   destroy() {
@@ -73,6 +75,7 @@ export class EntityManager {
     });
 
     this.entitiesById[entity.id] = entity;
+    this.entities.push(entity);
 
     return entity;
   }

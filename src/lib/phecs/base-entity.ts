@@ -8,7 +8,9 @@ export class BaseEntity implements Phecs.Entity {
   }
 
   getComponent<T extends Phecs.ComponentConstructor>(component: T): InstanceType<T> {
-    const foundComponent = this.components.find(entityComponent => typeof entityComponent === typeof component);
+    const foundComponent = this.components.find(entityComponent => {
+      return component.name === entityComponent.__proto__.constructor.name;
+    });
 
     if (foundComponent) {
       return foundComponent as InstanceType<T>;
