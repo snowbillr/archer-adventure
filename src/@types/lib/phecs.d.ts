@@ -2,7 +2,7 @@ declare module Phecs {
   interface Entity {
     id: string;
     components: Component[];
-    getComponent<T extends Component>(component: T): T;
+    getComponent<T extends ComponentConstructor>(component: T): InstanceType<T>;
   }
 
   type EntityData = {

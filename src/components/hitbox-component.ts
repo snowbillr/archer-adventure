@@ -19,7 +19,7 @@ export class HitboxComponent implements Phecs.Component {
       .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), 0);
 
     for (let i = 0; i < maxAttachmentCount; i++) {
-      entity.components[AttachmentComponent.tag].createAttachment('hitbox', {
+      entity.getComponent(AttachmentComponent).createAttachment('hitbox', {
         offsetX: 0,
         offsetY: 0,
         width: 0,
@@ -35,7 +35,7 @@ export class HitboxComponent implements Phecs.Component {
   disable() {
     this.enabled = false;
 
-    this.entity.components[AttachmentComponent.tag]
+    this.entity.getComponent(AttachmentComponent)
       .getAttachmentsByType('hitbox').forEach((hitbox: Attachment) => {
         hitbox.disable();
     });

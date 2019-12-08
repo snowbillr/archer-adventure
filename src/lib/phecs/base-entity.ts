@@ -7,8 +7,14 @@ export class BaseEntity implements Phecs.Entity {
     this.components = [];
   }
 
-  getComponent<T extends Phecs.Component>(component: T): T {
-    return this.components.find(entityComponent => typeof entityComponent === typeof component) as T;
+  getComponent<T extends Phecs.ComponentConstructor>(component: T): InstanceType<T> {
+    const foundComponent = this.components.find(entityComponent => typeof entityComponent === typeof component);
+
+    if (foundComponent) {
+      return foundComponent as InstanceType<T>;
+    }
+
+    throw new Error(`BaseEntity::NO_COMPONENT_${typeof component}`);
   }
 
   private generateUuid() {
