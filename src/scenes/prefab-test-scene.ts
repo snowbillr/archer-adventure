@@ -5,17 +5,6 @@ import { enemyPrefab } from '../entities/enemy/prefab';
 import { enemyStates } from '../entities/enemy/states';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
-import { AdventurerComponent } from '../components/adventurer-component';
-import { AttachmentComponent } from '../components/attachment-component';
-import { BoundsComponent } from '../components/bounds-component';
-import { DoorComponent } from '../components/door-component';
-import { HitboxComponent } from '../components/hitbox-component';
-import { HurtboxComponent } from '../components/hurtbox-component';
-import { IndicatorComponent } from '../components/indicator-component';
-import { InteractionCircleComponent } from '../components/interaction-circle-component';
-import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
-import { ShootsArrowsComponent } from '../components/shoots-arrows-component';
-import { TextboxComponent } from '../components/textbox-component';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
@@ -37,23 +26,6 @@ export class PrefabTestScene extends BaseScene {
 
   create() {
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
-
-    this.phecs.phComponents.registerComponents(
-      [
-        { klass: AdventurerComponent, tag: AdventurerComponent.tag },
-        { klass: AttachmentComponent, tag: AttachmentComponent.tag },
-        { klass: BoundsComponent, tag: BoundsComponent.tag },
-        { klass: DoorComponent, tag: DoorComponent.tag },
-        { klass: HitboxComponent, tag: HitboxComponent.tag },
-        { klass: HurtboxComponent, tag: HurtboxComponent.tag },
-        { klass: IndicatorComponent, tag: IndicatorComponent.tag },
-        { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
-        { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
-        { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },
-        { klass: SpriteComponent, tag: SpriteComponent.tag },
-        { klass: TextboxComponent, tag: TextboxComponent.tag },
-      ]
-    );
 
     this.phecs.phSystems.registerSystems(
       [
