@@ -2,8 +2,6 @@ import { AttachmentComponent } from './attachment-component';
 import { Attachment } from '../lib/attachment';
 
 export class HurtboxComponent implements Phecs.Component {
-  public static tag: string = 'hurtbox';
-
   public hurtboxFrames: Systems.HasHurtboxes.Frame[];
   public enabled: boolean;
 

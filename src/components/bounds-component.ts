@@ -1,6 +1,4 @@
 export class BoundsComponent implements Phecs.Component {
-  static tag = 'bounds';
-
   public boundsFrames: Systems.HasBounds.Frame[];
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {

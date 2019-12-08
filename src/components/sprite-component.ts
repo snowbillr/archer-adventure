@@ -1,6 +1,4 @@
 export class SpriteComponent implements Phecs.Component {
-  public static tag: string = 'sprite';
-
   public sprite: Phaser.GameObjects.Sprite;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {

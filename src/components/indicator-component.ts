@@ -1,8 +1,6 @@
 import { SpriteComponent } from './sprite-component';
 
 export class IndicatorComponent implements Phecs.Component {
-  public static tag: string = 'indicator';
-
   public indicatorSprite: Phaser.GameObjects.Sprite;
   public showIndicator: () => void;
   public hideIndicator: () => void;

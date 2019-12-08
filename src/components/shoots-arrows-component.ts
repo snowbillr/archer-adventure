@@ -6,8 +6,6 @@ import { PhysicsBodyComponent } from './physics-body-component';
 const ARROW_POOL_COUNT = 3;
 
 export class ShootsArrowsComponent implements Phecs.Component {
-  public static tag: string = 'shoots-arrows';
-
   public shotPower: number;
   public shotChargeRate: number;
 

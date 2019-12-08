@@ -2,8 +2,6 @@ type OnDamageListener = (newHealth: number) => void;
 type OnDeathListener = () => void;
 
 export class HealthComponent implements Phecs.Component {
-  public static tag: string = 'health';
-
   private maxHealth: number;
   private currentHealth: number;
   private onDeathListeners: OnDeathListener[];

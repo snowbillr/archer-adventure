@@ -1,8 +1,6 @@
 import { SpriteComponent } from './sprite-component';
 
 export class PhysicsBodyComponent implements Phecs.Component {
-  public static tag: string = 'physics-body';
-
   public body: Phaser.Physics.Arcade.Body;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {

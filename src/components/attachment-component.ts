@@ -1,8 +1,6 @@
 import { Attachment } from '../lib/attachment';
 
 export class AttachmentComponent implements Phecs.Component {
-  static tag = 'attachment';
-
   public attachments: Attachment[];
 
   private scene: Phaser.Scene;
