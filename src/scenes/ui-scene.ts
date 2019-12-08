@@ -24,9 +24,5 @@ export abstract class UiScene extends BaseScene {
     adventurer.components[HealthComponent.tag].onDamage((newHealth: number) => {
       healthbar.setFrame(healthbarFrameMap[newHealth]);
     });
-
-    adventurer.components[HealthComponent.tag].onDeath(() => {
-      console.log('dead')
-    })
   }
 }

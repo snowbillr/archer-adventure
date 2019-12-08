@@ -8,6 +8,7 @@ import { arrowStates } from '../entities/arrow/states';
 import { enemyStates } from '../entities/enemy/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
+import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { DoorSystem } from '../systems/door-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
@@ -91,6 +92,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phSystems.registerSystems(
       [
         ArrowEnemyDamageSystem,
+        AdventurerDeathSystem,
         DoorSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
