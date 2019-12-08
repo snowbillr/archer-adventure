@@ -7,37 +7,37 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 export const adventurerStand: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   id: 'adventurer-stand',
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-stand');
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-stand');
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.right,
+      key: entity => entity.getComponent(AdventurerComponent).codes.right,
       to: 'adventurer-run-right',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.left,
+      key: entity => entity.getComponent(AdventurerComponent).codes.left,
       to: 'adventurer-run-left',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.down,
+      key: entity => entity.getComponent(AdventurerComponent).codes.down,
       to: 'adventurer-crouch',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.up,
+      key: entity => entity.getComponent(AdventurerComponent).codes.up,
       to: 'adventurer-jump-prep',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
+      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
       to: 'adventurer-stand-draw'
     }
   ],

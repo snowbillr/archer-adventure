@@ -1,9 +1,10 @@
 declare module Phecs {
   interface Entity {
     id: string;
-    components: {
-      [tag: string]: Component
-    }
+    type: string;
+    components: Component[];
+    hasComponent<T extends ComponentConstructor>(component: T): boolean;
+    getComponent<T extends ComponentConstructor>(component: T): InstanceType<T>;
   }
 
   type EntityData = {
@@ -20,6 +21,17 @@ declare module Phecs {
 
   interface ComponentConstructor {
     new(scene: Phaser.Scene, data: EntityData, entity: Entity): Component;
+  }
+
+  type PrefabComponentDefinition = {
+    component: ComponentConstructor,
+    data?: {
+      [key: string]: any,
+    }
+  }
+
+  type Prefab = {
+    components: PrefabComponentDefinition[];
   }
 
   interface System {

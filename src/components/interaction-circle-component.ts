@@ -1,8 +1,6 @@
 import { InteractionTracker } from '../lib/interaction-tracker';
 
 export class InteractionCircleComponent implements Phecs.Component {
-  public static tag: string = 'interaction-circle';
-
   public interactionControl: string;
   public interactionCircle: Phaser.Geom.Circle;
   public interactionTracker: InteractionTracker;

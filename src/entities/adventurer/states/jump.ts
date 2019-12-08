@@ -13,19 +13,19 @@ export const adventurerJump: PhiniteStateMachine.States.State<Phecs.Entity> = St
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.left,
+      key: entity => entity.getComponent(AdventurerComponent).codes.left,
       to: 'adventurer-jump-left',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.right,
+      key: entity => entity.getComponent(AdventurerComponent).codes.right,
       to: 'adventurer-jump-right',
     },
     {
       type: TransitionType.Conditional,
       condition: (entity: Phecs.Entity) => {
-        return entity.components[PhysicsBodyComponent.tag].body.velocity.y > 1;
+        return entity.getComponent(PhysicsBodyComponent).body.velocity.y > 1;
       },
       to: 'adventurer-fall'
     }

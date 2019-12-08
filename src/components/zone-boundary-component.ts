@@ -1,8 +1,6 @@
 import { BaseScene } from '../scenes/base-scene';
 
 export class ZoneBoundaryComponent implements Phecs.Component {
-  public static tag: string = 'zone-boundary';
-
   public zone: Phaser.Geom.Rectangle;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {

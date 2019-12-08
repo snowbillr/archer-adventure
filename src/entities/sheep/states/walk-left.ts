@@ -6,17 +6,17 @@ import { ZoneBoundaryComponent } from '../../../components/zone-boundary-compone
 export const walkLeft: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'sheep-walk-left',
   onEnter(sheep: Phecs.Entity) {
-    sheep.components[SpriteComponent.tag].sprite.anims.play('sheep-walk');
-    sheep.components[SpriteComponent.tag].sprite.flipX = true;
+    sheep.getComponent(SpriteComponent).sprite.anims.play('sheep-walk');
+    sheep.getComponent(SpriteComponent).sprite.flipX = true;
 
-    sheep.components[PhysicsBodyComponent.tag].body.velocity.x = -50;
+    sheep.getComponent(PhysicsBodyComponent).body.velocity.x = -50;
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition(sheep: Phecs.Entity) {
-        const sprite = sheep.components[SpriteComponent.tag].sprite;
-        const zone = sheep.components[ZoneBoundaryComponent.tag].zone;
+        const sprite = sheep.getComponent(SpriteComponent).sprite;
+        const zone = sheep.getComponent(ZoneBoundaryComponent).zone;
 
         return (sprite.x) < (zone.x);
       },

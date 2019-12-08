@@ -12,19 +12,19 @@ export class SignSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const signs = phEntities.getEntitiesByTag('sign');
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const signs = phEntities.getEntitiesByType('sign');
 
     signs.forEach(sign => {
-      const controlKey = adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl];
+      const controlKey = adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl];
 
       const listener = () => {
-        const activeInteractionIds = sign.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
+        const activeInteractionIds = sign.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
         if (activeInteractionIds.includes(adventurer.id)) {
-          if (sign.components[TextboxComponent.tag].isTextboxShowing) {
-            sign.components[TextboxComponent.tag].hideTextbox();
+          if (sign.getComponent(TextboxComponent).isTextboxShowing) {
+            sign.getComponent(TextboxComponent).hideTextbox();
           } else {
-            sign.components[TextboxComponent.tag].showTextbox();
+            sign.getComponent(TextboxComponent).showTextbox();
           }
         }
       };
@@ -35,10 +35,10 @@ export class SignSystem implements Phecs.System {
   }
 
   stop(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const signs = phEntities.getEntitiesByTag('sign');
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const signs = phEntities.getEntitiesByType('sign');
 
-    const controlKeys = new Set(signs.map(sign => adventurer.components[AdventurerComponent.tag].controls[sign.components[InteractionCircleComponent.tag].interactionControl]));
+    const controlKeys = new Set(signs.map(sign => adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl]));
 
     this.listeners.forEach(listener => {
       controlKeys.forEach(controlKey => {
@@ -50,22 +50,22 @@ export class SignSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const signs = phEntities.getEntitiesByTag('sign');
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const signs = phEntities.getEntitiesByType('sign');
 
-    const enteringSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
+    const enteringSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
     const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
     for (let enteringSign of enteringSigns) {
-      enteringSign.components[IndicatorComponent.tag].showIndicator();
+      enteringSign.getComponent(IndicatorComponent).showIndicator();
     }
 
-    const exitingSignIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('exiting');
+    const exitingSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
     const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
     for (let exitingSign of exitingSigns) {
-      exitingSign.components[IndicatorComponent.tag].hideIndicator();
+      exitingSign.getComponent(IndicatorComponent).hideIndicator();
 
-      if (exitingSign.components[TextboxComponent.tag].isTextboxShowing) {
-        exitingSign.components[TextboxComponent.tag].hideTextbox();
+      if (exitingSign.getComponent(TextboxComponent).isTextboxShowing) {
+        exitingSign.getComponent(TextboxComponent).hideTextbox();
       }
     }
   }

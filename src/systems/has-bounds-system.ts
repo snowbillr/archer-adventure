@@ -6,13 +6,13 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasBoundsSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByTag(BoundsComponent.tag);
+    const entities = phEntities.getEntitiesByComponent(BoundsComponent);
 
     entities.forEach(entity => {
-      const key = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
-      const frame = entity.components[SpriteComponent.tag].sprite.frame.name;
+      const key = entity.getComponent(SpriteComponent).sprite.frame.texture.key;
+      const frame = entity.getComponent(SpriteComponent).sprite.frame.name;
 
-      const boundsFrame: Systems.HasBounds.Frame = entity.components[BoundsComponent.tag].boundsFrames.find((b: Systems.HasBounds.Frame) => b.key === key && b.frame === frame) as Systems.HasBounds.Frame;
+      const boundsFrame: Systems.HasBounds.Frame = entity.getComponent(BoundsComponent).boundsFrames.find((b: Systems.HasBounds.Frame) => b.key === key && b.frame === frame) as Systems.HasBounds.Frame;
       if (boundsFrame) {
         const bounds: Systems.HasBounds.Bounds = boundsFrame.bounds;
 
@@ -20,28 +20,28 @@ export class HasBoundsSystem implements Phecs.System {
           x: bounds.offset.x,
           y: bounds.offset.y,
         }
-        if (entity.components[SpriteComponent.tag].sprite.flipX) {
-          offset.x = entity.components[SpriteComponent.tag].sprite.width - bounds.offset.x - bounds.size.width;
+        if (entity.getComponent(SpriteComponent).sprite.flipX) {
+          offset.x = entity.getComponent(SpriteComponent).sprite.width - bounds.offset.x - bounds.size.width;
         }
-        if (entity.components[SpriteComponent.tag].sprite.flipY) {
-          offset.y = entity.components[SpriteComponent.tag].sprite.height - bounds.offset.y - bounds.size.height;
+        if (entity.getComponent(SpriteComponent).sprite.flipY) {
+          offset.y = entity.getComponent(SpriteComponent).sprite.height - bounds.offset.y - bounds.size.height;
         }
 
         // I have no idea why this needs the `scale` part, but it does
         const rotationPoint = {
-          x: entity.components[SpriteComponent.tag].sprite.displayWidth * entity.components[SpriteComponent.tag].sprite.originX / entity.components[SpriteComponent.tag].sprite.scale,
-          y: entity.components[SpriteComponent.tag].sprite.displayHeight * entity.components[SpriteComponent.tag].sprite.originY / entity.components[SpriteComponent.tag].sprite.scale,
+          x: entity.getComponent(SpriteComponent).sprite.displayWidth * entity.getComponent(SpriteComponent).sprite.originX / entity.getComponent(SpriteComponent).sprite.scale,
+          y: entity.getComponent(SpriteComponent).sprite.displayHeight * entity.getComponent(SpriteComponent).sprite.originY / entity.getComponent(SpriteComponent).sprite.scale,
         }
-        Phaser.Math.RotateAround(offset, rotationPoint.x, rotationPoint.y, entity.components[SpriteComponent.tag].sprite.rotation);
+        Phaser.Math.RotateAround(offset, rotationPoint.x, rotationPoint.y, entity.getComponent(SpriteComponent).sprite.rotation);
 
-        entity.components[PhysicsBodyComponent.tag].body.setSize(bounds.size.width, bounds.size.height);
-        entity.components[PhysicsBodyComponent.tag].body.setOffset(offset.x, offset.y);
+        entity.getComponent(PhysicsBodyComponent).body.setSize(bounds.size.width, bounds.size.height);
+        entity.getComponent(PhysicsBodyComponent).body.setOffset(offset.x, offset.y);
       } else {
-        entity.components[PhysicsBodyComponent.tag].body.setSize(entity.components[SpriteComponent.tag].sprite.width, entity.components[SpriteComponent.tag].sprite.height);
-        entity.components[PhysicsBodyComponent.tag].body.setOffset(0, 0);
+        entity.getComponent(PhysicsBodyComponent).body.setSize(entity.getComponent(SpriteComponent).sprite.width, entity.getComponent(SpriteComponent).sprite.height);
+        entity.getComponent(PhysicsBodyComponent).body.setOffset(0, 0);
       }
 
-      entity.components[PhysicsBodyComponent.tag].body.updateBounds();
+      entity.getComponent(PhysicsBodyComponent).body.updateBounds();
     });
   }
 }

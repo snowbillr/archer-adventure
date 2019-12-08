@@ -15,16 +15,16 @@ export class DoorSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const doors = phEntities.getEntitiesByName(DoorComponent.tag);
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const doors = phEntities.getEntitiesByComponent(DoorComponent);
 
     doors.forEach(door => {
-      const controlKey = adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl];
+      const controlKey = adventurer.getComponent(AdventurerComponent).controls[door.getComponent(InteractionCircleComponent).interactionControl];
 
       const listener = () => {
-        const activeInteractionIds = door.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('active');
+        const activeInteractionIds = door.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
         if (activeInteractionIds.includes(adventurer.id)) {
-          this.scene.loadNewArea(door.components[DoorComponent.tag].toAreaKey, door.components[DoorComponent.tag].toMarker);
+          this.scene.loadNewArea(door.getComponent(DoorComponent).toAreaKey, door.getComponent(DoorComponent).toMarker);
         }
       };
 
@@ -34,10 +34,10 @@ export class DoorSystem implements Phecs.System {
   }
 
   stop(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const doors = phEntities.getEntitiesByTag('sign');
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const doors = phEntities.getEntitiesByComponent(DoorComponent);
 
-    const controlKeys = new Set(doors.map(door => adventurer.components[AdventurerComponent.tag].controls[door.components[InteractionCircleComponent.tag].interactionControl]));
+    const controlKeys = new Set(doors.map(door => adventurer.getComponent(AdventurerComponent).controls[door.getComponent(InteractionCircleComponent).interactionControl]));
 
     this.listeners.forEach(listener => {
       controlKeys.forEach(controlKey => {
@@ -49,19 +49,19 @@ export class DoorSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
-    const doors = phEntities.getEntitiesByName(DoorComponent.tag);
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const doors = phEntities.getEntitiesByComponent(DoorComponent);
 
-    const enteringDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('entering');
+    const enteringDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
     for (let enteringDoor of enteringDoors) {
-      enteringDoor.components[IndicatorComponent.tag].showIndicator();
+      enteringDoor.getComponent(IndicatorComponent).showIndicator();
     }
 
-    const exitingDoorIds = adventurer.components[InteractionCircleComponent.tag].interactionTracker.getEntityIds('exiting');
+    const exitingDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
-      enteringDoor.components[IndicatorComponent.tag].hideIndicator();
+      enteringDoor.getComponent(IndicatorComponent).hideIndicator();
     }
   }
 }

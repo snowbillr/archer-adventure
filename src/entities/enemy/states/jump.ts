@@ -7,15 +7,15 @@ import { movementAttributes } from '../movement-attributes';
 export const jump: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-jump',
   onEnter(enemy) {
-    enemy.components[SpriteComponent.tag].sprite.anims.play('enemy-jump');
+    enemy.getComponent(SpriteComponent).sprite.anims.play('enemy-jump');
 
-    enemy.components[PhysicsBodyComponent.tag].body.velocity.y = movementAttributes.jumpVelocity;
+    enemy.getComponent(PhysicsBodyComponent).body.velocity.y = movementAttributes.jumpVelocity;
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition(enemy) {
-        const body = enemy.components[PhysicsBodyComponent.tag].body;
+        const body = enemy.getComponent(PhysicsBodyComponent).body;
 
         return body.velocity.y <= 0;
       },

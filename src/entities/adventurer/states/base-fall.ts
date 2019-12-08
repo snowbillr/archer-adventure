@@ -9,25 +9,25 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseAerial, {
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-fall');
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-fall');
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
+      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
       to: 'adventurer-air-draw',
     },
     {
       type: TransitionType.Conditional,
       condition: (entity: Phecs.Entity) => {
-        return entity.components[PhysicsBodyComponent.tag].body.blocked.down;
+        return entity.getComponent(PhysicsBodyComponent).body.blocked.down;
       },
       to(entity: Phecs.Entity) {
-        const controls = entity.components[AdventurerComponent.tag].controls;
+        const controls = entity.getComponent(AdventurerComponent).controls;
 
         if (controls.down.isDown) {
-          if (Math.abs(entity.components[PhysicsBodyComponent.tag].body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+          if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
             return 'adventurer-crouch';
           } else {
             return 'adventurer-slide';

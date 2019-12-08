@@ -12,19 +12,19 @@ export const adventurerJumpRight: PhiniteStateMachine.States.State<Phecs.Entity>
     targetAerialHorizontalVelocity: movementAttributes.aerialMaxHorizontalVelocity,
   },
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.flipX = false;
+    entity.getComponent(SpriteComponent).sprite.flipX = false;
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.left,
+      key: entity => entity.getComponent(AdventurerComponent).codes.left,
       to: 'adventurer-jump-left',
     },
     {
       type: TransitionType.Conditional,
       condition: (entity: Phecs.Entity) => {
-        return entity.components[PhysicsBodyComponent.tag].body.velocity.y > 0;
+        return entity.getComponent(PhysicsBodyComponent).body.velocity.y > 0;
       },
       to: 'adventurer-fall-right',
     }

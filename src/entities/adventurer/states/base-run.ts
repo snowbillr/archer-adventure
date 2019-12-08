@@ -9,22 +9,22 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.flipX = false;
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-run');
+    entity.getComponent(SpriteComponent).sprite.flipX = false;
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-run');
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
+      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
       to: 'adventurer-stand-draw',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.down,
+      key: entity => entity.getComponent(AdventurerComponent).codes.down,
       to: (entity: Phecs.Entity) => {
-        if (Math.abs(entity.components[PhysicsBodyComponent.tag].body.velocity.x) < movementAttributes.slideVelocityThreshold) {
+        if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
         } else {
           return 'adventurer-slide';
@@ -34,7 +34,7 @@ export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerg
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.up,
+      key: entity => entity.getComponent(AdventurerComponent).codes.up,
       to: 'adventurer-jump-prep',
     }
   ]
@@ -42,9 +42,9 @@ export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerg
 
 export function startRunning(entity: Phecs.Entity, direction: "left" | "right") {
   if (direction === "left") {
-    entity.components[PhysicsBodyComponent.tag].body.acceleration.x = -movementAttributes.horizontalAcceleration;
+    entity.getComponent(PhysicsBodyComponent).body.acceleration.x = -movementAttributes.horizontalAcceleration;
   } else if (direction === "right") {
-    entity.components[PhysicsBodyComponent.tag].body.acceleration.x = movementAttributes.horizontalAcceleration;
+    entity.getComponent(PhysicsBodyComponent).body.acceleration.x = movementAttributes.horizontalAcceleration;
   }
 
   boostTurnaroundVelocity(entity);
@@ -52,7 +52,7 @@ export function startRunning(entity: Phecs.Entity, direction: "left" | "right") 
 
 
 function boostTurnaroundVelocity(entity: Phecs.Entity) {
-  if (!Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 5)) {
-    entity.components[PhysicsBodyComponent.tag].body.velocity.x += entity.components[PhysicsBodyComponent.tag].body.velocity.x * 0.5 * -1;
+  if (!Phaser.Math.Within(entity.getComponent(PhysicsBodyComponent).body.velocity.x, 0, 5)) {
+    entity.getComponent(PhysicsBodyComponent).body.velocity.x += entity.getComponent(PhysicsBodyComponent).body.velocity.x * 0.5 * -1;
   }
 }

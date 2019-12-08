@@ -8,23 +8,23 @@ export const flying: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Conditional,
       condition(arrow) {
-        return !arrow.components[PhysicsBodyComponent.tag].body.blocked.none;
+        return !arrow.getComponent(PhysicsBodyComponent).body.blocked.none;
       },
       to: 'arrow-hit',
     }
   ],
   onEnter(arrow) {
-    arrow.components[SpriteComponent.tag].sprite.active = true;
-    arrow.components[SpriteComponent.tag].sprite.visible = true;
-    arrow.components[PhysicsBodyComponent.tag].body.enable = true;
-    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = true;
+    arrow.getComponent(SpriteComponent).sprite.active = true;
+    arrow.getComponent(SpriteComponent).sprite.visible = true;
+    arrow.getComponent(PhysicsBodyComponent).body.enable = true;
+    arrow.getComponent(PhysicsBodyComponent).body.allowGravity = true;
 
-    arrow.components[PhysicsBodyComponent.tag].body.setVelocity(400, 0);
+    arrow.getComponent(PhysicsBodyComponent).body.setVelocity(400, 0);
   },
   onUpdate(arrow) {
-    if (arrow.components[PhysicsBodyComponent.tag].body.blocked.none) {
-      const angle = Math.atan2(arrow.components[PhysicsBodyComponent.tag].body.velocity.y, arrow.components[PhysicsBodyComponent.tag].body.velocity.x);
-      arrow.components[SpriteComponent.tag].sprite.rotation = angle;
+    if (arrow.getComponent(PhysicsBodyComponent).body.blocked.none) {
+      const angle = Math.atan2(arrow.getComponent(PhysicsBodyComponent).body.velocity.y, arrow.getComponent(PhysicsBodyComponent).body.velocity.x);
+      arrow.getComponent(SpriteComponent).sprite.rotation = angle;
     }
   }
 }

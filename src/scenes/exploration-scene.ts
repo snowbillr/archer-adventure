@@ -27,23 +27,7 @@ import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 
-import { AdventurerComponent } from '../components/adventurer-component';
-import { AttachmentComponent } from '../components/attachment-component';
-import { BoundsComponent } from '../components/bounds-component';
-import { EnemyComponent } from '../components/enemy-component';
-import { HealthComponent } from '../components/health-component';
-import { HitboxComponent } from '../components/hitbox-component';
-import { HurtboxComponent } from '../components/hurtbox-component';
-import { IndicatorComponent } from '../components/indicator-component';
-import { InteractionCircleComponent } from '../components/interaction-circle-component';
-import { InvulnerabilityComponent } from '../components/invulnerability-component';
-import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
-import { PhysicsBodyComponent } from '../components/physics-body-component';
-import { DoorComponent } from '../components/door-component';
-import { ShootsArrowsComponent } from '../components/shoots-arrows-component';
 import { SpriteComponent } from '../components/sprite-component';
-import { TextboxComponent } from '../components/textbox-component';
-import { ZoneBoundaryComponent } from '../components/zone-boundary-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 
@@ -66,28 +50,6 @@ export class ExplorationScene extends BaseScene {
 
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
     this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
-
-    this.phecs.phComponents.registerComponents(
-      [
-        { klass: AdventurerComponent, tag: AdventurerComponent.tag },
-        { klass: AttachmentComponent, tag: AttachmentComponent.tag },
-        { klass: BoundsComponent, tag: BoundsComponent.tag },
-        { klass: DoorComponent, tag: DoorComponent.tag },
-        { klass: EnemyComponent, tag: EnemyComponent.tag },
-        { klass: HealthComponent, tag: HealthComponent.tag },
-        { klass: HitboxComponent, tag: HitboxComponent.tag },
-        { klass: HurtboxComponent, tag: HurtboxComponent.tag },
-        { klass: IndicatorComponent, tag: IndicatorComponent.tag },
-        { klass: InteractionCircleComponent, tag: InteractionCircleComponent.tag },
-        { klass: InvulnerabilityComponent, tag: InvulnerabilityComponent.tag },
-        { klass: PhiniteStateMachineComponent, tag: PhiniteStateMachineComponent.tag },
-        { klass: PhysicsBodyComponent, tag: PhysicsBodyComponent.tag },
-        { klass: ShootsArrowsComponent, tag: ShootsArrowsComponent.tag },
-        { klass: SpriteComponent, tag: SpriteComponent.tag },
-        { klass: TextboxComponent, tag: TextboxComponent.tag },
-        { klass: ZoneBoundaryComponent, tag: ZoneBoundaryComponent.tag },
-      ]
-    );
 
     this.phecs.phSystems.registerSystems(
       [
@@ -144,7 +106,7 @@ export class ExplorationScene extends BaseScene {
         const map = this.areaManager.map;
         const tileset = this.areaManager.tileset;
 
-        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2, 0, 0);
+        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2);
         const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
         if (markerName) {
@@ -164,7 +126,7 @@ export class ExplorationScene extends BaseScene {
         if (mapProperties.entityLayerCollisions) {
           mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
             const [entityName, layerName] = entityLayerPair.split(':');
-            const entities = this.phecs.phEntities.getEntitiesByName(entityName);
+            const entities = this.phecs.phEntities.getEntitiesByType(entityName);
             const layer = this.areaManager.getTileLayer(layerName);
 
             if (layer == null) {
@@ -172,7 +134,7 @@ export class ExplorationScene extends BaseScene {
             }
 
             for (let entity of entities) {
-              const sprite = entity.components[SpriteComponent.tag].sprite;
+              const sprite = entity.getComponent(SpriteComponent).sprite;
               this.physics.add.collider(sprite, layer);
             }
           });
@@ -182,7 +144,7 @@ export class ExplorationScene extends BaseScene {
 
         this.cameras.main.setBackgroundColor(0x888888);
         this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
-        this.cameras.main.startFollow(adventurer.components[SpriteComponent.tag].sprite, true);
+        this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
         this.isLoadingArea = false;
         resolve();

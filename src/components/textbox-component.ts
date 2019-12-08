@@ -1,10 +1,4 @@
-  type SignData = {
-    message: string;
-  }
-
 export class TextboxComponent implements Phecs.Component {
-  public static tag: string = 'textbox';
-
   public isTextboxShowing: boolean;
 
   private signs: Systems.SignSystem.SignData[];

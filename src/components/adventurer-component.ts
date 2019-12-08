@@ -1,8 +1,6 @@
 type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
 
 export class AdventurerComponent implements Phecs.Component {
-  public static tag: string = 'adventurer';
-
   public controls: Controls;
   public codes: { [code: string]: string };
 

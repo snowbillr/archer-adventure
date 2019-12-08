@@ -1,15 +1,13 @@
 import { SpriteComponent } from './sprite-component';
 
 export class IndicatorComponent implements Phecs.Component {
-  public static tag: string = 'indicator';
-
   public indicatorSprite: Phaser.GameObjects.Sprite;
   public showIndicator: () => void;
   public hideIndicator: () => void;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     let { x, y } = data;
-    y = y - entity.components[SpriteComponent.tag].sprite.displayHeight - 20;
+    y = y - entity.getComponent(SpriteComponent).sprite.displayHeight - 20;
 
     const indicatorSprite = scene.add.sprite(x, y, 'indicator-down');
     indicatorSprite.setDepth(2);

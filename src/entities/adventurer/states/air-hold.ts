@@ -9,41 +9,41 @@ import { ShootsArrowsComponent } from '../../../components/shoots-arrows-compone
 export const adventurerAirHold: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge<Phecs.Entity>(baseAerial, {
   id: 'adventurer-air-hold',
   onEnter(entity) {
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-air-hold', true);
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-air-hold', true);
   },
   onUpdate(entity) {
-    entity.components[ShootsArrowsComponent.tag].shotPower += entity.components[ShootsArrowsComponent.tag].shotChargeRate;
+    entity.getComponent(ShootsArrowsComponent).shotPower += entity.getComponent(ShootsArrowsComponent).shotChargeRate;
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition(entity) {
-        return entity.components[PhysicsBodyComponent.tag].body.blocked.down;
+        return entity.getComponent(PhysicsBodyComponent).body.blocked.down;
       },
       to: 'adventurer-stand-hold',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
+      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
       to: 'adventurer-air-shoot',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.left,
+      key: entity => entity.getComponent(AdventurerComponent).codes.left,
       to: 'adventurer-air-hold',
       onTransition(entity) {
-        entity.components[SpriteComponent.tag].sprite.flipX = true;
+        entity.getComponent(SpriteComponent).sprite.flipX = true;
       }
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.right,
+      key: entity => entity.getComponent(AdventurerComponent).codes.right,
       to: 'adventurer-air-hold',
       onTransition(entity) {
-        entity.components[SpriteComponent.tag].sprite.flipX = false;
+        entity.getComponent(SpriteComponent).sprite.flipX = false;
       }
     }
   ]

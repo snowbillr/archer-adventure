@@ -4,6 +4,7 @@ import { PhiniteStateMachineComponent } from '../components/phinite-state-machin
 import { HealthComponent } from '../components/health-component';
 
 import { BaseDamageSystem } from './base-damage-system';
+import { EnemyComponent } from '../components/enemy-component';
 
 const ARROW_DAMAGE = 1;
 
@@ -12,21 +13,21 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
     super(
       {
         entityFetcher: phEntities => {
-          return phEntities.getEntitiesByName('arrow')
+          return phEntities.getEntitiesByType('arrow')
                            .filter(arrow => {
-                             const arrowState = arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.currentState.id;
+                             const arrowState = arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.currentState.id;
                              return arrowState === 'arrow-flying';
                            });
         },
         boxType: 'hitbox',
       },
       {
-        entityFetcher: phEntities => phEntities.getEntitiesByName('enemy'),
+        entityFetcher: phEntities => phEntities.getEntitiesByComponent(EnemyComponent),
         boxType: 'hurtbox',
       },
       (arrow: Phecs.Entity, enemy: Phecs.Entity) => {
-        arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
-        enemy.components[HealthComponent.tag].decreaseHealth(ARROW_DAMAGE);
+        arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
+        enemy.getComponent(HealthComponent).decreaseHealth(ARROW_DAMAGE);
       }
     );
   }

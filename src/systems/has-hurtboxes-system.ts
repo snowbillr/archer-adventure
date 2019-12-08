@@ -7,19 +7,19 @@ import { AttachmentComponent } from '../components/attachment-component';
 
 export class HasHurtboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByTag(HurtboxComponent.tag)
+    const entities = phEntities.getEntitiesByComponent(HurtboxComponent)
       .filter(entity => {
-        return entity.components[HurtboxComponent.tag].enabled;
+        return entity.getComponent(HurtboxComponent).enabled;
       });
 
     entities.forEach(entity => {
-      const textureKey = entity.components[SpriteComponent.tag].sprite.frame.texture.key;
-      const frameName = entity.components[SpriteComponent.tag].sprite.frame.name;
+      const textureKey = entity.getComponent(SpriteComponent).sprite.frame.texture.key;
+      const frameName = entity.getComponent(SpriteComponent).sprite.frame.name;
 
-      const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.components[HurtboxComponent.tag].hurtboxFrames.find((f: Systems.HasHurtboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHurtboxes.Frame;
+      const hurtboxFrame: Systems.HasHurtboxes.Frame = entity.getComponent(HurtboxComponent).hurtboxFrames.find((f: Systems.HasHurtboxes.Frame) => f.key === textureKey && f.frame === frameName) as Systems.HasHurtboxes.Frame;
 
       if (hurtboxFrame && hurtboxFrame.hurtboxes) {
-        const attachments = entity.components[AttachmentComponent.tag].getAttachmentsByType('hurtbox');
+        const attachments = entity.getComponent(AttachmentComponent).getAttachmentsByType('hurtbox');
 
         for (let i = 0; i < attachments.length; i++) {
           const hurtbox = hurtboxFrame.hurtboxes[i];

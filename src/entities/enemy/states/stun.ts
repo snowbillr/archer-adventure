@@ -1,19 +1,20 @@
 import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
+import { SceneComponent } from '../../../components/scene-component';
 
 export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-stun',
   onEnter(enemy) {
-    const sprite = enemy.components[SpriteComponent.tag].sprite;
-    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    const sprite = enemy.getComponent(SpriteComponent).sprite;
+    const body = enemy.getComponent(PhysicsBodyComponent).body;
 
     sprite.anims.stop();
     body.allowGravity = false;
     body.velocity.x = 0;
     body.velocity.y = 0;
 
-    sprite.scene.tweens.timeline({
+    enemy.getComponent(SceneComponent).scene.tweens.timeline({
       tweens: [
         {
           targets: sprite,
@@ -34,7 +35,7 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
     });
   },
   onLeave(enemy) {
-    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    const body = enemy.getComponent(PhysicsBodyComponent).body;
 
     body.allowGravity = true;
   },
@@ -42,12 +43,12 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Conditional,
       condition(enemy) {
-        const sprite = enemy.components[SpriteComponent.tag].sprite;
+        const sprite = enemy.getComponent(SpriteComponent).sprite;
 
-        return !sprite.scene.tweens.isTweening(sprite);
+        return !enemy.getComponent(SceneComponent).scene.tweens.isTweening(sprite);
       },
       to(enemy) {
-        const body = enemy.components[PhysicsBodyComponent.tag].body;
+        const body = enemy.getComponent(PhysicsBodyComponent).body;
 
         if (body.blocked.down) {
           return 'enemy-idle';

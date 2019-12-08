@@ -3,8 +3,6 @@ import { BaseScene } from '../scenes/base-scene';
 import { TransitionType } from '../lib/phinite-state-machine/transition-type';
 
 export class PhiniteStateMachineComponent implements Phecs.Component {
-  public static tag: string = 'phinite-state-machine';
-
   public phiniteStateMachine: PhiniteStateMachine<Phecs.Entity>;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {

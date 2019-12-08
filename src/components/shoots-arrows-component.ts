@@ -6,8 +6,6 @@ import { PhysicsBodyComponent } from './physics-body-component';
 const ARROW_POOL_COUNT = 3;
 
 export class ShootsArrowsComponent implements Phecs.Component {
-  public static tag: string = 'shoots-arrows';
-
   public shotPower: number;
   public shotChargeRate: number;
 
@@ -27,8 +25,8 @@ export class ShootsArrowsComponent implements Phecs.Component {
 
     this.arrows = [];
     for (let i = 0; i < ARROW_POOL_COUNT; i++) {
-      const arrow = baseScene.phecs.phEntities.createPrefab('arrow', {}, entity.components[SpriteComponent.tag].sprite.depth, 0, 0);
-      arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
+      const arrow = baseScene.phecs.phEntities.createPrefab('arrow', {}, entity.getComponent(SpriteComponent).sprite.depth, 0, 0);
+      arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
       this.arrows.push(arrow);
     }
   }
@@ -36,27 +34,27 @@ export class ShootsArrowsComponent implements Phecs.Component {
   shootArrow() {
     const availableArrow = this.getAvailableArrow();
 
-    availableArrow.components[SpriteComponent.tag].sprite.x = this.entity.components[SpriteComponent.tag].sprite.x;
-    availableArrow.components[SpriteComponent.tag].sprite.y = this.entity.components[SpriteComponent.tag].sprite.y;
+    availableArrow.getComponent(SpriteComponent).sprite.x = this.entity.getComponent(SpriteComponent).sprite.x;
+    availableArrow.getComponent(SpriteComponent).sprite.y = this.entity.getComponent(SpriteComponent).sprite.y;
 
-    availableArrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-flying' });
+    availableArrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.doTransition({ to: 'arrow-flying' });
 
     let power = Phaser.Math.Clamp(this.shotPower, this.minShotPower, this.maxShotPower);
-    if (this.entity.components[SpriteComponent.tag].sprite.flipX) {
+    if (this.entity.getComponent(SpriteComponent).sprite.flipX) {
       power *= -1;
     }
 
-    availableArrow.components[PhysicsBodyComponent.tag].body.setVelocity(power, 0);
-    availableArrow.components[PhysicsBodyComponent.tag].body.setGravityY(-500); // entity gravity = world gravity + this
+    availableArrow.getComponent(PhysicsBodyComponent).body.setVelocity(power, 0);
+    availableArrow.getComponent(PhysicsBodyComponent).body.setGravityY(-500); // entity gravity = world gravity + this
 
     this.shotPower = this.minShotPower;
   }
 
   private getAvailableArrow() {
     const disabledArrows = this.arrows
-      .filter(arrow => arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.currentState.id === 'arrow-disabled');
+      .filter(arrow => arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.currentState.id === 'arrow-disabled');
     const hitArrows = this.arrows
-      .filter(arrow => arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.currentState.id === 'arrow-hit')
+      .filter(arrow => arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.currentState.id === 'arrow-hit')
 
     if (disabledArrows.length) {
       return disabledArrows[0];

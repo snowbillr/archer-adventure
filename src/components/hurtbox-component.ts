@@ -2,8 +2,6 @@ import { AttachmentComponent } from './attachment-component';
 import { Attachment } from '../lib/attachment';
 
 export class HurtboxComponent implements Phecs.Component {
-  public static tag: string = 'hurtbox';
-
   public hurtboxFrames: Systems.HasHurtboxes.Frame[];
   public enabled: boolean;
 
@@ -19,7 +17,7 @@ export class HurtboxComponent implements Phecs.Component {
       .reduce((localMaxAttachmentCount, attachmentCount) => Math.max(localMaxAttachmentCount, attachmentCount), 0);
 
     for (let i = 0; i < maxAttachmentCount; i++) {
-      entity.components[AttachmentComponent.tag].createAttachment('hurtbox', {
+      entity.getComponent(AttachmentComponent).createAttachment('hurtbox', {
         offsetX: 0,
         offsetY: 0,
         width: 0,
@@ -35,7 +33,7 @@ export class HurtboxComponent implements Phecs.Component {
   disable() {
     this.enabled = false;
 
-    this.entity.components[AttachmentComponent.tag]
+    this.entity.getComponent(AttachmentComponent)
       .getAttachmentsByType('hurtbox').forEach((hurtbox: Attachment) => {
         hurtbox.disable();
     });
