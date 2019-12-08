@@ -1,15 +1,11 @@
 import 'phaser';
 
-import { EntityManager } from '../lib/phecs/entity-manager';
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
-import { AttachmentComponent } from '../components/attachment-component';
-import { Attachment } from '../lib/attachment';
 import { HealthComponent } from '../components/health-component';
 
 import { BaseDamageSystem } from './base-damage-system';
 
 const ARROW_DAMAGE = 1;
-
 
 export class ArrowEnemyDamageSystem extends BaseDamageSystem {
   constructor() {
