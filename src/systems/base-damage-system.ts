@@ -25,12 +25,12 @@ export abstract class BaseDamageSystem implements Phecs.System {
     const entities2 = this.entities2Config.entityFetcher(phEntities);
 
     for (let entity1 of entities1) {
-      const entity1Boxes = entity1.components[AttachmentComponent.tag]
+      const entity1Boxes = entity1.getComponent(AttachmentComponent)
                                             .getAttachmentsByType(this.entities1Config.boxType)
                                             .filter((hurtbox: Attachment) => hurtbox.isEnabled())
 
       for (let entity2 of entities2) {
-        const entity2Boxes = entity2.components[AttachmentComponent.tag]
+        const entity2Boxes = entity2.getComponent(AttachmentComponent)
                                   .getAttachmentsByType(this.entities2Config.boxType)
                                   .filter((hitbox: Attachment) => hitbox.isEnabled())
 

@@ -34,7 +34,7 @@ export class EntityManager {
     return this.entitiesById[id];
   }
 
-  getEntitiesByComponent(component: Phecs.Component) {
+  getEntitiesByComponent(component: Phecs.ComponentConstructor) {
     return this.entities.filter(entity => {
       return entity.components.some(entityComponent => {
         return typeof entityComponent === typeof component;

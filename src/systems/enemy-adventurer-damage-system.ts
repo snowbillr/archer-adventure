@@ -12,20 +12,20 @@ export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
     super(
       {
         entityFetcher: phEntities => {
-          return phEntities.getEntitiesByTag(AdventurerComponent.tag)
+          return phEntities.getEntitiesByComponent(AdventurerComponent)
           .filter((adventurer: Phecs.Entity) => {
-            return !adventurer.components[InvulnerabilityComponent.tag].isInvulnerable;
+            return !adventurer.getComponent(InvulnerabilityComponent).isInvulnerable;
           });
         },
         boxType: 'hurtbox'
       },
       {
-        entityFetcher: phEntities => phEntities.getEntitiesByTag(EnemyComponent.tag),
+        entityFetcher: phEntities => phEntities.getEntitiesByComponent(EnemyComponent),
         boxType: 'hurtbox',
       },
       (adventurer: Phecs.Entity, enemy: Phecs.Entity) => {
-        adventurer.components[InvulnerabilityComponent.tag].makeInvulnerable();
-        adventurer.components[HealthComponent.tag].decreaseHealth(ENEMY_DAMAGE);
+        adventurer.getComponent(InvulnerabilityComponent).makeInvulnerable();
+        adventurer.getComponent(HealthComponent).decreaseHealth(ENEMY_DAMAGE);
       }
     )
   }

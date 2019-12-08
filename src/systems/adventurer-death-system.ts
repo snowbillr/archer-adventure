@@ -11,9 +11,9 @@ export class AdventurerDeathSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByTag(AdventurerComponent.tag)[0];
+    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
 
-    adventurer.components[HealthComponent.tag].onDeath(() => {
+    adventurer.getComponent(HealthComponent).onDeath(() => {
       this.scene.scene.stop('ui');
       this.scene.scene.stop('exploration');
       this.scene.scene.start('death');
