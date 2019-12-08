@@ -71,10 +71,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   placeEntityAtMarker(entity: Phecs.Entity, markerName: string) {
     const marker = this.markers[markerName];
-    const sprite = entity.components[SpriteComponent.tag].sprite;
+    const sprite = entity.getComponent(SpriteComponent).sprite;
 
 
-    entity.components[SpriteComponent.tag].sprite.setPosition(marker.x, marker.y - sprite.height * sprite.originY);
+    entity.getComponent(SpriteComponent).sprite.setPosition(marker.x, marker.y - sprite.height * sprite.originY);
   }
 
   getTileLayer(name: string) {

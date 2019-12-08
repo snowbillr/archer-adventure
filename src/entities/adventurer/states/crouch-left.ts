@@ -7,13 +7,13 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 export const adventurerCrouchLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseCrouch, {
   id: 'adventurer-crouch-left',
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.flipX = true;
+    entity.getComponent(SpriteComponent).sprite.flipX = true;
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.right,
+      key: entity => entity.getComponent(AdventurerComponent).codes.right,
       to: 'adventurer-crouch-right'
     }
   ]

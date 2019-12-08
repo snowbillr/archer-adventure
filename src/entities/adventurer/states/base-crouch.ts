@@ -6,15 +6,15 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-crouch');
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-crouch');
   },
   transitions: [
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.components[AdventurerComponent.tag].codes.down,
+      key: entity => entity.getComponent(AdventurerComponent).codes.down,
       to: (entity: Phecs.Entity) => {
-        const controls = entity.components[AdventurerComponent.tag].controls;
+        const controls = entity.getComponent(AdventurerComponent).controls;
 
         if (controls.left.isDown) {
           return 'adventurer-run-left';

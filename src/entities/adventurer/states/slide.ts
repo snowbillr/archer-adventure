@@ -9,27 +9,27 @@ import { AdventurerComponent } from '../../../components/adventurer-component';
 export const adventurerSlide: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
   id: 'adventurer-slide',
   onEnter(adventurer: Phecs.Entity) {
-    adventurer.components[SpriteComponent.tag].sprite.anims.play('adventurer-slide')
+    adventurer.getComponent(SpriteComponent).sprite.anims.play('adventurer-slide')
 
-    if (adventurer.components[PhysicsBodyComponent.tag].body.velocity.x > 0) {
-      adventurer.components[PhysicsBodyComponent.tag].body.acceleration.x = -1 * movementAttributes.slideDeceleration;
+    if (adventurer.getComponent(PhysicsBodyComponent).body.velocity.x > 0) {
+      adventurer.getComponent(PhysicsBodyComponent).body.acceleration.x = -1 * movementAttributes.slideDeceleration;
     } else {
-      adventurer.components[PhysicsBodyComponent.tag].body.acceleration.x = movementAttributes.slideDeceleration;
+      adventurer.getComponent(PhysicsBodyComponent).body.acceleration.x = movementAttributes.slideDeceleration;
     }
   },
   onUpdate(entity: Phecs.Entity) {
-    if(Phaser.Math.Within(entity.components[PhysicsBodyComponent.tag].body.velocity.x, 0, 5)) {
-      entity.components[PhysicsBodyComponent.tag].body.acceleration.x = 0;
+    if(Phaser.Math.Within(entity.getComponent(PhysicsBodyComponent).body.velocity.x, 0, 5)) {
+      entity.getComponent(PhysicsBodyComponent).body.acceleration.x = 0;
     }
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition: (entity: Phecs.Entity) => {
-        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
+        return !entity.getComponent(SpriteComponent).sprite.anims.isPlaying;
       },
       to: (entity: Phecs.Entity) => {
-        const controls = entity.components[AdventurerComponent.tag].controls;
+        const controls = entity.getComponent(AdventurerComponent).controls;
 
         if (controls.left.isDown) {
           return 'adventurer-run-left';
@@ -45,7 +45,7 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Phecs.Entity> = S
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.up,
+      key: entity => entity.getComponent(AdventurerComponent).codes.up,
       to: 'adventurer-jump-prep',
     }
   ],

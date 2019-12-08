@@ -6,14 +6,14 @@ export const baseGround: Partial<PhiniteStateMachine.States.State<Phecs.Entity>>
     {
       type: TransitionType.Conditional,
       condition: (entity: Phecs.Entity) => {
-        return !entity.components[PhysicsBodyComponent.tag].body.blocked.down;
+        return !entity.getComponent(PhysicsBodyComponent).body.blocked.down;
       },
       to: (entity: Phecs.Entity) => {
-        entity.components[PhysicsBodyComponent.tag].body.velocity.y = 100;
+        entity.getComponent(PhysicsBodyComponent).body.velocity.y = 100;
 
-        if (entity.components[PhysicsBodyComponent.tag].body.velocity.x > 0) {
+        if (entity.getComponent(PhysicsBodyComponent).body.velocity.x > 0) {
           return 'adventurer-fall-right';
-        } else if (entity.components[PhysicsBodyComponent.tag].body.velocity.x < 0) {
+        } else if (entity.getComponent(PhysicsBodyComponent).body.velocity.x < 0) {
           return 'adventurer-fall-left';
         } else {
           return 'adventurer-fall';

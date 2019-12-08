@@ -8,41 +8,41 @@ import { ShootsArrowsComponent } from '../../../components/shoots-arrows-compone
 export const adventurerStandDraw: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   id: 'adventurer-stand-draw',
   onEnter(entity: Phecs.Entity) {
-    entity.components[SpriteComponent.tag].sprite.anims.play('adventurer-stand-draw', true);
+    entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-stand-draw', true);
   },
   onUpdate(entity) {
-    entity.components[ShootsArrowsComponent.tag].shotPower += entity.components[ShootsArrowsComponent.tag].shotChargeRate;
+    entity.getComponent(ShootsArrowsComponent).shotPower += entity.getComponent(ShootsArrowsComponent).shotChargeRate;
   },
   transitions: [
     {
       type: TransitionType.Conditional,
       condition(entity: Phecs.Entity) {
-        return !entity.components[SpriteComponent.tag].sprite.anims.isPlaying;
+        return !entity.getComponent(SpriteComponent).sprite.anims.isPlaying;
       },
       to: 'adventurer-stand-hold'
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.components[AdventurerComponent.tag].codes.attack,
+      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
       to: 'adventurer-stand-shoot',
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.left,
+      key: entity => entity.getComponent(AdventurerComponent).codes.left,
       to: 'adventurer-stand-draw',
       onTransition(entity) {
-        entity.components[SpriteComponent.tag].sprite.flipX = true;
+        entity.getComponent(SpriteComponent).sprite.flipX = true;
       }
     },
     {
       type: TransitionType.Input,
       event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.components[AdventurerComponent.tag].codes.right,
+      key: entity => entity.getComponent(AdventurerComponent).codes.right,
       to: 'adventurer-stand-draw',
       onTransition(entity) {
-        entity.components[SpriteComponent.tag].sprite.flipX = false;
+        entity.getComponent(SpriteComponent).sprite.flipX = false;
       }
     }
   ]
