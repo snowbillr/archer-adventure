@@ -1,9 +1,7 @@
 import { SpriteComponent } from '../../../components/sprite-component';
-import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
-import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-
-import { movementAttributes } from '../movement-attributes';
 import { SceneComponent } from '../../../components/scene-component';
+
+import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 
 export const jumpPrep: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-jump-prep',
