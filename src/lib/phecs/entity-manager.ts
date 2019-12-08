@@ -1,14 +1,14 @@
 import { BaseScene } from '../../scenes/base-scene';
 import { TiledUtil } from '../../utilities/tiled-util';
 
-type PropertiesMap = { [key: string]: any };
+type PrefabMap = { [key: string]: Phecs.Prefab };
 type EntitiesMap = { [name: string]: Phecs.Entity[] };
 type EntityMap = { [name: string]: Phecs.Entity };
 
 export class EntityManager {
   private scene: BaseScene;
 
-  private prefabs: PropertiesMap;
+  private prefabs: PrefabMap;
   private entitiesByName: EntitiesMap;
   private entitiesByTag: EntitiesMap;
   private entitiesById: EntityMap;
@@ -21,13 +21,13 @@ export class EntityManager {
     this.entitiesById = {};
   }
 
-  registerPrefab(key: string, properties: PropertiesMap) {
-    this.prefabs[key] = properties;
+  registerPrefab(key: string, prefab: Phecs.Prefab) {
+    this.prefabs[key] = prefab;
   }
 
-  createPrefab(key: string, overrides: any, depth: number = 0, x: number = 0, y: number = 0) {
-    const prefabProperties = this.prefabs[key];
-    const entity = this.createEntity(prefabProperties, overrides, depth, x, y);
+  createPrefab(key: string, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
+    const prefab = this.prefabs[key];
+    const entity = this.createEntity(prefab, tiledProperties, depth, x, y);
 
     this.entitiesByName[key] = this.entitiesByName[key] || [];
     this.entitiesByName[key].push(entity);
@@ -64,7 +64,7 @@ export class EntityManager {
     this.entitiesById = {};
   }
 
-  private createEntity(rawProperties: any, rawOverrideProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
+  private createEntity(prefab: Phecs.Prefab, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
     const baseScene = this.scene as BaseScene;
 
     const entity = {
@@ -73,29 +73,20 @@ export class EntityManager {
     } as any;
 
     const properties = {
-      ...TiledUtil.normalizeProperties(rawProperties),
-      ...TiledUtil.normalizeProperties(rawOverrideProperties)
+      ...TiledUtil.normalizeProperties(tiledProperties)
     };
 
-    if (properties.tags) {
-      properties.tags.split(',').forEach((tag: string) => {
-        this.entitiesByTag[tag] = this.entitiesByTag[tag] || [];
-        this.entitiesByTag[tag].push(entity);
+    prefab.components.forEach((componentDefinition: Phecs.PrefabComponentDefinition) => {
+      const component = new componentDefinition.component(baseScene, {
+        x,
+        y,
+        depth,
+        ...properties,
+        ...componentDefinition.data,
+      }, entity);
 
-        const Component = baseScene.phecs.phComponents.getComponent(tag);
-
-        // Some entities have components with no functionality, just a tag. Like the `sign`
-        // The entity should still be added to the tag->entity map
-        if (Component) {
-          entity.components[tag] = new Component(baseScene, {
-            depth,
-            x,
-            y,
-            ...properties
-          }, entity);
-        }
-      });
-    }
+      entity.components.push(component);
+    });
 
     this.entitiesById[entity.id] = entity;
 

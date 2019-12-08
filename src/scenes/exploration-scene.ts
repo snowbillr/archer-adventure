@@ -68,6 +68,7 @@ export class ExplorationScene extends BaseScene {
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
     this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
 
+    /*
     this.phecs.phComponents.registerComponents(
       [
         { klass: AdventurerComponent, tag: AdventurerComponent.tag },
@@ -89,6 +90,7 @@ export class ExplorationScene extends BaseScene {
         { klass: ZoneBoundaryComponent, tag: ZoneBoundaryComponent.tag },
       ]
     );
+    */
 
     this.phecs.phSystems.registerSystems(
       [
@@ -145,7 +147,7 @@ export class ExplorationScene extends BaseScene {
         const map = this.areaManager.map;
         const tileset = this.areaManager.tileset;
 
-        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2, 0, 0);
+        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2);
         const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
         if (markerName) {

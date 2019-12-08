@@ -1,9 +1,7 @@
 declare module Phecs {
   interface Entity {
     id: string;
-    components: {
-      [tag: string]: Component
-    }
+    components: Component[]
   }
 
   type EntityData = {
@@ -22,13 +20,15 @@ declare module Phecs {
     new(scene: Phaser.Scene, data: EntityData, entity: Entity): Component;
   }
 
+  type PrefabComponentDefinition = {
+    component: ComponentConstructor,
+    data?: {
+      [key: string]: any,
+    }
+  }
+
   type Prefab = {
-    components: {
-      component: ComponentConstructor,
-      data?: {
-        [key: string]: any,
-      }
-    }[]
+    components: PrefabComponentDefinition[];
   }
 
   interface System {
