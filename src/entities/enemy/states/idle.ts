@@ -30,7 +30,7 @@ export const idle: PhiniteStateMachine.States.State<Phecs.Entity> = {
         const scene = enemy.getComponent(SpriteComponent).sprite.scene as BaseScene;
         for (let entityId of activeEntityIds) {
           const entity = scene.phecs.phEntities.getEntityById(entityId);
-          if (entity && entity.getComponent(AdventurerComponent)) {
+          if (entity.hasComponent(AdventurerComponent)) {
             return true;
           }
         }
