@@ -4,7 +4,7 @@ export class HealthComponent implements Phecs.Component {
   private maxHealth: number;
   private currentHealth: number;
   private onDeathListeners: (() => void)[];
-  private onDamageListeners: (() => void)[];
+  private onDamageListeners: ((newHealth: number) => void)[];
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
     this.maxHealth = data.maxHealth;
@@ -20,7 +20,7 @@ export class HealthComponent implements Phecs.Component {
     if (this.currentHealth <= 0) {
       this.onDeathListeners.forEach(listener => listener());
     } else {
-      this.onDamageListeners.forEach(listener => listener());
+      this.onDamageListeners.forEach(listener => listener(this.currentHealth));
     }
   }
 

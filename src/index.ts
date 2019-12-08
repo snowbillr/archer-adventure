@@ -8,6 +8,7 @@ import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 
 import { PreloadScene } from './scenes/preload-scene';
 import { ExplorationScene } from './scenes/exploration-scene';
+import { UiScene } from './scenes/ui-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 
 const gameConfig = {
@@ -35,7 +36,7 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, ExplorationScene, PrefabTestScene],
+  scene: [PreloadScene, ExplorationScene, UiScene, PrefabTestScene],
   pixelArt: true,
   physics: {
     default: 'arcade',
