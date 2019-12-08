@@ -15,6 +15,7 @@ export class EntityManager {
   constructor(scene: Phaser.Scene) {
     this.scene = scene as BaseScene;
     this.prefabs = {};
+
     this.entitiesById = {};
     this.entities = [];
   }
@@ -23,40 +24,10 @@ export class EntityManager {
     this.prefabs[key] = prefab;
   }
 
-  createPrefab(key: string, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
-    const prefab = this.prefabs[key];
-    const entity = this.createEntity(prefab, tiledProperties, depth, x, y);
-
-    return entity;
-  }
-
-  getEntityById(id: string) {
-    return this.entitiesById[id];
-  }
-
-  getEntitiesByComponent(component: Phecs.ComponentConstructor) {
-    const entities = this.entities.filter(entity => {
-      return entity.components.some(entityComponent => {
-        return component.name === entityComponent.__proto__.constructor.name;
-      })
-    });
-
-    return entities;
-  }
-
-  destroy() {
-    this.entities.forEach(entity => {
-      entity.components.forEach(component => component.destroy());
-    });
-
-    this.entitiesById = {};
-    this.entities = [];
-  }
-
-  private createEntity(prefab: Phecs.Prefab, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
+  createPrefab(type: string, tiledProperties: any, depth: number = 0, x: number = 0, y: number = 0) {
     const baseScene = this.scene as BaseScene;
-
-   const entity = new BaseEntity();
+    const entity = new BaseEntity(type);
+    const prefab = this.prefabs[type];
 
     const properties = {
       ...TiledUtil.normalizeProperties(tiledProperties)
@@ -80,4 +51,31 @@ export class EntityManager {
     return entity;
   }
 
+  getEntityById(id: string) {
+    return this.entitiesById[id];
+  }
+
+  // TODO: make this a util method
+  getEntitiesByComponent(component: Phecs.ComponentConstructor) {
+    const entities = this.entities.filter(entity => {
+      return entity.components.some(entityComponent => {
+        return component.name === entityComponent.__proto__.constructor.name;
+      })
+    });
+
+    return entities;
+  }
+
+  getEntitiesByType(type: string) {
+    return this.entities.filter(entity => entity.type === type);
+  }
+
+  destroy() {
+    this.entities.forEach(entity => {
+      entity.components.forEach(component => component.destroy());
+    });
+
+    this.entitiesById = {};
+    this.entities = [];
+  }
 }

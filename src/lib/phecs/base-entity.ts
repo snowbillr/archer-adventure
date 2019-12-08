@@ -1,12 +1,15 @@
 export class BaseEntity implements Phecs.Entity {
+  public type: string;
   public id: string;
   public components: Phecs.Component[];
 
-  constructor() {
+  constructor(type: string) {
+    this.type = type;
     this.id = this.generateUuid();
     this.components = [];
   }
 
+  // TODO: make this a util method
   getComponent<T extends Phecs.ComponentConstructor>(component: T): InstanceType<T> {
     const foundComponent = this.components.find(entityComponent => {
       return component.name === entityComponent.__proto__.constructor.name;
