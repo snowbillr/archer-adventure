@@ -5,11 +5,11 @@ import { HurtboxComponent } from '../../../components/hurtbox-component';
 export const dead: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-dead',
   onEnter(enemy) {
-    const sprite = enemy.components[SpriteComponent.tag].sprite;
+    const sprite = enemy.getComponent(SpriteComponent).sprite;
     sprite.anims.stop();
 
-    enemy.components[PhysicsBodyComponent.tag].body.enable = false;
-    enemy.components[HurtboxComponent.tag].disable();
+    enemy.getComponent(PhysicsBodyComponent).body.enable = false;
+    enemy.getComponent(HurtboxComponent).disable();
 
     sprite.scene.tweens.add({
       targets: [sprite],

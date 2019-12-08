@@ -4,7 +4,7 @@ export const hit: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'arrow-hit',
   transitions: [],
   onEnter(arrow) {
-    arrow.components[PhysicsBodyComponent.tag].body.setVelocity(0, 0);
-    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = false;
+    arrow.getComponent(PhysicsBodyComponent).body.setVelocity(0, 0);
+    arrow.getComponent(PhysicsBodyComponent).body.allowGravity = false;
   }
 }

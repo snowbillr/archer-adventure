@@ -5,8 +5,8 @@ import { PhysicsBodyComponent } from '../../../components/physics-body-component
 export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'enemy-stun',
   onEnter(enemy) {
-    const sprite = enemy.components[SpriteComponent.tag].sprite;
-    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    const sprite = enemy.getComponent(SpriteComponent).sprite;
+    const body = enemy.getComponent(PhysicsBodyComponent).body;
 
     sprite.anims.stop();
     body.allowGravity = false;
@@ -34,7 +34,7 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
     });
   },
   onLeave(enemy) {
-    const body = enemy.components[PhysicsBodyComponent.tag].body;
+    const body = enemy.getComponent(PhysicsBodyComponent).body;
 
     body.allowGravity = true;
   },
@@ -42,12 +42,12 @@ export const stun: PhiniteStateMachine.States.State<Phecs.Entity> = {
     {
       type: TransitionType.Conditional,
       condition(enemy) {
-        const sprite = enemy.components[SpriteComponent.tag].sprite;
+        const sprite = enemy.getComponent(SpriteComponent).sprite;
 
         return !sprite.scene.tweens.isTweening(sprite);
       },
       to(enemy) {
-        const body = enemy.components[PhysicsBodyComponent.tag].body;
+        const body = enemy.getComponent(PhysicsBodyComponent).body;
 
         if (body.blocked.down) {
           return 'enemy-idle';

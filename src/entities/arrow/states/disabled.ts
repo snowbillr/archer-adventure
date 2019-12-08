@@ -6,17 +6,17 @@ export const disabled: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'arrow-disabled',
   transitions: [],
   onEnter(arrow) {
-    arrow.components[SpriteComponent.tag].sprite.active = false;
-    arrow.components[SpriteComponent.tag].sprite.visible = false;
-    arrow.components[PhysicsBodyComponent.tag].body.enable = false;
-    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = false;
-    arrow.components[HitboxComponent.tag].disable();
+    arrow.getComponent(SpriteComponent).sprite.active = false;
+    arrow.getComponent(SpriteComponent).sprite.visible = false;
+    arrow.getComponent(PhysicsBodyComponent).body.enable = false;
+    arrow.getComponent(PhysicsBodyComponent).body.allowGravity = false;
+    arrow.getComponent(HitboxComponent).disable();
   },
   onLeave(arrow) {
-    arrow.components[SpriteComponent.tag].sprite.active = true;
-    arrow.components[SpriteComponent.tag].sprite.visible = true;
-    arrow.components[PhysicsBodyComponent.tag].body.enable = true;
-    arrow.components[PhysicsBodyComponent.tag].body.allowGravity = true;
-    arrow.components[HitboxComponent.tag].enable();
+    arrow.getComponent(SpriteComponent).sprite.active = true;
+    arrow.getComponent(SpriteComponent).sprite.visible = true;
+    arrow.getComponent(PhysicsBodyComponent).body.enable = true;
+    arrow.getComponent(PhysicsBodyComponent).body.allowGravity = true;
+    arrow.getComponent(HitboxComponent).enable();
   }
 }
