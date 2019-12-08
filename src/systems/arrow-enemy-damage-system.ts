@@ -17,28 +17,44 @@ export class ArrowEnemyDamageSystem implements Phecs.System {
         return arrowState === 'arrow-flying';
       });
 
-    arrows.forEach(arrow => {
-      const arrowHitboxes = arrow.components[AttachmentComponent.tag].getAttachmentsByType('hitbox')
-                        .filter((hitbox: Attachment) => hitbox.isEnabled()) as Attachment[];
 
-      enemies.forEach(enemy => {
-        const enemyHurtboxes = enemy.components[AttachmentComponent.tag].getAttachmentsByType('hurtbox')
-                            .filter((hurtbox: Attachment) => hurtbox.isEnabled()) as Attachment[];
 
-        let isHit = false;
-        for (let arrowHitbox of arrowHitboxes) {
-          enemyHurtboxes.forEach((hurtbox: Attachment) => {
-            if (!isHit && arrowHitbox.overlaps(hurtbox)) {
-              isHit = true;
-            }
-          });
+
+    for (let arrow of arrows) {
+      const arrowHitboxes = arrow.components[AttachmentComponent.tag]
+                                 .getAttachmentsByType('hitbox')
+                                 .filter((hitbox: Attachment) => hitbox.isEnabled()) as Attachment[];
+
+      for (let enemy of enemies) {
+        const enemyHurtboxes = enemy.components[AttachmentComponent.tag]
+                                    .getAttachmentsByType('hurtbox')
+                                    .filter((hurtbox: Attachment) => hurtbox.isEnabled()) as Attachment[];
+
+        if (this.doBoxesOverlap(arrowHitboxes, enemyHurtboxes)) {
+          this.onHit(arrow, enemy);
         }
+      }
+    }
+  }
 
-        if (isHit) {
-          arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
-          enemy.components[HealthComponent.tag].decreaseHealth(ARROW_DAMAGE);
-        }
-      });
-    });
+  private doBoxesOverlap(boxes1: Attachment[], boxes2: Attachment[]) {
+    let overlapping = false;
+
+    for (let box1 of boxes1) {
+      if (overlapping) break;
+    
+      for (let box2 of boxes2) {
+        if (overlapping) break;
+
+        overlapping = box1.overlaps(box2);
+      }
+    }
+
+    return overlapping;
+  }
+
+  private onHit(arrow: Phecs.Entity, enemy: Phecs.Entity) {
+    arrow.components[PhiniteStateMachineComponent.tag].phiniteStateMachine.doTransition({ to: 'arrow-disabled' });
+    enemy.components[HealthComponent.tag].decreaseHealth(ARROW_DAMAGE);
   }
 }
