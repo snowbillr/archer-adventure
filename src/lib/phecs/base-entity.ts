@@ -22,6 +22,12 @@ export class BaseEntity implements Phecs.Entity {
     throw new Error(`BaseEntity::NO_COMPONENT_${typeof component}`);
   }
 
+  hasComponent<T extends Phecs.ComponentConstructor>(component: T): boolean {
+    return this.components.some(entityComponent => {
+      return component.name === entityComponent.__proto__.constructor.name;
+    });
+  }
+
   private generateUuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

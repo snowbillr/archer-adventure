@@ -3,6 +3,7 @@ declare module Phecs {
     id: string;
     type: string;
     components: Component[];
+    hasComponent<T extends ComponentConstructor>(component: T): boolean;
     getComponent<T extends ComponentConstructor>(component: T): InstanceType<T>;
   }
 
