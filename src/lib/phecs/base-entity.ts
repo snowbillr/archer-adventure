@@ -10,22 +10,26 @@ export class BaseEntity implements Phecs.Entity {
   }
 
   // TODO: make this a util method
-  getComponent<T extends Phecs.ComponentConstructor>(component: T): InstanceType<T> {
-    const foundComponent = this.components.find(entityComponent => {
-      return component.name === entityComponent.__proto__.constructor.name;
+  getComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): InstanceType<T> {
+    const foundComponent = this.components.find(component => {
+      return this.isComponent(component, componentKlass);
     });
 
     if (foundComponent) {
       return foundComponent as InstanceType<T>;
     }
 
-    throw new Error(`BaseEntity::NO_COMPONENT_${typeof component}`);
+    throw new Error(`BaseEntity::NO_COMPONENT_${typeof componentKlass}`);
   }
 
-  hasComponent<T extends Phecs.ComponentConstructor>(component: T): boolean {
-    return this.components.some(entityComponent => {
-      return component.name === entityComponent.__proto__.constructor.name;
+  hasComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): boolean {
+    return this.components.some(component => {
+      return this.isComponent(component, componentKlass);
     });
+  }
+
+  private isComponent(component: Phecs.Component, componentKlass: Phecs.ComponentConstructor) {
+    return componentKlass.name === component.__proto__.constructor.name;
   }
 
   private generateUuid() {
