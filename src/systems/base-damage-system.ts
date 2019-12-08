@@ -4,30 +4,34 @@ import { Attachment } from "../lib/attachment";
 
 type EntityFetcher = (phEntities: EntityManager) => Phecs.Entity[];
 type OnHitCallback = (entity1: Phecs.Entity, entity2: Phecs.Entity) => void;
+type EntityConfig = {
+  entityFetcher: EntityFetcher,
+  boxType: string,
+}
 
 export abstract class BaseDamageSystem implements Phecs.System {
-  private entities1Fetcher: EntityFetcher;
-  private entities2Fetcher: EntityFetcher;
+  private entities1Config: EntityConfig;
+  private entities2Config: EntityConfig;
   private onHit: OnHitCallback;
 
-  constructor(entities1Fetcher: EntityFetcher, entities2Fetcher: EntityFetcher, onHit: OnHitCallback) {
-    this.entities1Fetcher = entities1Fetcher;
-    this.entities2Fetcher = entities2Fetcher;
+  constructor(entities1Config: EntityConfig, entities2Config: EntityConfig, onHit: OnHitCallback) {
+    this.entities1Config = entities1Config;
+    this.entities2Config = entities2Config;
     this.onHit = onHit;
   }
 
   update(phEntities: EntityManager) {
-    const entities1 = this.entities1Fetcher(phEntities);
-    const entities2 = this.entities2Fetcher(phEntities);
+    const entities1 = this.entities1Config.entityFetcher(phEntities);
+    const entities2 = this.entities2Config.entityFetcher(phEntities);
 
     for (let entity1 of entities1) {
       const entity1Boxes = entity1.components[AttachmentComponent.tag]
-                                            .getAttachmentsByType('hurtbox')
+                                            .getAttachmentsByType(this.entities1Config.boxType)
                                             .filter((hurtbox: Attachment) => hurtbox.isEnabled())
 
       for (let entity2 of entities2) {
         const entity2Boxes = entity2.components[AttachmentComponent.tag]
-                                  .getAttachmentsByType('hitbox')
+                                  .getAttachmentsByType(this.entities2Config.boxType)
                                   .filter((hitbox: Attachment) => hitbox.isEnabled())
 
         if (this.doBoxesOverlap(entity1Boxes, entity2Boxes)) {
