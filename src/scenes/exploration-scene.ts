@@ -185,7 +185,7 @@ export class ExplorationScene extends BaseScene {
 
         this.cameras.main.setBackgroundColor(0x888888);
         this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
-        this.cameras.main.startFollow(adventurer.components[SpriteComponent.tag].sprite, true);
+        this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
         this.isLoadingArea = false;
         resolve();
