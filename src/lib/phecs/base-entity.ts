@@ -9,7 +9,6 @@ export class BaseEntity implements Phecs.Entity {
     this.components = [];
   }
 
-  // TODO: make this a util method
   getComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): InstanceType<T> {
     const foundComponent = this.components.find(component => {
       return this.isComponent(component, componentKlass);
