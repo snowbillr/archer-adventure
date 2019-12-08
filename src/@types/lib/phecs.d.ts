@@ -22,6 +22,15 @@ declare module Phecs {
     new(scene: Phaser.Scene, data: EntityData, entity: Entity): Component;
   }
 
+  type Prefab = {
+    components: {
+      component: ComponentConstructor,
+      data?: {
+        [key: string]: any,
+      }
+    }[]
+  }
+
   interface System {
     start?(phEntities: any): void;
     stop?(phEntities: any): void;
