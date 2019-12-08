@@ -4,6 +4,7 @@ import { AttachmentComponent } from "../../components/attachment-component";
 import { HitboxComponent } from "../../components/hitbox-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { BoundsComponent } from "../../components/bounds-component";
+import { ArrowComponent } from "../../components/arrow-component";
 
 export const arrowPrefab: Phecs.Prefab = {
   components: [
@@ -41,6 +42,9 @@ export const arrowPrefab: Phecs.Prefab = {
       data: {
         boundsKey: 'arrow-bounds',
       }
+    },
+    {
+      component: ArrowComponent
     }
   ]
 };
