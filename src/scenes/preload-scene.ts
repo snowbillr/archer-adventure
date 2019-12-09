@@ -4,6 +4,12 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
+    // backgrounds
+    this.load.image('green-hills-1', '/assets/backgrounds/green-hills/1.png');
+    this.load.image('green-hills-2', '/assets/backgrounds/green-hills/2.png');
+    this.load.image('green-hills-3', '/assets/backgrounds/green-hills/3.png');
+    this.load.image('green-hills-4', '/assets/backgrounds/green-hills/4.png');
+
     // fonts
     this.load.bitmapFont('compass-72', '/assets/fonts/compass-72.png', '/assets/fonts/compass-72.xml');
     this.load.bitmapFont('compass-24', '/assets/fonts/compass-24.png', '/assets/fonts/compass-24.xml');
