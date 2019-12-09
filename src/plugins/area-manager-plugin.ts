@@ -12,6 +12,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public markers: { [name: string]: { x: number, y: number } };
   public zones: { [name: string]: { x: number, y: number, width: number, height: number } };
 
+  public currentAreaKey: string;
+
   private areaMap: { [areaName: string]: any };
 
   public adventurer!: Phecs.Entity;
@@ -23,6 +25,8 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.objects = {};
     this.markers = {};
     this.zones = {};
+
+    this.currentAreaKey = '';
 
     this.areaMap = {};
   }
@@ -36,6 +40,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   load(key: string) {
+    this.currentAreaKey = key;
     const area = this.areaMap[key];
 
     const map = this.scene.make.tilemap({ key: area.mapKey });
@@ -55,6 +60,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   unload() {
+    this.currentAreaKey = '';
     this.objects = {};
     this.markers = {};
     this.zones = {};
