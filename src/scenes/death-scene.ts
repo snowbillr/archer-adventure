@@ -11,10 +11,14 @@ export class DeathScene extends Phaser.Scene {
     promptText.setOrigin(0.5);
 
     this.input.keyboard.once(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, () => {
-      this.scene.stop('exploration');
-      this.scene.stop('ui');
-      this.scene.stop('death');
-      this.scene.start('exploration', { areaKey: data.areaKey });
+      this.cameras.main.fadeOut(1000, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
+        if (progress === 1) {
+          this.scene.stop('exploration');
+          this.scene.stop('ui');
+          this.scene.stop('death');
+          this.scene.start('exploration', { areaKey: data.areaKey });
+        }
+      });
     });
   }
 }

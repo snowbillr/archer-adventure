@@ -75,8 +75,10 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
 
+    this.cameras.main.fadeOut(0);
     this.loadNewArea(data.areaKey)
       .then(() => {
+        this.cameras.main.fadeIn(1000);
         this.scene.launch('ui');
       });
   }
