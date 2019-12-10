@@ -20,12 +20,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)$/,
+        test: /\.ts$/,
         include: path.resolve(__dirname, 'src/'),
         use: {
           loader: 'babel-loader',
         }
-      }
+      },
     ]
   },
 
@@ -58,6 +58,8 @@ module.exports = {
     }),
     new ForkTsCheckerWebpackPlugin()
   ],
+
+  devtool: 'cheap-module-eval-source-map',
 
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
