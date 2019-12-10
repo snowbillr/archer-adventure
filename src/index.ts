@@ -5,6 +5,7 @@ import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
+import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
 
 import { ExplorationScene } from './scenes/exploration-scene';
 import { DeathScene } from './scenes/death-scene';
@@ -18,6 +19,7 @@ const gameConfig = {
   plugins: {
     global: [
       { key: 'NinePatchPlugin', plugin: NinePatchPlugin, start: true },
+      { key: 'ParallaxSpritePlugin', plugin: ParallaxSpritePlugin, start: true },
     ],
     scene: [
       {

@@ -51,6 +51,8 @@ export class ExplorationScene extends BaseScene {
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
     this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
 
+    this.areaManager.registerBackgroundSet('green-hills', ['green-hills-1', 'green-hills-2', 'green-hills-3', 'green-hills-4'])
+
     this.phecs.phSystems.registerSystems(
       [
         ArrowEnemyDamageSystem,
@@ -144,7 +146,6 @@ export class ExplorationScene extends BaseScene {
 
         this.phecs.start();
 
-        this.cameras.main.setBackgroundColor(0x888888);
         this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
