@@ -33,7 +33,6 @@ export class ParallaxSprite {
   }
 
   destroy() {
-    console.log('destroy')
     this.layers.forEach(layer => {
       layer.tileSprite.destroy();
     });
