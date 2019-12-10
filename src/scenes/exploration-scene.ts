@@ -142,15 +142,6 @@ export class ExplorationScene extends BaseScene {
           });
         }
 
-        const bg1 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'green-hills-1');
-        const bg2 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'green-hills-2');
-        const bg3 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'green-hills-3');
-        const bg4 = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'green-hills-4');
-        bg1.setScrollFactor(0);
-        bg2.setScrollFactor(0);
-        bg3.setScrollFactor(0);
-        bg4.setScrollFactor(0);
-
         this.phecs.start();
 
         this.cameras.main.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);

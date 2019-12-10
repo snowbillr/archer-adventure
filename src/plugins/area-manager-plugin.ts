@@ -2,6 +2,7 @@ import 'phaser';
 import { BaseScene } from '../scenes/base-scene';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
+import { ParallaxSpritePlugin, ParallaxSprite } from './parallax-sprite-plugin';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public map!: Phaser.Tilemaps.Tilemap;
@@ -55,6 +56,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.loadMarkers();
     this.loadZones();
 
+    this.createBackground();
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
@@ -148,7 +150,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         tile.setCollision(true, true, true, true, false);
       }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
 
-      // B:this is an optimization for not calculating the faces immediately at L120
+      // this is an optimization for not calculating the faces immediately in the forEachTile loop above
       layer.calculateFacesWithin(0, 0, layer.width, layer.height);
     }
 
@@ -178,5 +180,16 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
       this.objects[layerName].push(entity);
     });
+  }
+
+  private createBackground() {
+    const layers = [
+      { key: 'green-hills-1' },
+      { key: 'green-hills-2' },
+      { key: 'green-hills-3' },
+      { key: 'green-hills-4' },
+    ];
+    const parallaxSprite = (this.scene.add as any).parallaxSprite(layers) as ParallaxSprite;
+    parallaxSprite.scrollWithCamera(this.scene.cameras.main);
   }
 }
