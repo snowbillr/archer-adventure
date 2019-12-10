@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="75" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="13">
  <properties>
+  <property name="backgroundSet" value="green-hills"/>
   <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground,sheep:ground,enemy:ground"/>
   <property name="startingMarker" value="adventurerStart"/>
  </properties>

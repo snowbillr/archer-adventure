@@ -248,6 +248,11 @@
  "orientation":"orthogonal",
  "properties":[
         {
+         "name":"backgroundSet",
+         "type":"string",
+         "value":"green-hills"
+        }, 
+        {
          "name":"entityLayerCollisions",
          "type":"string",
          "value":"adventurer:ground,arrow:ground,sheep:ground,enemy:ground"

@@ -31,4 +31,11 @@ export class ParallaxSprite {
       layer.tileSprite.setTilePosition(layer.scrollFactor * offset);
     });
   }
+
+  destroy() {
+    console.log('destroy')
+    this.layers.forEach(layer => {
+      layer.tileSprite.destroy();
+    });
+  }
 }

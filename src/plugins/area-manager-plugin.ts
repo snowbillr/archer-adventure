@@ -3,6 +3,7 @@ import { BaseScene } from '../scenes/base-scene';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
 import { ParallaxSprite } from "./parallax-sprite";
+import { ParallaxSpritePlugin } from './parallax-sprite-plugin';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public map!: Phaser.Tilemaps.Tilemap;
@@ -16,8 +17,11 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public currentAreaKey: string;
 
   private areaMap: { [areaName: string]: any };
+  private backgroundSets: { [name: string]: string[] };
 
   public adventurer!: Phecs.Entity;
+
+  private background?: ParallaxSprite;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
     super(scene, pluginManager);
@@ -30,6 +34,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.currentAreaKey = '';
 
     this.areaMap = {};
+    this.backgroundSets = {};
   }
 
   registerArea(key: string, mapKey: string, tilesetName: string, tilesetKey: string) {
@@ -38,6 +43,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       tilesetName,
       tilesetKey,
     };
+  }
+
+  registerBackgroundSet(name: string, layerNames: string[]) {
+    this.backgroundSets[name] = layerNames;
   }
 
   load(key: string) {
@@ -56,7 +65,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.loadMarkers();
     this.loadZones();
 
-    this.createBackground();
+    this.createBackground(TiledUtil.normalizeProperties(this.map.properties).backgroundSet);
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
@@ -74,6 +83,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     if (this.map) {
       this.map.destroy();
+    }
+
+    if (this.background) {
+      this.background.destroy();
     }
   }
 
@@ -182,14 +195,13 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     });
   }
 
-  private createBackground() {
-    const layers = [
-      { key: 'green-hills-1' },
-      { key: 'green-hills-2' },
-      { key: 'green-hills-3' },
-      { key: 'green-hills-4' },
-    ];
-    const parallaxSprite = (this.scene.add as any).parallaxSprite(layers) as ParallaxSprite;
-    parallaxSprite.scrollWithCamera(this.scene.cameras.main);
+  private createBackground(backgroundSetName: string) {
+    if (backgroundSetName == null) return; 
+
+    const layerNames = this.backgroundSets[backgroundSetName];
+    const layersConfig: ParallaxSprite.LayersConfig = layerNames.map(layerName => { return { key: layerName } });
+
+    this.background = (this.scene.add as any).parallaxSprite(layersConfig) as ParallaxSprite;
+    this.background.scrollWithCamera(this.scene.cameras.main);
   }
 }
