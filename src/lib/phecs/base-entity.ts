@@ -11,7 +11,7 @@ export class BaseEntity implements Phecs.Entity {
 
   getComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): InstanceType<T> {
     const foundComponent = this.components.find(component => {
-      return this.isComponent(component, componentKlass);
+      return component instanceof componentKlass;
     });
 
     if (foundComponent) {
@@ -23,12 +23,8 @@ export class BaseEntity implements Phecs.Entity {
 
   hasComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): boolean {
     return this.components.some(component => {
-      return this.isComponent(component, componentKlass);
+      return component instanceof componentKlass;
     });
-  }
-
-  private isComponent(component: Phecs.Component, componentKlass: Phecs.ComponentConstructor) {
-    return componentKlass.name === component.__proto__.constructor.name;
   }
 
   private generateUuid() {
