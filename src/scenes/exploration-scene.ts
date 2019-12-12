@@ -41,18 +41,41 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
+    this.registerStateSets();
+    this.registerAreas();
+    this.registerBackgroundSets();
+    this.registerSystems();
+    this.registerPrefabs();
+
+    this.loadData();
+
+    this.cameras.main.fadeOut(0);
+    this.loadNewArea(data.areaKey)
+      .then(() => {
+        this.cameras.main.fadeIn(1000);
+        this.scene.launch('ui');
+      });
+  }
+
+  registerStateSets() {
     this.stateRegistrar.registerSets([
       { id: 'adventurer', states: adventurerStates },
       { id: 'enemy', states: enemyStates },
       { id: 'sheep', states: sheepStates },
       { id: 'arrow', states: arrowStates },
     ]);
+  }
 
+  registerAreas() {
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
     this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
+  }
 
+  registerBackgroundSets() {
     this.areaManager.registerBackgroundSet('green-hills', ['green-hills-1', 'green-hills-2', 'green-hills-3', 'green-hills-4'])
+  }
 
+  registerSystems() {
     this.phecs.phSystems.registerSystems(
       [
         ArrowEnemyDamageSystem,
@@ -69,22 +92,15 @@ export class ExplorationScene extends BaseScene {
         SignSystem,
       ]
     );
+  }
 
+  registerPrefabs() {
     this.phecs.phEntities.registerPrefab('adventurer', adventurerPrefab);
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
-
-    this.loadData();
-
-    this.cameras.main.fadeOut(0);
-    this.loadNewArea(data.areaKey)
-      .then(() => {
-        this.cameras.main.fadeIn(1000);
-        this.scene.launch('ui');
-      });
   }
 
   loadData() {
