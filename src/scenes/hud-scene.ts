@@ -8,9 +8,9 @@ const healthbarFrameMap: { [key: number]: number} = {
   1: 4,
 };
 
-export abstract class UiScene extends BaseScene {
+export class HUDScene extends BaseScene {
   constructor() {
-    super({key: 'ui'});
+    super({key: 'hud'});
   }
 
   create() {

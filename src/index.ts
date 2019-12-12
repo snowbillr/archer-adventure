@@ -11,7 +11,7 @@ import { ExplorationScene } from './scenes/exploration-scene';
 import { DeathScene } from './scenes/death-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 import { PreloadScene } from './scenes/preload-scene';
-import { UiScene } from './scenes/ui-scene';
+import { HUDScene } from './scenes/hud-scene';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 
 const gameConfig = {
@@ -41,7 +41,7 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, ExplorationScene, UiScene, DeathScene, PrefabTestScene],
+  scene: [PreloadScene, ExplorationScene, HUDScene, DeathScene, PrefabTestScene],
   pixelArt: true,
   physics: {
     default: 'arcade',

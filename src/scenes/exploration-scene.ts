@@ -53,7 +53,7 @@ export class ExplorationScene extends BaseScene {
     this.loadNewArea(data.areaKey)
       .then(() => {
         this.cameras.main.fadeIn(1000);
-        this.scene.launch('ui');
+        this.scene.launch('hud');
       });
   }
 

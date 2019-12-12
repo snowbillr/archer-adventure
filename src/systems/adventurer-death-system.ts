@@ -16,7 +16,7 @@ export class AdventurerDeathSystem implements Phecs.System {
 
     this.scene.persistence.onChange<number>('adventurer.health', health => {
       if (health <= 0) {
-        this.scene.scene.stop('ui');
+        this.scene.scene.stop('hud');
         this.scene.scene.pause('exploration');
         this.scene.scene.launch('death', {
           respawnAreaKey: this.scene.areaManager.currentAreaKey,

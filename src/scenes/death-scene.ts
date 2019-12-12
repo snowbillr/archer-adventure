@@ -14,7 +14,7 @@ export class DeathScene extends Phaser.Scene {
       this.cameras.main.fadeOut(1000, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
         if (progress === 1) {
           this.scene.stop('exploration');
-          this.scene.stop('ui');
+          this.scene.stop('hud');
           this.scene.stop('death');
           this.scene.start('exploration', { areaKey: data.respawnAreaKey });
         }
