@@ -1,8 +1,9 @@
 import { BaseScene } from "./base-scene";
+import { SCENE_KEYS } from "./scene-keys";
 
 export class PreloadScene extends BaseScene {
   constructor() {
-    super({ key: 'preload' });
+    super({ key: SCENE_KEYS.preload });
   }
 
   preload() {
@@ -66,7 +67,7 @@ export class PreloadScene extends BaseScene {
   }
 
   create() {
-    this.scene.start('exploration', { areaKey: 'woollards-farm' });
-    // this.scene.start('prefabTest');
+    this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    // this.scene.start(SCENE_KEYS.prefabTest);
   }
 }

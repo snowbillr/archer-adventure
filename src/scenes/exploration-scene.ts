@@ -30,12 +30,13 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
+import { SCENE_KEYS } from './scene-keys';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
 
   constructor() {
-    super({ key: 'exploration' });
+    super({ key: SCENE_KEYS.exploration });
 
     this.isLoadingArea = false;
   }
@@ -53,7 +54,7 @@ export class ExplorationScene extends BaseScene {
     this.loadNewArea(data.areaKey)
       .then(() => {
         this.cameras.main.fadeIn(1000);
-        this.scene.launch('hud');
+        this.scene.launch(SCENE_KEYS.hud);
       });
   }
 

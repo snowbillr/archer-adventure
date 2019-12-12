@@ -1,4 +1,5 @@
 import { BaseScene } from './base-scene';
+import { SCENE_KEYS } from './scene-keys';
 
 const healthbarFrameMap: { [key: number]: number} = {
   5: 0,
@@ -10,7 +11,7 @@ const healthbarFrameMap: { [key: number]: number} = {
 
 export class HUDScene extends BaseScene {
   constructor() {
-    super({key: 'hud'});
+    super({ key: SCENE_KEYS.hud });
   }
 
   create() {

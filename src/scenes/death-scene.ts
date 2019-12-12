@@ -1,6 +1,8 @@
+import { SCENE_KEYS } from './scene-keys';
+
 export class DeathScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'death' });
+    super({ key: SCENE_KEYS.death });
   }
 
   create(data: any) {
@@ -13,10 +15,10 @@ export class DeathScene extends Phaser.Scene {
     this.input.keyboard.once(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, () => {
       this.cameras.main.fadeOut(1000, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
         if (progress === 1) {
-          this.scene.stop('exploration');
-          this.scene.stop('hud');
-          this.scene.stop('death');
-          this.scene.start('exploration', { areaKey: data.respawnAreaKey });
+          this.scene.stop(SCENE_KEYS.exploration);
+          this.scene.stop(SCENE_KEYS.hud);
+          this.scene.stop(SCENE_KEYS.death);
+          this.scene.start(SCENE_KEYS.exploration, { areaKey: data.respawnAreaKey });
         }
       });
     });
