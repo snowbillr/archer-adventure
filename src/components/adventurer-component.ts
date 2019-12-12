@@ -1,4 +1,5 @@
 import { BaseScene } from "../scenes/base-scene";
+import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
 
 type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
 
@@ -31,7 +32,7 @@ export class AdventurerComponent implements Phecs.Component {
   }
 
   decreaseHealth(amount: number) {
-    this.scene.persistence.update<number>('adventurer.health', currentHealth => {
+    this.scene.persistence.update<number>(PERSISTENCE_KEYS.adventurer.health, currentHealth => {
       return currentHealth - amount;
     });
   }

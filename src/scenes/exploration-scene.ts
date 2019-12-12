@@ -30,7 +30,8 @@ import { arrowPrefab } from '../entities/arrow/prefab';
 import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
-import { SCENE_KEYS } from './scene-keys';
+import { SCENE_KEYS } from '../constants/scene-keys';
+import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -105,7 +106,7 @@ export class ExplorationScene extends BaseScene {
   }
 
   loadData() {
-    this.persistence.set('adventurer.health', 5);
+    this.persistence.set(PERSISTENCE_KEYS.adventurer.health, 5);
   }
 
   loadNewArea(key: string, markerName?: string) {

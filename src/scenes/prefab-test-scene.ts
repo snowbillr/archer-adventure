@@ -15,7 +15,7 @@ import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machi
 import { adventurerTestPrefab } from '../entities/adventurer/test-prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 import { arrowStates } from '../entities/arrow/states';
-import { SCENE_KEYS } from './scene-keys';
+import { SCENE_KEYS } from '../constants/scene-keys';
 
 export class PrefabTestScene extends BaseScene {
   centerDebugCircle!: Phaser.GameObjects.Shape;

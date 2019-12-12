@@ -1,4 +1,4 @@
-import { SCENE_KEYS } from './scene-keys';
+import { SCENE_KEYS } from '../constants/scene-keys';
 
 export class DeathScene extends Phaser.Scene {
   constructor() {
