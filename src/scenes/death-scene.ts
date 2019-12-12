@@ -16,7 +16,7 @@ export class DeathScene extends Phaser.Scene {
           this.scene.stop('exploration');
           this.scene.stop('ui');
           this.scene.stop('death');
-          this.scene.start('exploration', { areaKey: data.areaKey });
+          this.scene.start('exploration', { areaKey: data.respawnAreaKey });
         }
       });
     });

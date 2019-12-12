@@ -19,7 +19,7 @@ export class AdventurerDeathSystem implements Phecs.System {
         this.scene.scene.stop('ui');
         this.scene.scene.pause('exploration');
         this.scene.scene.launch('death', {
-          areaKey: this.scene.areaManager.currentAreaKey,
+          respawnAreaKey: this.scene.areaManager.currentAreaKey,
         });
       }
     });
