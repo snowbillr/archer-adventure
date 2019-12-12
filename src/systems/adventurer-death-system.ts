@@ -14,12 +14,14 @@ export class AdventurerDeathSystem implements Phecs.System {
   start(phEntities: EntityManager) {
     const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
 
-    adventurer.getComponent(HealthComponent).onDeath(() => {
-      this.scene.scene.stop('ui');
-      this.scene.scene.pause('exploration');
-      this.scene.scene.launch('death', {
-        areaKey: this.scene.areaManager.currentAreaKey,
-      });
+    this.scene.persistence.onChange<number>('adventurer.health', health => {
+      if (health <= 0) {
+        this.scene.scene.stop('ui');
+        this.scene.scene.pause('exploration');
+        this.scene.scene.launch('death', {
+          areaKey: this.scene.areaManager.currentAreaKey,
+        });
+      }
     });
   }
 }

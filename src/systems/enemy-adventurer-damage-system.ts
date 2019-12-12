@@ -1,14 +1,13 @@
 import { EnemyComponent } from '../components/enemy-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { InvulnerabilityComponent } from '../components/invulnerability-component';
-import { HealthComponent } from '../components/health-component';
 
 import { BaseDamageSystem } from './base-damage-system';
 
 const ENEMY_DAMAGE = 1;
 
 export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
-  constructor() {
+  constructor(scene: Phaser.Scene) {
     super(
       {
         entityFetcher: phEntities => {
@@ -25,7 +24,7 @@ export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
       },
       (adventurer: Phecs.Entity, enemy: Phecs.Entity) => {
         adventurer.getComponent(InvulnerabilityComponent).makeInvulnerable();
-        adventurer.getComponent(HealthComponent).decreaseHealth(ENEMY_DAMAGE);
+        adventurer.getComponent(AdventurerComponent).decreaseHealth(ENEMY_DAMAGE);
       }
     )
   }

@@ -1,7 +1,4 @@
-import 'phaser';
 import { BaseScene } from './base-scene';
-import { HealthComponent } from '../components/health-component';
-import { AdventurerComponent } from '../components/adventurer-component';
 
 const healthbarFrameMap: { [key: number]: number} = {
   5: 0,
@@ -19,11 +16,8 @@ export abstract class UiScene extends BaseScene {
   create() {
     const healthbar = this.add.sprite(80, 25, 'healthbar', 0);
 
-    const explorationScene = this.scene.get('exploration') as BaseScene;
-    const adventurer = explorationScene.phecs.phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-
-    adventurer.getComponent(HealthComponent).onDamage((newHealth: number) => {
-      healthbar.setFrame(healthbarFrameMap[newHealth]);
+    this.persistence.onChange<number>('adventurer.health', health => {
+      healthbar.setFrame(healthbarFrameMap[health]);
     });
   }
 }

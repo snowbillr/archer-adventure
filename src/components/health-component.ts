@@ -37,5 +37,6 @@ export class HealthComponent implements Phecs.Component {
     delete this.maxHealth;
     delete this.currentHealth;
     delete this.onDeathListeners;
+    delete this.onDamageListeners;
   }
 }

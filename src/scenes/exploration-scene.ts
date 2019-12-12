@@ -77,12 +77,18 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
 
+    this.loadData();
+
     this.cameras.main.fadeOut(0);
     this.loadNewArea(data.areaKey)
       .then(() => {
         this.cameras.main.fadeIn(1000);
         this.scene.launch('ui');
       });
+  }
+
+  loadData() {
+    this.persistence.set('adventurer.health', 5);
   }
 
   loadNewArea(key: string, markerName?: string) {
@@ -94,9 +100,9 @@ export class ExplorationScene extends BaseScene {
         this.isLoadingArea = true;
       }
 
-      // This is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
+      // This delayed call is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
       // The events must be queued up or something in the event emitter, and even when all the events are cleared,
-      // they still get called.
+      // the listeners still get called.
 
       // This manifested as a problem when you entered a door and the sign interaction check got called for the
       // previous scene.

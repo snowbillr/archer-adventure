@@ -61,13 +61,6 @@ export const adventurerPrefab: Phecs.Prefab = {
     {
       component: ShootsArrowsComponent,
     },
-    {
-      component: HealthComponent,
-      data: {
-        maxHealth: 5,
-      }
-    },
-    HealthComponent,
     InvulnerabilityComponent,
   ]
 }

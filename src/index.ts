@@ -12,6 +12,7 @@ import { DeathScene } from './scenes/death-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 import { PreloadScene } from './scenes/preload-scene';
 import { UiScene } from './scenes/ui-scene';
+import { PersistencePlugin } from './plugins/persistence-plugin';
 
 const gameConfig = {
   width: 800,
@@ -20,6 +21,7 @@ const gameConfig = {
     global: [
       { key: 'NinePatchPlugin', plugin: NinePatchPlugin, start: true },
       { key: 'ParallaxSpritePlugin', plugin: ParallaxSpritePlugin, start: true },
+      { key: 'PersistencePlugin', plugin: PersistencePlugin, mapping: 'persistence', start: true },
     ],
     scene: [
       {

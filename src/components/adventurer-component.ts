@@ -1,10 +1,16 @@
+import { BaseScene } from "../scenes/base-scene";
+
 type Controls = { [control: string]: Phaser.Input.Keyboard.Key };
 
 export class AdventurerComponent implements Phecs.Component {
+  private scene: BaseScene;
+
   public controls: Controls;
   public codes: { [code: string]: string };
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
+    this.scene = scene as BaseScene;
+
     this.controls = scene.input.keyboard.addKeys({
       'up': Phaser.Input.Keyboard.KeyCodes.UP,
       'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
@@ -22,6 +28,12 @@ export class AdventurerComponent implements Phecs.Component {
       'action': 'f',
       'attack': ' ',
     }
+  }
+
+  decreaseHealth(amount: number) {
+    this.scene.persistence.update<number>('adventurer.health', currentHealth => {
+      return currentHealth - amount;
+    });
   }
 
   destroy() {
