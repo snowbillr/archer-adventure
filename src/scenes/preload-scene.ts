@@ -7,6 +7,10 @@ export class PreloadScene extends BaseScene {
   }
 
   preload() {
+    // title screen backgounrd
+    this.load.image('title-screen', '/assets/backgrounds/title-screen.png');
+    this.load.image('vignette-effect', '/assets/backgrounds/vignette-effect.png');
+
     // backgrounds
     this.load.image('green-hills-1', '/assets/backgrounds/green-hills/1.png');
     this.load.image('green-hills-2', '/assets/backgrounds/green-hills/2.png');
@@ -14,6 +18,7 @@ export class PreloadScene extends BaseScene {
     this.load.image('green-hills-4', '/assets/backgrounds/green-hills/4.png');
 
     // fonts
+    this.load.bitmapFont('compass-72-title', '/assets/fonts/compass-72-title.png', '/assets/fonts/compass-72-title.xml');
     this.load.bitmapFont('compass-72', '/assets/fonts/compass-72.png', '/assets/fonts/compass-72.xml');
     this.load.bitmapFont('compass-24', '/assets/fonts/compass-24.png', '/assets/fonts/compass-24.xml');
     this.load.bitmapFont('compass-18', '/assets/fonts/compass-18.png', '/assets/fonts/compass-18.xml');
@@ -67,7 +72,8 @@ export class PreloadScene extends BaseScene {
   }
 
   create() {
-    this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    // this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    this.scene.start(SCENE_KEYS.title);
     // this.scene.start(SCENE_KEYS.prefabTest);
   }
 }
