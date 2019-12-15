@@ -40,8 +40,9 @@ export class TitleScene extends BaseScene {
       font: 'compass-72-title',
       text: 'Archer Adventure',
     });
+    titleEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    const startButton = this.phecs.phEntities.createPrefab('menuButton', {
+    const startButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
       y: 250,
       origin: 0.5,
@@ -54,8 +55,9 @@ export class TitleScene extends BaseScene {
         this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
       },
     });
+    startButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    const optionsButton = this.phecs.phEntities.createPrefab('menuButton', {
+    const optionsButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
       y: 290,
       origin: 0.5,
@@ -64,7 +66,33 @@ export class TitleScene extends BaseScene {
       indicatorSide: IndicatorSide.LEFT,
       menuActionCallback: () => {},
     });
+    optionsButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    this.phecs.start();
+    this.tweens.timeline({
+      tweens: [
+        {
+          targets: [
+            titleEntity.getComponent(TextComponent).bitmapText,
+          ],
+          props: {
+            alpha: 1,
+          },
+          duration: 1000,
+        },
+        {
+          targets: [
+            startButtonEntity.getComponent(TextComponent).bitmapText,
+            optionsButtonEntity.getComponent(TextComponent).bitmapText,
+          ],
+          props: {
+            alpha: 1,
+          },
+          duration: 500,
+          onComplete: () => {
+            this.phecs.start();
+          }
+        }
+      ]
+    });
   }
 }
