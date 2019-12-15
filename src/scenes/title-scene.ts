@@ -23,10 +23,11 @@ export class TitleScene extends BaseScene {
     optionsText.alpha = 0;
 
     const indicator = this.add.sprite(350, 250, 'indicator-right');
+    indicator.alpha = 0;
     indicator.anims.play('indicator-right');
 
     this.tweens.add({
-      targets: [titleText, startText],
+      targets: [titleText, startText, indicator],
       props: {
         alpha: 1
       },
