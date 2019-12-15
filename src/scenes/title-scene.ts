@@ -22,12 +22,27 @@ export class TitleScene extends BaseScene {
     optionsText.setOrigin(0.5);
     optionsText.alpha = 0;
 
+    const indicator = this.add.sprite(350, 250, 'indicator-right');
+    indicator.anims.play('indicator-right');
+
     this.tweens.add({
-      targets: [titleText, startText, optionsText],
+      targets: [titleText, startText],
       props: {
         alpha: 1
       },
       duration: 1000,
+    });
+    this.tweens.add({
+      targets: [optionsText],
+      props: {
+        alpha: 0.5
+      },
+      duration: 1000,
+    });
+
+    this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, () => {
+      this.scene.stop();
+      this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
     });
   }
 }

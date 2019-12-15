@@ -48,6 +48,7 @@ export class PreloadScene extends BaseScene {
 
     // indicators
     this.load.spritesheet('indicator-down', '/assets/sprites/indicators/indicator-down.png', { frameWidth: 32, frameHeight: 32 })
+    this.load.spritesheet('indicator-right', '/assets/sprites/indicators/indicator-right.png', { frameWidth: 32, frameHeight: 32 })
     this.load.animation('indicator-animations', '/assets/animations/indicators.json');
 
     // doors

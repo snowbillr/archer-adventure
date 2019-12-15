@@ -10,6 +10,17 @@
       ],
       "repeat": -1,
       "frameRate": 4
+    },
+    {
+      "key": "indicator-right",
+      "frames": [
+        { "key": "indicator-right", "frame": 0 },
+        { "key": "indicator-right", "frame": 1 },
+        { "key": "indicator-right", "frame": 2 },
+        { "key": "indicator-right", "frame": 3 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
     }
   ]
 }
