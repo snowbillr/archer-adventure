@@ -4,6 +4,7 @@ import { TextComponent } from "../components/text-component";
 import { TextIndicatorComponent } from "../components/text-indicator-component";
 import { IndicatorSide } from "../lib/indicator";
 import { MenuSystem } from "../systems/menu-system";
+import { MenuActionComponent } from "../components/menu-action-component";
 
 export class TitleScene extends BaseScene {
   constructor() {
@@ -21,6 +22,7 @@ export class TitleScene extends BaseScene {
       components: [
         TextComponent,
         TextIndicatorComponent,
+        MenuActionComponent,
       ]
     });
 
@@ -46,6 +48,11 @@ export class TitleScene extends BaseScene {
       font: 'compass-24',
       text: 'Start',
       indicatorSide: IndicatorSide.LEFT,
+      menuActionCallback: () => {
+        this.phecs.stop();
+        this.scene.stop();
+        this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+      },
     });
 
     const optionsButton = this.phecs.phEntities.createPrefab('menuButton', {
@@ -55,6 +62,7 @@ export class TitleScene extends BaseScene {
       font: 'compass-24',
       text: 'Options',
       indicatorSide: IndicatorSide.LEFT,
+      menuActionCallback: () => {},
     });
 
     this.phecs.start();

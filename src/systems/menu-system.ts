@@ -3,6 +3,7 @@ import 'phaser';
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseScene } from '../scenes/base-scene';
 import { TextIndicatorComponent } from '../components/text-indicator-component';
+import { MenuActionComponent } from '../components/menu-action-component';
 
 export class MenuSystem implements Phecs.System {
   private scene: BaseScene;
@@ -33,7 +34,7 @@ export class MenuSystem implements Phecs.System {
     } else if (e.key === 'ArrowUp') {
       this.updateIndicator(Phaser.Math.Wrap(this.selectedIndex - 1, 0, this.menuOptions.length));
     } else if (e.key === ' ' || e.key === 'f') {
-      // action key
+      this.selectMenuOption();
     }
   }
 
@@ -44,5 +45,11 @@ export class MenuSystem implements Phecs.System {
     this.selectedIndex = newSelectedIndex;
     const newMenuOption = this.menuOptions[this.selectedIndex];
     newMenuOption.getComponent(TextIndicatorComponent).indicator.show();
+  }
+
+  private selectMenuOption() {
+    const menuOption = this.menuOptions[this.selectedIndex];
+
+    menuOption.getComponent(MenuActionComponent).callback();
   }
 }
