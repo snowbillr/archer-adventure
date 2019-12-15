@@ -1,49 +1,62 @@
 import { BaseScene } from "./base-scene";
 import { SCENE_KEYS } from "../constants/scene-keys";
+import { TextComponent } from "../components/text-component";
+import { TextIndicatorComponent } from "../components/text-indicator-component";
+import { IndicatorSide } from "../lib/indicator";
+import { MenuSystem } from "../systems/menu-system";
 
 export class TitleScene extends BaseScene {
   constructor() {
     super({ key: SCENE_KEYS.title });
   }
 
+  init() {
+    this.phecs.phEntities.registerPrefab('menuTitle', {
+      components: [
+        TextComponent,
+      ]
+    });
+
+    this.phecs.phEntities.registerPrefab('menuButton', {
+      components: [
+        TextComponent,
+        TextIndicatorComponent,
+      ]
+    });
+
+    this.phecs.phSystems.registerSystems([MenuSystem]);
+  }
+
   create() {
     this.add.image(0, 0, 'title-screen').setOrigin(0, 0);
     this.add.image(0, 0, 'vignette-effect').setOrigin(0, 0).setAlpha(0.1);
 
-    const titleText = this.add.bitmapText(400, 160, 'compass-72-title', 'Archer Adventure');
-    titleText.setOrigin(0.5);
-    titleText.alpha = 0;
-
-    const startText = this.add.bitmapText(400, 250, 'compass-24', 'Start');
-    startText.setOrigin(0.5);
-    startText.alpha = 0;
-
-    const optionsText = this.add.bitmapText(400, 290, 'compass-24', 'Options');
-    optionsText.setOrigin(0.5);
-    optionsText.alpha = 0;
-
-    const indicator = this.add.sprite(350, 250, 'indicator-right');
-    indicator.alpha = 0;
-    indicator.anims.play('indicator-right');
-
-    this.tweens.add({
-      targets: [titleText, startText, indicator],
-      props: {
-        alpha: 1
-      },
-      duration: 1000,
-    });
-    this.tweens.add({
-      targets: [optionsText],
-      props: {
-        alpha: 0.5
-      },
-      duration: 1000,
+    const titleEntity = this.phecs.phEntities.createPrefab('menuTitle', {
+      x: 400,
+      y: 160,
+      origin: 0.5,
+      font: 'compass-72-title',
+      text: 'Archer Adventure',
     });
 
-    this.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, () => {
-      this.scene.stop();
-      this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    const startButton = this.phecs.phEntities.createPrefab('menuButton', {
+      x: 400,
+      y: 250,
+      origin: 0.5,
+      font: 'compass-24',
+      text: 'Start',
+      indicatorSide: IndicatorSide.LEFT,
     });
+
+    const optionsButton = this.phecs.phEntities.createPrefab('menuButton', {
+      x: 400,
+      y: 290,
+      origin: 0.5,
+      font: 'compass-24',
+      text: 'Options',
+      indicatorSide: IndicatorSide.LEFT,
+    });
+
+    this.phecs.start();
   }
 }

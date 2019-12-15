@@ -1,4 +1,4 @@
-import { IndicatorComponent } from '../components/indicator-component';
+import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { TextboxComponent } from '../components/textbox-component';
@@ -56,13 +56,13 @@ export class SignSystem implements Phecs.System {
     const enteringSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
     const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
     for (let enteringSign of enteringSigns) {
-      enteringSign.getComponent(IndicatorComponent).showIndicator();
+      enteringSign.getComponent(SpriteIndicatorComponent).indicator.show();
     }
 
     const exitingSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
     const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
     for (let exitingSign of exitingSigns) {
-      exitingSign.getComponent(IndicatorComponent).hideIndicator();
+      exitingSign.getComponent(SpriteIndicatorComponent).indicator.hide();
 
       if (exitingSign.getComponent(TextboxComponent).isTextboxShowing) {
         exitingSign.getComponent(TextboxComponent).hideTextbox();

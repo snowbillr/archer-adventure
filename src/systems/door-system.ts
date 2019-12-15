@@ -1,7 +1,7 @@
 import { ExplorationScene } from '../scenes/exploration-scene';
 import { DoorComponent } from '../components/door-component';
 import { AdventurerComponent } from '../components/adventurer-component';
-import { IndicatorComponent } from '../components/indicator-component';
+import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
@@ -55,13 +55,13 @@ export class DoorSystem implements Phecs.System {
     const enteringDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
     const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
     for (let enteringDoor of enteringDoors) {
-      enteringDoor.getComponent(IndicatorComponent).showIndicator();
+      enteringDoor.getComponent(SpriteIndicatorComponent).indicator.show();
     }
 
     const exitingDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
     const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
     for (let enteringDoor of exitingDoors) {
-      enteringDoor.getComponent(IndicatorComponent).hideIndicator();
+      enteringDoor.getComponent(SpriteIndicatorComponent).indicator.hide();
     }
   }
 }
