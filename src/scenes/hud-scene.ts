@@ -11,7 +11,7 @@ const healthbarFrameMap: { [key: number]: number} = {
 };
 
 export class HUDScene extends BaseScene {
-  private healthPersistenceCleanupFn?: () => void;
+  private healthListenerCleanupFn?: () => void;
 
   constructor() {
     super({ key: SCENE_KEYS.hud });
@@ -24,14 +24,14 @@ export class HUDScene extends BaseScene {
   create() {
     const healthbar = this.add.sprite(80, 25, 'healthbar', 0);
 
-    this.healthPersistenceCleanupFn = this.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
+    this.healthListenerCleanupFn = this.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
       healthbar.setFrame(healthbarFrameMap[health]);
     });
   }
 
   shutdown() {
-    if (this.healthPersistenceCleanupFn) {
-      this.healthPersistenceCleanupFn();
+    if (this.healthListenerCleanupFn) {
+      this.healthListenerCleanupFn();
     }
   }
 }

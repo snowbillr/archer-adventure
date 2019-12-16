@@ -6,14 +6,14 @@ import { SCENE_KEYS } from '../constants/scene-keys';
 export class AdventurerDeathSystem implements Phecs.System {
   private scene: BaseScene;
 
-  private listenerCleanupFn?: () => void;
+  private healthListenerCleanupFn?: () => void;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene as BaseScene;
   }
 
   start(phEntities: EntityManager) {
-    this.listenerCleanupFn = this.scene.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
+    this.healthListenerCleanupFn = this.scene.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
       console.log('death system');
       if (health <= 0) {
         this.scene.scene.stop(SCENE_KEYS.hud);
@@ -26,9 +26,9 @@ export class AdventurerDeathSystem implements Phecs.System {
   }
 
   stop() {
-    if (this.listenerCleanupFn) {
-      this.listenerCleanupFn();
+    if (this.healthListenerCleanupFn) {
+      this.healthListenerCleanupFn();
     }
-    delete this.listenerCleanupFn;
+    delete this.healthListenerCleanupFn;
   }
 }
