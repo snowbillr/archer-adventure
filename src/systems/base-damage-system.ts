@@ -26,13 +26,13 @@ export abstract class BaseDamageSystem implements Phecs.System {
 
     for (let entity1 of entities1) {
       const entity1Boxes = entity1.getComponent(AttachmentComponent)
-                                            .getAttachmentsByType(this.entities1Config.boxType)
-                                            .filter((hurtbox: Attachment) => hurtbox.isEnabled())
+                                  .getAttachmentsByType(this.entities1Config.boxType)
+                                  .filter((hurtbox: Attachment) => hurtbox.isEnabled())
 
       for (let entity2 of entities2) {
         const entity2Boxes = entity2.getComponent(AttachmentComponent)
-                                  .getAttachmentsByType(this.entities2Config.boxType)
-                                  .filter((hitbox: Attachment) => hitbox.isEnabled())
+                                    .getAttachmentsByType(this.entities2Config.boxType)
+                                    .filter((hitbox: Attachment) => hitbox.isEnabled())
 
         if (this.doBoxesOverlap(entity1Boxes, entity2Boxes)) {
           this.onHit(entity1, entity2);

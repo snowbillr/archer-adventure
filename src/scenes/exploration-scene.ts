@@ -164,7 +164,7 @@ export class ExplorationScene extends BaseScene {
         if (mapProperties.entityLayerCollisions) {
           mapProperties.entityLayerCollisions.split(',').forEach((entityLayerPair: string) => {
             const [entityName, layerName] = entityLayerPair.split(':');
-            const entities = this.phecs.phEntities.getEntitiesByType(entityName);
+            const entities = this.phecs.phEntities.getEntities(entityName);
             const layer = this.areaManager.getTileLayer(layerName);
 
             if (layer == null) {
