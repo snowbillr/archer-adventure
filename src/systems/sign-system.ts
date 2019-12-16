@@ -2,14 +2,11 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
-import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
 
-export class SignSystem extends BaseInteractionIndicatorSystem {
+export class SignSystem implements Phecs.System {
   private listeners: (() => void)[];
 
   constructor() {
-    super(AdventurerComponent, 'sign');
-
     this.listeners = [];
   }
 
@@ -49,11 +46,5 @@ export class SignSystem extends BaseInteractionIndicatorSystem {
     });
 
     this.listeners = [];
-  }
-
-  protected onExit(sign: Phecs.Entity) {
-    if (sign.getComponent(TextboxComponent).isTextboxShowing) {
-      sign.getComponent(TextboxComponent).hideTextbox();
-    }
   }
 }

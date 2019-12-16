@@ -21,6 +21,6 @@ export const doorPrefab: Phecs.Prefab = {
         interactionControl: 'action',
         interactionRadius: 40,
       }
-    }
+    },
   ]
 }

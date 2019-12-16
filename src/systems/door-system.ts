@@ -5,13 +5,11 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
 import { ExplorationScene } from '../scenes/exploration-scene';
 
-export class DoorSystem extends BaseInteractionIndicatorSystem {
+export class DoorSystem implements Phecs.System {
   private scene: ExplorationScene;
   private listeners: (() => void)[];
 
   constructor(scene: Phaser.Scene) {
-    super(AdventurerComponent, DoorComponent);
-
     this.scene = scene as ExplorationScene;
     this.listeners = [];
   }

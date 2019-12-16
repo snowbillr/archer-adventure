@@ -34,6 +34,8 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
+import { AdventurerDoorInteractionIndicatorSystem } from '../systems/adventurer-door-interaction-indicator-system';
+import { AdventurerSignInteractionIndicatorSystem } from '../systems/adventurer-sign-interaction-indicator-system';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -85,6 +87,8 @@ export class ExplorationScene extends BaseScene {
       [
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
+        AdventurerDoorInteractionIndicatorSystem,
+        AdventurerSignInteractionIndicatorSystem,
         DoorSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
