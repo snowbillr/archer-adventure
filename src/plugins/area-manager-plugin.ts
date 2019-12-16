@@ -65,7 +65,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.loadMarkers();
     this.loadZones();
 
-    this.createBackground(TiledUtil.normalizeProperties(this.map.properties).backgroundSet);
+    this.createBackground(TiledUtil.normalizeProperties(this.map.properties));
     this.createTileLayers(this.map.layers.map(layer => layer.name));
     this.createObjectLayers(this.map.objects.map(layer => layer.name));
   }
@@ -154,7 +154,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   private createTileLayer(layerName: string): void {
-    const layer = this.map.createStaticLayer(layerName, this.tileset, 0, 0);
+    const layer = this.map.createStaticLayer(layerName, this.tileset);
 
     const layerProperties: any = TiledUtil.normalizeProperties(layer.layer.properties);
 
@@ -195,13 +195,15 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     });
   }
 
-  private createBackground(backgroundSetName: string) {
-    if (backgroundSetName == null) return; 
+  private createBackground(properties: { [key: string]: string }) {
+    if (properties.backgroundSet) {
+      const layerNames = this.backgroundSets[properties.backgroundSet];
+      const layersConfig: ParallaxSprite.LayersConfig = layerNames.map(layerName => { return { key: layerName } });
 
-    const layerNames = this.backgroundSets[backgroundSetName];
-    const layersConfig: ParallaxSprite.LayersConfig = layerNames.map(layerName => { return { key: layerName } });
-
-    this.background = (this.scene.add as any).parallaxSprite(layersConfig) as ParallaxSprite;
-    this.background.scrollWithCamera(this.scene.cameras.main);
+      this.background = (this.scene.add as any).parallaxSprite(layersConfig) as ParallaxSprite;
+      this.background.scrollWithCamera(this.scene.cameras.main);
+    } else if (properties.backgroundColor) {
+      this.scene.cameras.main.setBackgroundColor(`#${properties.backgroundColor}`)
+    }
   }
 }

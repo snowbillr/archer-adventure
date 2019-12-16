@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"woollards-house.json"
+        }
+    },
  "height":6,
  "infinite":false,
  "layers":[
@@ -87,6 +95,11 @@
  "nextobjectid":2,
  "orientation":"orthogonal",
  "properties":[
+        {
+         "name":"backgroundColor",
+         "type":"string",
+         "value":"3E2323"
+        }, 
         {
          "name":"entityLayerCollisions",
          "type":"string",
