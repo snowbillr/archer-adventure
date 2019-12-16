@@ -14,7 +14,6 @@ export class AdventurerDeathSystem implements Phecs.System {
 
   start(phEntities: EntityManager) {
     this.healthListenerCleanupFn = this.scene.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
-      console.log('death system');
       if (health <= 0) {
         this.scene.scene.stop(SCENE_KEYS.hud);
         this.scene.scene.pause(SCENE_KEYS.exploration);
