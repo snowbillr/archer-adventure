@@ -3,52 +3,44 @@ import { InteractionCircleComponent } from '../components/interaction-circle-com
 import { EntityManager } from '../lib/phecs/entity-manager';
 
 type ComponentIdentifierType = Phecs.ComponentConstructor | string;
-type ComponentIdentifierConfig = {
-  component: ComponentIdentifierType;
-  enterCallback?: (entity: Phecs.Entity) => void;
-  exitCallback?: (entity: Phecs.Entity) => void;
-};
+
+// This always checks for B entering/exiting A
 
 export abstract class BaseInteractionIndicatorSystem implements Phecs.System {
-  private componentAConfig: ComponentIdentifierConfig;
-  private componentBConfig: ComponentIdentifierConfig;
+  private componentA: ComponentIdentifierType;
+  private componentB: ComponentIdentifierType;
 
-  constructor(componentAConfig: ComponentIdentifierConfig, componentBConfig: ComponentIdentifierConfig) {
-    this.componentAConfig = componentAConfig;
-    this.componentBConfig = componentBConfig;
+  protected onEnter?(entityB: Phecs.Entity): void;
+  protected onExit?(entityB: Phecs.Entity): void;
+
+  constructor(componentA: ComponentIdentifierType, componentB: ComponentIdentifierType) {
+    this.componentA = componentA;
+    this.componentB = componentB;
   }
 
   update(phEntities: EntityManager) {
-    const entityAs = this.getEntitiesForComponent(phEntities, this.componentAConfig.component);
-    const entityBs = this.getEntitiesForComponent(phEntities, this.componentBConfig.component);
+    const entityAs = this.getEntitiesForComponent(phEntities, this.componentA);
+    const entityBs = this.getEntitiesForComponent(phEntities, this.componentB);
 
     for (let entityA of entityAs) {
       const entityAInteractionTracker = entityA.getComponent(InteractionCircleComponent).interactionTracker; 
 
-      const enteringIds = entityAInteractionTracker.getEntityIds('entering');
-      const enteringEntityBs = entityBs.filter(entityB => enteringIds.includes(entityB.id));
+      const enteringEntityBs = this.getInteractingEntityBs(entityAInteractionTracker, entityBs, 'entering');
       for (let enteringEntityB of enteringEntityBs) {
         enteringEntityB.getComponent(SpriteIndicatorComponent).indicator.show();
 
-        if (this.componentAConfig.enterCallback) {
-          this.componentAConfig.enterCallback(entityA);
-        }
-        if (this.componentBConfig.enterCallback) {
-          this.componentBConfig.enterCallback(enteringEntityB);
-        }
+       if (this.onEnter) {
+         this.onEnter(enteringEntityB);
+       }
       }
 
-      const exitingIds = entityAInteractionTracker.getEntityIds('exiting');
-      const exitingEntityBs = entityBs.filter(entityB => exitingIds.includes(entityB.id));
+      const exitingEntityBs = this.getInteractingEntityBs(entityAInteractionTracker, entityBs, 'exiting');
       for (let exitingEntityB of exitingEntityBs) {
         exitingEntityB.getComponent(SpriteIndicatorComponent).indicator.hide();
 
-        if (this.componentAConfig.exitCallback) {
-          this.componentAConfig.exitCallback(entityA);
-        }
-        if (this.componentBConfig.exitCallback) {
-          this.componentBConfig.exitCallback(exitingEntityB);
-        }
+       if (this.onExit) {
+         this.onExit(exitingEntityB);
+       }
       }
     }
   }
@@ -61,5 +53,11 @@ export abstract class BaseInteractionIndicatorSystem implements Phecs.System {
     } else {
       throw new Error(`BaseInteractionIndicatorSystem::BAD_COMPONENT_IDENTIFIER::${component}`);
     }
+  }
+
+  private getInteractingEntityBs(interactionTracker: InteractionTracker, entities: Phecs.Entity[], interactionState: InteractionState) {
+    const interactingIds = interactionTracker.getEntityIds(interactionState);
+
+    return entities.filter(entityB => interactingIds.includes(entityB.id));
   }
 }

@@ -1,17 +1,16 @@
-import { ExplorationScene } from '../scenes/exploration-scene';
 import { DoorComponent } from '../components/door-component';
 import { AdventurerComponent } from '../components/adventurer-component';
-import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
+import { ExplorationScene } from '../scenes/exploration-scene';
 
 export class DoorSystem extends BaseInteractionIndicatorSystem {
   private scene: ExplorationScene;
   private listeners: (() => void)[];
 
   constructor(scene: Phaser.Scene) {
-    super({ component: AdventurerComponent }, { component: DoorComponent });
+    super(AdventurerComponent, DoorComponent);
 
     this.scene = scene as ExplorationScene;
     this.listeners = [];
