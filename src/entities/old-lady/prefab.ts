@@ -1,5 +1,6 @@
 import { SpriteComponent } from "../../components/sprite-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
+import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 
 export const oldLadyPrefab: Phecs.Prefab = {
   components: [
@@ -14,6 +15,13 @@ export const oldLadyPrefab: Phecs.Prefab = {
       data: {
         stateSet: 'old-lady',
         initialStateId: 'old-lady-idle'
+      }
+    },
+    {
+      component: InteractionCircleComponent,
+      data: {
+        interactionRadius: 70,
+        interactionDebug: false,
       }
     }
   ]

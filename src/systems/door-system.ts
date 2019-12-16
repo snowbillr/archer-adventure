@@ -4,12 +4,15 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
+import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
 
-export class DoorSystem implements Phecs.System {
+export class DoorSystem extends BaseInteractionIndicatorSystem {
   private scene: ExplorationScene;
   private listeners: (() => void)[];
 
   constructor(scene: Phaser.Scene) {
+    super({ component: AdventurerComponent }, { component: DoorComponent });
+
     this.scene = scene as ExplorationScene;
     this.listeners = [];
   }
@@ -46,22 +49,5 @@ export class DoorSystem implements Phecs.System {
     });
 
     this.listeners = [];
-  }
-
-  update(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const doors = phEntities.getEntitiesByComponent(DoorComponent);
-
-    const enteringDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
-    const enteringDoors = doors.filter(door => enteringDoorIds.includes(door.id));
-    for (let enteringDoor of enteringDoors) {
-      enteringDoor.getComponent(SpriteIndicatorComponent).indicator.show();
-    }
-
-    const exitingDoorIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
-    const exitingDoors = doors.filter(door => exitingDoorIds.includes(door.id));
-    for (let enteringDoor of exitingDoors) {
-      enteringDoor.getComponent(SpriteIndicatorComponent).indicator.hide();
-    }
   }
 }

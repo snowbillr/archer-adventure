@@ -3,11 +3,24 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
+import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
 
-export class SignSystem implements Phecs.System {
+export class SignSystem extends BaseInteractionIndicatorSystem {
   private listeners: (() => void)[];
 
   constructor() {
+    super(
+      { component: AdventurerComponent },
+      {
+        component: 'sign',
+        exitCallback: sign => {
+          if (sign.getComponent(TextboxComponent).isTextboxShowing) {
+            sign.getComponent(TextboxComponent).hideTextbox();
+          }
+        },
+      }
+    );
+
     this.listeners = [];
   }
 
@@ -47,26 +60,5 @@ export class SignSystem implements Phecs.System {
     });
 
     this.listeners = [];
-  }
-
-  update(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByType('sign');
-
-    const enteringSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('entering');
-    const enteringSigns = signs.filter(sign => enteringSignIds.includes(sign.id));
-    for (let enteringSign of enteringSigns) {
-      enteringSign.getComponent(SpriteIndicatorComponent).indicator.show();
-    }
-
-    const exitingSignIds = adventurer.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('exiting');
-    const exitingSigns = signs.filter(sign => exitingSignIds.includes(sign.id));
-    for (let exitingSign of exitingSigns) {
-      exitingSign.getComponent(SpriteIndicatorComponent).indicator.hide();
-
-      if (exitingSign.getComponent(TextboxComponent).isTextboxShowing) {
-        exitingSign.getComponent(TextboxComponent).hideTextbox();
-      }
-    }
   }
 }
