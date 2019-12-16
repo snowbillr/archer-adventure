@@ -9,8 +9,6 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   constructor(pluginManager: Phaser.Plugins.PluginManager) {
     super(pluginManager);
 
-    console.log('persistence constructor')
-
     this.data = {};
     this.onChangeListeners = {};
   }
