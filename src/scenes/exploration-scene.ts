@@ -6,6 +6,7 @@ import { adventurerStates } from '../entities/adventurer/states';
 import { sheepStates } from '../entities/sheep/states';
 import { arrowStates } from '../entities/arrow/states';
 import { enemyStates } from '../entities/enemy/states';
+import { oldLadyStates } from '../entities/old-lady/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
@@ -26,13 +27,13 @@ import { enemyPrefab } from '../entities/enemy/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
+import { oldLadyPrefab } from '../entities/old-lady/prefab';
 
 import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
-import { oldLadyPrefab } from '../entities/old-lady/prefab';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -66,6 +67,7 @@ export class ExplorationScene extends BaseScene {
       { id: 'enemy', states: enemyStates },
       { id: 'sheep', states: sheepStates },
       { id: 'arrow', states: arrowStates },
+      { id: 'old-lady', states: oldLadyStates },
     ]);
   }
 
