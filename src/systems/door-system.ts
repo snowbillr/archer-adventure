@@ -2,7 +2,6 @@ import { DoorComponent } from '../components/door-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
-import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
 import { ExplorationScene } from '../scenes/exploration-scene';
 
 export class DoorSystem implements Phecs.System {

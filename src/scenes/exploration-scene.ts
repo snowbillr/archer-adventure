@@ -36,6 +36,7 @@ import { SCENE_KEYS } from '../constants/scene-keys';
 import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 import { AdventurerDoorInteractionIndicatorSystem } from '../systems/adventurer-door-interaction-indicator-system';
 import { AdventurerSignInteractionIndicatorSystem } from '../systems/adventurer-sign-interaction-indicator-system';
+import { AdventurerOldLadyInteractionIndicatorSystem } from '../systems/adventurer-old-lady-interaction-indicator-system';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -89,6 +90,7 @@ export class ExplorationScene extends BaseScene {
         AdventurerDeathSystem,
         AdventurerDoorInteractionIndicatorSystem,
         AdventurerSignInteractionIndicatorSystem,
+        AdventurerOldLadyInteractionIndicatorSystem,
         DoorSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
