@@ -37,6 +37,16 @@ export class SystemsManager {
     });
   }
 
+  destroy() {
+    this.systems.forEach(system => {
+      if (system.destroy) {
+        system.destroy();
+      }
+    });
+    
+    this.systems = [];
+  }
+
   registerSystems(systemsList: Phecs.SystemConstructor[]) {
     systemsList.forEach((klass) => {
       this.systems.push(new klass(this.scene));

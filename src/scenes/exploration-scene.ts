@@ -47,6 +47,10 @@ export class ExplorationScene extends BaseScene {
     this.isLoadingArea = false;
   }
 
+  init() {
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.shutdown());
+  }
+
   create(data: any) {
     this.registerStateSets();
     this.registerAreas();
@@ -135,8 +139,7 @@ export class ExplorationScene extends BaseScene {
       // This manifested as a problem when you entered a door and the sign interaction check got called for the
       // previous scene.
       this.time.delayedCall(0, () => {
-        this.phecs.stop();
-        this.phecs.destroy();
+        this.phecs.reset();
         this.areaManager.unload();
 
         this.areaManager.load(key);
@@ -188,6 +191,11 @@ export class ExplorationScene extends BaseScene {
         resolve();
       }, [], null);
     });
+  }
+
+  private shutdown() {
+    this.phecs.shutdown();
+    this.areaManager.unload();
   }
 
   // This ensures that the tilemap is centered in the screen if it is too small to fill it.

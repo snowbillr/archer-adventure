@@ -5,7 +5,7 @@ import { InteractionCircleComponent } from "../components/interaction-circle-com
 export abstract class BaseAdventurerInteractionControlSystem implements Phecs.System {
   private interactionIdentifier: Phecs.EntityIdentifier;
 
-  private listeners: (() => void)[];
+  private listeners: { key: Phaser.Input.Keyboard.Key, listener: () => void}[]
 
   constructor(interactionIdentifier: Phecs.EntityIdentifier) {
     this.interactionIdentifier = interactionIdentifier;
@@ -32,24 +32,13 @@ export abstract class BaseAdventurerInteractionControlSystem implements Phecs.Sy
       } 
 
       interactionControl.on(Phaser.Input.Keyboard.Events.DOWN, listener);
-      this.listeners.push(listener);
+      this.listeners.push({ key: interactionControl, listener: listener });
     }
   }
 
   stop(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntities(AdventurerComponent)[0];
-    if (!adventurer) return;
-
-    const interactionEntities = phEntities.getEntities(this.interactionIdentifier);
-
-    const adventurerControls = adventurer.getComponent(AdventurerComponent).controls;
-
-    for (let interactionEntity of interactionEntities) {
-      const interactionControl = adventurerControls[interactionEntity.getComponent(InteractionCircleComponent).interactionControl];
-
-      for (let listener of this.listeners) {
-        interactionControl.off(Phaser.Input.Keyboard.Events.DOWN, listener);
-      }
+    for (let listener of this.listeners) {
+      listener.key.off(Phaser.Input.Keyboard.Events.DOWN, listener.listener);
     }
   }
 

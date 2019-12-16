@@ -8,6 +8,8 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   constructor(pluginManager: Phaser.Plugins.PluginManager) {
     super(pluginManager);
 
+    console.log('persistence constructor')
+
     this.data = {};
     this.onChangeListeners = {};
   }
@@ -29,5 +31,10 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   onChange<T>(key: string, onChangeCallback: OnChangeCallback<T>) {
     this.onChangeListeners[key] = this.onChangeListeners[key] || [];
     this.onChangeListeners[key].push(onChangeCallback);
+
+    return () => {
+      const callbackIndex = this.onChangeListeners[key].findIndex(callback => callback == onChangeCallback);
+      this.onChangeListeners[key].splice(callbackIndex, 1);
+    }
   }
 }
