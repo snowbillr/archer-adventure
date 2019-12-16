@@ -55,14 +55,14 @@ export class EntityManager {
     return this.entitiesById[id];
   }
 
-  getEntitiesByComponent(component: Phecs.ComponentConstructor) {
-    return this.entities.filter(entity => {
-      return entity.hasComponent(component);
-    });
-  }
-
-  getEntitiesByType(type: string) {
-    return this.entities.filter(entity => entity.type === type);
+  getEntities(identifier: Phecs.EntityIdentifier) {
+    if (typeof identifier === 'string') {
+      return this.getEntitiesByType(identifier);
+    } else if (typeof identifier === 'function') {
+      return this.getEntitiesByComponent(identifier);
+    } else {
+      throw new Error(`Phecs.EntityManager::BAD_ENTITY_IDENTIFIER::${identifier}`);
+    }
   }
 
   destroy() {
@@ -85,6 +85,16 @@ export class EntityManager {
         return componentDefinition;
       }
     });
+  }
+
+  private getEntitiesByComponent(component: Phecs.ComponentConstructor) {
+    return this.entities.filter(entity => {
+      return entity.hasComponent(component);
+    });
+  }
+
+  private getEntitiesByType(type: string) {
+    return this.entities.filter(entity => entity.type === type);
   }
 
 }

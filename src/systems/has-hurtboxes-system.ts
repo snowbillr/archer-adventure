@@ -7,7 +7,7 @@ import { AttachmentComponent } from '../components/attachment-component';
 
 export class HasHurtboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByComponent(HurtboxComponent)
+    const entities = phEntities.getEntities(HurtboxComponent)
       .filter(entity => {
         return entity.getComponent(HurtboxComponent).enabled;
       });

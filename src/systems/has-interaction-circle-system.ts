@@ -11,7 +11,7 @@ export class HasInteracionCircleSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    const entities: Phecs.Entity[] = phEntities.getEntitiesByComponent(InteractionCircleComponent);
+    const entities: Phecs.Entity[] = phEntities.getEntities(InteractionCircleComponent);
 
     for (let entity of entities) {
       this.syncInteractionCircleToEntity(entity);

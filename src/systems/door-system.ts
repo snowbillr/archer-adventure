@@ -14,8 +14,8 @@ export class DoorSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const doors = phEntities.getEntitiesByComponent(DoorComponent);
+    const adventurer = phEntities.getEntities(AdventurerComponent)[0];
+    const doors = phEntities.getEntities(DoorComponent);
 
     doors.forEach(door => {
       const controlKey = adventurer.getComponent(AdventurerComponent).controls[door.getComponent(InteractionCircleComponent).interactionControl];
@@ -33,8 +33,8 @@ export class DoorSystem implements Phecs.System {
   }
 
   stop(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const doors = phEntities.getEntitiesByComponent(DoorComponent);
+    const adventurer = phEntities.getEntities(AdventurerComponent)[0];
+    const doors = phEntities.getEntities(DoorComponent);
 
     const controlKeys = new Set(doors.map(door => adventurer.getComponent(AdventurerComponent).controls[door.getComponent(InteractionCircleComponent).interactionControl]));
 

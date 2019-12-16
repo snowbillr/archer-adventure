@@ -15,7 +15,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
   onUpdate(enemy) {
     const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
 
-    const adventurer = scene.phecs.phEntities.getEntitiesByComponent(AdventurerComponent)[0];
+    const adventurer = scene.phecs.phEntities.getEntities(AdventurerComponent)[0];
     const adventurerSprite = adventurer.getComponent(SpriteComponent).sprite;
 
     const enemySprite = enemy.getComponent(SpriteComponent).sprite;
@@ -41,7 +41,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
         const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
         const activeEntityIds = enemy.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
 
-        const adventurerId = scene.phecs.phEntities.getEntitiesByComponent(AdventurerComponent)[0].id;
+        const adventurerId = scene.phecs.phEntities.getEntities(AdventurerComponent)[0].id;
 
         return !activeEntityIds.includes(adventurerId);
       },

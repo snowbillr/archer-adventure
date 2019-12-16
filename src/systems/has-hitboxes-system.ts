@@ -7,7 +7,7 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasHitboxesSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByComponent(HitboxComponent)
+    const entities = phEntities.getEntities(HitboxComponent)
       .filter(entity => {
         return entity.getComponent(HitboxComponent).enabled;
       });

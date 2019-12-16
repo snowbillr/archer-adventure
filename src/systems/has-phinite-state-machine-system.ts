@@ -5,7 +5,7 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasPhiniteStateMachineSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByComponent(PhiniteStateMachineComponent)
+    const entities = phEntities.getEntities(PhiniteStateMachineComponent)
 
     entities.forEach(entity => {
       entity.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.update();

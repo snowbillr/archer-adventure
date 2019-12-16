@@ -17,7 +17,7 @@ export class MenuSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    this.menuOptions = phEntities.getEntitiesByType('menuButton');
+    this.menuOptions = phEntities.getEntities('menuButton');
 
     this.scene.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, this.keyboardListener, this);
 

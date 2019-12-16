@@ -4,7 +4,7 @@ import { EntityManager } from '../lib/phecs/entity-manager';
 
 export class HasAttachmentsSystem implements Phecs.System {
   update(phEntities: EntityManager) {
-    const entities = phEntities.getEntitiesByComponent(AttachmentComponent);
+    const entities = phEntities.getEntities(AttachmentComponent);
 
     for (let entity of entities) {
       for (let attachment of entity.getComponent(AttachmentComponent).attachments) {

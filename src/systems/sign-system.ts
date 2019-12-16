@@ -11,8 +11,8 @@ export class SignSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByType('sign');
+    const adventurer = phEntities.getEntities(AdventurerComponent)[0];
+    const signs = phEntities.getEntities('sign');
 
     signs.forEach(sign => {
       const controlKey = adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl];
@@ -34,8 +34,8 @@ export class SignSystem implements Phecs.System {
   }
 
   stop(phEntities: EntityManager) {
-    const adventurer = phEntities.getEntitiesByComponent(AdventurerComponent)[0];
-    const signs = phEntities.getEntitiesByType('sign');
+    const adventurer = phEntities.getEntities(AdventurerComponent)[0];
+    const signs = phEntities.getEntities('sign');
 
     const controlKeys = new Set(signs.map(sign => adventurer.getComponent(AdventurerComponent).controls[sign.getComponent(InteractionCircleComponent).interactionControl]));
 

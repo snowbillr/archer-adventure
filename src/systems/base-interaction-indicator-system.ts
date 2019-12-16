@@ -2,25 +2,23 @@ import { SpriteIndicatorComponent } from '../components/sprite-indicator-compone
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
-type ComponentIdentifierType = Phecs.ComponentConstructor | string;
-
 // This always checks for B entering/exiting A
 
 export abstract class BaseInteractionIndicatorSystem implements Phecs.System {
-  private componentA: ComponentIdentifierType;
-  private componentB: ComponentIdentifierType;
+  private componentA: Phecs.EntityIdentifier;
+  private componentB: Phecs.EntityIdentifier;
 
   protected onEnter?(entityB: Phecs.Entity): void;
   protected onExit?(entityB: Phecs.Entity): void;
 
-  constructor(componentA: ComponentIdentifierType, componentB: ComponentIdentifierType) {
+  constructor(componentA: Phecs.EntityIdentifier, componentB: Phecs.EntityIdentifier) {
     this.componentA = componentA;
     this.componentB = componentB;
   }
 
   update(phEntities: EntityManager) {
-    const entityAs = this.getEntitiesForComponent(phEntities, this.componentA);
-    const entityBs = this.getEntitiesForComponent(phEntities, this.componentB);
+    const entityAs = phEntities.getEntities(this.componentA);
+    const entityBs = phEntities.getEntities(this.componentB);
 
     for (let entityA of entityAs) {
       const entityAInteractionTracker = entityA.getComponent(InteractionCircleComponent).interactionTracker; 
@@ -42,16 +40,6 @@ export abstract class BaseInteractionIndicatorSystem implements Phecs.System {
          this.onExit(exitingEntityB);
        }
       }
-    }
-  }
-
-  private getEntitiesForComponent(phEntities: EntityManager, component: ComponentIdentifierType) {
-    if (typeof component === 'string') {
-      return phEntities.getEntitiesByType(component);
-    } else if (typeof component === 'function') {
-      return phEntities.getEntitiesByComponent(component);
-    } else {
-      throw new Error(`BaseInteractionIndicatorSystem::BAD_COMPONENT_IDENTIFIER::${component}`);
     }
   }
 

@@ -13,7 +13,7 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
     super(
       {
         entityFetcher: phEntities => {
-          return phEntities.getEntitiesByType('arrow')
+          return phEntities.getEntities('arrow')
                            .filter(arrow => {
                              const arrowState = arrow.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.currentState.id;
                              return arrowState === 'arrow-flying';
@@ -22,7 +22,7 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
         boxType: 'hitbox',
       },
       {
-        entityFetcher: phEntities => phEntities.getEntitiesByComponent(EnemyComponent),
+        entityFetcher: phEntities => phEntities.getEntities(EnemyComponent),
         boxType: 'hurtbox',
       },
       (arrow: Phecs.Entity, enemy: Phecs.Entity) => {

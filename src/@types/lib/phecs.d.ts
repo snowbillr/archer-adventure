@@ -23,6 +23,8 @@ declare module Phecs {
     new(scene: Phaser.Scene, data: EntityData, entity: Entity): Component;
   }
 
+  type EntityIdentifier = ComponentConstructor | string;
+
   type PrefabComponentDefinition = {
     component: ComponentConstructor,
     data?: {
