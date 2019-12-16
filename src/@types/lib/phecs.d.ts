@@ -40,6 +40,7 @@ declare module Phecs {
     start?(phEntities: any): void;
     stop?(phEntities: any): void;
     update?(phEntities: any): void;
+    destroy?(): void;
   }
 
   interface SystemConstructor {

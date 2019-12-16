@@ -32,4 +32,15 @@ export class PhecsPlugin extends Phaser.Plugins.ScenePlugin {
   destroy() {
     this.phEntities.destroy();
   }
+
+  reset() {
+    this.stop();
+    this.destroy();
+  }
+
+  shutdown() {
+    this.stop();
+    this.destroy();
+    this.phSystems.destroy();
+  }
 }
