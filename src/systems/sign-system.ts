@@ -3,7 +3,6 @@ import { InteractionCircleComponent } from '../components/interaction-circle-com
 import { TextboxComponent } from '../components/textbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseInteractionIndicatorSystem } from './base-interaction-indicator-system';
-import { PhecsPlugin } from '../plugins/phecs-plugin';
 
 export class SignSystem extends BaseInteractionIndicatorSystem {
   private listeners: (() => void)[];

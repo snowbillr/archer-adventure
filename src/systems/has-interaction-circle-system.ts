@@ -14,19 +14,8 @@ export class HasInteracionCircleSystem implements Phecs.System {
     const entities: Phecs.Entity[] = phEntities.getEntitiesByComponent(InteractionCircleComponent);
 
     for (let entity of entities) {
-      entity.getComponent(InteractionCircleComponent).interactionCircle.setPosition(entity.getComponent(SpriteComponent).sprite.x, entity.getComponent(SpriteComponent).sprite.y);
-
-      const debugInteractionCircle = entity.getComponent(InteractionCircleComponent).debugInteractionCircle;
-      if (debugInteractionCircle) {
-        const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
-        debugInteractionCircle.setPosition(entity.getComponent(SpriteComponent).sprite.x, entity.getComponent(SpriteComponent).sprite.y);
-
-        if (Phaser.Geom.Intersects.CircleToCircle(entity.getComponent(InteractionCircleComponent).interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
-          debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
-        } else {
-          debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
-        }
-      }
+      this.syncInteractionCircleToEntity(entity);
+      this.syncDebugCircle(entity);
     };
 
     for (let entity of entities) {
@@ -34,6 +23,11 @@ export class HasInteracionCircleSystem implements Phecs.System {
 
       entity.getComponent(InteractionCircleComponent).interactionTracker.update(intersectingEntityIds);
     };
+  }
+
+  private syncInteractionCircleToEntity(entity: Phecs.Entity) {
+    const sprite = entity.getComponent(SpriteComponent).sprite;
+    entity.getComponent(InteractionCircleComponent).interactionCircle.setPosition(sprite.x, sprite.y);
   }
 
   private getIntersectingInteractionIds(entity: Phecs.Entity, allEntities: Phecs.Entity[]): string[] {
@@ -46,5 +40,20 @@ export class HasInteracionCircleSystem implements Phecs.System {
         return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
       })
       .map(otherEntity => otherEntity.id);
+  }
+
+  private syncDebugCircle(entity: Phecs.Entity) {
+    const debugInteractionCircle = entity.getComponent(InteractionCircleComponent).debugInteractionCircle;
+    if (debugInteractionCircle) {
+      const sprite = entity.getComponent(SpriteComponent).sprite;
+      const position = this.scene.input.activePointer.positionToCamera(this.scene.cameras.main) as { x: number, y: number };
+      debugInteractionCircle.setPosition(sprite.x, sprite.y);
+
+      if (Phaser.Geom.Intersects.CircleToCircle(entity.getComponent(InteractionCircleComponent).interactionCircle, new Phaser.Geom.Circle(position.x, position.y, 1))) {
+        debugInteractionCircle.setFillStyle(0xFF0000, 0.5);
+      } else {
+        debugInteractionCircle.setFillStyle(0x00FF00, 0.5);
+      }
+    }
   }
 }
