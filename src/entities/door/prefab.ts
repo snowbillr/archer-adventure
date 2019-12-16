@@ -1,6 +1,6 @@
 import { SpriteComponent } from "../../components/sprite-component";
 import { DoorComponent } from "../../components/door-component";
-import { IndicatorComponent } from "../../components/indicator-component";
+import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 
 export const doorPrefab: Phecs.Prefab = {
@@ -14,7 +14,7 @@ export const doorPrefab: Phecs.Prefab = {
       }
     },
     DoorComponent,
-    IndicatorComponent,
+    SpriteIndicatorComponent,
     {
       component: InteractionCircleComponent,
       data: {

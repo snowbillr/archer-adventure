@@ -39,11 +39,7 @@ export class SystemsManager {
 
   registerSystems(systemsList: Phecs.SystemConstructor[]) {
     systemsList.forEach((klass) => {
-      this.registerSystem(new klass(this.scene));
+      this.systems.push(new klass(this.scene));
     });
   }
-
-  registerSystem(system: Phecs.System) {
-    this.systems.push(system);
-  };
 }

@@ -1,6 +1,6 @@
 import { SpriteComponent } from "../../components/sprite-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
-import { IndicatorComponent } from "../../components/indicator-component";
+import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
 import { TextboxComponent } from "../../components/textbox-component";
 
 export const signPrefab: Phecs.Prefab = {
@@ -20,7 +20,7 @@ export const signPrefab: Phecs.Prefab = {
         interactionDebug: false,
       }
     },
-    IndicatorComponent,
+    SpriteIndicatorComponent,
     TextboxComponent,
   ]
 }
