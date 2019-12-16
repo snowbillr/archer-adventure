@@ -23,6 +23,10 @@ export class PreloadScene extends BaseScene {
     this.load.bitmapFont('compass-24', '/assets/fonts/compass-24.png', '/assets/fonts/compass-24.xml');
     this.load.bitmapFont('compass-18', '/assets/fonts/compass-18.png', '/assets/fonts/compass-18.xml');
 
+    // npcs
+    this.load.spritesheet('old-lady', '/assets/sprites/npcs/old-lady.png', { frameWidth: 41, frameHeight: 66 });
+    this.load.animation('old-lady-animations', '/assets/animations/old-lady.json');
+
     // adventurer
     this.load.spritesheet('adventurer-core', '/assets/sprites/adventurer/adventurer-core.png', { frameWidth: 100, frameHeight: 74 })
     this.load.spritesheet('adventurer-bow', '/assets/sprites/adventurer/adventurer-bow.png', { frameWidth: 100, frameHeight: 74 })

@@ -1,0 +1,17 @@
+{
+  "anims": [
+    {
+      "key": "old-lady-idle",
+      "frames": [
+        { "key": "old-lady", "frame": 0 },
+        { "key": "old-lady", "frame": 1 },
+        { "key": "old-lady", "frame": 2 },
+        { "key": "old-lady", "frame": 3 },
+        { "key": "old-lady", "frame": 4 },
+        { "key": "old-lady", "frame": 5 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    }
+  ]
+}

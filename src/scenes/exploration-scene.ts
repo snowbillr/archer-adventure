@@ -32,6 +32,7 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
+import { oldLadyPrefab } from '../entities/old-lady/prefab';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -101,6 +102,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('old-lady', oldLadyPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }
