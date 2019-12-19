@@ -18,9 +18,10 @@ export class PreloadScene extends BaseScene {
     this.load.image('green-hills-4', '/assets/backgrounds/green-hills/4.png');
 
     // fonts
-    this.load.bitmapFont('compass-72-title', '/assets/fonts/compass-72-title.png', '/assets/fonts/compass-72-title.xml');
     this.load.bitmapFont('compass-72', '/assets/fonts/compass-72.png', '/assets/fonts/compass-72.xml');
+    this.load.bitmapFont('compass-72-title', '/assets/fonts/compass-72-title.png', '/assets/fonts/compass-72-title.xml');
     this.load.bitmapFont('compass-24', '/assets/fonts/compass-24.png', '/assets/fonts/compass-24.xml');
+    this.load.bitmapFont('compass-24-conversation', '/assets/fonts/compass-24-conversation.png', '/assets/fonts/compass-24-conversation.xml');
     this.load.bitmapFont('compass-18', '/assets/fonts/compass-18.png', '/assets/fonts/compass-18.xml');
 
     // npcs
@@ -60,7 +61,6 @@ export class PreloadScene extends BaseScene {
 
     // tileset image
     this.load.spritesheet('core-tileset-spritesheet', '/assets/tilesets/core-tileset.png', { frameHeight: 32, frameWidth: 32 });
-
     // tileset
     this.load.image('core-tileset', '/assets/tilesets/core-tileset.png');
 
@@ -71,14 +71,15 @@ export class PreloadScene extends BaseScene {
     // conversations
     this.load.image('textbox', '/assets/sprites/conversations/textbox.png');
     this.load.json('signs', '/assets/signs.json');
+    this.load.image('conversation-box', '/assets/sprites/conversations/conversation-box.png');
 
     // ui
     this.load.spritesheet('healthbar', '/assets/sprites/ui/healthbar.png', { frameWidth: 124, frameHeight: 22 });
   }
 
   create() {
-    // this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
-    this.scene.start(SCENE_KEYS.title);
+    this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    // this.scene.start(SCENE_KEYS.title);
     // this.scene.start(SCENE_KEYS.prefabTest);
   }
 }

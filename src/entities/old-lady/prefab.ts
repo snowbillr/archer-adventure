@@ -2,6 +2,7 @@ import { SpriteComponent } from "../../components/sprite-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
+import { ConversationBoxComponent } from "../../components/conversation-box-component";
 
 export const oldLadyPrefab: Phecs.Prefab = {
   components: [
@@ -22,9 +23,11 @@ export const oldLadyPrefab: Phecs.Prefab = {
       component: InteractionCircleComponent,
       data: {
         interactionRadius: 70,
+        interactionControl: 'action',
         interactionDebug: false,
       }
     },
     SpriteIndicatorComponent,
+    ConversationBoxComponent,
   ]
 };
