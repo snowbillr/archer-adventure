@@ -1,0 +1,17 @@
+{
+  "anims": [
+    {
+      "key": "old-man-idle",
+      "frames": [
+        { "key": "old-man", "frame": 0 },
+        { "key": "old-man", "frame": 1 },
+        { "key": "old-man", "frame": 2 },
+        { "key": "old-man", "frame": 3 },
+        { "key": "old-man", "frame": 4 },
+        { "key": "old-man", "frame": 5 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    }
+  ]
+}

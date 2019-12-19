@@ -3,15 +3,17 @@ import 'phaser';
 import { BaseScene } from './base-scene';
 
 import { adventurerStates } from '../entities/adventurer/states';
-import { sheepStates } from '../entities/sheep/states';
 import { arrowStates } from '../entities/arrow/states';
 import { enemyStates } from '../entities/enemy/states';
 import { oldLadyStates } from '../entities/old-lady/states';
+import { oldManStates } from '../entities/old-man/states';
+import { sheepStates } from '../entities/sheep/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
 import { AdventurerOldLadySystem } from '../systems/adventurer-old-lady-system';
+import { AdventurerOldManSystem } from '../systems/adventurer-old-man-system';
 import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
@@ -23,12 +25,13 @@ import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-sys
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
+import { arrowPrefab } from '../entities/arrow/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { enemyPrefab } from '../entities/enemy/prefab';
+import { oldLadyPrefab } from '../entities/old-lady/prefab';
+import { oldManPrefab } from '../entities/old-man/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
-import { arrowPrefab } from '../entities/arrow/prefab';
-import { oldLadyPrefab } from '../entities/old-lady/prefab';
 
 import { SpriteComponent } from '../components/sprite-component';
 
@@ -69,10 +72,11 @@ export class ExplorationScene extends BaseScene {
   registerStateSets() {
     this.stateRegistrar.registerSets([
       { id: 'adventurer', states: adventurerStates },
+      { id: 'arrow', states: arrowStates },
       { id: 'enemy', states: enemyStates },
       { id: 'sheep', states: sheepStates },
-      { id: 'arrow', states: arrowStates },
       { id: 'old-lady', states: oldLadyStates },
+      { id: 'old-man', states: oldManStates },
     ]);
   }
 
@@ -92,6 +96,7 @@ export class ExplorationScene extends BaseScene {
         AdventurerDeathSystem,
         AdventurerDoorSystem,
         AdventurerOldLadySystem,
+        AdventurerOldManSystem,
         AdventurerSignSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
@@ -111,6 +116,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
     this.phecs.phEntities.registerPrefab('old-lady', oldLadyPrefab);
+    this.phecs.phEntities.registerPrefab('old-man', oldManPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }

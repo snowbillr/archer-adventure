@@ -54,6 +54,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":7,
+         "name":"npcs",
+         "objects":[
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"old-man",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"conversationKey",
+                         "type":"string",
+                         "value":"old-man"
+                        }],
+                 "rotation":0,
+                 "type":"old-man",
+                 "visible":true,
+                 "width":0,
+                 "x":242.800866762974,
+                 "y":160.350372263585
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":5,
          "name":"doors",
          "objects":[
@@ -91,8 +120,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":2,
+ "nextlayerid":8,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "properties":[
         {

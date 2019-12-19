@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="2">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="3">
  <editorsettings>
   <export target="woollards-house.json" format="json"/>
  </editorsettings>
@@ -41,6 +41,14 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="7" name="npcs">
+  <object id="2" name="old-man" type="old-man" x="242.801" y="160.35">
+   <properties>
+    <property name="conversationKey" value="old-man"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup id="5" name="doors">
   <object id="1" name="woollardsFarmDoor" type="door" x="91" y="161">
    <properties>
