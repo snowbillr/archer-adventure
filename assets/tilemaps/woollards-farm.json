@@ -103,6 +103,12 @@
                  "id":13,
                  "name":"old-lady",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"conversationKey",
+                         "type":"string",
+                         "value":"old-lady"
+                        }],
                  "rotation":0,
                  "type":"old-lady",
                  "visible":true,

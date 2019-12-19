@@ -1,27 +1,23 @@
 import { SpriteComponent } from "./sprite-component"
 import { NinePatch } from "@koreez/phaser3-ninepatch";
 
-const conversationScript = [
-  "Hello adventurer!",
-  "We've got a problem on our farm and need some help.",
-  "Go talk to my husband inside, he can tell you more about it."
-]
-
 export class ConversationBoxComponent implements Phecs.Component {
   private scene: Phaser.Scene;
+  private conversation: string[];
+  
+  private entityY: number;
 
   private conversationBoxSprite: NinePatch;
   private conversationProgressIndex: number;
 
-  private entityY: number;
-
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     this.scene = scene;
-    this.conversationProgressIndex = 0;
+    this.conversation = scene.cache.json.get('conversations')[data.conversationKey];
 
     const entitySprite = entity.getComponent(SpriteComponent).sprite;
     this.entityY = entitySprite.y;
 
+    this.conversationProgressIndex = 0;
     this.conversationBoxSprite = (scene as any).add.ninePatch(
       entitySprite.x,
       entitySprite.y,
@@ -62,7 +58,7 @@ export class ConversationBoxComponent implements Phecs.Component {
   }
 
   hasMoreConversation() {
-    return this.conversationProgressIndex < conversationScript.length - 1
+    return this.conversationProgressIndex < this.conversation.length - 1
   }
 
   destroy() {
@@ -73,7 +69,7 @@ export class ConversationBoxComponent implements Phecs.Component {
   // resizing the ninepatch removes all its children.
   // https://github.com/koreezgames/phaser3-ninepatch-plugin/blob/master/src/com/koreez/plugin/ninepatch/NinePatch.ts#L123
   private updateConversationText() {
-    const text = this.scene.add.bitmapText(0, 0, 'compass-24-conversation', conversationScript[this.conversationProgressIndex]);
+    const text = this.scene.add.bitmapText(0, 0, 'compass-24-conversation', this.conversation[this.conversationProgressIndex]);
     text.setMaxWidth(300);
     text.setOrigin(0.5);
 

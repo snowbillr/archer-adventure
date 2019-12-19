@@ -117,6 +117,9 @@
    <point/>
   </object>
   <object id="13" name="old-lady" type="old-lady" x="688.501" y="767.89">
+   <properties>
+    <property name="conversationKey" value="old-lady"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
