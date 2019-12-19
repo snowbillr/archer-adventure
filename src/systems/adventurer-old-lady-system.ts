@@ -18,11 +18,11 @@ export class AdventurerOldLadySystem extends BaseInteractionSystem {
 
   onInteraction(oldLady: Phecs.Entity) {
     if (!this.interacting) {
-      oldLady.getComponent(ConversationBoxComponent).show();
+      oldLady.getComponent(ConversationBoxComponent).startConversation();
       oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
       this.interacting = true;
     } else {
-      oldLady.getComponent(ConversationBoxComponent).hide();
+      oldLady.getComponent(ConversationBoxComponent).stopConversation();
       oldLady.getComponent(SpriteIndicatorComponent).indicator.show();
       this.interacting = false;
     }
@@ -30,7 +30,8 @@ export class AdventurerOldLadySystem extends BaseInteractionSystem {
 
   onExit(oldLady: Phecs.Entity) {
     if (this.interacting) {
-      oldLady.getComponent(ConversationBoxComponent).hide();
+      oldLady.getComponent(ConversationBoxComponent).stopConversation();
+      this.interacting = false;
     }
 
     oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
