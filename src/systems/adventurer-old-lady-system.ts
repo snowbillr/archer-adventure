@@ -4,12 +4,12 @@ import { SpriteIndicatorComponent } from '../components/sprite-indicator-compone
 import { ConversationBoxComponent } from '../components/conversation-box-component';
 
 export class AdventurerOldLadySystem extends BaseInteractionSystem {
-  private showing: boolean;
+  private interacting: boolean;
 
   constructor() {
     super(AdventurerComponent, 'old-lady')
 
-    this.showing = false;
+    this.interacting = false;
   }
 
   onEnter(oldLady: Phecs.Entity) {
@@ -17,16 +17,22 @@ export class AdventurerOldLadySystem extends BaseInteractionSystem {
   }
 
   onInteraction(oldLady: Phecs.Entity) {
-    if (!this.showing) {
+    if (!this.interacting) {
       oldLady.getComponent(ConversationBoxComponent).show();
-      this.showing = true;
+      oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
+      this.interacting = true;
     } else {
       oldLady.getComponent(ConversationBoxComponent).hide();
-      this.showing = false;
+      oldLady.getComponent(SpriteIndicatorComponent).indicator.show();
+      this.interacting = false;
     }
   }
 
   onExit(oldLady: Phecs.Entity) {
+    if (this.interacting) {
+      oldLady.getComponent(ConversationBoxComponent).hide();
+    }
+
     oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
   }
 }
