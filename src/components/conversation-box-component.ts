@@ -2,7 +2,7 @@ import { SpriteComponent } from "./sprite-component"
 import { NinePatch } from "@koreez/phaser3-ninepatch";
 
 const conversationScript = [
-  "Hello young man!",
+  "Hello adventurer!",
   "We've got a problem on our farm and need some help.",
   "Go talk to my husband inside, he can tell you more about it."
 ]
