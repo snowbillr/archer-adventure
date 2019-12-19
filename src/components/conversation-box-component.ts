@@ -48,7 +48,7 @@ export class ConversationBoxComponent implements Phecs.Component {
   }
 
   continueConversation() {
-    if (!this.hasMoreConversationLines()) {
+    if (!this.hasMoreConversation()) {
       this.stopConversation();
     } else {
       this.conversationProgressIndex += 1;
@@ -59,6 +59,10 @@ export class ConversationBoxComponent implements Phecs.Component {
 
   stopConversation() {
     this.conversationBoxSprite.alpha = 0;
+  }
+
+  hasMoreConversation() {
+    return this.conversationProgressIndex < conversationScript.length - 1
   }
 
   destroy() {
@@ -79,17 +83,6 @@ export class ConversationBoxComponent implements Phecs.Component {
     this.conversationBoxSprite.resize(textBounds.width + padding, textBounds.height + padding);
     this.conversationBoxSprite.add(text);
 
-    /*
-    if (this.hasMoreConversationLines()) {
-      const conversationIndicatorSprite = this.scene.add.sprite(textBounds.width / 2, -textBounds.height, 'indicator-right', 0);
-      this.conversationBoxSprite.add(conversationIndicatorSprite);
-    }
-    */
-
     this.conversationBoxSprite.y = this.entityY - this.conversationBoxSprite.height / 2 - offset;
-  }
-
-  private hasMoreConversationLines() {
-    return this.conversationProgressIndex < conversationScript.length - 1
   }
 }

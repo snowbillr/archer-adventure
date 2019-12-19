@@ -17,14 +17,17 @@ export class AdventurerOldLadySystem extends BaseInteractionSystem {
   }
 
   onInteraction(oldLady: Phecs.Entity) {
+    const conversationBox = oldLady.getComponent(ConversationBoxComponent);
+
     if (!this.interacting) {
-      oldLady.getComponent(ConversationBoxComponent).startConversation();
-      oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
       this.interacting = true;
+      oldLady.getComponent(SpriteIndicatorComponent).indicator.hide();
+      conversationBox.startConversation();
+    } else if (this.interacting && conversationBox.hasMoreConversation()) {
+      conversationBox.continueConversation();
     } else {
-      oldLady.getComponent(ConversationBoxComponent).stopConversation();
-      oldLady.getComponent(SpriteIndicatorComponent).indicator.show();
       this.interacting = false;
+      conversationBox.stopConversation();
     }
   }
 
