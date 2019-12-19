@@ -11,9 +11,8 @@ import { oldLadyStates } from '../entities/old-lady/states';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
+import { AdventurerOldLadySystem } from '../systems/adventurer-old-lady-system';
 import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
-import { AdventurerOldLadyInteractionIndicatorSystem } from '../systems/adventurer-old-lady-interaction-indicator-system';
-import { AdventurerOldLadyConversationSystem } from '../systems/adventurer-old-lady-conversation-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
@@ -91,10 +90,9 @@ export class ExplorationScene extends BaseScene {
       [
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
-        AdventurerSignSystem,
         AdventurerDoorSystem,
-        AdventurerOldLadyInteractionIndicatorSystem,
-        AdventurerOldLadyConversationSystem,
+        AdventurerOldLadySystem,
+        AdventurerSignSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
         HasBoundsSystem,
