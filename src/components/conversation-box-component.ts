@@ -73,7 +73,8 @@ export class ConversationBoxComponent implements Phecs.Component {
   // resizing the ninepatch removes all its children.
   // https://github.com/koreezgames/phaser3-ninepatch-plugin/blob/master/src/com/koreez/plugin/ninepatch/NinePatch.ts#L123
   private updateConversationText() {
-    const text = this.scene.add.bitmapText(0, 0, 'compass-18', conversationScript[this.conversationProgressIndex]);
+    const text = this.scene.add.bitmapText(0, 0, 'compass-24-conversation', conversationScript[this.conversationProgressIndex]);
+    text.setMaxWidth(300);
     text.setOrigin(0.5);
 
     const offset = 40;

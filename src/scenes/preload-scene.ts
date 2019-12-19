@@ -18,9 +18,10 @@ export class PreloadScene extends BaseScene {
     this.load.image('green-hills-4', '/assets/backgrounds/green-hills/4.png');
 
     // fonts
-    this.load.bitmapFont('compass-72-title', '/assets/fonts/compass-72-title.png', '/assets/fonts/compass-72-title.xml');
     this.load.bitmapFont('compass-72', '/assets/fonts/compass-72.png', '/assets/fonts/compass-72.xml');
+    this.load.bitmapFont('compass-72-title', '/assets/fonts/compass-72-title.png', '/assets/fonts/compass-72-title.xml');
     this.load.bitmapFont('compass-24', '/assets/fonts/compass-24.png', '/assets/fonts/compass-24.xml');
+    this.load.bitmapFont('compass-24-conversation', '/assets/fonts/compass-24-conversation.png', '/assets/fonts/compass-24-conversation.xml');
     this.load.bitmapFont('compass-18', '/assets/fonts/compass-18.png', '/assets/fonts/compass-18.xml');
 
     // npcs
