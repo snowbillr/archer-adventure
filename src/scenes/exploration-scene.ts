@@ -10,6 +10,10 @@ import { oldLadyStates } from '../entities/old-lady/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
+import { AdventurerDoorInteractionIndicatorSystem } from '../systems/adventurer-door-interaction-indicator-system';
+import { AdventurerSignInteractionIndicatorSystem } from '../systems/adventurer-sign-interaction-indicator-system';
+import { AdventurerOldLadyInteractionIndicatorSystem } from '../systems/adventurer-old-lady-interaction-indicator-system';
+import { AdventurerOldLadyConversationSystem } from '../systems/adventurer-old-lady-conversation-system';
 import { DoorSystem } from '../systems/door-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
@@ -34,9 +38,6 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
-import { AdventurerDoorInteractionIndicatorSystem } from '../systems/adventurer-door-interaction-indicator-system';
-import { AdventurerSignInteractionIndicatorSystem } from '../systems/adventurer-sign-interaction-indicator-system';
-import { AdventurerOldLadyInteractionIndicatorSystem } from '../systems/adventurer-old-lady-interaction-indicator-system';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -95,6 +96,7 @@ export class ExplorationScene extends BaseScene {
         AdventurerDoorInteractionIndicatorSystem,
         AdventurerSignInteractionIndicatorSystem,
         AdventurerOldLadyInteractionIndicatorSystem,
+        AdventurerOldLadyConversationSystem,
         DoorSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,

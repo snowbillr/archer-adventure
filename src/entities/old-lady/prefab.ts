@@ -23,6 +23,7 @@ export const oldLadyPrefab: Phecs.Prefab = {
       component: InteractionCircleComponent,
       data: {
         interactionRadius: 70,
+        interactionControl: 'action',
         interactionDebug: false,
       }
     },
