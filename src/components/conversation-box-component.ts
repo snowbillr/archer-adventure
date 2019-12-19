@@ -65,6 +65,9 @@ export class ConversationBoxComponent implements Phecs.Component {
     this.conversationBoxSprite.destroy();
   }
 
+  // This method recreates the bitmap text each time because
+  // resizing the ninepatch removes all its children.
+  // https://github.com/koreezgames/phaser3-ninepatch-plugin/blob/master/src/com/koreez/plugin/ninepatch/NinePatch.ts#L123
   private updateConversationText() {
     const text = this.scene.add.bitmapText(0, 0, 'compass-18', conversationScript[this.conversationProgressIndex]);
     text.setOrigin(0.5);
