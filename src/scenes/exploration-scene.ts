@@ -10,11 +10,10 @@ import { oldLadyStates } from '../entities/old-lady/states';
 
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
-import { AdventurerDoorInteractionIndicatorSystem } from '../systems/adventurer-door-interaction-indicator-system';
-import { AdventurerSignInteractionIndicatorSystem } from '../systems/adventurer-sign-interaction-indicator-system';
+import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
+import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { AdventurerOldLadyInteractionIndicatorSystem } from '../systems/adventurer-old-lady-interaction-indicator-system';
 import { AdventurerOldLadyConversationSystem } from '../systems/adventurer-old-lady-conversation-system';
-import { DoorSystem } from '../systems/door-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
@@ -23,7 +22,6 @@ import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
-import { SignSystem } from '../systems/sign-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { doorPrefab } from '../entities/door/prefab';
@@ -93,11 +91,10 @@ export class ExplorationScene extends BaseScene {
       [
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
-        AdventurerDoorInteractionIndicatorSystem,
-        AdventurerSignInteractionIndicatorSystem,
+        AdventurerSignSystem,
+        AdventurerDoorSystem,
         AdventurerOldLadyInteractionIndicatorSystem,
         AdventurerOldLadyConversationSystem,
-        DoorSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
         HasBoundsSystem,
@@ -106,7 +103,6 @@ export class ExplorationScene extends BaseScene {
         HasHurtboxesSystem,
         HasInteracionCircleSystem,
         HasPhiniteStateMachineSystem,
-        SignSystem,
       ]
     );
   }
