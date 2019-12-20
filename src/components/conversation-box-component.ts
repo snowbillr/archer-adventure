@@ -80,6 +80,17 @@ export class ConversationBoxComponent implements Phecs.Component {
     this.conversationBoxSprite.resize(textBounds.width + padding, textBounds.height + padding);
     this.conversationBoxSprite.add(text);
 
+    if (this.hasMoreConversation()) {
+      const indicator = this.scene.add.sprite(
+        this.conversationBoxSprite.width / 2 - 5,
+        -this.conversationBoxSprite.height / 2 - 2,
+        'indicator-right'
+      );
+      indicator.setOrigin(1, 0);
+      indicator.anims.play('indicator-right');
+      this.conversationBoxSprite.add(indicator);
+    }
+
     this.conversationBoxSprite.y = this.entityY - this.conversationBoxSprite.height / 2 - offset;
   }
 }
