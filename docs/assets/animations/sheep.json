@@ -1,0 +1,19 @@
+{
+  "anims": [
+    {
+      "key": "sheep-walk",
+      "frames": [
+        { "key": "sheep-walk", "frame": 0 },
+        { "key": "sheep-walk", "frame": 1 },
+        { "key": "sheep-walk", "frame": 2 },
+        { "key": "sheep-walk", "frame": 3 },
+        { "key": "sheep-walk", "frame": 4 },
+        { "key": "sheep-walk", "frame": 5 },
+        { "key": "sheep-walk", "frame": 6 },
+        { "key": "sheep-walk", "frame": 7 }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    }
+  ]
+}

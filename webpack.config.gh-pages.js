@@ -1,7 +1,11 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const webpack = require('webpack');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 module.exports = {
   entry: {
@@ -20,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)$/,
+        test: /\.ts$/,
         include: path.resolve(__dirname, 'src/'),
         use: {
           loader: 'babel-loader',
@@ -42,6 +46,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'index.html'),

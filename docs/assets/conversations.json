@@ -1,0 +1,14 @@
+{
+  "old-lady": [
+    "Hello adventurer!",
+    "We've got a problem on our farm and need some help.",
+    "Go talk to my husband inside, he can tell you more about it."
+  ],
+  "old-man": [
+    "Did my wife send you?",
+    "Monsters have been raiding our farm!",
+    "We've only got one sheep left, and we can't afford to lose it.",
+    "Please help us stop the monsters.",
+    "They keep coming from the forest to the east."
+  ]
+}

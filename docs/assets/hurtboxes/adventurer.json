@@ -1,0 +1,965 @@
+{
+  "frames": [
+    {
+      "key": "adventurer-core",
+      "frame": 0,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 6,
+          "width": 24,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 1,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 4,
+          "width": 24,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 2,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 4,
+          "width": 24,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 3,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 6,
+          "width": 24,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 4,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 14,
+          "width": 20,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 5,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 12,
+          "width": 20,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 6,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 14,
+          "width": 20,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 7,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 14,
+          "width": 20,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 8,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 14,
+          "y": -12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 4,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 22,
+          "width": 20,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 9,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 14,
+          "y": -10,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 4,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 22,
+          "width": 20,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 10,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 14,
+          "y": -6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 8,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 24,
+          "width": 14,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 11,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 12,
+          "y": -12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 4,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 22,
+          "width": 20,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 12,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 12,
+          "y": -10,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 4,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 22,
+          "width": 20,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 13,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 14,
+          "y": -6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 8,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": 24,
+          "width": 14,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 14,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 8,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 24,
+          "width": 14,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 15,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -2,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 12,
+          "width": 16,
+          "height": 12
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 24,
+          "width": 14,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 16,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 0,
+          "width": 16,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 14,
+          "width": 16,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 17,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 8,
+          "y": -16,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -2,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 10,
+          "width": 16,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 22,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 0,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 12,
+          "width": 16,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 23,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 0,
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 6,
+          "y": 12,
+          "width": 16,
+          "height": 10
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 24,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -12,
+          "y": 12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": 26,
+          "width": 34,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 20,
+          "y": 32,
+          "width": 14,
+          "height": 6
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 25,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -12,
+          "y": 12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": 26,
+          "width": 34,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 20,
+          "y": 32,
+          "width": 14,
+          "height": 6
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 26,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -10,
+          "y": 12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 26,
+          "width": 34,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 20,
+          "y": 32,
+          "width": 14,
+          "height": 6
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 27,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -6,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 26,
+          "width": 28,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 20,
+          "y": 32,
+          "width": 16,
+          "height": 6
+        }
+      ]
+    },
+    {
+      "key": "adventurer-core",
+      "frame": 28,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 26,
+          "width": 16,
+          "height": 14
+        },
+        {
+          "type": "rectangle",
+          "x": 18,
+          "y": 32,
+          "width": 12,
+          "height": 6
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 0,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 16,
+          "width": 30,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 1,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 10,
+          "width": 24,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 2,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 10,
+          "width": 24,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 3,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 4,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 5,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 6,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -6,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 7,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": -8,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -6,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 8,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -8,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 10,
+          "width": 16,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 26,
+          "width": 26,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 9,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": -12,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 4,
+          "width": 18,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 20,
+          "width": 20,
+          "height": 18
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 10,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -2,
+          "y": 2,
+          "width": 20,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 16,
+          "width": 20,
+          "height": 12
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 11,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": 2,
+          "width": 24,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 4,
+          "y": 16,
+          "width": 20,
+          "height": 12
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 12,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -14,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -6,
+          "y": 2,
+          "width": 24,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 18,
+          "width": 20,
+          "height": 14
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 13,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": -16,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -10,
+          "y": 0,
+          "width": 28,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 16,
+          "width": 20,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "key": "adventurer-bow",
+      "frame": 14,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": -16,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "type": "rectangle",
+          "x": -4,
+          "y": 0,
+          "width": 32,
+          "height": 18
+        },
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 18,
+          "width": 22,
+          "height": 18
+        }
+      ]
+    }
+  ]
+}
