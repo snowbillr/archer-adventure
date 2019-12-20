@@ -3,7 +3,7 @@ import 'phaser';
 import { PhiniteStateMachineComponent } from '../components/phinite-state-machine-component';
 import { HealthComponent } from '../components/health-component';
 
-import { BaseDamageSystem } from './base-damage-system';
+import { BaseDamageSystem } from './base-systems/base-damage-system';
 import { EnemyComponent } from '../components/enemy-component';
 
 const ARROW_DAMAGE = 1;

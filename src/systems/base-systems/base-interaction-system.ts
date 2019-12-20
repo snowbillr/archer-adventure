@@ -1,7 +1,7 @@
-import { EntityManager } from "../lib/phecs/entity-manager";
-import { AdventurerComponent } from "../components/adventurer-component";
-import { InteractionCircleComponent } from "../components/interaction-circle-component";
-import { InteractionTracker } from "../lib/interaction-tracker";
+import { EntityManager } from "../../lib/phecs/entity-manager";
+import { AdventurerComponent } from "../../components/adventurer-component";
+import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { InteractionTracker } from "../../lib/interaction-tracker";
 
 export abstract class BaseInteractionSystem implements Phecs.System {
   private identifierA: Phecs.EntityIdentifier;

@@ -1,5 +1,5 @@
 import { TextboxComponent } from '../components/textbox-component';
-import { BaseInteractionSystem } from './base-interaction-system';
+import { BaseInteractionSystem } from './base-systems/base-interaction-system';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 

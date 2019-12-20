@@ -2,7 +2,7 @@ import { EnemyComponent } from '../components/enemy-component';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { InvulnerabilityComponent } from '../components/invulnerability-component';
 
-import { BaseDamageSystem } from './base-damage-system';
+import { BaseDamageSystem } from './base-systems/base-damage-system';
 
 const ENEMY_DAMAGE = 1;
 

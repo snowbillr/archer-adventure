@@ -1,9 +1,9 @@
-import { AdventurerComponent } from "../components/adventurer-component";
-import { SpriteIndicatorComponent } from "../components/sprite-indicator-component";
-import { ConversationBoxComponent } from "../components/conversation-box-component";
+import { AdventurerComponent } from "../../components/adventurer-component";
+import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
+import { ConversationBoxComponent } from "../../components/conversation-box-component";
 import { BaseInteractionSystem } from "./base-interaction-system";
 
-export class AdventurerNpcSystem extends BaseInteractionSystem {
+export abstract class BaseAdventurerNpcSystem extends BaseInteractionSystem {
   private interacting: boolean;
 
   constructor(npcType: Phecs.EntityIdentifier) {
