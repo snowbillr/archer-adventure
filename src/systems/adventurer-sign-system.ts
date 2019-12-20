@@ -2,16 +2,10 @@ import { TextboxComponent } from '../components/textbox-component';
 import { BaseInteractionSystem } from './base-interaction-system';
 import { AdventurerComponent } from '../components/adventurer-component';
 import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
-import { DoorComponent } from '../components/door-component';
-import { ExplorationScene } from '../scenes/exploration-scene';
 
 export class AdventurerSignSystem extends BaseInteractionSystem {
-  private scene: ExplorationScene;
-
-  constructor(scene: Phaser.Scene) {
+  constructor() {
     super(AdventurerComponent, 'sign')
-
-    this.scene = scene as ExplorationScene;
   }
 
   onEnter(sign: Phecs.Entity) {

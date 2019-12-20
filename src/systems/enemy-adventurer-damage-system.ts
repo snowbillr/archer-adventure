@@ -7,7 +7,7 @@ import { BaseDamageSystem } from './base-damage-system';
 const ENEMY_DAMAGE = 1;
 
 export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
-  constructor(scene: Phaser.Scene) {
+  constructor() {
     super(
       {
         entityFetcher: phEntities => {
