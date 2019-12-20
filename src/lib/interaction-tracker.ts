@@ -1,4 +1,4 @@
-export class InteractionTracker implements InteractionTracker {
+export class InteractionTracker {
   private entities: { [id: string]: InteractionState | null };
 
   constructor() {
