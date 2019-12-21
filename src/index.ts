@@ -6,6 +6,7 @@ import { AreaManagerPlugin } from './plugins/area-manager-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
+import { ControlsPlugin } from './plugins/controls-plugin';
 
 import { ExplorationScene } from './scenes/exploration-scene';
 import { DeathScene } from './scenes/death-scene';
@@ -34,6 +35,11 @@ const gameConfig = {
         key: 'Phecs',
         plugin: PhecsPlugin,
         mapping: 'phecs',
+      },
+      {
+        key: 'Controls',
+        plugin: ControlsPlugin,
+        mapping: 'controls',
       },
       {
         key: 'AreaManager',
