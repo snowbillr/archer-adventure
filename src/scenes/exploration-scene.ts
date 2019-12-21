@@ -185,7 +185,7 @@ export class ExplorationScene extends BaseScene {
 
         this.phecs.start();
 
-        var { x, y, width, height } = this.calcCameraBounds(map, tileset);
+        var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
@@ -203,7 +203,7 @@ export class ExplorationScene extends BaseScene {
   // This ensures that the tilemap is centered in the screen if it is too small to fill it.
   // This works by setting the camera's top left coordinate to be < 0 so that the tilemap
   // itself doesn't move, but the camera does instead.
-  private calcCameraBounds(map: Phaser.Tilemaps.Tilemap, tileset: Phaser.Tilemaps.Tileset) {
+  private calculateCameraBounds(map: Phaser.Tilemaps.Tilemap, tileset: Phaser.Tilemaps.Tileset) {
     let x = 0;
     let y = 0;
     const width = map.width * tileset.tileWidth;
