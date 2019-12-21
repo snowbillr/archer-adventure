@@ -51,6 +51,11 @@ class Control {
 
     this.isPressed = false;
   }
+
+  destroy() {
+    this.onPressListeners = [];
+    this.onReleaseListeners = [];
+  }
 }
 
 export class ControlsPlugin extends Phaser.Plugins.ScenePlugin {
@@ -72,7 +77,7 @@ export class ControlsPlugin extends Phaser.Plugins.ScenePlugin {
     this.shoot = new Control();
 
     scene.events.on(Phaser.Scenes.Events.START, this.startListening, this);
-    scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.stopListening, this);
+    scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
   }
 
   private startListening() {
@@ -80,9 +85,16 @@ export class ControlsPlugin extends Phaser.Plugins.ScenePlugin {
     this.scene.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_UP, this.onRelease, this);
   }
 
-  private stopListening() {
+  private shutdown() {
     this.scene.input.keyboard.off(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, this.onPress, this);
     this.scene.input.keyboard.off(Phaser.Input.Keyboard.Events.ANY_KEY_UP, this.onRelease, this);
+
+    this.left.destroy();
+    this.right.destroy();
+    this.up.destroy();
+    this.down.destroy();
+    this.action.destroy();
+    this.shoot.destroy();
   }
 
   private onPress(e: KeyboardEvent) {
