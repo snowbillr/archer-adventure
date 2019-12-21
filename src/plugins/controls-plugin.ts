@@ -1,6 +1,9 @@
+import { generateUuid } from "../utilities/uuid-util";
+
 type Listener = () => void;
 
 type ListenerConfig = {
+  id: string,
   context: any,
   callback: Listener;
 };
@@ -19,17 +22,33 @@ class Control {
   }
 
   onPress(callback: Listener, context?: any) {
+    const id = generateUuid();
+
     this.onPressListeners.push({
+      id,
       context,
       callback,
     });
+
+    return () => {
+      const listenerIndex = this.onPressListeners.findIndex(listener => listener.id === id);
+      this.onPressListeners.splice(listenerIndex, 1);
+    }
   }
 
   onRelease(callback: Listener, context?: any) {
+    const id = generateUuid();
+
     this.onReleaseListeners.push({
+      id,
       context,
       callback,
     });
+
+    return () => {
+      const listenerIndex = this.onReleaseListeners.findIndex(listener => listener.id === id);
+      this.onReleaseListeners.splice(listenerIndex, 1);
+    }
   }
 
   press() {

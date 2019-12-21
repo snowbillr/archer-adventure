@@ -1,3 +1,5 @@
+import { generateUuid } from "../../utilities/uuid-util";
+
 export class BaseEntity implements Phecs.Entity {
   public type: string;
   public id: string;
@@ -5,7 +7,7 @@ export class BaseEntity implements Phecs.Entity {
 
   constructor(type: string) {
     this.type = type;
-    this.id = this.generateUuid();
+    this.id = generateUuid();
     this.components = [];
   }
 
@@ -24,13 +26,6 @@ export class BaseEntity implements Phecs.Entity {
   hasComponent<T extends Phecs.ComponentConstructor>(componentKlass: T): boolean {
     return this.components.some(component => {
       return component instanceof componentKlass;
-    });
-  }
-
-  private generateUuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
     });
   }
 }
