@@ -43,8 +43,12 @@ declare namespace PhiniteStateMachine {
       key: string | ((entity: T) => string);
     }
 
-    type CurrentAnimationEndTransition<T> = BaseTransition<T> & {
+    type PressControlTransition<T> = BaseTransition<T> & {
+      control: string;
+    }
 
+    type ReleaseControlTransition<T> = BaseTransition<T> & {
+      control: string;
     }
 
     type ConditionalTransition<T> = BaseTransition<T> & {
@@ -55,6 +59,6 @@ declare namespace PhiniteStateMachine {
       delay: number | (() => number);
     }
 
-    type Transition<T> = BaseTransition<T> | InputTransition<T> | CurrentAnimationEndTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
+    type Transition<T> = BaseTransition<T> | InputTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
   }
 }

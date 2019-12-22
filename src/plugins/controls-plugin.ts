@@ -8,6 +8,8 @@ type ListenerConfig = {
   callback: Listener;
 };
 
+type ControlOption = 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
+
 class Control {
   private onPressListeners: ListenerConfig[];
   private onReleaseListeners: ListenerConfig[];

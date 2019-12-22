@@ -1,6 +1,7 @@
 import 'phaser';
 
 import { TransitionType } from './transition-type';
+import { PhiniteStateMachineComponent } from '../../components/phinite-state-machine-component';
 
 export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateMachine<T> {
   private scene: Phaser.Scene;
@@ -61,6 +62,12 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
         case TransitionType.Input:
           this.registerInputTransitionTrigger(transition as PhiniteStateMachine.Transitions.InputTransition<T>);
           break;
+        case TransitionType.PressControl:
+          this.registerPressControlTransitionTrigger(transition as PhiniteStateMachine.Transitions.PressControlTransition<T>);
+          break;
+        case TransitionType.ReleaseControl:
+          this.registerReleaseControlTransitionTrigger(transition as PhiniteStateMachine.Transitions.ReleaseControlTransition<T>);
+          break;
         case TransitionType.Conditional:
           this.registerConditionalTransitionTrigger(transition as PhiniteStateMachine.Transitions.ConditionalTransition<T>);
           break;
@@ -81,6 +88,14 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
 
     this.scene.input.keyboard.on(transition.event, listener);
     this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
+  }
+
+  private registerPressControlTransitionTrigger(transition: PhiniteStateMachine.Transitions.PressControlTransition<T>) {
+
+  }
+
+  private registerReleaseControlTransitionTrigger(transition: PhiniteStateMachine.Transitions.ReleaseControlTransition<T>) {
+
   }
 
   private registerConditionalTransitionTrigger(transition: PhiniteStateMachine.Transitions.ConditionalTransition<T>) {
