@@ -19,26 +19,40 @@ export class MenuSystem implements Phecs.System {
   start(phEntities: EntityManager) {
     this.menuOptions = phEntities.getEntities('menuButton');
 
-    this.scene.input.keyboard.on(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, this.keyboardListener, this);
+    this.scene.controls.up.onPress(() => this.changeMenuSelector('up'));
+    this.scene.controls.down.onPress(() => this.changeMenuSelector('down'));
+    this.scene.controls.action.onPress(() => this.selectMenuOption());
 
-    this.updateIndicator(this.selectedIndex);
+    this.selectFirstEnabledIndicatorPosition()
   }
 
-  stop() {
-    this.scene.input.keyboard.off(Phaser.Input.Keyboard.Events.ANY_KEY_DOWN, this.keyboardListener, this);
+  private selectFirstEnabledIndicatorPosition() {
+    const index = this.menuOptions.findIndex(menuOption => !menuOption.getComponent(MenuActionComponent).disabled)
+    this.updateIndicatorPosition(index);
   }
 
-  private keyboardListener(e: KeyboardEvent) {
-    if (e.key === 'ArrowDown') {
-      this.updateIndicator(Phaser.Math.Wrap(this.selectedIndex - 1, 0, this.menuOptions.length));
-    } else if (e.key === 'ArrowUp') {
-      this.updateIndicator(Phaser.Math.Wrap(this.selectedIndex - 1, 0, this.menuOptions.length));
-    } else if (e.key === ' ' || e.key === 'f') {
-      this.selectMenuOption();
+  private changeMenuSelector(direction: 'up' | 'down')  {
+    const searchAdjuster = direction === 'up' ? -1 : 1;
+    let searchCount = 0;
+
+    const startingIndex = this.selectedIndex;
+    let newIndex = this.selectedIndex;
+    do {
+      searchCount++;
+      newIndex = Phaser.Math.Wrap(this.selectedIndex + searchAdjuster, 0, this.menuOptions.length);
+
+      if (searchCount === this.menuOptions.length) {
+        newIndex = startingIndex;
+        break;
+      }
+    } while(this.menuOptions[newIndex].getComponent(MenuActionComponent).disabled)
+
+    if (newIndex != startingIndex) {
+      this.updateIndicatorPosition(newIndex);
     }
   }
 
-  private updateIndicator(newSelectedIndex: number) {
+  private updateIndicatorPosition(newSelectedIndex: number) {
     const oldMenuOption = this.menuOptions[this.selectedIndex];
     oldMenuOption.getComponent(TextIndicatorComponent).indicator.hide();
 

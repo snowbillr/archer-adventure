@@ -1,6 +1,8 @@
 import { SCENE_KEYS } from '../constants/scene-keys';
+import { BaseScene } from './base-scene';
+import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 
-export class DeathScene extends Phaser.Scene {
+export class DeathScene extends BaseScene {
   constructor() {
     super({ key: SCENE_KEYS.death });
   }
@@ -18,7 +20,9 @@ export class DeathScene extends Phaser.Scene {
           this.scene.stop(SCENE_KEYS.exploration);
           this.scene.stop(SCENE_KEYS.hud);
           this.scene.stop(SCENE_KEYS.death);
-          this.scene.start(SCENE_KEYS.exploration, { areaKey: data.respawnAreaKey });
+          // this.scene.start(SCENE_KEYS.exploration, { areaKey: data.respawnAreaKey });
+          // CONTINUE GAME FROM HERE
+          this.scene.start(SCENE_KEYS.continueGame);
         }
       });
     });
