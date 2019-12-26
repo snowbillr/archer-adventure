@@ -113,7 +113,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }
 
-  loadNewArea(key: string, markerName?: string) {
+  loadNewArea(areaKey: string, markerName?: string) {
     return new Promise((resolve, reject) => {
       if (this.isLoadingArea) {
         reject();
@@ -133,7 +133,7 @@ export class ExplorationScene extends BaseScene {
         this.phecs.reset();
         this.areaManager.unload();
 
-        this.areaManager.load(key);
+        this.areaManager.load(areaKey);
 
         const map = this.areaManager.map;
         const tileset = this.areaManager.tileset;
@@ -179,7 +179,7 @@ export class ExplorationScene extends BaseScene {
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
-        this.persistence.set(PERSISTENCE_KEYS.currentArea, key);
+        this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
         this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
         this.persistence.save();
 
