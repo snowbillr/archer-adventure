@@ -3,6 +3,8 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { AdventurerComponent } from '../../../components/adventurer-component';
+import { SceneComponent } from '../../../components/scene-component';
+import { BaseScene } from '../../../scenes/base-scene';
 
 export const baseCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   onEnter(entity: Phecs.Entity) {
@@ -10,15 +12,14 @@ export const baseCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = StateM
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.getComponent(AdventurerComponent).codes.down,
+      type: TransitionType.ReleaseControl,
+      control: 'down',
       to: (entity: Phecs.Entity) => {
-        const controls = entity.getComponent(AdventurerComponent).controls;
+        const controls = (entity.getComponent(SceneComponent).scene as BaseScene).controls;
 
-        if (controls.left.isDown) {
+        if (controls.left.isPressed) {
           return 'adventurer-run-left';
-        } else if (controls.right.isDown) {
+        } else if (controls.right.isPressed) {
           return 'adventurer-run-right';
         } else {
           return 'adventurer-stand';

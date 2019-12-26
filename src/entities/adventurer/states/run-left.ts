@@ -14,15 +14,13 @@ export const adventurerRunLeft: PhiniteStateMachine.States.State<Phecs.Entity> =
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.getComponent(AdventurerComponent).codes.left,
+      type: TransitionType.ReleaseControl,
+      control: 'left',
       to: 'adventurer-stand',
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.PressControl,
+      control: 'right',
       to: 'adventurer-run-right',
     },
   ]

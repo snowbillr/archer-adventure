@@ -13,9 +13,8 @@ export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMer
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
+      type: TransitionType.PressControl,
+      control: 'shoot',
       to: 'adventurer-air-draw',
     },
     {

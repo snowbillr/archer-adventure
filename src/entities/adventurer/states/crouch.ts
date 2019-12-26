@@ -7,15 +7,13 @@ export const adventurerCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = 
   id: 'adventurer-crouch',
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.left,
+      type: TransitionType.PressControl,
+      control: 'left',
       to: 'adventurer-crouch-left'
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.PressControl,
+      control: 'right',
       to: 'adventurer-crouch-right'
     }
   ]

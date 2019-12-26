@@ -43,9 +43,8 @@ export const adventurerSlide: PhiniteStateMachine.States.State<Phecs.Entity> = S
       }
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.up,
+      type: TransitionType.PressControl,
+      control: 'up',
       to: 'adventurer-jump-prep',
     }
   ],

@@ -38,16 +38,13 @@ declare namespace PhiniteStateMachine {
       onTransition?: (entity: T) => void;
     }
 
-    type InputTransition<T> = BaseTransition<T> & {
-      event: string;
-      key: string | ((entity: T) => string);
-    }
-
     type PressControlTransition<T> = BaseTransition<T> & {
+      // control: 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
       control: string;
     }
 
     type ReleaseControlTransition<T> = BaseTransition<T> & {
+      // control: 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
       control: string;
     }
 
@@ -59,6 +56,6 @@ declare namespace PhiniteStateMachine {
       delay: number | (() => number);
     }
 
-    type Transition<T> = BaseTransition<T> | InputTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
+    type Transition<T> = BaseTransition<T> | PressControlTransition<T> | ReleaseControlTransition<T> | ConditionalTransition<T> | TimerTransition<T>;
   }
 }

@@ -23,9 +23,8 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Phecs.Entity> =
       to: 'adventurer-stand-hold',
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
+      type: TransitionType.ReleaseControl,
+      control: 'shoot',
       to: 'adventurer-air-shoot',
     },
     {
@@ -36,18 +35,16 @@ export const adventurerAirDraw: PhiniteStateMachine.States.State<Phecs.Entity> =
       to: 'adventurer-air-hold'
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.left,
+      type: TransitionType.PressControl,
+      control: 'left',
       to: 'adventurer-air-draw',
       onTransition(entity) {
         entity.getComponent(SpriteComponent).sprite.flipX = true;
       }
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.PressControl,
+      control: 'right',
       to: 'adventurer-air-draw',
       onTransition(entity) {
         entity.getComponent(SpriteComponent).sprite.flipX = false;
