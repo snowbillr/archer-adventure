@@ -33,66 +33,62 @@ export class TitleScene extends BaseScene {
     this.add.image(0, 0, 'title-screen').setOrigin(0, 0);
     this.add.image(0, 0, 'vignette-effect').setOrigin(0, 0).setAlpha(0.1);
 
-    const titleEntity = this.phecs.phEntities.createPrefab('menuTitle', {
+    this.phecs.phEntities.createPrefab('menuTitle', {
       x: 400,
       y: 160,
       origin: 0.5,
       font: 'compass-72-title',
       text: 'Archer Adventure',
     });
-    titleEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    const startButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
-      x: 400,
-      y: 250,
-      origin: 0.5,
-      font: 'compass-24',
-      text: 'Start',
-      indicatorSide: IndicatorSide.LEFT,
-      menuActionCallback: () => {
-        this.phecs.stop();
-        this.scene.stop();
-        this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
-      },
-    });
-    startButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
+    this.createMenuButtons();
 
-    const optionsButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
-      x: 400,
-      y: 290,
-      origin: 0.5,
-      font: 'compass-24',
-      text: 'Options',
-      indicatorSide: IndicatorSide.LEFT,
-      menuActionCallback: () => {},
-    });
-    optionsButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
+    this.phecs.start();
+    this.controls.start();
+  }
 
-    this.tweens.timeline({
-      tweens: [
-        {
-          targets: [
-            titleEntity.getComponent(TextComponent).bitmapText,
-          ],
-          props: {
-            alpha: 1,
-          },
-          duration: 1000,
-        },
-        {
-          targets: [
-            startButtonEntity.getComponent(TextComponent).bitmapText,
-            optionsButtonEntity.getComponent(TextComponent).bitmapText,
-          ],
-          props: {
-            alpha: 1,
-          },
-          duration: 500,
-          onComplete: () => {
-            this.phecs.start();
-          }
+  private createMenuButtons() {
+    const buttonConfigs = [
+      {
+        text: 'Continue Game',
+        menuActionDisabled: !this.persistence.hasSaveGame(),
+        menuActionCallback: () => {
+          this.phecs.stop();
+          this.scene.stop();
+          this.scene.start(SCENE_KEYS.continueGame);
         }
-      ]
+      },
+      {
+        text: 'New Game',
+        menuActionCallback: () => {
+          this.phecs.stop();
+          this.scene.stop();
+          this.scene.start(SCENE_KEYS.newGame);
+        }
+      }
+    ]
+
+    const x = 400;
+    let y = 250;
+    const yStep = 40;
+
+    buttonConfigs.map(buttonConfig => {
+      const menuButton = this.phecs.phEntities.createPrefab('menuButton', {
+        x,
+        y,
+        origin: 0.5,
+        font: 'compass-24',
+        text: buttonConfig.text,
+        indicatorSide: IndicatorSide.LEFT,
+        menuActionDisabled: buttonConfig.menuActionDisabled,
+        menuActionCallback: buttonConfig.menuActionCallback,
+      });
+
+      if (buttonConfig.menuActionDisabled) {
+        menuButton.getComponent(TextComponent).bitmapText.alpha = 0.5;
+      }
+
+      y += yStep;
     });
   }
 }

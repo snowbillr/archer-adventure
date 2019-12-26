@@ -13,7 +13,6 @@ export const npcPrefab: Phecs.Prefab = {
       component: InteractionCircleComponent,
       data: {
         interactionRadius: 70,
-        interactionControl: 'action',
         interactionDebug: false,
       }
     },

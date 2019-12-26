@@ -56,10 +56,8 @@ export class ExplorationScene extends BaseScene {
     this.registerSystems();
     this.registerPrefabs();
 
-    this.loadData();
-
     this.cameras.main.fadeOut(0);
-    this.loadNewArea(data.areaKey)
+    this.loadNewArea(data.areaKey, data.markerName)
       .then(() => {
         this.cameras.main.fadeIn(1000);
         this.scene.launch(SCENE_KEYS.hud);
@@ -115,11 +113,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }
 
-  loadData() {
-    this.persistence.set(PERSISTENCE_KEYS.adventurer.health, 5);
-  }
-
-  loadNewArea(key: string, markerName?: string) {
+  loadNewArea(areaKey: string, markerName?: string) {
     return new Promise((resolve, reject) => {
       if (this.isLoadingArea) {
         reject();
@@ -139,7 +133,7 @@ export class ExplorationScene extends BaseScene {
         this.phecs.reset();
         this.areaManager.unload();
 
-        this.areaManager.load(key);
+        this.areaManager.load(areaKey);
 
         const map = this.areaManager.map;
         const tileset = this.areaManager.tileset;
@@ -184,6 +178,10 @@ export class ExplorationScene extends BaseScene {
         var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
+
+        this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
+        this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        this.persistence.save();
 
         this.isLoadingArea = false;
         resolve();

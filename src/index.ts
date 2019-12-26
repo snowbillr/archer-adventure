@@ -15,6 +15,8 @@ import { PreloadScene } from './scenes/preload-scene';
 import { HUDScene } from './scenes/hud-scene';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 import { TitleScene } from './scenes/title-scene';
+import { NewGameScene } from './scenes/new-game-scene';
+import { ContinueGameScene } from './scenes/continue-game-scene';
 
 const gameConfig = {
   width: 800,
@@ -48,7 +50,20 @@ const gameConfig = {
       },
     ]
   },
-  scene: [PreloadScene, TitleScene, ExplorationScene, HUDScene, DeathScene, PrefabTestScene],
+  scene: [
+    PreloadScene,
+
+    TitleScene,
+
+    NewGameScene,
+    ContinueGameScene,
+
+    ExplorationScene,
+    HUDScene,
+    DeathScene,
+
+    PrefabTestScene,
+  ],
   pixelArt: true,
   physics: {
     default: 'arcade',

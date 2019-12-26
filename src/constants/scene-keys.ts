@@ -5,5 +5,8 @@ export const SCENE_KEYS = {
   hud: 'hud',
   death: 'death',
 
+  newGame: 'newGame',
+  continueGame: 'continueGame',
+
   prefabTest: 'prefabTest',
 }
