@@ -2,7 +2,6 @@ import { baseRun, startRunning } from './base-run';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerRunRight: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseRun, {
   id: 'adventurer-run-right',
@@ -14,15 +13,13 @@ export const adventurerRunRight: PhiniteStateMachine.States.State<Phecs.Entity> 
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_UP,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.ReleaseControl,
+      control: 'right',
       to: 'adventurer-stand',
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.left,
+      type: TransitionType.PressControl,
+      control: 'left',
       to: 'adventurer-run-left',
     },
   ]

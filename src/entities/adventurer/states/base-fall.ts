@@ -5,7 +5,8 @@ import { TransitionType } from '../../../lib/phinite-state-machine/transition-ty
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
+import { SceneComponent } from '../../../components/scene-component';
+import { BaseScene } from '../../../scenes/base-scene';
 
 export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseAerial, {
   onEnter(entity: Phecs.Entity) {
@@ -13,9 +14,8 @@ export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMer
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
+      type: TransitionType.PressControl,
+      control: 'shoot',
       to: 'adventurer-air-draw',
     },
     {
@@ -24,17 +24,17 @@ export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMer
         return entity.getComponent(PhysicsBodyComponent).body.blocked.down;
       },
       to(entity: Phecs.Entity) {
-        const controls = entity.getComponent(AdventurerComponent).controls;
+        const controls = (entity.getComponent(SceneComponent).scene as BaseScene).controls;
 
-        if (controls.down.isDown) {
+        if (controls.down.isPressed) {
           if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
             return 'adventurer-crouch';
           } else {
             return 'adventurer-slide';
           }
-        } else if (controls.left.isDown) {
+        } else if (controls.left.isPressed) {
           return 'adventurer-run-left';
-        } else if (controls.right.isDown) {
+        } else if (controls.right.isPressed) {
           return 'adventurer-run-right';
         }  else {
           return 'adventurer-stand';

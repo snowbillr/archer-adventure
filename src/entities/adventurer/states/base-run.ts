@@ -5,7 +5,6 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
   onEnter(entity: Phecs.Entity) {
@@ -14,15 +13,13 @@ export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerg
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.attack,
+      type: TransitionType.PressControl,
+      control: 'shoot',
       to: 'adventurer-stand-draw',
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.down,
+      type: TransitionType.PressControl,
+      control: 'down',
       to: (entity: Phecs.Entity) => {
         if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
           return 'adventurer-crouch';
@@ -31,12 +28,11 @@ export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerg
         }
       }
     },
-    {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.up,
-      to: 'adventurer-jump-prep',
-    }
+   {
+     type: TransitionType.PressControl,
+     control: 'up',
+     to: 'adventurer-jump-prep'
+   }
   ]
 });
 

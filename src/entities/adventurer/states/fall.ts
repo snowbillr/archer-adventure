@@ -1,7 +1,6 @@
 import { baseFall } from './base-fall';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseFall, {
   id: 'adventurer-fall',
@@ -10,15 +9,13 @@ export const adventurerFall: PhiniteStateMachine.States.State<Phecs.Entity> = St
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.left,
+      type: TransitionType.PressControl,
+      control: 'left',
       to: 'adventurer-fall-left',
     },
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.PressControl,
+      control: 'right',
       to: 'adventurer-fall-right',
     }
   ],

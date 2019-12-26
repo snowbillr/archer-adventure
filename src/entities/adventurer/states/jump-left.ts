@@ -4,7 +4,6 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerJumpLeft: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseJump, {
   id: 'adventurer-jump-left',
@@ -16,9 +15,8 @@ export const adventurerJumpLeft: PhiniteStateMachine.States.State<Phecs.Entity> 
   },
   transitions: [
     {
-      type: TransitionType.Input,
-      event: Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
-      key: entity => entity.getComponent(AdventurerComponent).codes.right,
+      type: TransitionType.PressControl,
+      control: 'right',
       to: 'adventurer-jump-right',
     },
     {

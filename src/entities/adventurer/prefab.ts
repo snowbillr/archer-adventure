@@ -9,6 +9,7 @@ import { PhiniteStateMachineComponent } from "../../components/phinite-state-mac
 import { ShootsArrowsComponent } from "../../components/shoots-arrows-component";
 import { HealthComponent } from "../../components/health-component";
 import { InvulnerabilityComponent } from "../../components/invulnerability-component";
+import { SceneComponent } from "../../components/scene-component";
 
 export const adventurerPrefab: Phecs.Prefab = {
   components: [
@@ -62,5 +63,6 @@ export const adventurerPrefab: Phecs.Prefab = {
       component: ShootsArrowsComponent,
     },
     InvulnerabilityComponent,
+    SceneComponent,
   ]
 }

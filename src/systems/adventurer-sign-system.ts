@@ -4,8 +4,8 @@ import { AdventurerComponent } from '../components/adventurer-component';
 import { SpriteIndicatorComponent } from '../components/sprite-indicator-component';
 
 export class AdventurerSignSystem extends BaseInteractionSystem {
-  constructor() {
-    super(AdventurerComponent, 'sign')
+  constructor(scene: Phaser.Scene) {
+    super(scene, AdventurerComponent, 'sign')
   }
 
   onEnter(sign: Phecs.Entity) {
