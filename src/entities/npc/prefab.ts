@@ -3,31 +3,22 @@ import { PhiniteStateMachineComponent } from "../../components/phinite-state-mac
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
 import { ConversationBoxComponent } from "../../components/conversation-box-component";
+import { NpcComponent } from "../../components/npc-component";
 
-export const oldManPrefab: Phecs.Prefab = {
+export const npcPrefab: Phecs.Prefab = {
   components: [
-    {
-      component: SpriteComponent,
-      data: {
-        texture: 'old-man',
-      }
-    },
-    {
-      component: PhiniteStateMachineComponent,
-      data: {
-        stateSet: 'old-man',
-        initialStateId: 'old-man-idle'
-      }
-    },
+    SpriteComponent,
+    PhiniteStateMachineComponent,
     {
       component: InteractionCircleComponent,
       data: {
-        interactionRadius: 50,
+        interactionRadius: 70,
         interactionControl: 'action',
         interactionDebug: false,
       }
     },
     SpriteIndicatorComponent,
     ConversationBoxComponent,
+    NpcComponent,
   ]
 };

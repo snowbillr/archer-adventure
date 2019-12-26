@@ -66,10 +66,30 @@
                         {
                          "name":"conversationKey",
                          "type":"string",
+                         "value":"old-man-1"
+                        }, 
+                        {
+                         "name":"initialStateId",
+                         "type":"string",
+                         "value":"old-man-idle"
+                        }, 
+                        {
+                         "name":"npcId",
+                         "type":"string",
+                         "value":"old-man"
+                        }, 
+                        {
+                         "name":"stateSet",
+                         "type":"string",
+                         "value":"old-man"
+                        }, 
+                        {
+                         "name":"texture",
+                         "type":"string",
                          "value":"old-man"
                         }],
                  "rotation":0,
-                 "type":"old-man",
+                 "type":"npc",
                  "visible":true,
                  "width":0,
                  "x":242.800866762974,

@@ -12,8 +12,7 @@ import { sheepStates } from '../entities/sheep/states';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
-import { AdventurerOldLadySystem } from '../systems/adventurer-old-lady-system';
-import { AdventurerOldManSystem } from '../systems/adventurer-old-man-system';
+import { AdventurerNpcSystem } from '../systems/adventurer-npc-system';
 import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
@@ -27,8 +26,7 @@ import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { enemyPrefab } from '../entities/enemy/prefab';
-import { oldLadyPrefab } from '../entities/old-lady/prefab';
-import { oldManPrefab } from '../entities/old-man/prefab';
+import { npcPrefab } from '../entities/npc/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
 
@@ -94,8 +92,7 @@ export class ExplorationScene extends BaseScene {
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
         AdventurerDoorSystem,
-        AdventurerOldLadySystem,
-        AdventurerOldManSystem,
+        AdventurerNpcSystem,
         AdventurerSignSystem,
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
@@ -113,8 +110,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
-    this.phecs.phEntities.registerPrefab('old-lady', oldLadyPrefab);
-    this.phecs.phEntities.registerPrefab('old-man', oldManPrefab);
+    this.phecs.phEntities.registerPrefab('npc', npcPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }
