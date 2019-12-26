@@ -32,8 +32,8 @@ export abstract class BaseInteractionSystem implements Phecs.System {
     for (let entityA of entityAs) {
       for (let entityB of entityBs) {
         const listener = () => {
-          const entityBActiveInteractionIds = entityB.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
-          if (entityBActiveInteractionIds.includes(entityA.id)) {
+          const entityAActiveInteractionIds = entityA.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
+          if (entityAActiveInteractionIds.includes(entityB.id)) {
             if (this.onInteraction) {
               this.onInteraction(entityB);
             }
