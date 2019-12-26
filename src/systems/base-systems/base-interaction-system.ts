@@ -24,28 +24,23 @@ export abstract class BaseInteractionSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    const controlEntities = phEntities.getEntities(this.identifierA);
-    const interactionEntities = phEntities.getEntities(this.identifierB);
+    const entityAs = phEntities.getEntities(this.identifierA);
+    const entityBs = phEntities.getEntities(this.identifierB);
 
-    for (let controlEntity of controlEntities) {
-      // AdventurerComponent for now since there isn't a ControlComponent
-      if (!controlEntity.hasComponent(AdventurerComponent)) break;
+    const actionControl = this.scene.controls.action;
 
-      const controls = this.scene.controls;
-
-      for (let interactionEntity of interactionEntities) {
-        const interactionControl = controls.action;
-
+    for (let entityA of entityAs) {
+      for (let entityB of entityBs) {
         const listener = () => {
-          const activeInteractionIds = interactionEntity.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
-          if (activeInteractionIds.includes(controlEntity.id)) {
+          const entityBActiveInteractionIds = entityB.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
+          if (entityBActiveInteractionIds.includes(entityA.id)) {
             if (this.onInteraction) {
-              this.onInteraction(interactionEntity);
+              this.onInteraction(entityB);
             }
           }
         } 
 
-        const listenerCancelFn = interactionControl.onPress(listener);
+        const listenerCancelFn = actionControl.onPress(listener);
         this.listeners.push({ control: 'action', listener: listener, listenerCancelFn });
       }
     }
