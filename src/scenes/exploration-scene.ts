@@ -18,7 +18,6 @@ import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
-import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
@@ -101,7 +100,6 @@ export class ExplorationScene extends BaseScene {
         EnemyAdventurerDamageSystem,
         HasAttachmentsSystem,
         HasBoundsSystem,
-        HasControlsSystem,
         HasHitboxesSystem,
         HasHurtboxesSystem,
         HasInteracionCircleSystem,
@@ -141,6 +139,7 @@ export class ExplorationScene extends BaseScene {
       // This manifested as a problem when you entered a door and the sign interaction check got called for the
       // previous scene.
       this.time.delayedCall(0, () => {
+        this.controls.stop();
         this.phecs.reset();
         this.areaManager.unload();
 
@@ -183,6 +182,7 @@ export class ExplorationScene extends BaseScene {
           });
         }
 
+        this.controls.start();
         this.phecs.start();
 
         var { x, y, width, height } = this.calculateCameraBounds(map, tileset);

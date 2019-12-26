@@ -100,9 +100,16 @@ export class ControlsPlugin extends Phaser.Plugins.ScenePlugin implements IContr
     this.down = new Control();
     this.action = new Control();
     this.shoot = new Control();
+  }
 
-    scene.events.on(Phaser.Scenes.Events.START, this.startListening, this);
-    scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
+  start() {
+    this.startListening();
+    this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
+  }
+
+  stop() {
+    this.scene.events.off(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
+    this.shutdown();
   }
 
   private startListening() {

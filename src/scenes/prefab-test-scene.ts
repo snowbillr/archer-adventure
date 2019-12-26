@@ -8,7 +8,6 @@ import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
-import { HasControlsSystem } from '../systems/has-controls-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
@@ -33,7 +32,6 @@ export class PrefabTestScene extends BaseScene {
         HasAttachmentsSystem,
         HasInteracionCircleSystem,
         HasBoundsSystem,
-        HasControlsSystem,
         HasHurtboxesSystem,
         HasHitboxesSystem,
       ]
