@@ -1,14 +1,11 @@
 import { InteractionTracker } from '../lib/interaction-tracker';
 
 export class InteractionCircleComponent implements Phecs.Component {
-  public interactionControl: string;
   public interactionCircle: Phaser.Geom.Circle;
   public interactionTracker: InteractionTracker;
   public debugInteractionCircle?: Phaser.GameObjects.Arc;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
-    this.interactionControl = data.interactionControl;
-
     const interactionCircle = new Phaser.Geom.Circle(data.x, data.y, data.interactionRadius);
 
     if (data.interactionDebug) {
@@ -29,7 +26,6 @@ export class InteractionCircleComponent implements Phecs.Component {
 
     this.interactionTracker.destroy();
 
-    delete this.interactionControl;
     delete this.interactionCircle;
     delete this.interactionTracker;
     delete this.debugInteractionCircle;
