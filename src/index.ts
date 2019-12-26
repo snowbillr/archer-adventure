@@ -16,6 +16,7 @@ import { HUDScene } from './scenes/hud-scene';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 import { TitleScene } from './scenes/title-scene';
 import { NewGameScene } from './scenes/new-game-scene';
+import { ContinueGameScene } from './scenes/continue-game-scene';
 
 const gameConfig = {
   width: 800,
@@ -55,6 +56,7 @@ const gameConfig = {
     TitleScene,
 
     NewGameScene,
+    ContinueGameScene,
 
     ExplorationScene,
     HUDScene,

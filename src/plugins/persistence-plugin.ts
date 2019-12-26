@@ -36,4 +36,17 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
       this.onChangeListeners[key].splice(callbackIndex, 1);
     }
   }
+
+  save() {
+    localStorage.setItem('archer-adventure-save-game', JSON.stringify(this.data));
+  }
+
+  load() {
+    const savedData = localStorage.getItem('archer-adventure-save-game');
+    if (savedData) {
+      this.data = JSON.parse(savedData);
+    } else {
+      throw new Error('PERSISTENCE_PLUGIN::NO_SAVED_DATA');
+    }
+  }
 }
