@@ -42,20 +42,20 @@ export class TitleScene extends BaseScene {
     });
     titleEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    const startButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
+    const newGameButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
       y: 250,
       origin: 0.5,
       font: 'compass-24',
-      text: 'Start',
+      text: 'New Game',
       indicatorSide: IndicatorSide.LEFT,
       menuActionCallback: () => {
         this.phecs.stop();
         this.scene.stop();
-        this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+        this.scene.start(SCENE_KEYS.newGame);
       },
     });
-    startButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
+    newGameButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
     const optionsButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
@@ -81,7 +81,7 @@ export class TitleScene extends BaseScene {
         },
         {
           targets: [
-            startButtonEntity.getComponent(TextComponent).bitmapText,
+            newGameButtonEntity.getComponent(TextComponent).bitmapText,
             optionsButtonEntity.getComponent(TextComponent).bitmapText,
           ],
           props: {

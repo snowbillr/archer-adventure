@@ -56,8 +56,6 @@ export class ExplorationScene extends BaseScene {
     this.registerSystems();
     this.registerPrefabs();
 
-    this.loadData();
-
     this.cameras.main.fadeOut(0);
     this.loadNewArea(data.areaKey)
       .then(() => {
@@ -113,10 +111,6 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('npc', npcPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
-  }
-
-  loadData() {
-    this.persistence.set(PERSISTENCE_KEYS.adventurer.health, 5);
   }
 
   loadNewArea(key: string, markerName?: string) {
