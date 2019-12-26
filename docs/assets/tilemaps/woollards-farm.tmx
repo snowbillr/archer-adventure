@@ -116,9 +116,13 @@
   <object id="9" name="enemy" type="enemy" x="2025.41" y="762.005">
    <point/>
   </object>
-  <object id="13" name="old-lady" type="old-lady" x="688.501" y="767.89">
+  <object id="13" name="old-lady" type="npc" x="688.501" y="767.89">
    <properties>
-    <property name="conversationKey" value="old-lady"/>
+    <property name="conversationKey" value="old-lady-1"/>
+    <property name="initialStateId" value="old-lady-idle"/>
+    <property name="npcId" value="old-lady"/>
+    <property name="stateSet" value="old-lady"/>
+    <property name="texture" value="old-lady"/>
    </properties>
    <point/>
   </object>

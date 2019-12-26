@@ -42,9 +42,13 @@
 </data>
  </layer>
  <objectgroup id="7" name="npcs">
-  <object id="2" name="old-man" type="old-man" x="242.801" y="160.35">
+  <object id="2" name="old-man" type="npc" x="242.801" y="160.35">
    <properties>
-    <property name="conversationKey" value="old-man"/>
+    <property name="conversationKey" value="old-man-1"/>
+    <property name="initialStateId" value="old-man-idle"/>
+    <property name="npcId" value="old-man"/>
+    <property name="stateSet" value="old-man"/>
+    <property name="texture" value="old-man"/>
    </properties>
    <point/>
   </object>

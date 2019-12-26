@@ -107,10 +107,30 @@
                         {
                          "name":"conversationKey",
                          "type":"string",
+                         "value":"old-lady-1"
+                        }, 
+                        {
+                         "name":"initialStateId",
+                         "type":"string",
+                         "value":"old-lady-idle"
+                        }, 
+                        {
+                         "name":"npcId",
+                         "type":"string",
+                         "value":"old-lady"
+                        }, 
+                        {
+                         "name":"stateSet",
+                         "type":"string",
+                         "value":"old-lady"
+                        }, 
+                        {
+                         "name":"texture",
+                         "type":"string",
                          "value":"old-lady"
                         }],
                  "rotation":0,
-                 "type":"old-lady",
+                 "type":"npc",
                  "visible":true,
                  "width":0,
                  "x":688.501199040767,
