@@ -13,6 +13,10 @@ export class ContinueGameScene extends BaseScene {
 
     this.persistence.set(PERSISTENCE_KEYS.adventurer.health, this.persistence.get(PERSISTENCE_KEYS.adventurer.maxHealth));
 
-    this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
+    const currentLocationData = {
+      areaKey: this.persistence.get(PERSISTENCE_KEYS.currentArea),
+      markerName: this.persistence.get(PERSISTENCE_KEYS.currentMarker),
+    }
+    this.scene.start(SCENE_KEYS.exploration, currentLocationData);
   }
 }

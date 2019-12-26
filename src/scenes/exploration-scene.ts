@@ -57,7 +57,7 @@ export class ExplorationScene extends BaseScene {
     this.registerPrefabs();
 
     this.cameras.main.fadeOut(0);
-    this.loadNewArea(data.areaKey)
+    this.loadNewArea(data.areaKey, data.markerName)
       .then(() => {
         this.cameras.main.fadeIn(1000);
         this.scene.launch(SCENE_KEYS.hud);
@@ -178,6 +178,10 @@ export class ExplorationScene extends BaseScene {
         var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
+
+        this.persistence.set(PERSISTENCE_KEYS.currentArea, key);
+        this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        this.persistence.save();
 
         this.isLoadingArea = false;
         resolve();
