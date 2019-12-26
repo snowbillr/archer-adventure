@@ -42,9 +42,24 @@ export class TitleScene extends BaseScene {
     });
     titleEntity.getComponent(TextComponent).bitmapText.alpha = 0;
 
-    const newGameButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
+    const continueGameButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
       y: 250,
+      origin: 0.5,
+      font: 'compass-24',
+      text: 'Continue Game',
+      indicatorSide: IndicatorSide.LEFT,
+      menuActionCallback: () => {
+        this.phecs.stop();
+        this.scene.stop();
+        this.scene.start(SCENE_KEYS.continueGame);
+      },
+    });
+    continueGameButtonEntity.getComponent(TextComponent).bitmapText.alpha = 0;
+
+    const newGameButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
+      x: 400,
+      y: 290,
       origin: 0.5,
       font: 'compass-24',
       text: 'New Game',
@@ -59,7 +74,7 @@ export class TitleScene extends BaseScene {
 
     const optionsButtonEntity = this.phecs.phEntities.createPrefab('menuButton', {
       x: 400,
-      y: 290,
+      y: 330,
       origin: 0.5,
       font: 'compass-24',
       text: 'Options',
@@ -81,6 +96,7 @@ export class TitleScene extends BaseScene {
         },
         {
           targets: [
+            continueGameButtonEntity.getComponent(TextComponent).bitmapText,
             newGameButtonEntity.getComponent(TextComponent).bitmapText,
             optionsButtonEntity.getComponent(TextComponent).bitmapText,
           ],
