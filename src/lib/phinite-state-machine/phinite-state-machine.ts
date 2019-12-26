@@ -1,7 +1,6 @@
 import 'phaser';
 
 import { TransitionType } from './transition-type';
-import { PhiniteStateMachineComponent } from '../../components/phinite-state-machine-component';
 import { BaseScene } from '../../scenes/base-scene';
 import { Control, ControlOption } from '../../plugins/controls-plugin';
 
@@ -61,9 +60,6 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   private registerTransitionTriggers() {
     this.currentState.transitions.forEach(transition => {
       switch(transition.type) {
-        case TransitionType.Input:
-          this.registerInputTransitionTrigger(transition as PhiniteStateMachine.Transitions.InputTransition<T>);
-          break;
         case TransitionType.PressControl:
           this.registerPressControlTransitionTrigger(transition as PhiniteStateMachine.Transitions.PressControlTransition<T>);
           break;
@@ -78,18 +74,6 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
           break;
       }
     });
-  }
-
-  private registerInputTransitionTrigger(transition: PhiniteStateMachine.Transitions.InputTransition<T>) {
-    const listener = (e: KeyboardEvent) => {
-      const key = typeof transition.key === 'string' ? transition.key : transition.key(this.entity);
-      if (e.key === key) {
-        this.doTransition(transition);
-      }
-    }
-
-    this.scene.input.keyboard.on(transition.event, listener);
-    this.triggerCancelers.push(() => this.scene.input.keyboard.off(transition.event, listener));
   }
 
   private registerPressControlTransitionTrigger(transition: PhiniteStateMachine.Transitions.PressControlTransition<T>) {
