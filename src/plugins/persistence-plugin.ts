@@ -2,6 +2,8 @@ type UpdateCallback<T> = (value: T) => T;
 type OnChangeCallback<T> = (value: T) => void;
 type OnChangeCleanupFn = () => void;
 
+const SAVE_GAME_KEY = 'archer-adventure-save-game';
+
 export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   private data: { [key: string]: any };
   private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
@@ -37,12 +39,16 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     }
   }
 
+  hasSaveGame() {
+    return localStorage.getItem(SAVE_GAME_KEY) != null;
+  }
+
   save() {
-    localStorage.setItem('archer-adventure-save-game', JSON.stringify(this.data));
+    localStorage.setItem(SAVE_GAME_KEY, JSON.stringify(this.data));
   }
 
   load() {
-    const savedData = localStorage.getItem('archer-adventure-save-game');
+    const savedData = localStorage.getItem(SAVE_GAME_KEY);
     if (savedData) {
       this.data = JSON.parse(savedData);
     } else {
