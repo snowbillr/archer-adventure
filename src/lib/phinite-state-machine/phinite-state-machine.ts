@@ -2,6 +2,8 @@ import 'phaser';
 
 import { TransitionType } from './transition-type';
 import { PhiniteStateMachineComponent } from '../../components/phinite-state-machine-component';
+import { BaseScene } from '../../scenes/base-scene';
+import { Control, ControlOption } from '../../plugins/controls-plugin';
 
 export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateMachine<T> {
   private scene: Phaser.Scene;
@@ -91,11 +93,19 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   }
 
   private registerPressControlTransitionTrigger(transition: PhiniteStateMachine.Transitions.PressControlTransition<T>) {
+    const controls = (this.scene as BaseScene).controls;
 
+    const cancelTriggerFn = (controls[transition.control as ControlOption] as Control).onPress(() => this.doTransition(transition));
+
+    this.triggerCancelers.push(cancelTriggerFn);
   }
 
   private registerReleaseControlTransitionTrigger(transition: PhiniteStateMachine.Transitions.ReleaseControlTransition<T>) {
+    const controls = (this.scene as BaseScene).controls;
 
+    const cancelTriggerFn = (controls[transition.control as ControlOption] as Control).onRelease(() => this.doTransition(transition));
+
+    this.triggerCancelers.push(cancelTriggerFn);
   }
 
   private registerConditionalTransitionTrigger(transition: PhiniteStateMachine.Transitions.ConditionalTransition<T>) {

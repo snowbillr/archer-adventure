@@ -8,9 +8,13 @@ type ListenerConfig = {
   callback: Listener;
 };
 
-type ControlOption = 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
+export type ControlOption = 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
 
-class Control {
+type IControlsPlugin = {
+  [key in ControlOption]: Control;
+}
+
+export class Control {
   private onPressListeners: ListenerConfig[];
   private onReleaseListeners: ListenerConfig[];
 
@@ -79,7 +83,7 @@ class Control {
   }
 }
 
-export class ControlsPlugin extends Phaser.Plugins.ScenePlugin {
+export class ControlsPlugin extends Phaser.Plugins.ScenePlugin implements IControlsPlugin {
   public left: Control;
   public right: Control;
   public up: Control;
