@@ -2,7 +2,6 @@ import { baseAerial } from './base-aerial';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const baseJump: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge<Phecs.Entity>(baseAerial, {
   onEnter(entity: Phecs.Entity) {

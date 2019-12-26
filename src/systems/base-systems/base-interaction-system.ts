@@ -2,17 +2,21 @@ import { EntityManager } from "../../lib/phecs/entity-manager";
 import { AdventurerComponent } from "../../components/adventurer-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { InteractionTracker } from "../../lib/interaction-tracker";
+import { BaseScene } from "../../scenes/base-scene";
 
 export abstract class BaseInteractionSystem implements Phecs.System {
+  private scene: BaseScene;
+
   private identifierA: Phecs.EntityIdentifier;
   private identifierB: Phecs.EntityIdentifier;
-  private listeners: { key: Phaser.Input.Keyboard.Key, listener: () => void}[]
+  private listeners: { control: string, listener: () => void, listenerCancelFn: () => void }[]
 
   protected onEnter?(entityB: Phecs.Entity): void;
   protected onInteraction?(interactionEntity: Phecs.Entity): void;
   protected onExit?(entityB: Phecs.Entity): void;
 
-  constructor(identifierA: Phecs.EntityIdentifier, identifierB: Phecs.EntityIdentifier) {
+  constructor(scene: Phaser.Scene, identifierA: Phecs.EntityIdentifier, identifierB: Phecs.EntityIdentifier) {
+    this.scene = scene as BaseScene;
     this.identifierA = identifierA;
     this.identifierB = identifierB;
 
@@ -27,10 +31,10 @@ export abstract class BaseInteractionSystem implements Phecs.System {
       // AdventurerComponent for now since there isn't a ControlComponent
       if (!controlEntity.hasComponent(AdventurerComponent)) break;
 
-      const controls = controlEntity.getComponent(AdventurerComponent).controls;
+      const controls = this.scene.controls;
 
       for (let interactionEntity of interactionEntities) {
-        const interactionControl = controls[interactionEntity.getComponent(InteractionCircleComponent).interactionControl];
+        const interactionControl = controls.action;
 
         const listener = () => {
           const activeInteractionIds = interactionEntity.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
@@ -41,15 +45,15 @@ export abstract class BaseInteractionSystem implements Phecs.System {
           }
         } 
 
-        interactionControl.on(Phaser.Input.Keyboard.Events.DOWN, listener);
-        this.listeners.push({ key: interactionControl, listener: listener });
+        const listenerCancelFn = interactionControl.onPress(listener);
+        this.listeners.push({ control: 'action', listener: listener, listenerCancelFn });
       }
     }
   }
 
   stop() {
     for (let listener of this.listeners) {
-      listener.key.off(Phaser.Input.Keyboard.Events.DOWN, listener.listener);
+      listener.listenerCancelFn();
     }
   }
 

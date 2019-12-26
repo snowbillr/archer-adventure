@@ -3,7 +3,6 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 import { ShootsArrowsComponent } from '../../../components/shoots-arrows-component';
 
 export const adventurerAirDraw: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge<Phecs.Entity>(baseAerial, {

@@ -4,7 +4,6 @@ import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerJumpRight: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseJump, {
   id: 'adventurer-jump-right',

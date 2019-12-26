@@ -1,7 +1,6 @@
 import { baseCrouch } from './base-crouch';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerCrouch: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseCrouch, {
   id: 'adventurer-crouch',

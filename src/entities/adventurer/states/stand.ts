@@ -2,7 +2,6 @@ import { baseIdle } from './base-idle';
 import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
-import { AdventurerComponent } from '../../../components/adventurer-component';
 
 export const adventurerStand: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseIdle, {
   id: 'adventurer-stand',

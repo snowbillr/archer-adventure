@@ -2,12 +2,13 @@ import { AdventurerComponent } from "../../components/adventurer-component";
 import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
 import { ConversationBoxComponent } from "../../components/conversation-box-component";
 import { BaseInteractionSystem } from "./base-interaction-system";
+import { BaseScene } from "../../scenes/base-scene";
 
 export abstract class BaseAdventurerNpcSystem extends BaseInteractionSystem {
   private interacting: boolean;
 
-  constructor(npcType: Phecs.EntityIdentifier) {
-    super(AdventurerComponent, npcType)
+  constructor(scene: Phaser.Scene, npcType: Phecs.EntityIdentifier) {
+    super(scene, AdventurerComponent, npcType)
 
     this.interacting = false;
   }

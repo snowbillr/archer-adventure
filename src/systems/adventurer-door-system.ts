@@ -5,12 +5,12 @@ import { DoorComponent } from '../components/door-component';
 import { ExplorationScene } from '../scenes/exploration-scene';
 
 export class AdventurerDoorSystem extends BaseInteractionSystem {
-  private scene: ExplorationScene;
+  private explorationScene: ExplorationScene;
 
   constructor(scene: Phaser.Scene) {
-    super(AdventurerComponent, DoorComponent)
+    super(scene, AdventurerComponent, DoorComponent)
 
-    this.scene = scene as ExplorationScene;
+    this.explorationScene = scene as ExplorationScene;
   }
 
   onEnter(door: Phecs.Entity) {
@@ -20,7 +20,7 @@ export class AdventurerDoorSystem extends BaseInteractionSystem {
   onInteraction(door: Phecs.Entity) {
     const doorComponent = door.getComponent(DoorComponent);
 
-    this.scene.loadNewArea(doorComponent.toAreaKey, doorComponent.toMarker);
+    this.explorationScene.loadNewArea(doorComponent.toAreaKey, doorComponent.toMarker);
   }
 
   onExit(door: Phecs.Entity) {
