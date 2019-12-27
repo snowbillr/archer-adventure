@@ -14,10 +14,9 @@ export class ConversationComponent implements Phecs.Component {
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     this.scene = scene as BaseScene;
 
-    console.log(this.scene.persistence.progression.getCurrentConversationKey('conversations.oldLady'));
+    const currentConversationKey = this.scene.persistence.progression.getCurrentConversationKey(data.conversationKey);
+    this.conversation = scene.cache.json.get('conversations')[currentConversationKey];
     
-    this.conversation = scene.cache.json.get('conversations')[data.conversationKey];
-
     const entitySprite = entity.getComponent(SpriteComponent).sprite;
     this.entityY = entitySprite.y;
 

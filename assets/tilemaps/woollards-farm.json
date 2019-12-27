@@ -1,4 +1,5 @@
-{ "height":25,
+{ "compressionlevel":-1,
+ "height":25,
  "infinite":false,
  "layers":[
         {
@@ -98,7 +99,7 @@
                         {
                          "name":"conversationKey",
                          "type":"string",
-                         "value":"oldLady1"
+                         "value":"oldLady"
                         }, 
                         {
                          "name":"initialStateId",
@@ -301,7 +302,7 @@
          "value":"adventurerStart"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.3.1",
  "tileheight":32,
  "tilesets":[
         {

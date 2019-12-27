@@ -25,7 +25,8 @@ export class Progression {
     return dependencies.every(dependencyKeyPath => this.progressionCompletion[dependencyKeyPath]);
   }
 
-  getCurrentConversationKey(conversationKeyPath: string) {
+  getCurrentConversationKey(conversationKey: string) {
+    const conversationKeyPath = `conversations.${conversationKey}`;
     const conversationProgression = _.get(progressionDefinition, conversationKeyPath);
 
     if (!this.progressionCompletion[`${conversationKeyPath}[0]`]) {

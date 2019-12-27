@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="20" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="3">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="3">
  <properties>
   <property name="backgroundColor" value="3E2323"/>
   <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground"/>
@@ -41,7 +41,7 @@
  <objectgroup id="7" name="npcs">
   <object id="2" name="old-man" type="npc" x="242.801" y="160.35">
    <properties>
-    <property name="conversationKey" value="oldMan1"/>
+    <property name="conversationKey" value="oldMan"/>
     <property name="initialStateId" value="old-man-idle"/>
     <property name="npcId" value="old-man"/>
     <property name="stateSet" value="old-man"/>
