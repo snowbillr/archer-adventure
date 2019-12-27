@@ -5,6 +5,8 @@ import { BaseScene } from "../scenes/base-scene";
 export class ConversationComponent implements Phecs.Component {
   private scene: BaseScene;
   private conversation: string[];
+
+  private currentConversationKeyPath: string;
   
   private entityY: number;
 
@@ -14,8 +16,9 @@ export class ConversationComponent implements Phecs.Component {
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     this.scene = scene as BaseScene;
 
-    const currentConversationKey = this.scene.persistence.progression.getCurrentConversationKey(data.conversationKey);
-    this.conversation = scene.cache.json.get('conversations')[currentConversationKey];
+    this.currentConversationKeyPath = this.scene.persistence.progression.getCurrentConversationKeyPath(data.conversationKey);
+    const conversationKey = this.scene.persistence.progression.getConversationKey(this.currentConversationKeyPath);
+    this.conversation = scene.cache.json.get('conversations')[conversationKey];
     
     const entitySprite = entity.getComponent(SpriteComponent).sprite;
     this.entityY = entitySprite.y;
@@ -57,6 +60,8 @@ export class ConversationComponent implements Phecs.Component {
   }
 
   stopConversation() {
+    this.scene.persistence.progression.markComplete(this.currentConversationKeyPath);
+    this.scene.persistence.save();
     this.conversationBoxSprite.alpha = 0;
   }
 

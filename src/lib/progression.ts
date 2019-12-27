@@ -25,12 +25,17 @@ export class Progression {
     return dependencies.every(dependencyKeyPath => this.progressionCompletion[dependencyKeyPath]);
   }
 
-  getCurrentConversationKey(conversationKey: string) {
+  markConversationComplete(conversationKey: string, index: number) {
+    const keyPath = `conversations.${conversationKey}[index]`;
+    this.markComplete(keyPath);
+  }
+
+  getCurrentConversationKeyPath(conversationKey: string) {
     const conversationKeyPath = `conversations.${conversationKey}`;
     const conversationProgression = _.get(progressionDefinition, conversationKeyPath);
 
     if (!this.progressionCompletion[`${conversationKeyPath}[0]`]) {
-      return _.get(progressionDefinition, `${conversationKeyPath}[0].conversationKey`)
+      return `${conversationKeyPath}[0]`;
     }
 
     let lastCompletedConversation = 0;
@@ -50,9 +55,13 @@ export class Progression {
     }
 
     if (lastConversation === conversationProgression.length - 1) {
-      return _.get(progressionDefinition, `${conversationKeyPath}[${lastConversation}].conversationKey`);
+      return `${conversationKeyPath}[${lastConversation}]`;
     } else {
-      return _.get(progressionDefinition, `${conversationKeyPath}[${lastConversation + 1}].conversationKey`);
+      return `${conversationKeyPath}[${lastConversation + 1}]`;
     }
+  }
+
+  getConversationKey(conversationKeyPath: string) {
+    return _.get(progressionDefinition, conversationKeyPath).conversationKey;
   }
 }
