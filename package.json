@@ -13,6 +13,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/lodash": "^4.14.149",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^4.5.1",
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "@koreez/phaser3-ninepatch": "^2.0.2",
+    "lodash": "^4.17.15",
     "phaser": "^3.0.0"
   },
   "scripts": {
