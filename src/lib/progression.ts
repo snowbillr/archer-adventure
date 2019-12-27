@@ -21,12 +21,17 @@ export class Progression {
   }
 
   isUnlocked(keyPath: string): boolean {
-    const dependencies: string[] = _.get(progressionDefinition, keyPath);
+    const dependencies: string[] = _.get(progressionDefinition, `${keyPath}.unlockDependencies`);
     return dependencies.every(dependencyKeyPath => this.progressionCompletion[dependencyKeyPath]);
   }
 
   getCurrentConversationKey(conversationKeyPath: string) {
     const conversationProgression = _.get(progressionDefinition, conversationKeyPath);
+
+    if (!this.progressionCompletion[`${conversationKeyPath}[0]`]) {
+      return _.get(progressionDefinition, `${conversationKeyPath}[0].conversationKey`)
+    }
+
     let lastCompletedConversation = 0;
     let lastUnlockedConversation = 0;
     for (let i = 0; i < conversationProgression.length; i++) {

@@ -1,8 +1,9 @@
 import { SpriteComponent } from "./sprite-component"
 import { NinePatch } from "@koreez/phaser3-ninepatch";
+import { BaseScene } from "../scenes/base-scene";
 
-export class ConversationBoxComponent implements Phecs.Component {
-  private scene: Phaser.Scene;
+export class ConversationComponent implements Phecs.Component {
+  private scene: BaseScene;
   private conversation: string[];
   
   private entityY: number;
@@ -11,7 +12,10 @@ export class ConversationBoxComponent implements Phecs.Component {
   private conversationProgressIndex: number;
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
-    this.scene = scene;
+    this.scene = scene as BaseScene;
+
+    console.log(this.scene.persistence.progression.getCurrentConversationKey('conversations.oldLady'));
+    
     this.conversation = scene.cache.json.get('conversations')[data.conversationKey];
 
     const entitySprite = entity.getComponent(SpriteComponent).sprite;

@@ -1,7 +1,7 @@
 import { BaseInteractionSystem } from "./base-systems/base-interaction-system";
 import { AdventurerComponent } from "../components/adventurer-component";
 import { SpriteIndicatorComponent } from "../components/sprite-indicator-component";
-import { ConversationBoxComponent } from "../components/conversation-box-component";
+import { ConversationComponent } from "../components/conversation-component";
 
 export class AdventurerNpcSystem extends BaseInteractionSystem {
   private interacting: boolean;
@@ -17,7 +17,7 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
   }
 
   onInteraction(npc: Phecs.Entity) {
-    const conversationBox = npc.getComponent(ConversationBoxComponent);
+    const conversationBox = npc.getComponent(ConversationComponent);
 
     if (!this.interacting) {
       this.interacting = true;
@@ -33,7 +33,7 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
 
   onExit(npc: Phecs.Entity) {
     if (this.interacting) {
-      npc.getComponent(ConversationBoxComponent).stopConversation();
+      npc.getComponent(ConversationComponent).stopConversation();
       this.interacting = false;
     }
 
