@@ -4,11 +4,23 @@
     "We've got a problem on our farm and need some help.",
     "Go talk to my husband inside, he can tell you more about it."
   ],
+  "oldLady2": [
+    "You heard my husband, go get those monsters.",
+    "Please save our farm!"
+  ],
+  "oldLady3": [
+    "Thank you for saving our farm, you're a hero!"
+  ],
   "oldMan1": [
     "Did my wife send you?",
     "Monsters have been raiding our farm!",
     "We've only got one sheep left, and we can't afford to lose it.",
     "Please help us stop the monsters.",
     "They keep coming from the forest to the east."
+  ],
+  "oldMan2": [
+    "You did it!",
+    "Thank you so much, now we'll be okay.",
+    "Please take this as a reward."
   ]
 }

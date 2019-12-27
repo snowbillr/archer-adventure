@@ -7,6 +7,10 @@ export const progressionDefinition = {
       },
       {
         conversationKey: 'oldLady2',
+        unlockDependencies: ['conversations.oldMan[0]'],
+      },
+      {
+        conversationKey: 'oldLady3',
         unlockDependencies: ['quests.saveFarm'],
       }
     ],
