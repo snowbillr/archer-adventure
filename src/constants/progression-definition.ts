@@ -21,6 +21,10 @@ export const progressionDefinition = {
       },
       {
         conversationId: 'oldMan2',
+        unlockDependencies: ['conversations.oldMan[0]'],
+      },
+      {
+        conversationId: 'oldMan3',
         unlockDependencies: ['quests.saveFarm'],
       }
     ]
