@@ -6,7 +6,7 @@ export class ConversationComponent implements Phecs.Component {
   private scene: BaseScene;
   private conversation: string[];
 
-  private currentConversationKeyPath: string;
+  public currentConversationKeyPath: string;
   
   private entityY: number;
 
@@ -39,7 +39,7 @@ export class ConversationComponent implements Phecs.Component {
       }
     );
 
-    this.stopConversation();
+    this.conversationBoxSprite.alpha = 0;
   }
 
   startConversation() {
@@ -95,9 +95,6 @@ export class ConversationComponent implements Phecs.Component {
       indicator.setOrigin(1, 0);
       indicator.anims.play('indicator-right');
       this.conversationBoxSprite.add(indicator);
-    } else {
-      this.scene.persistence.progression.markComplete(this.currentConversationKeyPath);
-      this.scene.persistence.save();
     }
 
     this.conversationBoxSprite.y = this.entityY - this.conversationBoxSprite.height / 2 - offset;

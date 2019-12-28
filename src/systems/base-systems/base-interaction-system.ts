@@ -5,7 +5,7 @@ import { InteractionTracker } from "../../lib/interaction-tracker";
 import { BaseScene } from "../../scenes/base-scene";
 
 export abstract class BaseInteractionSystem implements Phecs.System {
-  private scene: BaseScene;
+  protected scene: BaseScene;
 
   private identifierA: Phecs.EntityIdentifier;
   private identifierB: Phecs.EntityIdentifier;

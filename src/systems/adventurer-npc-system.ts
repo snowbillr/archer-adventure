@@ -2,6 +2,7 @@ import { BaseInteractionSystem } from "./base-systems/base-interaction-system";
 import { AdventurerComponent } from "../components/adventurer-component";
 import { SpriteIndicatorComponent } from "../components/sprite-indicator-component";
 import { ConversationComponent } from "../components/conversation-component";
+import { BaseScene } from "../scenes/base-scene";
 
 export class AdventurerNpcSystem extends BaseInteractionSystem {
   private interacting: boolean;
@@ -17,23 +18,33 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
   }
 
   onInteraction(npc: Phecs.Entity) {
-    const conversationBox = npc.getComponent(ConversationComponent);
+    const conversation = npc.getComponent(ConversationComponent);
 
     if (!this.interacting) {
       this.interacting = true;
       npc.getComponent(SpriteIndicatorComponent).indicator.hide();
-      conversationBox.startConversation();
-    } else if (this.interacting && conversationBox.hasMoreConversation()) {
-      conversationBox.continueConversation();
+      conversation.startConversation();
+    } else if (this.interacting && conversation.hasMoreConversation()) {
+      conversation.continueConversation();
     } else {
       this.interacting = false;
-      conversationBox.stopConversation();
+      conversation.stopConversation();
+
+      this.scene.persistence.progression.markComplete(conversation.currentConversationKeyPath);
+      this.scene.persistence.save();
     }
   }
 
   onExit(npc: Phecs.Entity) {
     if (this.interacting) {
-      npc.getComponent(ConversationComponent).stopConversation();
+      const conversation = npc.getComponent(ConversationComponent);
+
+      if (!conversation.hasMoreConversation()) {
+        this.scene.persistence.progression.markComplete(conversation.currentConversationKeyPath);
+        this.scene.persistence.save();
+      }
+
+      conversation.stopConversation();
       this.interacting = false;
     }
 
