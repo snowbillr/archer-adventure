@@ -53,8 +53,10 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
 
   save() {
     this.data[PERSISTENCE_KEYS.progression] = this.progression.progressionCompletion;
+
     this.data.adventurer = this.adventurer.toJson();
     this.data.location = this.location.toJson();
+
     localStorage.setItem(SAVE_GAME_KEY, JSON.stringify(this.data));
   }
 
@@ -62,7 +64,9 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     const savedData = localStorage.getItem(SAVE_GAME_KEY);
     if (savedData) {
       this.data = JSON.parse(savedData);
+
       this.progression.setCompletionData(this.data[PERSISTENCE_KEYS.progression]);
+
       this.adventurer.fromJson(this.data.adventurer);
       this.location.fromJson(this.data.location);
     } else {
