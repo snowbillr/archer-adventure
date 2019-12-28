@@ -34,32 +34,13 @@ export class Progression {
     const conversationKeyPath = `conversations.${conversationKey}`;
     const conversationProgression = _.get(progressionDefinition, conversationKeyPath);
 
-    if (!this.progressionCompletion[`${conversationKeyPath}[0]`]) {
-      return `${conversationKeyPath}[0]`;
-    }
-
-    let lastCompletedConversation = 0;
-    let lastUnlockedConversation = 0;
+    let latestUnlockedConversationIndex = -1;
     for (let i = 0; i < conversationProgression.length; i++) {
-      if (this.progressionCompletion[`${conversationKeyPath}[${i}]`]) {
-        lastCompletedConversation = i;
-      }
       if (this.isUnlocked(`${conversationKeyPath}[${i}]`)) {
-        lastUnlockedConversation = i;
+        latestUnlockedConversationIndex = i;
       }
     }
-
-    // let lastConversation = lastCompletedConversation;
-    if (lastUnlockedConversation > lastCompletedConversation) {
-      return `${conversationKeyPath}[${lastUnlockedConversation}]`;
-      // lastConversation = lastUnlockedConversation;
-    }
-
-    if (lastCompletedConversation === conversationProgression.length - 1) {
-      return `${conversationKeyPath}[${lastCompletedConversation}]`;
-    } else {
-      return `${conversationKeyPath}[${lastCompletedConversation + 1}]`;
-    }
+    return `${conversationKeyPath}[${latestUnlockedConversationIndex}]`;
   }
 
   getConversationKey(conversationKeyPath: string) {
