@@ -4,7 +4,10 @@
       "@babel/typescript"
   ],
   "plugins": [
-      "@babel/proposal-class-properties",
+      // https://github.com/babel/babel/issues/8280
+      // https://babeljs.io/docs/en/babel-plugin-proposal-class-properties
+      // Without this, the BasePersistenceDocument's properties were being redefined in the subclass.
+      ["@babel/proposal-class-properties", { "loose": true }],
       "@babel/proposal-object-rest-spread"
   ]
 }

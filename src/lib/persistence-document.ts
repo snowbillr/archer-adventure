@@ -16,14 +16,12 @@ export abstract class BasePersistenceDocument implements PersistenceDocument {
     this.onChangeListeners = {};
     this.data = {};
 
-    console.log('base persistence', properties)
     Object.defineProperties(this, properties.reduce((propConfig, propName) => {
       const config = {
         get(this: PersistenceDocument): any {
           return this.data[propName];
         },
         set(this: PersistenceDocument, value: any) {
-          console.log(`set ${propName} to ${value}`)
           this.data[propName] = value;
           (this.onChangeListeners[propName] || []).forEach((listener: OnChangeCallback<any>) => listener(value));
         }

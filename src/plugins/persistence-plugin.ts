@@ -1,5 +1,6 @@
 import { Progression } from "../lib/progression";
 import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
+import { BasePersistenceDocument } from "../lib/persistence-document";
 
 type UpdateCallback<T> = (value: T) => T;
 type OnChangeCallback<T> = (value: T) => void;
@@ -7,42 +8,15 @@ type OnChangeCleanupFn = () => void;
 
 const SAVE_GAME_KEY = 'archer-adventure-save-game';
 
-interface PersistenceDocument {
-  [key: string]: any;
-
-  toJson(): object;
-  fromJson(json: { [key: string]: any }): void;
-}
-
-class AdventurerDocument implements PersistenceDocument {
-  public maxHealth: number;
-  public health: number;
-
-  private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
-  private data: { [key: string]: any };
+class AdventurerDocument extends BasePersistenceDocument {
+  public maxHealth: number = 0;
+  public health: number = 0;
 
   constructor() {
-    this.onChangeListeners = {};
-    this.data = {};
+    super(['maxHealth', 'health']);
 
-    Object.defineProperties(this, ['maxHealth', 'health'].reduce((propConfig, propName) => {
-      const config = {
-        get(this: PersistenceDocument): any {
-          return this.data[propName];
-        },
-        set(this: PersistenceDocument, value: any) {
-          console.log(`set ${propName} to ${value}`)
-          this.data[propName] = value;
-          (this.onChangeListeners[propName] || []).forEach((listener: OnChangeCallback<any>) => listener(value));
-        }
-      };
-
-      propConfig[propName] = config;
-      return propConfig;
-    }, {} as any));
-
-    this.maxHealth = 0;
-    this.health = 0;
+    // this.maxHealth = 0;
+    // this.health = 0;
   }
 
   toJson() {
@@ -55,16 +29,6 @@ class AdventurerDocument implements PersistenceDocument {
   fromJson(json: { [key: string]: any }) {
     this.maxHealth = json.maxHealth;
     this.health = json.health;
-  }
-
-  onChange<T>(key: string, onChangeCallback: OnChangeCallback<T>): OnChangeCleanupFn {
-    this.onChangeListeners[key] = this.onChangeListeners[key] || [];
-    this.onChangeListeners[key].push(onChangeCallback);
-
-    return () => {
-      const callbackIndex = this.onChangeListeners[key].findIndex(callback => callback == onChangeCallback);
-      this.onChangeListeners[key].splice(callbackIndex, 1);
-    }
   }
 }
 
