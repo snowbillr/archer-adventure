@@ -9,14 +9,16 @@ type OnChangeCallback<T> = (value: T) => void;
 type OnChangeCleanupFn = () => void;
 
 export abstract class BasePersistenceDocument implements PersistenceDocument {
+  private propNames: string[];
   private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
   private data: { [key: string]: any };
 
-  constructor(properties: string[]) {
+  constructor(propNames: string[]) {
+    this.propNames = propNames;
     this.onChangeListeners = {};
     this.data = {};
 
-    Object.defineProperties(this, properties.reduce((propConfig, propName) => {
+    Object.defineProperties(this, propNames.reduce((propsConfig, propName) => {
       const config = {
         get(this: PersistenceDocument): any {
           return this.data[propName];
@@ -27,8 +29,8 @@ export abstract class BasePersistenceDocument implements PersistenceDocument {
         }
       };
 
-      propConfig[propName] = config;
-      return propConfig;
+      propsConfig[propName] = config;
+      return propsConfig;
     }, {} as any));
   }
 
@@ -42,6 +44,16 @@ export abstract class BasePersistenceDocument implements PersistenceDocument {
     }
   }
 
-  abstract toJson(): object;
-  abstract fromJson(json: { [key: string]: any; }): void;
+  toJson() {
+    return this.propNames.reduce((json, propName) => {
+      json[propName] = this.data[propName];
+      return json;
+    }, {} as any);
+  }
+
+  fromJson(json: { [key: string]: any; }) {
+    this.propNames.forEach(propName => {
+      this.data[propName] = json[propName];
+    })
+  }
 }
