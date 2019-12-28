@@ -13,7 +13,7 @@ export class AdventurerDeathSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    this.healthListenerCleanupFn = this.scene.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
+    this.healthListenerCleanupFn = this.scene.persistence.adventurer.onChange<number>('health', health => {
       if (health <= 0) {
         this.scene.scene.stop(SCENE_KEYS.hud);
         this.scene.scene.pause(SCENE_KEYS.exploration);

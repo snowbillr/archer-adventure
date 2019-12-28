@@ -25,10 +25,7 @@ export class Progression {
     return dependencies.every(dependencyKeyPath => this.progressionCompletion[dependencyKeyPath]);
   }
 
-  markConversationComplete(conversationKey: string, index: number) {
-    const keyPath = `conversations.${conversationKey}[index]`;
-    this.markComplete(keyPath);
-  }
+  /////////////////////////
 
   getCurrentConversationKeyPath(conversationKey: string) {
     const conversationKeyPath = `conversations.${conversationKey}`;

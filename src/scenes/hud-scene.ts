@@ -24,7 +24,7 @@ export class HUDScene extends BaseScene {
   create() {
     const healthbar = this.add.sprite(80, 25, 'healthbar', 0);
 
-    this.healthListenerCleanupFn = this.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
+    this.healthListenerCleanupFn = this.persistence.adventurer.onChange<number>('health', health => {
       healthbar.setFrame(healthbarFrameMap[health]);
     });
   }

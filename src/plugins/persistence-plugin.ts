@@ -7,11 +7,74 @@ type OnChangeCleanupFn = () => void;
 
 const SAVE_GAME_KEY = 'archer-adventure-save-game';
 
+interface PersistenceDocument {
+  [key: string]: any;
+
+  toJson(): object;
+  fromJson(json: { [key: string]: any }): void;
+}
+
+class AdventurerDocument implements PersistenceDocument {
+  public maxHealth: number;
+  public health: number;
+
+  private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
+  private data: { [key: string]: any };
+
+  constructor() {
+    this.onChangeListeners = {};
+    this.data = {};
+
+    Object.defineProperties(this, ['maxHealth', 'health'].reduce((propConfig, propName) => {
+      const config = {
+        get(this: PersistenceDocument): any {
+          return this.data[propName];
+        },
+        set(this: PersistenceDocument, value: any) {
+          console.log(`set ${propName} to ${value}`)
+          this.data[propName] = value;
+          (this.onChangeListeners[propName] || []).forEach((listener: OnChangeCallback<any>) => listener(value));
+        }
+      };
+
+      propConfig[propName] = config;
+      return propConfig;
+    }, {} as any));
+
+    this.maxHealth = 0;
+    this.health = 0;
+  }
+
+  toJson() {
+    return {
+      maxHealth: this.maxHealth,
+      health: this.health
+    };
+  }
+
+  fromJson(json: { [key: string]: any }) {
+    this.maxHealth = json.maxHealth;
+    this.health = json.health;
+  }
+
+  onChange<T>(key: string, onChangeCallback: OnChangeCallback<T>): OnChangeCleanupFn {
+    this.onChangeListeners[key] = this.onChangeListeners[key] || [];
+    this.onChangeListeners[key].push(onChangeCallback);
+
+    return () => {
+      const callbackIndex = this.onChangeListeners[key].findIndex(callback => callback == onChangeCallback);
+      this.onChangeListeners[key].splice(callbackIndex, 1);
+    }
+  }
+}
+
 export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   private data: { [key: string]: any };
   private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
 
   public progression: Progression;
+
+  public adventurer: AdventurerDocument;
 
   constructor(pluginManager: Phaser.Plugins.PluginManager) {
     super(pluginManager);
@@ -20,6 +83,8 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     this.onChangeListeners = {};
 
     this.progression = new Progression();
+
+    this.adventurer = new AdventurerDocument();
   }
   
   get<T>(key: string): T {
@@ -52,6 +117,7 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
 
   save() {
     this.set(PERSISTENCE_KEYS.progression, this.progression.progressionCompletion);
+    this.data.adventurer = this.adventurer.toJson();
     localStorage.setItem(SAVE_GAME_KEY, JSON.stringify(this.data));
   }
 
@@ -60,6 +126,7 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     if (savedData) {
       this.data = JSON.parse(savedData);
       this.progression.setCompletionData(this.data[PERSISTENCE_KEYS.progression]);
+      this.adventurer.fromJson(this.data.adventurer);
     } else {
       throw new Error('PERSISTENCE_PLUGIN::NO_SAVED_DATA');
     }

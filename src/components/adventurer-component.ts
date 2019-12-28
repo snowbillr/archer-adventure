@@ -9,9 +9,10 @@ export class AdventurerComponent implements Phecs.Component {
   }
 
   decreaseHealth(amount: number) {
-    this.scene.persistence.update<number>(PERSISTENCE_KEYS.adventurer.health, currentHealth => {
-      return currentHealth - amount;
-    });
+    // this.scene.persistence.update<number>(PERSISTENCE_KEYS.adventurer.health, currentHealth => {
+      // return currentHealth - amount;
+    // });
+    this.scene.persistence.adventurer.health -= amount;
   }
 
   destroy() {}
