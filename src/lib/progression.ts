@@ -43,7 +43,7 @@ export class Progression {
     return `${conversationKeyPath}[${latestUnlockedConversationIndex}]`;
   }
 
-  getConversationKey(conversationKeyPath: string) {
-    return _.get(progressionDefinition, conversationKeyPath).conversationKey;
+  getConversationId(conversationKeyPath: string) {
+    return _.get(progressionDefinition, conversationKeyPath).conversationId;
   }
 }
