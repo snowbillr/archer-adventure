@@ -49,15 +49,16 @@ export class Progression {
       }
     }
 
-    let lastConversation = lastCompletedConversation;
+    // let lastConversation = lastCompletedConversation;
     if (lastUnlockedConversation > lastCompletedConversation) {
-      lastConversation = lastUnlockedConversation;
+      return `${conversationKeyPath}[${lastUnlockedConversation}]`;
+      // lastConversation = lastUnlockedConversation;
     }
 
-    if (lastConversation === conversationProgression.length - 1) {
-      return `${conversationKeyPath}[${lastConversation}]`;
+    if (lastCompletedConversation === conversationProgression.length - 1) {
+      return `${conversationKeyPath}[${lastCompletedConversation}]`;
     } else {
-      return `${conversationKeyPath}[${lastConversation + 1}]`;
+      return `${conversationKeyPath}[${lastCompletedConversation + 1}]`;
     }
   }
 

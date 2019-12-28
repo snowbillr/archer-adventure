@@ -60,8 +60,6 @@ export class ConversationComponent implements Phecs.Component {
   }
 
   stopConversation() {
-    this.scene.persistence.progression.markComplete(this.currentConversationKeyPath);
-    this.scene.persistence.save();
     this.conversationBoxSprite.alpha = 0;
   }
 
@@ -97,6 +95,9 @@ export class ConversationComponent implements Phecs.Component {
       indicator.setOrigin(1, 0);
       indicator.anims.play('indicator-right');
       this.conversationBoxSprite.add(indicator);
+    } else {
+      this.scene.persistence.progression.markComplete(this.currentConversationKeyPath);
+      this.scene.persistence.save();
     }
 
     this.conversationBoxSprite.y = this.entityY - this.conversationBoxSprite.height / 2 - offset;
