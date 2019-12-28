@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="75" height="25" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="14">
- <editorsettings>
-  <export target="woollards-farm.json" format="json"/>
- </editorsettings>
  <properties>
   <property name="backgroundSet" value="green-hills"/>
   <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground,sheep:ground,enemy:ground"/>
@@ -118,7 +115,7 @@
   </object>
   <object id="13" name="old-lady" type="npc" x="688.501" y="767.89">
    <properties>
-    <property name="conversationKey" value="old-lady-1"/>
+    <property name="conversationKey" value="oldLady"/>
     <property name="initialStateId" value="old-lady-idle"/>
     <property name="npcId" value="old-lady"/>
     <property name="stateSet" value="old-lady"/>

@@ -3,17 +3,17 @@ import 'phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
+import { ControlsPlugin } from './plugins/controls-plugin';
+import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
+import { PersistencePlugin } from './plugins/persistence-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';
 import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
-import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
-import { ControlsPlugin } from './plugins/controls-plugin';
 
 import { ExplorationScene } from './scenes/exploration-scene';
 import { DeathScene } from './scenes/death-scene';
 import { PrefabTestScene } from './scenes/prefab-test-scene';
 import { PreloadScene } from './scenes/preload-scene';
 import { HUDScene } from './scenes/hud-scene';
-import { PersistencePlugin } from './plugins/persistence-plugin';
 import { TitleScene } from './scenes/title-scene';
 import { NewGameScene } from './scenes/new-game-scene';
 import { ContinueGameScene } from './scenes/continue-game-scene';
