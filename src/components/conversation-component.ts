@@ -4,6 +4,7 @@ import { BaseScene } from "../scenes/base-scene";
 
 export class ConversationComponent implements Phecs.Component {
   private scene: BaseScene;
+  private conversationKey: string;
   private conversation: string[];
 
   public currentConversationKeyPath: string;
@@ -15,10 +16,9 @@ export class ConversationComponent implements Phecs.Component {
 
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     this.scene = scene as BaseScene;
-
-    this.currentConversationKeyPath = this.scene.persistence.progression.getCurrentConversationKeyPath(data.conversationKey);
-    const conversationId = this.scene.persistence.progression.getConversationId(this.currentConversationKeyPath);
-    this.conversation = scene.cache.json.get('conversations')[conversationId];
+    this.conversationKey = data.conversationKey;
+    this.conversation = [];
+    this.currentConversationKeyPath = '';
     
     const entitySprite = entity.getComponent(SpriteComponent).sprite;
     this.entityY = entitySprite.y;
@@ -43,6 +43,8 @@ export class ConversationComponent implements Phecs.Component {
   }
 
   startConversation() {
+    this.loadConversation();
+
     this.conversationBoxSprite.alpha = 1;
     this.conversationProgressIndex = 0;
 
@@ -69,6 +71,12 @@ export class ConversationComponent implements Phecs.Component {
 
   destroy() {
     this.conversationBoxSprite.destroy();
+  }
+
+  private loadConversation() {
+    this.currentConversationKeyPath = this.scene.persistence.progression.getCurrentConversationKeyPath(this.conversationKey);
+    const conversationId = this.scene.persistence.progression.getConversationId(this.currentConversationKeyPath);
+    this.conversation = this.scene.cache.json.get('conversations')[conversationId];
   }
 
   // This method recreates the bitmap text each time because
