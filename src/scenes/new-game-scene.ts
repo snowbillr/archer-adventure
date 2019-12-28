@@ -13,8 +13,10 @@ export class NewGameScene extends BaseScene {
     // this.persistence.set(PERSISTENCE_KEYS.adventurer.health, 5);
     this.persistence.adventurer.maxHealth = 5;
     this.persistence.adventurer.health = 5;
-    this.persistence.set(PERSISTENCE_KEYS.currentArea, 'woollards-farm');
-    this.persistence.set(PERSISTENCE_KEYS.currentMarker, 'adventurerStart');
+    // this.persistence.set(PERSISTENCE_KEYS.currentArea, 'woollards-farm');
+    // this.persistence.set(PERSISTENCE_KEYS.currentMarker, 'adventurerStart');
+    this.persistence.location.areaKey = 'woollards-farm';
+    this.persistence.location.markerName = 'adventurerStart';
 
     this.persistence.save();
 

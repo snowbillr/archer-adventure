@@ -15,8 +15,10 @@ export class ContinueGameScene extends BaseScene {
     this.persistence.adventurer.health = this.persistence.adventurer.maxHealth;
 
     const currentLocationData = {
-      areaKey: this.persistence.get(PERSISTENCE_KEYS.currentArea),
-      markerName: this.persistence.get(PERSISTENCE_KEYS.currentMarker),
+      // areaKey: this.persistence.get(PERSISTENCE_KEYS.currentArea),
+      // markerName: this.persistence.get(PERSISTENCE_KEYS.currentMarker),
+      areaKey: this.persistence.location.areaKey,
+      markerName: this.persistence.location.markerName,
     }
     this.scene.start(SCENE_KEYS.exploration, currentLocationData);
   }

@@ -179,8 +179,10 @@ export class ExplorationScene extends BaseScene {
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
-        this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
-        this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        // this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
+        // this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        this.persistence.location.areaKey = areaKey;
+        if (markerName) this.persistence.location.markerName = markerName;
         this.persistence.save();
 
         this.isLoadingArea = false;
