@@ -1,7 +1,5 @@
-import _ from 'lodash';
-
-import { progressionDefinition } from '../constants/progression-definition';
-import { ConversationDocument } from '../persistence/progression/conversation-document';
+import { progressionDefinition } from '../../constants/progression-definition';
+import { ConversationDocument } from './conversation-document';
 
 export class ProgressionDocument implements Persistence.Document {
   public conversations: ConversationDocument;

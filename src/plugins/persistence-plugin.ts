@@ -1,6 +1,6 @@
 import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
 
-import { ProgressionDocument } from "../lib/progression";
+import { ProgressionDocument } from "../persistence/progression/progression-document";
 import { AdventurerDocument } from "../persistence/adventurer-document";
 import { LocationDocument } from "../persistence/location-document";
 

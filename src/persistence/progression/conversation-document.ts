@@ -1,4 +1,4 @@
-import { ProgressionDocument } from "../../lib/progression";
+import { ProgressionDocument } from "./progression-document";
 
 type ConversationConfig = {
   conversationId: string;
