@@ -6,7 +6,7 @@ export class DeathScene extends BaseScene {
     super({ key: SCENE_KEYS.death });
   }
 
-  create(data: any) {
+  create() {
     const titleText = this.add.bitmapText(this.cameras.main.centerX, this.cameras.main.centerY - 24, 'compass-72', 'You died');
     titleText.setOrigin(0.5);
 
@@ -19,8 +19,7 @@ export class DeathScene extends BaseScene {
           this.scene.stop(SCENE_KEYS.exploration);
           this.scene.stop(SCENE_KEYS.hud);
           this.scene.stop(SCENE_KEYS.death);
-          // this.scene.start(SCENE_KEYS.exploration, { areaKey: data.respawnAreaKey });
-          // CONTINUE GAME FROM HERE
+
           this.scene.start(SCENE_KEYS.continueGame);
         }
       });

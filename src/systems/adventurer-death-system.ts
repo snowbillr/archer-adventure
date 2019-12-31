@@ -16,9 +16,7 @@ export class AdventurerDeathSystem implements Phecs.System {
       if (health <= 0) {
         this.scene.scene.stop(SCENE_KEYS.hud);
         this.scene.scene.pause(SCENE_KEYS.exploration);
-        this.scene.scene.launch(SCENE_KEYS.death, {
-          respawnAreaKey: this.scene.areaManager.currentAreaKey,
-        });
+        this.scene.scene.launch(SCENE_KEYS.death);
       }
     });
   }
