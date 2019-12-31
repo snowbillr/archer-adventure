@@ -1,15 +1,9 @@
 import { ProgressionDocument } from "./progression-document";
 
-type ConversationConfig = {
-  conversationId: string;
-  unlockDependencies: Progression.Identifier[];
-  completed: boolean;
-}
-
 export class ConversationDocument implements Persistence.Document {
   private progression: ProgressionDocument;
 
-  private oldLady: ConversationConfig[] = [
+  private oldLady: Progression.ConversationItem[] = [
     {
       conversationId: 'oldLady1',
       unlockDependencies: [],
@@ -39,7 +33,7 @@ export class ConversationDocument implements Persistence.Document {
     }
   ];
 
-  private oldMan: ConversationConfig[] = [
+  private oldMan: Progression.ConversationItem[] = [
     {
       conversationId: 'oldMan1',
       unlockDependencies: [],
@@ -85,11 +79,11 @@ export class ConversationDocument implements Persistence.Document {
     currentConversation.completed = true;
   }
 
-  isUnlocked(conversation: ConversationConfig) {
+  isUnlocked(conversation: Progression.ConversationItem) {
     return this.progression.areCompleted(conversation.unlockDependencies);
   }
 
-  isComplete(conversationIdentifier: Progression.Identifier) {
+  isComplete(conversationIdentifier: Progression.ItemIdentifier) {
     switch(conversationIdentifier.name) {
       case "oldLady":
         return this.oldLady[conversationIdentifier.index].completed;

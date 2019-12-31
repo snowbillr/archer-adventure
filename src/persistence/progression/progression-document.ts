@@ -8,7 +8,7 @@ export class ProgressionDocument implements Persistence.Document {
     this.conversations = new ConversationDocument(this);
   }
 
-  areCompleted(progressionIdentifiers: Progression.Identifier[]) {
+  areCompleted(progressionIdentifiers: Progression.ItemIdentifier[]) {
     return progressionIdentifiers.every(identifier => {
       switch(identifier.type) {
         case "conversation": {
