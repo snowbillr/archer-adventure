@@ -1,4 +1,3 @@
-import { progressionDefinition } from '../../constants/progression-definition';
 import { ConversationDocument } from './conversation-document';
 
 export class ProgressionDocument implements Persistence.Document {
