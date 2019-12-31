@@ -1,6 +1,6 @@
 import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
 
-import { Progression } from "../lib/progression";
+import { ProgressionDocument } from "../lib/progression";
 import { AdventurerDocument } from "../persistence/adventurer-document";
 import { LocationDocument } from "../persistence/location-document";
 
@@ -9,8 +9,7 @@ const SAVE_GAME_KEY = 'archer-adventure-save-game';
 export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   private data: { [key: string]: any };
 
-  public progression: Progression;
-
+  public progression: ProgressionDocument;
   public adventurer: AdventurerDocument;
   public location: LocationDocument;
 
@@ -19,8 +18,7 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
 
     this.data = {};
 
-    this.progression = new Progression();
-
+    this.progression = new ProgressionDocument();
     this.adventurer = new AdventurerDocument();
     this.location = new LocationDocument();
   }
@@ -30,8 +28,7 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   }
 
   save() {
-    this.data[PERSISTENCE_KEYS.progression] = this.progression.progressionCompletion;
-
+    this.data.progression = this.progression.toJson();
     this.data.adventurer = this.adventurer.toJson();
     this.data.location = this.location.toJson();
 
@@ -43,8 +40,7 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     if (savedData) {
       this.data = JSON.parse(savedData);
 
-      this.progression.setCompletionData(this.data[PERSISTENCE_KEYS.progression]);
-
+      this.progression.fromJson(this.data.progression);
       this.adventurer.fromJson(this.data.adventurer);
       this.location.fromJson(this.data.location);
     } else {

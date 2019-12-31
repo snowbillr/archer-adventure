@@ -30,7 +30,7 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
       this.interacting = false;
       conversation.stopConversation();
 
-      this.scene.persistence.progression.markComplete(conversation.currentConversationKeyPath);
+      this.scene.persistence.progression.conversations.markCurrentConversationComplete(conversation.conversationKey);
       this.scene.persistence.save();
     }
   }
@@ -40,7 +40,7 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
       const conversation = npc.getComponent(ConversationComponent);
 
       if (!conversation.hasMoreConversation()) {
-        this.scene.persistence.progression.markComplete(conversation.currentConversationKeyPath);
+        this.scene.persistence.progression.conversations.markCurrentConversationComplete(conversation.conversationKey);
         this.scene.persistence.save();
       }
 

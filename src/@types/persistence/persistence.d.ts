@@ -3,6 +3,6 @@ declare module Persistence {
     [key: string]: any;
 
     toJson(): object;
-    fromJson(json: { [key: string]: any }): void;
+    fromJson(json: Record<string, any>): void;
   }
 }

@@ -1,4 +1,4 @@
-import { BasePersistenceDocument } from "../lib/base-persistence-document";
+import { BasePersistenceDocument } from "./base-persistence-document";
 
 export class LocationDocument extends BasePersistenceDocument {
   public areaKey: string;

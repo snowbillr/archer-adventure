@@ -44,7 +44,7 @@ export abstract class BasePersistenceDocument implements Persistence.Document {
     }, {} as any);
   }
 
-  fromJson(json: { [key: string]: any; }) {
+  fromJson(json: Record<string, any>) {
     this.propNames.forEach(propName => {
       this.data[propName] = json[propName];
     })

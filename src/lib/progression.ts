@@ -1,46 +1,36 @@
 import _ from 'lodash';
 
 import { progressionDefinition } from '../constants/progression-definition';
+import { ConversationDocument } from '../persistence/progression/conversation-document';
 
-type ProgressCompletion = { [keyPath: string]: boolean };
-
-export class Progression {
-  // This is a mapping of { keyPath: completed } for each item in the progression definition
-  public progressionCompletion: ProgressCompletion;
+export class ProgressionDocument implements Persistence.Document {
+  public conversations: ConversationDocument;
 
   constructor() {
-    this.progressionCompletion = {};
+    this.conversations = new ConversationDocument(this);
   }
 
-  setCompletionData(progressCompletion: ProgressCompletion) {
-    this.progressionCompletion = progressCompletion;
-  }
-
-  markComplete(keyPath: string) {
-    this.progressionCompletion[keyPath] = true;
-  }
-
-  isUnlocked(keyPath: string): boolean {
-    const dependencies: string[] = _.get(progressionDefinition, `${keyPath}.unlockDependencies`);
-    return dependencies.every(dependencyKeyPath => this.progressionCompletion[dependencyKeyPath]);
-  }
-
-  /////////////////////////
-
-  getCurrentConversationKeyPath(conversationKey: string) {
-    const conversationKeyPath = `conversations.${conversationKey}`;
-    const conversationProgression = _.get(progressionDefinition, conversationKeyPath);
-
-    let latestUnlockedConversationIndex = -1;
-    for (let i = 0; i < conversationProgression.length; i++) {
-      if (this.isUnlocked(`${conversationKeyPath}[${i}]`)) {
-        latestUnlockedConversationIndex = i;
+  areCompleted(progressionIdentifiers: Progression.Identifier[]) {
+    return progressionIdentifiers.every(identifier => {
+      switch(identifier.type) {
+        case "conversation": {
+          return this.conversations.isComplete(identifier);
+        }
+        case "quest": {
+          // return this.quests.isComplete(progressionIdentifier);
+          return false;
+        }
       }
-    }
-    return `${conversationKeyPath}[${latestUnlockedConversationIndex}]`;
+    });
   }
 
-  getConversationId(conversationKeyPath: string) {
-    return _.get(progressionDefinition, conversationKeyPath).conversationId;
+  fromJson(json: Record<string, any>) {
+    this.conversations.fromJson(json.conversations);
+  }
+
+  toJson() {
+    return {
+      conversations: this.conversations.toJson(),
+    };
   }
 }
