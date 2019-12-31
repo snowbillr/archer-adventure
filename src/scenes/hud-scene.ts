@@ -1,6 +1,5 @@
 import { BaseScene } from './base-scene';
 import { SCENE_KEYS } from '../constants/scene-keys';
-import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 
 const healthbarFrameMap: { [key: number]: number} = {
   5: 0,

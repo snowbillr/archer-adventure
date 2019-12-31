@@ -1,6 +1,5 @@
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { BaseScene } from './base-scene';
-import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 
 export class DeathScene extends BaseScene {
   constructor() {

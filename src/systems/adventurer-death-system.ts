@@ -1,6 +1,5 @@
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseScene } from '../scenes/base-scene';
-import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 import { SCENE_KEYS } from '../constants/scene-keys';
 
 export class AdventurerDeathSystem implements Phecs.System {
