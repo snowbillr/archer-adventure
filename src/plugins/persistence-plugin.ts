@@ -1,32 +1,10 @@
-import { Progression } from "../lib/progression";
 import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
-import { BasePersistenceDocument } from "../lib/persistence/persistence-document";
+
+import { Progression } from "../lib/progression";
+import { AdventurerDocument } from "../persistence/adventurer-document";
+import { LocationDocument } from "../persistence/location-document";
 
 const SAVE_GAME_KEY = 'archer-adventure-save-game';
-
-class AdventurerDocument extends BasePersistenceDocument {
-  public maxHealth: number;
-  public health: number;
-
-  constructor() {
-    super(['maxHealth', 'health']);
-
-    this.maxHealth = 0;
-    this.health = 0;
-  }
-}
-
-class LocationDocument extends BasePersistenceDocument {
-  public areaKey: string;
-  public markerName: string;
-
-  constructor() {
-    super(['areaKey', 'markerName']);
-
-    this.areaKey = '';
-    this.markerName = '';
-  }
-}
 
 export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
   private data: { [key: string]: any };

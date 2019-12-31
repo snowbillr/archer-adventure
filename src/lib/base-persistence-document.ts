@@ -1,14 +1,7 @@
-interface PersistenceDocument {
-  [key: string]: any;
-
-  toJson(): object;
-  fromJson(json: { [key: string]: any }): void;
-}
-
 type OnChangeCallback<T> = (value: T) => void;
 type OnChangeCleanupFn = () => void;
 
-export abstract class BasePersistenceDocument implements PersistenceDocument {
+export abstract class BasePersistenceDocument implements Persistence.Document {
   private propNames: string[];
   private onChangeListeners: { [key: string]: OnChangeCallback<any>[] };
   private data: { [key: string]: any };
@@ -20,10 +13,10 @@ export abstract class BasePersistenceDocument implements PersistenceDocument {
 
     Object.defineProperties(this, propNames.reduce((propsConfig, propName) => {
       const config = {
-        get(this: PersistenceDocument): any {
+        get(this: Persistence.Document): any {
           return this.data[propName];
         },
-        set(this: PersistenceDocument, value: any) {
+        set(this: Persistence.Document, value: any) {
           this.data[propName] = value;
           (this.onChangeListeners[propName] || []).forEach((listener: OnChangeCallback<any>) => listener(value));
         }
