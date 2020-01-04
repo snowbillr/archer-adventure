@@ -4,6 +4,7 @@ import { PhiniteStateMachineComponent } from '../components/phinite-state-machin
 import { Script } from '../lib/showrunner/script';
 import { Showrunner } from '../lib/showrunner/showrunner';
 import { AdventurerActor } from '../actors/adventurer-actor';
+import { SheepActor } from '../actors/sheep-actor';
 
 export class SheepGateSystem extends BaseInteractionSystem {
   constructor(scene: Phaser.Scene) {
@@ -46,10 +47,15 @@ export class SheepGateSystem extends BaseInteractionSystem {
     */
 
     const adventurerActor = new AdventurerActor(this.scene, adventurer);
+    const sheepActor = new SheepActor(this.scene, sheep);
 
     const script = new Script([
+      sheepActor.disablePhSM(),
       adventurerActor.disablePhSM(),
+
       adventurerActor.walk(-100),
+
+      sheepActor.enablePhSM(),
       adventurerActor.enablePhSM(),
     ]);
     const showrunner = new Showrunner(script);

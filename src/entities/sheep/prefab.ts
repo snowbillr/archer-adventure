@@ -19,7 +19,7 @@ export const sheepPrefab: Phecs.Prefab = {
       component: PhiniteStateMachineComponent,
       data: {
         stateSet: 'sheep',
-        initialStateId: 'sheep-walk-right',
+        initialStateId: 'sheep-idle',
       }
     },
     {
