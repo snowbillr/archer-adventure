@@ -1,5 +1,7 @@
 import { ScriptAction } from "../lib/showrunner/script-action";
 import { PhiniteStateMachineComponent } from "../components/phinite-state-machine-component";
+import { ConversationComponent } from "../components/conversation-component";
+import { SpriteComponent } from "../components/sprite-component";
 
 export class SheepActor {
   private scene: Phaser.Scene;
@@ -26,4 +28,22 @@ export class SheepActor {
     });
   }
 
+  faceLeft() {
+    return new ScriptAction(() => {
+      this.sheep.getComponent(SpriteComponent).sprite.flipX = true;
+
+      return Promise.resolve();
+    });
+  }
+
+  say(text: string) {
+    return new ScriptAction(() => {
+      console.log(text);
+      // const conversation = this.sheep.getComponent(ConversationComponent);
+
+      // conversation.startConversation();
+
+      return Promise.resolve();
+    });
+  }
 }

@@ -3,6 +3,7 @@ import { PhysicsBodyComponent } from "../../components/physics-body-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { ZoneBoundaryComponent } from "../../components/zone-boundary-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { ConversationComponent } from "../../components/conversation-component";
 
 export const sheepPrefab: Phecs.Prefab = {
   components: [
