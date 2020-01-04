@@ -19,17 +19,28 @@ export class SheepGateSystem extends BaseInteractionSystem {
     adventurer.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.disable();
 
     /*
+      `Actors` have methods that return `ScriptAction`s
+      The `Showrunner` executes these actions while running the `Script`,
+      and waits for them to finish before running the next one.
+      `Script`s can be either `sequential` or `parallel`.
+    */
+
+    /*
     const adventurerActor = new AdventurerActor(adventurer);
     const sheepActor = new NpcActor(sheep);
-    const script = new Script([
-      adventurerActor.disablePhSM(),
-      sheepActor.disablePhSM(),
+    const script = new Script.sequential([
+      new Script.parallel([
+        adventurerActor.disablePhSM(),
+        sheepActor.disablePhSM(),
+      ]),
       sheepActor.faceActor(adventurerActor),
       sheepActor.say('BAAAAH'),
       adventurerActor.walk(-30),
       adventurerActor.faceActor(sheepActor),
-      adventurerActor.enablePhSM(),
-      sheepActor.enablePhSM(),
+      new Script.parallel([
+        adventurerActor.enablePhSM(),
+        sheepActor.enablePhSM(),
+      ])
     ]);
 
     new Showrunner(script).run();
