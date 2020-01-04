@@ -32,7 +32,7 @@ export const sheepPrefab: Phecs.Prefab = {
       component: InteractionCircleComponent,
       data: {
         interactionRadius: 30,
-        interactionDebug: true,
+        interactionDebug: false,
       }
     }
   ]

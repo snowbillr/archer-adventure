@@ -27,6 +27,14 @@ export class AdventurerActor {
     });
   }
 
+  faceRight() {
+    return new ScriptAction(() => {
+      this.adventurer.getComponent(SpriteComponent).sprite.flipX = false;
+
+      return Promise.resolve();
+    });
+  }
+
   walk(distance: number) {
     return new ScriptAction(() => {
       return new Promise(resolve => {
