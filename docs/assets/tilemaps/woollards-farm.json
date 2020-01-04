@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"woollards-farm.json"
-        }
-    },
  "height":25,
  "infinite":false,
  "layers":[
@@ -95,8 +87,8 @@
                  "type":"enemy",
                  "visible":true,
                  "width":0,
-                 "x":2025.40527577938,
-                 "y":762.00479616307
+                 "x":2025.41,
+                 "y":762.005
                 }, 
                 {
                  "height":0,
@@ -107,7 +99,7 @@
                         {
                          "name":"conversationKey",
                          "type":"string",
-                         "value":"old-lady-1"
+                         "value":"oldLady"
                         }, 
                         {
                          "name":"initialStateId",
@@ -133,8 +125,8 @@
                  "type":"npc",
                  "visible":true,
                  "width":0,
-                 "x":688.501199040767,
-                 "y":767.8896882494
+                 "x":688.501,
+                 "y":767.89
                 }],
          "opacity":1,
          "properties":[
@@ -167,8 +159,8 @@
                  "type":"",
                  "visible":true,
                  "width":213,
-                 "x":1928.89208633094,
-                 "y":708.992805755396
+                 "x":1928.89,
+                 "y":708.993
                 }, 
                 {
                  "height":68,

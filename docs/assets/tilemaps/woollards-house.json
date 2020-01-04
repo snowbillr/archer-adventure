@@ -1,12 +1,4 @@
 { "compressionlevel":-1,
- "editorsettings":
-    {
-     "export":
-        {
-         "format":"json",
-         "target":"woollards-house.json"
-        }
-    },
  "height":6,
  "infinite":false,
  "layers":[
@@ -66,7 +58,7 @@
                         {
                          "name":"conversationKey",
                          "type":"string",
-                         "value":"old-man-1"
+                         "value":"oldMan"
                         }, 
                         {
                          "name":"initialStateId",
@@ -92,8 +84,8 @@
                  "type":"npc",
                  "visible":true,
                  "width":0,
-                 "x":242.800866762974,
-                 "y":160.350372263585
+                 "x":242.801,
+                 "y":160.35
                 }],
          "opacity":1,
          "type":"objectgroup",
