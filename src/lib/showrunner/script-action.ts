@@ -1,11 +1,13 @@
-export class ScriptAction {
-  constructor() {
+type ScriptRunFn = () => Promise<any>;
 
+export class ScriptAction {
+  private runFn: ScriptRunFn;
+
+  constructor(runFn: ScriptRunFn) {
+    this.runFn = runFn;
   }
 
   async run() {
-    // do the stuff
-
-    return Promise.resolve();
+    return this.runFn();
   }
 }
