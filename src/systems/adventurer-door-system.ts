@@ -13,17 +13,17 @@ export class AdventurerDoorSystem extends BaseInteractionSystem {
     this.explorationScene = scene as ExplorationScene;
   }
 
-  onEnter(door: Phecs.Entity) {
+  onEnter(adventurer: Phecs.Entity, door: Phecs.Entity) {
     door.getComponent(SpriteIndicatorComponent).indicator.show();
   }
 
-  onInteraction(door: Phecs.Entity) {
+  onInteraction(adventurer: Phecs.Entity, door: Phecs.Entity) {
     const doorComponent = door.getComponent(DoorComponent);
 
     this.explorationScene.loadNewArea(doorComponent.toAreaKey, doorComponent.toMarker);
   }
 
-  onExit(door: Phecs.Entity) {
+  onExit(adventurer: Phecs.Entity, door: Phecs.Entity) {
     door.getComponent(SpriteIndicatorComponent).indicator.hide();
   }
 }

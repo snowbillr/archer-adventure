@@ -8,11 +8,11 @@ export class AdventurerSignSystem extends BaseInteractionSystem {
     super(scene, AdventurerComponent, 'sign')
   }
 
-  onEnter(sign: Phecs.Entity) {
+  onEnter(adventurer: Phecs.Entity, sign: Phecs.Entity) {
     sign.getComponent(SpriteIndicatorComponent).indicator.show();
   }
 
-  onInteraction(sign: Phecs.Entity) {
+  onInteraction(adventurer: Phecs.Entity, sign: Phecs.Entity) {
     if (sign.getComponent(TextboxComponent).isTextboxShowing) {
       sign.getComponent(TextboxComponent).hideTextbox();
     } else {
@@ -20,7 +20,7 @@ export class AdventurerSignSystem extends BaseInteractionSystem {
     }
   }
 
-  onExit(sign: Phecs.Entity) {
+  onExit(adventurer: Phecs.Entity, sign: Phecs.Entity) {
     sign.getComponent(SpriteIndicatorComponent).indicator.hide();
 
     if (sign.getComponent(TextboxComponent).isTextboxShowing) {
