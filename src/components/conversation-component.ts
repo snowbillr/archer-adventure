@@ -4,21 +4,19 @@ import { BaseScene } from "../scenes/base-scene";
 
 export class ConversationComponent implements Phecs.Component {
   private scene: BaseScene;
-  private conversationKey: string;
   private conversation: string[];
 
-  public currentConversationKeyPath: string;
-  
   private entityY: number;
 
   private conversationBoxSprite: NinePatch;
   private conversationProgressIndex: number;
 
+  public conversationKey: string;
+
   constructor(scene: Phaser.Scene, data: Phecs.EntityData, entity: Phecs.Entity) {
     this.scene = scene as BaseScene;
     this.conversationKey = data.conversationKey;
     this.conversation = [];
-    this.currentConversationKeyPath = '';
     
     const entitySprite = entity.getComponent(SpriteComponent).sprite;
     this.entityY = entitySprite.y;
@@ -74,8 +72,8 @@ export class ConversationComponent implements Phecs.Component {
   }
 
   private loadConversation() {
-    this.currentConversationKeyPath = this.scene.persistence.progression.getCurrentConversationKeyPath(this.conversationKey);
-    const conversationId = this.scene.persistence.progression.getConversationId(this.currentConversationKeyPath);
+    const conversationId = this.scene.persistence.progression.conversations.getCurrentConversationId(this.conversationKey);
+
     this.conversation = this.scene.cache.json.get('conversations')[conversationId];
   }
 

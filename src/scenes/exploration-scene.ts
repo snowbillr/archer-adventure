@@ -34,7 +34,6 @@ import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
-import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -179,8 +178,10 @@ export class ExplorationScene extends BaseScene {
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
-        this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
-        this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        // this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
+        // this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
+        this.persistence.location.areaKey = areaKey;
+        if (markerName) this.persistence.location.markerName = markerName;
         this.persistence.save();
 
         this.isLoadingArea = false;

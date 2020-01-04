@@ -1,6 +1,5 @@
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { BaseScene } from '../scenes/base-scene';
-import { PERSISTENCE_KEYS } from '../constants/persistence-keys';
 import { SCENE_KEYS } from '../constants/scene-keys';
 
 export class AdventurerDeathSystem implements Phecs.System {
@@ -13,13 +12,11 @@ export class AdventurerDeathSystem implements Phecs.System {
   }
 
   start(phEntities: EntityManager) {
-    this.healthListenerCleanupFn = this.scene.persistence.onChange<number>(PERSISTENCE_KEYS.adventurer.health, health => {
+    this.healthListenerCleanupFn = this.scene.persistence.adventurer.onChange<number>('health', health => {
       if (health <= 0) {
         this.scene.scene.stop(SCENE_KEYS.hud);
         this.scene.scene.pause(SCENE_KEYS.exploration);
-        this.scene.scene.launch(SCENE_KEYS.death, {
-          respawnAreaKey: this.scene.areaManager.currentAreaKey,
-        });
+        this.scene.scene.launch(SCENE_KEYS.death);
       }
     });
   }

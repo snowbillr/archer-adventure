@@ -1,5 +1,4 @@
 import { BaseScene } from "../scenes/base-scene";
-import { PERSISTENCE_KEYS } from "../constants/persistence-keys";
 
 export class AdventurerComponent implements Phecs.Component {
   private scene: BaseScene;
@@ -9,9 +8,7 @@ export class AdventurerComponent implements Phecs.Component {
   }
 
   decreaseHealth(amount: number) {
-    this.scene.persistence.update<number>(PERSISTENCE_KEYS.adventurer.health, currentHealth => {
-      return currentHealth - amount;
-    });
+    this.scene.persistence.adventurer.health -= amount;
   }
 
   destroy() {}
