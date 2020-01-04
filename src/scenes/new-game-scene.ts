@@ -8,6 +8,8 @@ export class NewGameScene extends BaseScene {
   }
 
   create() {
+    this.persistence.resetSaveGame();
+
     this.persistence.adventurer.maxHealth = 5;
     this.persistence.adventurer.health = 5;
 

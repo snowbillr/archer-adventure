@@ -1,17 +1,17 @@
 import { ConversationDocument } from './conversation-document';
 
 export class ProgressionDocument implements Persistence.Document {
-  public conversations: ConversationDocument;
+  public conversations!: ConversationDocument;
 
   constructor() {
-    this.conversations = new ConversationDocument(this);
+    this.reset();
   }
 
   areCompleted(progressionIdentifiers: Progression.ItemIdentifier[]) {
     return progressionIdentifiers.every(identifier => {
       switch(identifier.type) {
         case "conversation": {
-          return this.conversations.isComplete(identifier);
+          return this.conversations.isCompleted(identifier);
         }
         case "quest": {
           // return this.quests.isComplete(progressionIdentifier);
@@ -19,6 +19,10 @@ export class ProgressionDocument implements Persistence.Document {
         }
       }
     });
+  }
+
+  reset() {
+    this.conversations = new ConversationDocument(this);
   }
 
   fromJson(json: Record<string, any>) {

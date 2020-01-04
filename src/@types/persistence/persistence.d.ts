@@ -4,5 +4,6 @@ declare module Persistence {
 
     toJson(): object;
     fromJson(json: Record<string, any>): void;
+    reset(): void;
   }
 }

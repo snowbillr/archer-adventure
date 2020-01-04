@@ -25,6 +25,15 @@ export class PersistencePlugin extends Phaser.Plugins.BasePlugin {
     return localStorage.getItem(SAVE_GAME_KEY) != null;
   }
 
+  resetSaveGame() {
+    if (this.hasSaveGame()) {
+      this.progression.reset();
+      this.adventurer.reset();
+      this.location.reset();
+      this.save();
+    }
+  }
+
   save() {
     this.data.progression = this.progression.toJson();
     this.data.adventurer = this.adventurer.toJson();

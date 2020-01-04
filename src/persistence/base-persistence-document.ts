@@ -49,4 +49,6 @@ export abstract class BasePersistenceDocument implements Persistence.Document {
       this.data[propName] = json[propName];
     })
   }
+
+  abstract reset(): void;
 }

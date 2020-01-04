@@ -83,7 +83,7 @@ export class ConversationDocument implements Persistence.Document {
     return this.progression.areCompleted(conversation.unlockDependencies);
   }
 
-  isComplete(conversationIdentifier: Progression.ItemIdentifier) {
+  isCompleted(conversationIdentifier: Progression.ItemIdentifier) {
     switch(conversationIdentifier.name) {
       case "oldLady":
         return this.oldLady[conversationIdentifier.index].completed;
@@ -117,6 +117,11 @@ export class ConversationDocument implements Persistence.Document {
       oldLady: oldLadyData,
       oldMan: oldManData,
     };
+  }
+
+  reset() {
+    this.oldLady.forEach(conversationInfo => conversationInfo.completed = false);
+    this.oldMan.forEach(conversationInfo => conversationInfo.completed = false);
   }
 
   private getCurrentConversation(conversationKey: string) {
