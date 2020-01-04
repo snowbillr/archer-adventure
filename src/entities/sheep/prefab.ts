@@ -4,6 +4,7 @@ import { PhiniteStateMachineComponent } from "../../components/phinite-state-mac
 import { ZoneBoundaryComponent } from "../../components/zone-boundary-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { ConversationComponent } from "../../components/conversation-component";
+import { SayComponent } from "../../components/say-component";
 
 export const sheepPrefab: Phecs.Prefab = {
   components: [
@@ -35,6 +36,7 @@ export const sheepPrefab: Phecs.Prefab = {
         interactionRadius: 30,
         interactionDebug: false,
       }
-    }
+    },
+    SayComponent,
   ]
 };
