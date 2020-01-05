@@ -5,6 +5,7 @@ import { ZoneBoundaryComponent } from "../../components/zone-boundary-component"
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { ConversationComponent } from "../../components/conversation-component";
 import { SayComponent } from "../../components/say-component";
+import { AttachmentComponent } from "../../components/attachment-component";
 
 export const sheepPrefab: Phecs.Prefab = {
   components: [
@@ -28,6 +29,12 @@ export const sheepPrefab: Phecs.Prefab = {
       component: ZoneBoundaryComponent,
       data: {
         zoneBoundaryName: 'sheepBounds',
+      }
+    },
+    {
+      component: AttachmentComponent,
+      data: {
+        attachmentDebug: false,
       }
     },
     {

@@ -2,6 +2,7 @@ import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
 import { InteractionCircleComponent } from '../components/interaction-circle-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
+import { AttachmentComponent } from '../components/attachment-component';
 
 export class HasInteracionCircleSystem implements Phecs.System {
   private scene: Phaser.Scene;
@@ -13,10 +14,12 @@ export class HasInteracionCircleSystem implements Phecs.System {
   update(phEntities: EntityManager) {
     const entities: Phecs.Entity[] = phEntities.getEntities(InteractionCircleComponent);
 
+    /*
     for (let entity of entities) {
       this.syncInteractionCircleToEntity(entity);
       this.syncDebugCircle(entity);
     };
+    */
 
     for (let entity of entities) {
       const intersectingEntityIds = this.getIntersectingInteractionIds(entity, entities);
@@ -25,23 +28,27 @@ export class HasInteracionCircleSystem implements Phecs.System {
     };
   }
 
+  /*
   private syncInteractionCircleToEntity(entity: Phecs.Entity) {
     const sprite = entity.getComponent(SpriteComponent).sprite;
     entity.getComponent(InteractionCircleComponent).interactionCircle.setPosition(sprite.x, sprite.y);
   }
+  */
 
   private getIntersectingInteractionIds(entity: Phecs.Entity, allEntities: Phecs.Entity[]): string[] {
     return allEntities
       .filter(otherEntity => otherEntity.id !== entity.id)
       .filter(otherEntity => {
-        const circle1 = entity.getComponent(InteractionCircleComponent).interactionCircle;
-        const circle2 = otherEntity.getComponent(InteractionCircleComponent).interactionCircle;
+        const circle1 = entity.getComponent(AttachmentComponent).getAttachmentsByType('interaction')[0];
+        const circle2 = otherEntity.getComponent(AttachmentComponent).getAttachmentsByType('interaction')[0];
 
-        return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
+        // return Phaser.Geom.Intersects.CircleToCircle(circle1, circle2);
+        return circle1.overlaps(circle2);
       })
       .map(otherEntity => otherEntity.id);
   }
 
+  /*
   private syncDebugCircle(entity: Phecs.Entity) {
     const debugInteractionCircle = entity.getComponent(InteractionCircleComponent).debugInteractionCircle;
     if (debugInteractionCircle) {
@@ -56,4 +63,5 @@ export class HasInteracionCircleSystem implements Phecs.System {
       }
     }
   }
+  */
 }

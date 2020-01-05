@@ -12,6 +12,7 @@ export class CircleShape {
 
     if (debug) {
       this.debugGraphic = scene.add.circle(this.shape.x, this.shape.y, this.shape.radius, 0x0000FF, 0.5);
+      this.debugGraphic.setOrigin(0.5);
       this.debugGraphic.setDepth(5);
     }
   }
@@ -52,10 +53,6 @@ export class CircleShape {
     const spriteCenter = sprite.getCenter();
     const coords = new Phaser.Geom.Point(spriteCenter.x + offsetX, spriteCenter.y + offsetY);
     Phaser.Math.RotateAround(coords, spriteCenter.x, spriteCenter.y, sprite.rotation);
-
-    // Center the hitbox on the offset values
-    coords.x -= radius / 2;
-    coords.y -= radius / 2;
 
     this.shape.x = coords.x;
     this.shape.y = coords.y;
