@@ -6,7 +6,7 @@ import { enemyStates } from '../entities/enemy/states';
 import { SpriteComponent } from '../components/sprite-component';
 import { PhysicsBodyComponent } from '../components/physics-body-component';
 import { HasAttachmentsSystem } from '../systems/has-attachments-system';
-import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
+import { InteracionComponentSystem } from '../systems/interaction-component-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
@@ -30,7 +30,7 @@ export class PrefabTestScene extends BaseScene {
     this.phecs.phSystems.registerSystems(
       [
         HasAttachmentsSystem,
-        HasInteracionCircleSystem,
+        InteracionComponentSystem,
         HasBoundsSystem,
         HasHurtboxesSystem,
         HasHitboxesSystem,

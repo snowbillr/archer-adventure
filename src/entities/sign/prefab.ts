@@ -1,5 +1,5 @@
 import { SpriteComponent } from "../../components/sprite-component";
-import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { InteractionComponent } from "../../components/interaction-component";
 import { SpriteIndicatorComponent } from "../../components/sprite-indicator-component";
 import { TextboxComponent } from "../../components/textbox-component";
 import { AttachmentComponent } from "../../components/attachment-component";
@@ -20,7 +20,7 @@ export const signPrefab: Phecs.Prefab = {
       }
     },
     {
-      component: InteractionCircleComponent,
+      component: InteractionComponent,
       data: {
         interactionRadius: 30,
         interactionDebug: false,

@@ -1,5 +1,5 @@
 import { EntityManager } from "../../lib/phecs/entity-manager";
-import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { InteractionComponent } from "../../components/interaction-component";
 import { InteractionTracker } from "../../lib/interaction-tracker";
 import { BaseScene } from "../../scenes/base-scene";
 
@@ -34,7 +34,7 @@ export abstract class BaseInteractionSystem implements Phecs.System {
     for (let entityA of entityAs) {
       for (let entityB of entityBs) {
         const listener = () => {
-          const entityAActiveInteractionIds = entityA.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
+          const entityAActiveInteractionIds = entityA.getComponent(InteractionComponent).interactionTracker.getEntityIds('active');
           if (entityAActiveInteractionIds.includes(entityB.id)) {
             if (this.onInteraction) {
               this.onInteraction(entityA, entityB);
@@ -59,7 +59,7 @@ export abstract class BaseInteractionSystem implements Phecs.System {
     const entityBs = phEntities.getEntities(this.identifierB);
 
     for (let entityA of entityAs) {
-      const entityAInteractionTracker = entityA.getComponent(InteractionCircleComponent).interactionTracker; 
+      const entityAInteractionTracker = entityA.getComponent(InteractionComponent).interactionTracker; 
 
       const enteringEntityBs = this.getInteractingEntityBs(entityAInteractionTracker, entityBs, 'entering');
       for (let enteringEntityB of enteringEntityBs) {
@@ -82,7 +82,7 @@ export abstract class BaseInteractionSystem implements Phecs.System {
   }
 
   private validateEntities(entities: Phecs.Entity[]) {
-    if(!entities.every(entity => entity.hasComponent(InteractionCircleComponent))) {
+    if(!entities.every(entity => entity.hasComponent(InteractionComponent))) {
       throw new Error('BaseInteractionSystem::ENTITY_MISSING_INTERACTION_COMPONENT');
     }
   }

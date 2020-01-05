@@ -1,6 +1,6 @@
 import { SpriteComponent } from '../../../components/sprite-component';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
-import { InteractionCircleComponent } from '../../../components/interaction-circle-component';
+import { InteractionComponent } from '../../../components/interaction-component';
 import { BaseScene } from '../../../scenes/base-scene';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { movementAttributes } from '../movement-attributes';
@@ -39,7 +39,7 @@ export const trackAdventurer: PhiniteStateMachine.States.State<Phecs.Entity> = {
       type: TransitionType.Conditional,
       condition(enemy) {
         const scene = enemy.getComponent(SceneComponent).scene as BaseScene;
-        const activeEntityIds = enemy.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
+        const activeEntityIds = enemy.getComponent(InteractionComponent).interactionTracker.getEntityIds('active');
 
         const adventurerId = scene.phecs.phEntities.getEntities(AdventurerComponent)[0].id;
 
