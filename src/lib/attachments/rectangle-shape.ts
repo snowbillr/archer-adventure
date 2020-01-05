@@ -12,6 +12,7 @@ export class RectangleShape {
 
     if (debug) {
       this.debugGraphic = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
+      this.debugGraphic.setOrigin(0); // see sync method coords centering
       this.debugGraphic.setDepth(5);
     }
   }

@@ -34,14 +34,19 @@ export const sheepPrefab: Phecs.Prefab = {
     {
       component: AttachmentComponent,
       data: {
-        attachmentDebug: false,
+        attachmentDebug: true,
       }
     },
     {
       component: InteractionComponent,
       data: {
-        interactionRadius: 30,
         interactionDebug: false,
+        shapeConfig: {
+          shape: 'rectangle',
+          width: 40,
+          height: 100,
+          offsetY: -30,
+        }
       }
     },
     SayComponent,

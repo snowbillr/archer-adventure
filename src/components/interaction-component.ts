@@ -12,8 +12,10 @@ export class InteractionComponent implements Phecs.Component {
     this.attachment = entity.getComponent(AttachmentComponent).createAttachment('interaction', {
       offsetX: 0,
       offsetY: 0,
-      shape: 'circle',
-      radius: data.interactionRadius,
+      ...(data.shapeConfig || {
+        shape: 'circle',
+        radius: data.interactionRadius
+      }),
     });
 
     this.interactionTracker = new InteractionTracker();
