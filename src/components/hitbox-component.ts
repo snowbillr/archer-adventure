@@ -1,5 +1,5 @@
 import { AttachmentComponent } from './attachment-component';
-import { Attachment } from '../lib/attachment';
+import { Attachment } from '../lib/attachments/attachment';
 
 export class HitboxComponent implements Phecs.Component {
   public hitboxFrames: Systems.HasHitboxes.Frame[]

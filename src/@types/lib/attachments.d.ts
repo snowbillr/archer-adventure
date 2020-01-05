@@ -1,4 +1,4 @@
-declare module Attachment {
+declare module Attachments {
   interface Config {
     offsetX: number;
     offsetY: number;

@@ -30,7 +30,7 @@ export const adventurerPrefab: Phecs.Prefab = {
     {
       component: AttachmentComponent,
       data: {
-        attachmentDebug: false,
+        attachmentDebug: true,
       }
     },
     {
