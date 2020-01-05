@@ -1,17 +1,15 @@
-export class Attachment implements Systems.HasAttachments.Attachment {
+export class Attachment {
   public type: string;
-  public properties: Systems.HasAttachments.AttachmentProperties;
   public shape: Phaser.Geom.Rectangle;
 
-  private config: Systems.HasAttachments.AttachmentConfig;
+  private config: Attachment.Config;
   private enabled: boolean;
 
   private debugRect?: Phaser.GameObjects.Rectangle;
 
-  constructor(type: string, config: Systems.HasAttachments.AttachmentConfig, properties: {} = {}, debug: boolean = false, scene: Phaser.Scene) {
+  constructor(type: string, config: Attachment.Config, debug: boolean = false, scene: Phaser.Scene) {
     this.type = type;
     this.config = config;
-    this.properties = properties;
     this.enabled = true;
     this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
 
@@ -50,7 +48,7 @@ export class Attachment implements Systems.HasAttachments.Attachment {
     return Phaser.Geom.Rectangle.Overlaps(this.shape, attachment.shape);
   }
 
-  setConfig(config: Systems.HasAttachments.AttachmentConfig) {
+  setConfig(config: Attachment.Config) {
     this.config = config;
   }
 

@@ -54,26 +54,3 @@ declare namespace Systems.SignSystem {
     message: string;
   }
 }
-
-declare namespace Systems.HasAttachments {
-  interface Attachment {
-    type: string;
-    properties: AttachmentProperties;
-    syncToSprite: (sprite: Phaser.GameObjects.Sprite) => void;
-    setConfig: (config: AttachmentConfig) => void;
-    enable: () => void;
-    disable: () => void;
-    destroy: () => void;
-  }
-
-  interface AttachmentConfig {
-    offsetX: number;
-    offsetY: number;
-    width: number;
-    height: number;
-  }
-
-  interface AttachmentProperties {
-    [key: string]: string;
-  }
-}
