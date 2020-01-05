@@ -1,18 +1,23 @@
 import { RectangleShape } from "./rectangle-shape";
+import { CircleShape } from "./circle-shape";
 
 export class Attachment {
   public type: string;
-  public shape: RectangleShape;
+  public shape: Attachments.Shape;
 
-  private config: Attachments.Config;
   private enabled: boolean;
 
-  constructor(type: string, config: Attachments.Config, debug: boolean = false, scene: Phaser.Scene) {
+  constructor(type: string, config: Attachments.ShapeConfig, debug: boolean = false, scene: Phaser.Scene) {
     this.type = type;
-    this.config = config;
     this.enabled = true;
 
-    this.shape = new RectangleShape(this.config, debug, scene);
+    if (config.shape === 'circle') {
+      this.shape = new CircleShape(config as Attachments.CircleConfig, debug, scene);
+    } else if (config.shape === 'rectangle') {
+      this.shape = new RectangleShape(config as Attachments.RectangleConfig, debug, scene);
+    } else {
+      throw new Error('Attachment::INVALID_SHAPE_TYPE_IN_CONFIG');
+    }
   }
 
   enable() {
@@ -30,11 +35,27 @@ export class Attachment {
   }
 
   overlaps(attachment: Attachment) {
-    return this.shape.overlapsRectangle(attachment.shape.shape);
+    if (this.shape instanceof RectangleShape) {
+      if (attachment.shape instanceof RectangleShape) {
+        return this.shape.overlapsRectangle(attachment.shape.shape);
+      } else if (attachment.shape instanceof CircleShape) {
+        return this.shape.overlapsCircle(attachment.shape.shape);
+      }
+    } else if (this.shape instanceof CircleShape) {
+      if (attachment.shape instanceof RectangleShape) {
+        return this.shape.overlapsRectangle(attachment.shape.shape);
+      } else if (attachment.shape instanceof CircleShape) {
+        return this.shape.overlapsCircle(attachment.shape.shape);
+      }
+    }
+
+    throw new Error('Attachment::INVALID_ATTACHMENT_FOR_OVERLAP');
   }
 
-  setConfig(config: Attachments.Config) {
-    this.shape.setConfig(config);
+  setConfig(config: Attachments.ShapeConfig) {
+    if (this.shape instanceof RectangleShape) {
+      this.shape.setConfig(config as Attachments.RectangleConfig);
+    }
   }
 
   syncToSprite(sprite: Phaser.GameObjects.Sprite) {

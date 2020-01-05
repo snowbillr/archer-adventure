@@ -1,54 +1,50 @@
-export class RectangleShape {
-  private config: Attachments.RectangleConfig;
+export class CircleShape {
+  private config: Attachments.CircleConfig;
 
-  public shape: Phaser.Geom.Rectangle;
+  public shape: Phaser.Geom.Circle;
 
-  private debugGraphic?: Phaser.GameObjects.Rectangle;
+  private debugGraphic?: Phaser.GameObjects.Arc;
 
-  constructor(config: Attachments.RectangleConfig, debug: boolean, scene: Phaser.Scene) {
+  constructor(config: Attachments.CircleConfig, debug: boolean, scene: Phaser.Scene) {
     this.config = config;
 
-    this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
+    this.shape = new Phaser.Geom.Circle(0, 0, config.radius);
 
     if (debug) {
-      this.debugGraphic = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
+      this.debugGraphic = scene.add.circle(this.shape.x, this.shape.y, this.shape.radius, 0x0000FF, 0.5);
       this.debugGraphic.setDepth(5);
     }
   }
 
-  setConfig(config: Attachments.RectangleConfig) {
+  setConfig(config: Attachments.CircleConfig) {
     this.config = config;
   }
 
   disable() {
     this.shape.x = 0;
     this.shape.y = 0;
-    this.shape.width = 0;
-    this.shape.height = 0;
+    this.shape.radius = 0;
 
     if (this.debugGraphic) {
-      this.debugGraphic.width = 0;
-      this.debugGraphic.height = 0;
+      this.debugGraphic.radius = 0;
     }
   }
 
   overlapsRectangle(rectangle: Phaser.Geom.Rectangle) {
-    return Phaser.Geom.Intersects.RectangleToRectangle(rectangle, this.shape);
+    return Phaser.Geom.Intersects.CircleToRectangle(this.shape, rectangle);
   }
 
   overlapsCircle(circle: Phaser.Geom.Circle) {
-    return Phaser.Geom.Intersects.CircleToRectangle(circle, this.shape);
+    return Phaser.Geom.Intersects.CircleToCircle(this.shape, circle);
   }
 
   syncToSprite(sprite: Phaser.GameObjects.Sprite) {
-    const scaleX = sprite.scaleX;
-    const scaleY = sprite.scaleY;
+    const scale = sprite.scale;
 
-    const offsetX = (sprite.flipX ? this.config.offsetX * -1 : this.config.offsetX) * scaleX;
-    const offsetY = (sprite.flipY ? this.config.offsetY * -1 : this.config.offsetY) * scaleY;
+    const offsetX = (sprite.flipX ? this.config.offsetX * -1 : this.config.offsetX) * scale;
+    const offsetY = (sprite.flipY ? this.config.offsetY * -1 : this.config.offsetY) * scale;
 
-    const width = scaleX * this.config.width;
-    const height = scaleY * this.config.height;
+    const radius = scale * this.config.radius;
 
     // This `getCenter` call only works if it is called against the scene's POST_UPDATE event.
     // Arcade Physics only syncs up the sprite and the body in POST_UPDATE. Before then,
@@ -58,13 +54,12 @@ export class RectangleShape {
     Phaser.Math.RotateAround(coords, spriteCenter.x, spriteCenter.y, sprite.rotation);
 
     // Center the hitbox on the offset values
-    coords.x -= width / 2;
-    coords.y -= height / 2;
+    coords.x -= radius / 2;
+    coords.y -= radius / 2;
 
     this.shape.x = coords.x;
     this.shape.y = coords.y;
-    this.shape.width = width;
-    this.shape.height = height;
+    this.shape.radius = radius;
 
     if (this.debugGraphic) {
       /*
@@ -79,8 +74,7 @@ export class RectangleShape {
 
       this.debugGraphic.x = this.shape.x;
       this.debugGraphic.y = this.shape.y;
-      this.debugGraphic.width = this.shape.width;
-      this.debugGraphic.height = this.shape.height;
+      this.debugGraphic.radius = this.shape.radius;
     }
   }
 

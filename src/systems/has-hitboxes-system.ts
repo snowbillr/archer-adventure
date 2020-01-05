@@ -28,6 +28,7 @@ export class HasHitboxesSystem implements Phecs.System {
           if (hitbox) {
             attachment.enable();
             attachment.setConfig({
+              shape: 'rectangle',
               offsetX: hitbox.x,
               offsetY: hitbox.y,
               width: hitbox.width,

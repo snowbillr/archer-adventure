@@ -18,6 +18,7 @@ export class HurtboxComponent implements Phecs.Component {
 
     for (let i = 0; i < maxAttachmentCount; i++) {
       entity.getComponent(AttachmentComponent).createAttachment('hurtbox', {
+        shape: 'rectangle',
         offsetX: 0,
         offsetY: 0,
         width: 0,

@@ -13,7 +13,7 @@ export class AttachmentComponent implements Phecs.Component {
     this.attachments = [];
   }
 
-  createAttachment(type: string, config: Attachments.Config): Attachment {
+  createAttachment(type: string, config: Attachments.ShapeConfig): Attachment {
     const attachment = new Attachment(type, config, this.data.attachmentDebug, this.scene);
     this.attachments.push(attachment);
 

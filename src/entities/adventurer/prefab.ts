@@ -7,7 +7,6 @@ import { BoundsComponent } from "../../components/bounds-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { ShootsArrowsComponent } from "../../components/shoots-arrows-component";
-import { HealthComponent } from "../../components/health-component";
 import { InvulnerabilityComponent } from "../../components/invulnerability-component";
 import { SceneComponent } from "../../components/scene-component";
 
