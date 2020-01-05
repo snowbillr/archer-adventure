@@ -31,7 +31,6 @@ export class SheepGateSystem extends BaseInteractionSystem {
       sheepActor.shout('BAAAAH!'),
 
       adventurerActor.walk(-100),
-      adventurerActor.faceRight(),
 
       sheepActor.enablePhSM(),
       adventurerActor.enablePhSM(),
