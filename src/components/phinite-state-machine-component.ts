@@ -11,7 +11,7 @@ export class PhiniteStateMachineComponent implements Phecs.Component {
     const states = baseScene.stateRegistrar.getSet(data.stateSet);
     const initialState = baseScene.stateRegistrar.getState(data.initialStateId);
 
-    this.phiniteStateMachine = new PhiniteStateMachine<any>(scene, entity, states);
+    this.phiniteStateMachine = new PhiniteStateMachine<Phecs.Entity>(scene, entity, states, initialState);
 
     this.phiniteStateMachine.doTransition({
       type: TransitionType.Initial,

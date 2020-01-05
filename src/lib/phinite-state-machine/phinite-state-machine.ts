@@ -8,15 +8,17 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   private scene: Phaser.Scene;
   private entity: T;
   private states: PhiniteStateMachine.States.State<T>[];
+  private initialState: PhiniteStateMachine.States.State<T>;
 
   private triggerCancelers: (() => void)[];
 
   public currentState: PhiniteStateMachine.States.State<T>;
 
-  constructor(scene: Phaser.Scene, entity: T, states: PhiniteStateMachine.States.State<T>[]) {
+  constructor(scene: Phaser.Scene, entity: T, states: PhiniteStateMachine.States.State<T>[], initialState: PhiniteStateMachine.States.State<T>) {
     this.scene = scene;
     this.entity = entity;
     this.states = states;
+    this.initialState = initialState;
 
     this.currentState = { id: 'dummy', transitions: [] };
     this.triggerCancelers = [];
@@ -45,6 +47,15 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
     if (this.currentState.onEnter) {
       this.currentState.onEnter(this.entity, this.currentState.data || {});
     }
+    this.registerTransitionTriggers();
+  }
+
+  disable() {
+    this.doTransition({ to: this.initialState.id });
+    this.cancelTransitionTriggers();
+  }
+
+  enable() {
     this.registerTransitionTriggers();
   }
 

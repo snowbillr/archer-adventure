@@ -13,6 +13,13 @@ export const walkLeft: PhiniteStateMachine.States.State<Phecs.Entity> = {
   },
   transitions: [
     {
+      type: TransitionType.Timer,
+      delay: () => Phaser.Math.RND.between(1000, 1500),
+      to() {
+        return Phaser.Math.RND.pick(['sheep-idle', 'sheep-walk-left']);
+      }
+    },
+    {
       type: TransitionType.Conditional,
       condition(sheep: Phecs.Entity) {
         const sprite = sheep.getComponent(SpriteComponent).sprite;

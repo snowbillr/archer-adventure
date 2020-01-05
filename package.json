@@ -11,6 +11,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-typescript": "^7.3.3",
     "babel-loader": "^8.0.6",
@@ -25,7 +26,8 @@
   },
   "dependencies": {
     "@koreez/phaser3-ninepatch": "^2.0.2",
-    "phaser": "^3.0.0"
+    "phaser": "^3.0.0",
+    "@babel/runtime": "^7.7.7"
   },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js",

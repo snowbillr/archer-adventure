@@ -13,11 +13,11 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
     this.interacting = false;
   }
 
-  onEnter(npc: Phecs.Entity) {
+  onEnter(adventurer: Phecs.Entity, npc: Phecs.Entity) {
     npc.getComponent(SpriteIndicatorComponent).indicator.show();
   }
 
-  onInteraction(npc: Phecs.Entity) {
+  onInteraction(adventurer: Phecs.Entity, npc: Phecs.Entity) {
     const conversation = npc.getComponent(ConversationComponent);
 
     if (!this.interacting) {
@@ -35,7 +35,7 @@ export class AdventurerNpcSystem extends BaseInteractionSystem {
     }
   }
 
-  onExit(npc: Phecs.Entity) {
+  onExit(adventurer: Phecs.Entity, npc: Phecs.Entity) {
     if (this.interacting) {
       const conversation = npc.getComponent(ConversationComponent);
 

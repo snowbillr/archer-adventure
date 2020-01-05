@@ -8,6 +8,7 @@
       // https://babeljs.io/docs/en/babel-plugin-proposal-class-properties
       // Without this, the BasePersistenceDocument's properties were being redefined in the subclass.
       ["@babel/proposal-class-properties", { "loose": true }],
-      "@babel/proposal-object-rest-spread"
+      "@babel/proposal-object-rest-spread",
+      "@babel/plugin-transform-runtime"
   ]
 }

@@ -1,5 +1,4 @@
 import { EntityManager } from "../../lib/phecs/entity-manager";
-import { AdventurerComponent } from "../../components/adventurer-component";
 import { InteractionCircleComponent } from "../../components/interaction-circle-component";
 import { InteractionTracker } from "../../lib/interaction-tracker";
 import { BaseScene } from "../../scenes/base-scene";
@@ -11,9 +10,9 @@ export abstract class BaseInteractionSystem implements Phecs.System {
   private identifierB: Phecs.EntityIdentifier;
   private listeners: { control: string, listener: () => void, listenerCancelFn: () => void }[]
 
-  protected onEnter?(entityB: Phecs.Entity): void;
-  protected onInteraction?(interactionEntity: Phecs.Entity): void;
-  protected onExit?(entityB: Phecs.Entity): void;
+  protected onEnter?(entityA: Phecs.Entity, entityB: Phecs.Entity): void;
+  protected onInteraction?(entityA: Phecs.Entity, interactionEntity: Phecs.Entity): void;
+  protected onExit?(entityA: Phecs.Entity, entityB: Phecs.Entity): void;
 
   constructor(scene: Phaser.Scene, identifierA: Phecs.EntityIdentifier, identifierB: Phecs.EntityIdentifier) {
     this.scene = scene as BaseScene;
@@ -27,6 +26,9 @@ export abstract class BaseInteractionSystem implements Phecs.System {
     const entityAs = phEntities.getEntities(this.identifierA);
     const entityBs = phEntities.getEntities(this.identifierB);
 
+    this.validateEntities(entityAs);
+    this.validateEntities(entityBs);
+
     const actionControl = this.scene.controls.action;
 
     for (let entityA of entityAs) {
@@ -35,7 +37,7 @@ export abstract class BaseInteractionSystem implements Phecs.System {
           const entityAActiveInteractionIds = entityA.getComponent(InteractionCircleComponent).interactionTracker.getEntityIds('active');
           if (entityAActiveInteractionIds.includes(entityB.id)) {
             if (this.onInteraction) {
-              this.onInteraction(entityB);
+              this.onInteraction(entityA, entityB);
             }
           }
         } 
@@ -62,14 +64,14 @@ export abstract class BaseInteractionSystem implements Phecs.System {
       const enteringEntityBs = this.getInteractingEntityBs(entityAInteractionTracker, entityBs, 'entering');
       for (let enteringEntityB of enteringEntityBs) {
         if (this.onEnter) {
-          this.onEnter(enteringEntityB);
+          this.onEnter(entityA, enteringEntityB);
         }
       }
 
       const exitingEntityBs = this.getInteractingEntityBs(entityAInteractionTracker, entityBs, 'exiting');
       for (let exitingEntityB of exitingEntityBs) {
         if (this.onExit) {
-          this.onExit(exitingEntityB);
+          this.onExit(entityA, exitingEntityB);
         }
       }
     }
@@ -77,6 +79,12 @@ export abstract class BaseInteractionSystem implements Phecs.System {
 
   destroy() {
     this.listeners = [];
+  }
+
+  private validateEntities(entities: Phecs.Entity[]) {
+    if(!entities.every(entity => entity.hasComponent(InteractionCircleComponent))) {
+      throw new Error('BaseInteractionSystem::ENTITY_MISSING_INTERACTION_COMPONENT');
+    }
   }
 
   private getInteractingEntityBs(interactionTracker: InteractionTracker, entities: Phecs.Entity[], interactionState: InteractionState) {

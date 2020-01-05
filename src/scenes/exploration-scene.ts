@@ -21,6 +21,7 @@ import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
+import { SheepGateSystem } from '../systems/sheep-gate-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
@@ -98,6 +99,7 @@ export class ExplorationScene extends BaseScene {
         HasHurtboxesSystem,
         HasInteracionCircleSystem,
         HasPhiniteStateMachineSystem,
+        SheepGateSystem,
       ]
     );
   }
