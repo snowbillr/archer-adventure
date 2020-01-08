@@ -25,6 +25,7 @@ export const arrowPrefab: Phecs.Prefab = {
       component: HitboxComponent,
       data: {
         hitboxesKey: 'arrow-hitboxes',
+        debug: false,
       }
     },
     {

@@ -1,6 +1,6 @@
 import { EntityManager } from "../../lib/phecs/entity-manager";
 import { AttachmentComponent } from "../../components/attachment-component";
-import { Attachment } from "../../lib/attachment";
+import { Attachment } from "../../lib/attachments/attachment";
 
 type EntityFetcher = (phEntities: EntityManager) => Phecs.Entity[];
 type OnHitCallback = (entity1: Phecs.Entity, entity2: Phecs.Entity) => void;

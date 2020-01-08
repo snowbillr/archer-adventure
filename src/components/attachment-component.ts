@@ -1,4 +1,4 @@
-import { Attachment } from '../lib/attachment';
+import { Attachment } from '../lib/attachments/attachment';
 
 export class AttachmentComponent implements Phecs.Component {
   public attachments: Attachment[];
@@ -13,8 +13,8 @@ export class AttachmentComponent implements Phecs.Component {
     this.attachments = [];
   }
 
-  createAttachment(type: string, config: Systems.HasAttachments.AttachmentConfig): Attachment {
-    const attachment = new Attachment(type, config, {}, this.data.attachmentDebug, this.scene);
+  createAttachment(type: string, config: Attachments.ShapeConfig, debugColor?: number): Attachment {
+    const attachment = new Attachment(type, config, debugColor, this.scene);
     this.attachments.push(attachment);
 
     return attachment;

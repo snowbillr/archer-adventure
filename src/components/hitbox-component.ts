@@ -1,5 +1,7 @@
 import { AttachmentComponent } from './attachment-component';
-import { Attachment } from '../lib/attachment';
+import { Attachment } from '../lib/attachments/attachment';
+
+const HITBOX_DEBUG_COLOR = 0xFF0000;
 
 export class HitboxComponent implements Phecs.Component {
   public hitboxFrames: Systems.HasHitboxes.Frame[]
@@ -18,11 +20,12 @@ export class HitboxComponent implements Phecs.Component {
 
     for (let i = 0; i < maxAttachmentCount; i++) {
       entity.getComponent(AttachmentComponent).createAttachment('hitbox', {
+        shape: 'rectangle',
         offsetX: 0,
         offsetY: 0,
         width: 0,
         height: 0,
-      });
+      }, data.debug ? HITBOX_DEBUG_COLOR : undefined);
     }
   }
 

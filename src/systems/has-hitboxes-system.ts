@@ -1,7 +1,7 @@
 import 'phaser';
 import { SpriteComponent } from '../components/sprite-component';
 import { AttachmentComponent } from '../components/attachment-component';
-import { Attachment } from "../lib/attachment";
+import { Attachment } from "../lib/attachments/attachment";
 import { HitboxComponent } from '../components/hitbox-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 
@@ -28,6 +28,7 @@ export class HasHitboxesSystem implements Phecs.System {
           if (hitbox) {
             attachment.enable();
             attachment.setConfig({
+              shape: 'rectangle',
               offsetX: hitbox.x,
               offsetY: hitbox.y,
               width: hitbox.width,

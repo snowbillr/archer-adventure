@@ -4,10 +4,9 @@ import { AdventurerComponent } from "../../components/adventurer-component";
 import { AttachmentComponent } from "../../components/attachment-component";
 import { HurtboxComponent } from "../../components/hurtbox-component";
 import { BoundsComponent } from "../../components/bounds-component";
-import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { InteractionComponent } from "../../components/interaction-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { ShootsArrowsComponent } from "../../components/shoots-arrows-component";
-import { HealthComponent } from "../../components/health-component";
 import { InvulnerabilityComponent } from "../../components/invulnerability-component";
 import { SceneComponent } from "../../components/scene-component";
 
@@ -37,6 +36,7 @@ export const adventurerPrefab: Phecs.Prefab = {
       component: HurtboxComponent,
       data: {
         hurtboxesKey: "adventurer-hurtboxes",
+        debug: false,
       }
     },
     {
@@ -46,10 +46,10 @@ export const adventurerPrefab: Phecs.Prefab = {
       }
     },
     {
-      component: InteractionCircleComponent,
+      component: InteractionComponent,
       data: {
         interactionRadius: 30,
-        interactionDebug: false,
+        debug: false,
       }
     },
     {

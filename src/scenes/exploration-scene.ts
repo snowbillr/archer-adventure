@@ -19,7 +19,7 @@ import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
-import { HasInteracionCircleSystem } from '../systems/has-interaction-circle-system';
+import { InteractionComponentSystem } from '../systems/interaction-component-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 import { SheepGateSystem } from '../systems/sheep-gate-system';
 
@@ -97,7 +97,7 @@ export class ExplorationScene extends BaseScene {
         HasBoundsSystem,
         HasHitboxesSystem,
         HasHurtboxesSystem,
-        HasInteracionCircleSystem,
+        InteractionComponentSystem,
         HasPhiniteStateMachineSystem,
         SheepGateSystem,
       ]

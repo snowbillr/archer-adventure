@@ -5,7 +5,7 @@ import { PhiniteStateMachineComponent } from "../../components/phinite-state-mac
 import { HurtboxComponent } from "../../components/hurtbox-component";
 import { HitboxComponent } from "../../components/hitbox-component";
 import { HealthComponent } from "../../components/health-component";
-import { InteractionCircleComponent } from "../../components/interaction-circle-component";
+import { InteractionComponent } from "../../components/interaction-component";
 import { EnemyComponent } from "../../components/enemy-component";
 import { ZoneBoundaryComponent } from "../../components/zone-boundary-component";
 import { SceneComponent } from "../../components/scene-component";
@@ -37,12 +37,14 @@ export const enemyPrefab: Phecs.Prefab = {
       component: HurtboxComponent,
       data: {
         hurtboxesKey: 'enemy-hurtboxes',
+        debug: false,
       }
     },
     {
       component: HitboxComponent,
       data: {
         hitboxesKey: 'enemy-hitboxes',
+        debug: false,
       }
     },
     {
@@ -52,10 +54,10 @@ export const enemyPrefab: Phecs.Prefab = {
       }
     },
     {
-      component: InteractionCircleComponent,
+      component: InteractionComponent,
       data: {
         interactionRadius: 220,
-        interactionDebug: false,
+        debug: false,
       }
     },
     EnemyComponent,
