@@ -59,8 +59,11 @@ export class ExplorationScene extends BaseScene {
     this.cameras.main.fadeOut(0);
     this.loadNewArea(data.areaKey, data.markerName)
       .then(() => {
-        this.cameras.main.fadeIn(1000);
-        this.scene.launch(SCENE_KEYS.hud);
+        this.cameras.main.fadeIn(1000, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
+          if (progress === 1) {
+            this.scene.launch(SCENE_KEYS.hud);
+          }
+        });
       });
   }
 
