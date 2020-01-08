@@ -2,7 +2,7 @@ declare module Attachments {
   type ShapeType = 'rectangle' | 'circle';
 
   interface RectangleConfig {
-    shape: ShapeType;
+    shape: 'rectangle';
     offsetX: number;
     offsetY: number;
     width: number;
@@ -10,7 +10,7 @@ declare module Attachments {
   }
 
   interface CircleConfig {
-    shape: ShapeType;
+    shape: 'circle';
     offsetX: number;
     offsetY: number;
     radius: number;

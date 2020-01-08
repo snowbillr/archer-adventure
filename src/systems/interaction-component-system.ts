@@ -3,7 +3,7 @@ import { InteractionComponent } from '../components/interaction-component';
 import { EntityManager } from '../lib/phecs/entity-manager';
 import { AttachmentComponent } from '../components/attachment-component';
 
-export class InteracionComponentSystem implements Phecs.System {
+export class InteractionComponentSystem implements Phecs.System {
   update(phEntities: EntityManager) {
     const entities: Phecs.Entity[] = phEntities.getEntities(InteractionComponent);
 
