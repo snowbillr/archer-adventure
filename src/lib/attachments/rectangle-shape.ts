@@ -1,3 +1,5 @@
+// Origin to sprite is top-left.
+
 export class RectangleShape {
   private config: Attachments.RectangleConfig;
 

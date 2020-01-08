@@ -1,3 +1,5 @@
+// Origin to sprite is centered.
+
 export class CircleShape {
   private config: Attachments.CircleConfig;
 
