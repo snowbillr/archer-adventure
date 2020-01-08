@@ -5,13 +5,13 @@ export class CircleShape {
 
   private debugGraphic?: Phaser.GameObjects.Arc;
 
-  constructor(config: Attachments.CircleConfig, debug: boolean, scene: Phaser.Scene) {
+  constructor(config: Attachments.CircleConfig, debugColor?: number, scene?: Phaser.Scene) {
     this.config = config;
 
     this.shape = new Phaser.Geom.Circle(0, 0, config.radius);
 
-    if (debug) {
-      this.debugGraphic = scene.add.circle(this.shape.x, this.shape.y, this.shape.radius, 0x0000FF, 0.5);
+    if (debugColor && scene) {
+      this.debugGraphic = scene.add.circle(this.shape.x, this.shape.y, this.shape.radius, debugColor, 0.5);
       this.debugGraphic.setOrigin(0.5);
       this.debugGraphic.setDepth(5);
     }

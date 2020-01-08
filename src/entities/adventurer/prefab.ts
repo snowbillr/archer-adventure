@@ -36,6 +36,7 @@ export const adventurerPrefab: Phecs.Prefab = {
       component: HurtboxComponent,
       data: {
         hurtboxesKey: "adventurer-hurtboxes",
+        debug: false,
       }
     },
     {
@@ -48,7 +49,7 @@ export const adventurerPrefab: Phecs.Prefab = {
       component: InteractionComponent,
       data: {
         interactionRadius: 30,
-        interactionDebug: false,
+        debug: false,
       }
     },
     {

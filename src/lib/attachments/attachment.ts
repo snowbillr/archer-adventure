@@ -7,14 +7,14 @@ export class Attachment {
 
   private enabled: boolean;
 
-  constructor(type: string, config: Attachments.ShapeConfig, debug: boolean = false, scene: Phaser.Scene) {
+  constructor(type: string, config: Attachments.ShapeConfig, debugColor?: number, scene?: Phaser.Scene) {
     this.type = type;
     this.enabled = true;
 
     if (config.shape === 'circle') {
-      this.shape = new CircleShape(config as Attachments.CircleConfig, debug, scene);
+      this.shape = new CircleShape(config as Attachments.CircleConfig, debugColor, scene);
     } else if (config.shape === 'rectangle') {
-      this.shape = new RectangleShape(config as Attachments.RectangleConfig, debug, scene);
+      this.shape = new RectangleShape(config as Attachments.RectangleConfig, debugColor, scene);
     } else {
       throw new Error('Attachment::INVALID_SHAPE_TYPE_IN_CONFIG');
     }

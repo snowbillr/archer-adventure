@@ -5,13 +5,13 @@ export class RectangleShape {
 
   private debugGraphic?: Phaser.GameObjects.Rectangle;
 
-  constructor(config: Attachments.RectangleConfig, debug: boolean, scene: Phaser.Scene) {
+  constructor(config: Attachments.RectangleConfig, debugColor?: number, scene?: Phaser.Scene) {
     this.config = config;
 
     this.shape = new Phaser.Geom.Rectangle(0, 0, config.width, config.height);
 
-    if (debug) {
-      this.debugGraphic = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, 0x0000FF, 0.5);
+    if (debugColor && scene) {
+      this.debugGraphic = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, debugColor, 0.5);
       this.debugGraphic.setOrigin(0); // see sync method coords centering
       this.debugGraphic.setDepth(5);
     }

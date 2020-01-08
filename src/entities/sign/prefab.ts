@@ -23,7 +23,7 @@ export const signPrefab: Phecs.Prefab = {
       component: InteractionComponent,
       data: {
         interactionRadius: 30,
-        interactionDebug: false,
+        debug: false,
       }
     },
     SpriteIndicatorComponent,

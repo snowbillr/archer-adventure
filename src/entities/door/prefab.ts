@@ -26,6 +26,7 @@ export const doorPrefab: Phecs.Prefab = {
       component: InteractionComponent,
       data: {
         interactionRadius: 40,
+        debug: false,
       }
     },
   ]

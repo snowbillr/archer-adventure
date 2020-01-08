@@ -40,7 +40,7 @@ export const sheepPrefab: Phecs.Prefab = {
     {
       component: InteractionComponent,
       data: {
-        interactionDebug: false,
+        debug: false,
         shapeConfig: {
           shape: 'rectangle',
           width: 40,

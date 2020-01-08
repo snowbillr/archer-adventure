@@ -20,7 +20,7 @@ export const npcPrefab: Phecs.Prefab = {
       component: InteractionComponent,
       data: {
         interactionRadius: 70,
-        interactionDebug: false,
+        debug: false,
       }
     },
     SpriteIndicatorComponent,

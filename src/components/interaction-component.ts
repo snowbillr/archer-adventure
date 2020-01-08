@@ -2,6 +2,8 @@ import { InteractionTracker } from '../lib/interaction-tracker';
 import { Attachment } from '../lib/attachments/attachment';
 import { AttachmentComponent } from './attachment-component';
 
+const INTERACTION_DEBUG_COLOR = 0x00FF00;
+
 export class InteractionComponent implements Phecs.Component {
   public interactionTracker: InteractionTracker;
   public debugInteractionCircle?: Phaser.GameObjects.Arc;
@@ -16,7 +18,7 @@ export class InteractionComponent implements Phecs.Component {
         shape: 'circle',
         radius: data.interactionRadius
       }),
-    });
+    }, data.debug ? INTERACTION_DEBUG_COLOR : undefined);
 
     this.interactionTracker = new InteractionTracker();
   }

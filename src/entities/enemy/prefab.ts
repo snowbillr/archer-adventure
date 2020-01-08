@@ -37,12 +37,14 @@ export const enemyPrefab: Phecs.Prefab = {
       component: HurtboxComponent,
       data: {
         hurtboxesKey: 'enemy-hurtboxes',
+        debug: false,
       }
     },
     {
       component: HitboxComponent,
       data: {
         hitboxesKey: 'enemy-hitboxes',
+        debug: false,
       }
     },
     {
@@ -55,7 +57,7 @@ export const enemyPrefab: Phecs.Prefab = {
       component: InteractionComponent,
       data: {
         interactionRadius: 220,
-        interactionDebug: false,
+        debug: false,
       }
     },
     EnemyComponent,

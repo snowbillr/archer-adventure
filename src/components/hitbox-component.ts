@@ -1,6 +1,8 @@
 import { AttachmentComponent } from './attachment-component';
 import { Attachment } from '../lib/attachments/attachment';
 
+const HITBOX_DEBUG_COLOR = 0xFF0000;
+
 export class HitboxComponent implements Phecs.Component {
   public hitboxFrames: Systems.HasHitboxes.Frame[]
   public enabled: boolean;
@@ -23,7 +25,7 @@ export class HitboxComponent implements Phecs.Component {
         offsetY: 0,
         width: 0,
         height: 0,
-      });
+      }, data.debug ? HITBOX_DEBUG_COLOR : undefined);
     }
   }
 
