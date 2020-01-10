@@ -1,3 +1,5 @@
+import { DepthManager } from "../depth-manager";
+
 // Origin to sprite is top-left.
 
 export class RectangleShape {
@@ -15,7 +17,7 @@ export class RectangleShape {
     if (debugColor && scene) {
       this.debugGraphic = scene.add.rectangle(this.shape.x, this.shape.y, this.shape.width, this.shape.height, debugColor, 0.5);
       this.debugGraphic.setOrigin(0); // see sync method coords centering
-      this.debugGraphic.setDepth(5);
+      this.debugGraphic.setDepth(DepthManager.depthFor('debug'));
     }
   }
 

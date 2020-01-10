@@ -7,7 +7,7 @@ export class ParallaxSpritePlugin extends Phaser.Plugins.BasePlugin {
       pluginManager.registerGameObject('parallaxSprite', this.createParallaxSprite);
   }
 
-  createParallaxSprite(this: Phaser.GameObjects.GameObjectFactory, layersConfig: ParallaxSprite.LayersConfig, x: number, y: number, width: number, height: number) {
-    return new ParallaxSprite(this.scene, layersConfig, x, y, width, height);
+  createParallaxSprite(this: Phaser.GameObjects.GameObjectFactory, layersConfig: ParallaxSprite.LayersConfig, depth: number) {
+    return new ParallaxSprite(this.scene, layersConfig, depth);
   }
 }

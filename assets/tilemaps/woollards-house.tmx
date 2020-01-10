@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="6" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="3">
+ <editorsettings>
+  <export target="woollards-house.json" format="json"/>
+ </editorsettings>
  <properties>
   <property name="backgroundColor" value="3E2323"/>
   <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground"/>
@@ -8,6 +11,7 @@
  <layer id="3" name="ground" width="20" height="6">
   <properties>
    <property name="collides" type="bool" value="true"/>
+   <property name="depth" value="ground"/>
   </properties>
   <data encoding="csv">
 3355,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3357,
@@ -18,7 +22,10 @@
 3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356,3356
 </data>
  </layer>
- <layer id="4" name="background" width="20" height="6">
+ <layer id="4" name="background0" width="20" height="6">
+  <properties>
+   <property name="depth" value="background0"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,3442,0,
@@ -28,7 +35,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="background2" width="20" height="6">
+ <layer id="6" name="background1" width="20" height="6">
+  <properties>
+   <property name="depth" value="background1"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,1057,1058,0,0,0,1061,1062,0,0,0,0,0,
@@ -39,6 +49,9 @@
 </data>
  </layer>
  <objectgroup id="7" name="npcs">
+  <properties>
+   <property name="depth" value="background2"/>
+  </properties>
   <object id="2" name="old-man" type="npc" x="242.801" y="160.35">
    <properties>
     <property name="conversationKey" value="oldMan"/>
@@ -51,6 +64,9 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="doors">
+  <properties>
+   <property name="depth" value="door"/>
+  </properties>
   <object id="1" name="woollardsFarmDoor" type="door" x="91" y="161">
    <properties>
     <property name="marker" type="bool" value="true"/>

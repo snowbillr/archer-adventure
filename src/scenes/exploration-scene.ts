@@ -35,6 +35,7 @@ import { SpriteComponent } from '../components/sprite-component';
 
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
+import { DepthManager } from '../lib/depth-manager';
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
@@ -142,7 +143,7 @@ export class ExplorationScene extends BaseScene {
         const map = this.areaManager.map;
         const tileset = this.areaManager.tileset;
 
-        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, 2);
+        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, DepthManager.depthFor('adventurer'));
         const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
         if (markerName) {
@@ -183,8 +184,6 @@ export class ExplorationScene extends BaseScene {
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
 
-        // this.persistence.set(PERSISTENCE_KEYS.currentArea, areaKey);
-        // this.persistence.set(PERSISTENCE_KEYS.currentMarker, markerName);
         this.persistence.location.areaKey = areaKey;
         if (markerName) this.persistence.location.markerName = markerName;
         this.persistence.save();

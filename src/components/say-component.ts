@@ -1,4 +1,5 @@
 import { SpriteComponent } from "./sprite-component"
+import { DepthManager } from "../lib/depth-manager";
 
 export class SayComponent implements Phecs.Component {
   private scene: Phaser.Scene;
@@ -11,7 +12,7 @@ export class SayComponent implements Phecs.Component {
 
     this.text = scene.add.dynamicBitmapText(0, 0, 'compass-24', '');
     this.text.setOrigin(0.5, 0.5);
-    this.text.setDepth(4);
+    this.text.setDepth(DepthManager.depthFor('notifications'));
 
     this.hide();
   }
