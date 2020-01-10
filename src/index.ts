@@ -3,7 +3,7 @@ import 'phaser';
 import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
-import { ControlsPlugin } from './plugins/controls-plugin';
+import { ControlsPlugin } from './plugins/controls/controls-plugin';
 import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';

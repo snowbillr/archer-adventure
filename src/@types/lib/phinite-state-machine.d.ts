@@ -39,13 +39,11 @@ declare namespace PhiniteStateMachine {
     }
 
     type PressControlTransition<T> = BaseTransition<T> & {
-      // control: 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
-      control: string;
+      control: Controls.ControlNames;
     }
 
     type ReleaseControlTransition<T> = BaseTransition<T> & {
-      // control: 'action' | 'shoot' | 'left' | 'right' | 'up' | 'down';
-      control: string;
+      control: Controls.ControlNames;
     }
 
     type ConditionalTransition<T> = BaseTransition<T> & {
