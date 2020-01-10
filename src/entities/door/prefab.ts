@@ -11,7 +11,6 @@ export const doorPrefab: Phecs.Prefab = {
       data: {
         texture: 'doors',
         frame: 1,
-        depth: 2,
       }
     },
     DoorComponent,

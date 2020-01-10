@@ -14,7 +14,6 @@ export const sheepPrefab: Phecs.Prefab = {
       data: {
         texture: 'sheep-walk',
         frame: 0,
-        depth: 0,
       }
     },
     PhysicsBodyComponent,

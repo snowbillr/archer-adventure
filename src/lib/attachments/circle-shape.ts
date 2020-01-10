@@ -1,3 +1,5 @@
+import { DepthManager } from "../depth-manager";
+
 // Origin to sprite is centered.
 
 export class CircleShape {
@@ -15,7 +17,7 @@ export class CircleShape {
     if (debugColor && scene) {
       this.debugGraphic = scene.add.circle(this.shape.x, this.shape.y, this.shape.radius, debugColor, 0.5);
       this.debugGraphic.setOrigin(0.5);
-      this.debugGraphic.setDepth(5);
+      this.debugGraphic.setDepth(DepthManager.depthFor('debug'));
     }
   }
 

@@ -1,3 +1,5 @@
+import { DepthManager } from "../lib/depth-manager";
+
 export class TextboxComponent implements Phecs.Component {
   public isTextboxShowing: boolean;
 
@@ -18,7 +20,7 @@ export class TextboxComponent implements Phecs.Component {
       right: 10
     });
     this.textboxSprite
-      .setDepth(10)
+      .setDepth(DepthManager.depthFor('notifications'))
       .setScrollFactor(0);
 
     const textboxText = scene.add.bitmapText(0, 0, 'compass-24', this.signs[data.signId].message);

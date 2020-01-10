@@ -19,8 +19,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   private areaMap: { [areaName: string]: any };
   private backgroundSets: { [name: string]: string[] };
 
-  public adventurer!: Phecs.Entity;
-
   private background?: ParallaxSprite;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
@@ -94,7 +92,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     const marker = this.markers[markerName];
     const sprite = entity.getComponent(SpriteComponent).sprite;
 
-
     entity.getComponent(SpriteComponent).sprite.setPosition(marker.x, marker.y - sprite.height * sprite.originY);
   }
 
@@ -150,48 +147,45 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   private createTileLayers(layerNames: string[]) {
-    layerNames.forEach(layerName => this.createTileLayer(layerName));
-  }
+    layerNames.forEach(layerName => {
+      const layer = this.map.createStaticLayer(layerName, this.tileset);
 
-  private createTileLayer(layerName: string): void {
-    const layer = this.map.createStaticLayer(layerName, this.tileset);
-
-    const layerProperties: any = TiledUtil.normalizeProperties(layer.layer.properties);
-
-    if (layerProperties.collides) {
-      layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
-        tile.setCollision(true, true, true, true, false);
-      }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
-
-      // this is an optimization for not calculating the faces immediately in the forEachTile loop above
-      layer.calculateFacesWithin(0, 0, layer.width, layer.height);
-    }
-
-    layer.setDepth(layerProperties.depth)
-
-    this.tileLayers.push(layer);
+      const layerProperties: any = TiledUtil.normalizeProperties(layer.layer.properties);
+  
+      if (layerProperties.collides) {
+        layer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+          tile.setCollision(true, true, true, true, false);
+        }, this, 0, 0, layer.width, layer.height, { isNotEmpty: true });
+  
+        // this is an optimization for not calculating the faces immediately in the forEachTile loop above
+        layer.calculateFacesWithin(0, 0, layer.width, layer.height);
+      }
+  
+      layer.setDepth(DepthManager.depthFor(layerProperties.depth));
+  
+      this.tileLayers.push(layer);
+    });
   }
 
   private createObjectLayers(layerNames: string[]) {
-    layerNames.forEach(layerName => this.createObjects(layerName));
-  }
-
-  private createObjects(layerName: string): void {
-    const layer = this.map.getObjectLayer(layerName);
-    const layerProperties = TiledUtil.normalizeProperties(layer.properties);
-    const tiledObjects = layer.objects;
-
-    this.objects[layerName] = [];
-
-    const scene = (this.scene as BaseScene);
-    tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
-      let entity = null;
-
-      if (tiledObject.type) {
-        entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, layerProperties.depth, tiledObject.x, tiledObject.y);
-      }
-
-      this.objects[layerName].push(entity);
+    layerNames.forEach(layerName => {
+      const layer = this.map.getObjectLayer(layerName);
+      const layerProperties = TiledUtil.normalizeProperties(layer.properties);
+      const layerDepth = layer.name === 'zones' || layer.name === 'markers' ? 0 : DepthManager.depthFor(layerProperties.depth);
+      const tiledObjects = layer.objects;
+  
+      this.objects[layerName] = [];
+  
+      const scene = (this.scene as BaseScene);
+      tiledObjects.forEach((tiledObject: Phaser.Types.Tilemaps.TiledObject) => {
+        let entity = null;
+  
+        if (tiledObject.type) {
+          entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, layerDepth, tiledObject.x, tiledObject.y);
+        }
+  
+        this.objects[layerName].push(entity);
+      }); 
     });
   }
 
@@ -200,7 +194,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
       const layerNames = this.backgroundSets[properties.backgroundSet];
       const layersConfig: ParallaxSprite.LayersConfig = layerNames.map(layerName => { return { key: layerName } });
 
-      this.background = (this.scene.add as any).parallaxSprite(layersConfig) as ParallaxSprite;
+      this.background = (this.scene.add as any).parallaxSprite(layersConfig, DepthManager.depthFor('parallax')) as ParallaxSprite;
       this.background.scrollWithCamera(this.scene.cameras.main);
     } else if (properties.backgroundColor) {
       this.scene.cameras.main.setBackgroundColor(`#${properties.backgroundColor}`)

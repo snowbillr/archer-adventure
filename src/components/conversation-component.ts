@@ -1,6 +1,7 @@
 import { SpriteComponent } from "./sprite-component"
 import { NinePatch } from "@koreez/phaser3-ninepatch";
 import { BaseScene } from "../scenes/base-scene";
+import { DepthManager } from "../lib/depth-manager";
 
 export class ConversationComponent implements Phecs.Component {
   private scene: BaseScene;
@@ -38,6 +39,7 @@ export class ConversationComponent implements Phecs.Component {
     );
 
     this.conversationBoxSprite.alpha = 0;
+    this.conversationBoxSprite.setDepth(DepthManager.depthFor('notifications'));
   }
 
   startConversation() {

@@ -8,6 +8,8 @@ export const DepthManager = new class {
   }
 
   private depths: Record<string, number> = {
+    parallax: 1,
+
     background0: 10,
     background1: 11,
     background2: 12,
@@ -32,6 +34,7 @@ export const DepthManager = new class {
     ground: 40,
 
     door: 50,
+    sign: 50,
 
     adventurer: 60,
 
@@ -56,6 +59,8 @@ export const DepthManager = new class {
     foreground18: 88,
     foreground19: 89,
 
-    notifications: 100
+    notifications: 100,
+
+    debug: 200,
   };
 }
