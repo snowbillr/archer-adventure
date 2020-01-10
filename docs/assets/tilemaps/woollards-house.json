@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"woollards-house.json"
+        }
+    },
  "height":6,
  "infinite":false,
  "layers":[
@@ -13,6 +21,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"ground"
                 }],
          "type":"tilelayer",
          "visible":true,
@@ -24,8 +37,14 @@
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 0, 0, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 0, 0, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 0, 0, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 3442, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":6,
          "id":4,
-         "name":"background",
+         "name":"background0",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"background0"
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,
@@ -36,8 +55,14 @@
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1057, 1058, 0, 0, 0, 1061, 1062, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1143, 1144, 0, 0, 0, 1147, 1148, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1137, 1138, 960, 0, 0, 0, 967, 1235, 1236, 1237, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1223, 1224, 1046, 0, 0, 0, 1053, 1321, 1322, 1323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":6,
          "id":6,
-         "name":"background2",
+         "name":"background1",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"background1"
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,
@@ -88,6 +113,12 @@
                  "y":160.35
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"background2"
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -127,6 +158,12 @@
                  "y":161
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"door"
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
