@@ -65,7 +65,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
     this.createBackground(TiledUtil.normalizeProperties(this.map.properties));
     this.createTileLayers(this.map.layers.map(layer => layer.name));
-    this.createObjectLayers(this.map.objects.map(layer => layer.name));
+    this.createEntities(this.map.objects.map(layer => layer.name));
   }
 
   unload() {
@@ -167,11 +167,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     });
   }
 
-  private createObjectLayers(layerNames: string[]) {
+  private createEntities(layerNames: string[]) {
     layerNames.forEach(layerName => {
       const layer = this.map.getObjectLayer(layerName);
       const layerProperties = TiledUtil.normalizeProperties(layer.properties);
-      const layerDepth = layer.name === 'zones' || layer.name === 'markers' ? 0 : DepthManager.depthFor(layerProperties.depth);
       const tiledObjects = layer.objects;
   
       this.objects[layerName] = [];
@@ -181,10 +180,9 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         let entity = null;
   
         if (tiledObject.type) {
-          entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, layerDepth, tiledObject.x, tiledObject.y);
+          entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, DepthManager.depthFor(layerProperties.depth), tiledObject.x, tiledObject.y);
+          this.objects[layerName].push(entity);
         }
-  
-        this.objects[layerName].push(entity);
       }); 
     });
   }
