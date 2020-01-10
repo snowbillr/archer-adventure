@@ -3,7 +3,7 @@ import { BaseScene } from '../scenes/base-scene';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
 import { ParallaxSprite } from "./parallax-sprite";
-import { ParallaxSpritePlugin } from './parallax-sprite-plugin';
+import { DepthManager } from "../lib/depth-manager";
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public map!: Phaser.Tilemaps.Tilemap;
