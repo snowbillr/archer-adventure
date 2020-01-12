@@ -61,12 +61,7 @@ export const enemyPrefab: Phecs.Prefab = {
       }
     },
     EnemyComponent,
-    {
-      component: ZoneBoundaryComponent,
-      data: {
-        zoneBoundaryName: 'enemyBounds',
-      }
-    },
+    ZoneBoundaryComponent,
     {
       component: SceneComponent,
     }

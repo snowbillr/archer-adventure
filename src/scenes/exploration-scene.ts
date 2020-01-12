@@ -9,6 +9,7 @@ import { oldLadyStates } from '../entities/old-lady/states';
 import { oldManStates } from '../entities/old-man/states';
 import { sheepStates } from '../entities/sheep/states';
 
+import { AreaTransferSystem } from '../systems/area-transfer-system';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
@@ -75,6 +76,7 @@ export class ExplorationScene extends BaseScene {
   registerAreas() {
     this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
     this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
+    this.areaManager.registerArea('forest', 'forest', 'core-tileset', 'core-tileset');
   }
 
   registerBackgroundSets() {
@@ -84,6 +86,7 @@ export class ExplorationScene extends BaseScene {
   registerSystems() {
     this.phecs.phSystems.registerSystems(
       [
+        AreaTransferSystem,
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
         AdventurerDoorSystem,

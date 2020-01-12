@@ -21,6 +21,7 @@ export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
       sprite.flipX = false;
     }
   },
+
   onUpdate(enemy) {
     const sprite = enemy.getComponent(SpriteComponent).sprite as Phaser.GameObjects.Sprite;
     const body = enemy.getComponent(PhysicsBodyComponent).body;
@@ -30,6 +31,7 @@ export const wander: PhiniteStateMachine.States.State<Phecs.Entity> = {
       body.velocity.x *= -1;
     }
   },
+
   transitions: [
     {
       type: TransitionType.Timer,

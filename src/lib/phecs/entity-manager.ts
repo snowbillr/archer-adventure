@@ -38,8 +38,8 @@ export class EntityManager {
 
     this.getComponentDefinitions(prefab).forEach((componentDefinition: Phecs.PrefabComponentDefinition) => {
       const component = new componentDefinition.component(baseScene, {
-        ...properties,
         ...componentDefinition.data,
+        ...properties,
       }, entity);
 
       entity.components.push(component);
