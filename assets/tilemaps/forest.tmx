@@ -339,7 +339,7 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="zones">
-  <object id="2" name="farmTransfer" x="0.615665" y="1653.65" width="111.849" height="335.731">
+  <object id="2" name="farmTransfer" x="0.615665" y="1653.65" width="82.8151" height="335.731">
    <properties>
     <property name="toAreaKey" value="woollards-farm"/>
     <property name="toMarker" value="farmTransferLocation"/>
