@@ -331,7 +331,7 @@
 </data>
  </layer>
  <objectgroup id="4" name="markers">
-  <object id="1" name="farmTransferLocation" x="97.7995" y="1983.5">
+  <object id="1" name="farmTransferLocation" x="157.8" y="1983.5">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>
@@ -339,7 +339,7 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="zones">
-  <object id="2" name="farmTransfer" x="0.615665" y="1653.65" width="62.9496" height="335.731">
+  <object id="2" name="farmTransfer" x="0.615665" y="1653.65" width="111.849" height="335.731">
    <properties>
     <property name="toAreaKey" value="woollards-farm"/>
     <property name="toMarker" value="farmTransferLocation"/>

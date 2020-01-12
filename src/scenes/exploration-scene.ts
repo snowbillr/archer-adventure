@@ -115,12 +115,9 @@ export class ExplorationScene extends BaseScene {
   }
 
   transferToArea(areaKey: string, markerName?: string) {
-    this.cameras.main.fadeOut(400, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
-      if (progress === 1) {
-        this.loadNewArea(areaKey, markerName).then(() => {
-          this.cameras.main.fadeIn(1000);
-        });
-      }
+    this.cameras.main.fadeOut(0);
+    this.loadNewArea(areaKey, markerName).then(() => {
+      this.cameras.main.fadeIn(1000);
     });
   }
 
