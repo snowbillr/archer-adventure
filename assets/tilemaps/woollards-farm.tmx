@@ -146,6 +146,9 @@
    <point/>
   </object>
   <object id="9" name="enemy" type="enemy" x="2025.41" y="762.005">
+   <properties>
+    <property name="zoneBoundaryName" value="enemyBounds"/>
+   </properties>
    <point/>
   </object>
   <object id="13" name="old-lady" type="npc" x="688.501" y="767.89">

@@ -109,6 +109,12 @@
                  "id":9,
                  "name":"enemy",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"zoneBoundaryName",
+                         "type":"string",
+                         "value":"enemyBounds"
+                        }],
                  "rotation":0,
                  "type":"enemy",
                  "visible":true,
@@ -206,7 +212,7 @@
                  "y":708
                 }, 
                 {
-                 "height":335.731414868106,
+                 "height":335.731,
                  "id":14,
                  "name":"forestTransfer",
                  "properties":[
@@ -228,9 +234,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":62.9496402877699,
-                 "x":2335.13189448441,
-                 "y":449.640287769784
+                 "width":62.9496,
+                 "x":2335.13,
+                 "y":449.64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -356,8 +362,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":2290.16786570743,
-                 "y":770.383693045564
+                 "x":2290.17,
+                 "y":770.384
                 }],
          "opacity":1,
          "type":"objectgroup",
