@@ -6,12 +6,12 @@ export class ZoneBoundaryComponent implements Phecs.Component {
   constructor(scene: Phaser.Scene, data: Phecs.EntityData) {
     const baseScene = scene as BaseScene;
 
-    const rawZone = baseScene.areaManager.getZone(data.zoneBoundaryName);
+    const zone = baseScene.areaManager.getZone(data.zoneBoundaryName);
 
-    if (rawZone == null) {
+    if (zone == null) {
       throw new Error('ZoneBoundaryComponent::ZONE_NOT_FOUND');
     } else {
-      this.zone = new Phaser.Geom.Rectangle(rawZone.x, rawZone.y, rawZone.width, rawZone.height);
+      this.zone = zone.shape;
     }
   }
 

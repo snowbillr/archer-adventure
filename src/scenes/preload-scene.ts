@@ -69,6 +69,7 @@ export class PreloadScene extends BaseScene {
     // tilemap
     this.load.tilemapTiledJSON('woollards-farm', 'assets/tilemaps/woollards-farm.json')
     this.load.tilemapTiledJSON('woollards-house', 'assets/tilemaps/woollards-house.json')
+    this.load.tilemapTiledJSON('forest', 'assets/tilemaps/forest.json')
 
     // conversations
     this.load.image('textbox', 'assets/sprites/conversations/textbox.png');
