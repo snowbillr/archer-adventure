@@ -57,15 +57,8 @@ export class ExplorationScene extends BaseScene {
     this.registerSystems();
     this.registerPrefabs();
 
-    this.cameras.main.fadeOut(0);
-    this.loadNewArea(data.areaKey, data.markerName)
-      .then(() => {
-        this.cameras.main.fadeIn(1000, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
-          if (progress === 1) {
-            this.scene.launch(SCENE_KEYS.hud);
-          }
-        });
-      });
+    this.transferToArea(data.areaKey, data.markerName);
+    this.scene.launch(SCENE_KEYS.hud);
   }
 
   registerStateSets() {
@@ -118,7 +111,17 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
   }
 
-  loadNewArea(areaKey: string, markerName?: string) {
+  transferToArea(areaKey: string, markerName?: string) {
+    this.cameras.main.fadeOut(400, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
+      if (progress === 1) {
+        this.loadNewArea(areaKey, markerName).then(() => {
+          this.cameras.main.fadeIn(1000);
+        });
+      }
+    });
+  }
+
+  private loadNewArea(areaKey: string, markerName?: string) {
     return new Promise((resolve, reject) => {
       if (this.isLoadingArea) {
         reject();

@@ -20,7 +20,7 @@ export class AdventurerDoorSystem extends BaseInteractionSystem {
   onInteraction(adventurer: Phecs.Entity, door: Phecs.Entity) {
     const doorComponent = door.getComponent(DoorComponent);
 
-    this.explorationScene.loadNewArea(doorComponent.toAreaKey, doorComponent.toMarker);
+    this.explorationScene.transferToArea(doorComponent.toAreaKey, doorComponent.toMarker);
   }
 
   onExit(adventurer: Phecs.Entity, door: Phecs.Entity) {
