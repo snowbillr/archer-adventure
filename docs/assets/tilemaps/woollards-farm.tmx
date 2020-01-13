@@ -194,7 +194,7 @@
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="14" name="forestTransfer" x="2279.67" y="449.64" width="118.405" height="335.731">
+  <object id="14" name="forestTransfer" x="2309.65" y="449.64" width="88.4292" height="335.731">
    <properties>
     <property name="toAreaKey" value="forest"/>
     <property name="toMarker" value="farmTransferLocation"/>
