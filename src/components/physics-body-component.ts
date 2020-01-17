@@ -15,9 +15,12 @@ export class PhysicsBodyComponent implements Phecs.Component {
     this.body.setSize(sprite.width, sprite.height);
     this.body.updateBounds();
 
-
     if (data.maxVelocityX) {
       this.body.maxVelocity.x = data.maxVelocityX;
+    }
+
+    if (data.collideWorldBounds) {
+      this.body.collideWorldBounds = true;
     }
   }
 

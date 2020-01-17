@@ -23,6 +23,7 @@ export const adventurerPrefab: Phecs.Prefab = {
       component: PhysicsBodyComponent,
       data: {
         maxVelocityX: 350,
+        collideWorldBounds: true,
       }
     },
     AdventurerComponent,

@@ -183,6 +183,8 @@ export class ExplorationScene extends BaseScene {
         this.controls.start();
         this.phecs.start();
 
+        this.physics.world.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
+
         var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
         this.cameras.main.setBounds(x, y, width, height);
         this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
