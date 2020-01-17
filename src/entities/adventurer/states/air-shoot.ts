@@ -9,15 +9,9 @@ export const adventurerAirShoot: PhiniteStateMachine.States.State<Phecs.Entity> 
   id: 'adventurer-air-shoot',
   onEnter(entity) {
     entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-air-shoot');
+    entity.getComponent(ShootsArrowsComponent).shootArrow();
   },
   transitions: [
-    {
-      type: TransitionType.Conditional,
-      condition(entity: Phecs.Entity) {
-        return entity.getComponent(PhysicsBodyComponent).body.blocked.down;
-      },
-      to: 'adventurer-stand-shoot',
-    },
     {
       type: TransitionType.Conditional,
       condition(entity: Phecs.Entity) {
@@ -30,9 +24,6 @@ export const adventurerAirShoot: PhiniteStateMachine.States.State<Phecs.Entity> 
           return 'adventurer-fall';
         }
       },
-      onTransition(entity) {
-        entity.getComponent(ShootsArrowsComponent).shootArrow();
-      }
     }
   ]
 });

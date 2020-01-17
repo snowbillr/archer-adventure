@@ -10,8 +10,6 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Phecs.Entity
   id: 'adventurer-stand-shoot',
   onEnter(entity: Phecs.Entity) {
     entity.getComponent(SpriteComponent).sprite.anims.play('adventurer-stand-shoot');
-  },
-  onLeave(entity) {
     entity.getComponent(ShootsArrowsComponent).shootArrow();
   },
   transitions: [

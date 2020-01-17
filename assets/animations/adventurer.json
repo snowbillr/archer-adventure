@@ -100,7 +100,7 @@
         { "key": "adventurer-bow", "frame": 7 },
         { "key": "adventurer-bow", "frame": 8 }
       ],
-      "frameRate": 10,
+      "frameRate": 16,
       "repeat": 0
     },
     {
@@ -127,7 +127,7 @@
         { "key": "adventurer-bow", "frame": 13 },
         { "key": "adventurer-bow", "frame": 14 }
       ],
-      "frameRate": 10,
+      "frameRate": 16,
       "repeat": 0
     }
   ]
