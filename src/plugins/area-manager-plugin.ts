@@ -103,7 +103,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     return this.zones[name];
   }
 
-  getCollisionMap() {
+  getCollisionMap(): Record<string, string[]> {
     const rawCollisions = TiledUtil.normalizeProperties(this.map.properties).entityLayerCollisions;
     const entityLayerPairs = rawCollisions.split(',');
     return entityLayerPairs.reduce((map: { [key: string]: string[] }, pair: string) => {
