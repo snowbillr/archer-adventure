@@ -22,6 +22,7 @@ export class MenuSystem implements Phecs.System {
     this.scene.controls.up.onPress(() => this.changeMenuSelector('up'));
     this.scene.controls.down.onPress(() => this.changeMenuSelector('down'));
     this.scene.controls.action.onPress(() => this.selectMenuOption());
+    this.scene.controls.shoot.onPress(() => this.selectMenuOption());
 
     this.selectFirstEnabledIndicatorPosition()
   }
