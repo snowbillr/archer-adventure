@@ -1,0 +1,338 @@
+[
+  {
+    "key": "knight",
+    "frame": 0,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 16
+      },
+      "size": {
+        "width": 46,
+        "height": 65
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 1,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 16
+      },
+      "size": {
+        "width": 46,
+        "height": 65
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 2,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 18
+      },
+      "size": {
+        "width": 46,
+        "height": 63
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 3,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 18
+      },
+      "size": {
+        "width": 46,
+        "height": 63
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 4,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 19
+      },
+      "size": {
+        "width": 58,
+        "height": 62
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 5,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 19
+      },
+      "size": {
+        "width": 58,
+        "height": 62
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 6,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 21
+      },
+      "size": {
+        "width": 58,
+        "height": 60
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 7,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 21
+      },
+      "size": {
+        "width": 58,
+        "height": 60
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 8,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 23
+      },
+      "size": {
+        "width": 44,
+        "height": 58
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 9,
+    "bounds": {
+      "offset": {
+        "x": 21,
+        "y": 21
+      },
+      "size": {
+        "width": 51,
+        "height": 58
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 10,
+    "bounds": {
+      "offset": {
+        "x": 19,
+        "y": 19
+      },
+      "size": {
+        "width": 56,
+        "height": 62
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 11,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 21
+      },
+      "size": {
+        "width": 44,
+        "height": 61
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 12,
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 23
+      },
+      "size": {
+        "width": 35,
+        "height": 58
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 13,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 21
+      },
+      "size": {
+        "width": 54,
+        "height": 56
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 14,
+    "bounds": {
+      "offset": {
+        "x": 14,
+        "y": 19
+      },
+      "size": {
+        "width": 54,
+        "height": 62
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 15,
+    "bounds": {
+      "offset": {
+        "x": 16,
+        "y": 19
+      },
+      "size": {
+        "width": 54,
+        "height": 62
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 16,
+    "bounds": {
+      "offset": {
+        "x": 25,
+        "y": 0
+      },
+      "size": {
+        "width": 42,
+        "height": 81
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 17,
+    "bounds": {
+      "offset": {
+        "x": 23,
+        "y": 2
+      },
+      "size": {
+        "width": 44,
+        "height": 79
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 18,
+    "bounds": {
+      "offset": {
+        "x": 23,
+        "y": 2
+      },
+      "size": {
+        "width": 44,
+        "height": 79
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 19,
+    "bounds": {
+      "offset": {
+        "x": 23,
+        "y": 2
+      },
+      "size": {
+        "width": 42,
+        "height": 79
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 20,
+    "bounds": {
+      "offset": {
+        "x": 4,
+        "y": 4
+      },
+      "size": {
+        "width": 66,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 21,
+    "bounds": {
+      "offset": {
+        "x": 7,
+        "y": 4
+      },
+      "size": {
+        "width": 63,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 22,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 4
+      },
+      "size": {
+        "width": 58,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight",
+    "frame": 23,
+    "bounds": {
+      "offset": {
+        "x": 12,
+        "y": 4
+      },
+      "size": {
+        "width": 58,
+        "height": 77
+      }
+    }
+  }
+]
