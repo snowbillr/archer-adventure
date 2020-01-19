@@ -88,7 +88,7 @@ export class PreloadScene extends BaseScene {
 
   create() {
     // this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
-    // this.scene.start(SCENE_KEYS.title);
-    this.scene.start(SCENE_KEYS.prefabTest);
+    this.scene.start(SCENE_KEYS.title);
+    // this.scene.start(SCENE_KEYS.prefabTest);
   }
 }

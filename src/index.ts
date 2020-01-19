@@ -68,7 +68,7 @@ const gameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       // timeScale: 4,
       gravity: {
         y: 1100,

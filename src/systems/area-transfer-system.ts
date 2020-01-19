@@ -21,7 +21,6 @@ export class AreaTransferSystem implements Phecs.System {
 
     // if they are, move to that new area/marker key
     if (enteredZone && enteredZone.data.toAreaKey && enteredZone.data.toMarker) {
-      console.log('entered zone')
       this.scene.transferToArea(enteredZone.data.toAreaKey, enteredZone.data.toMarker);
     }
   }
