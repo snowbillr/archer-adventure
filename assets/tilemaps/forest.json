@@ -89,8 +89,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":3542.08606356968,
-                 "y":699.987442542787
+                 "x":3493.18630806846,
+                 "y":703.043677261614
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -250,8 +250,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":418.704156479218,
-                 "x":3597.18826405868,
+                 "width":466.075794621027,
+                 "x":3549.81662591687,
                  "y":487.469437652812
                 }],
          "opacity":1,
@@ -420,6 +420,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"interactionRadius",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"phiniteStateMachineDisabled",
                          "type":"bool",
                          "value":true
@@ -442,6 +447,11 @@
                  "name":"enemyActor2",
                  "point":true,
                  "properties":[
+                        {
+                         "name":"interactionRadius",
+                         "type":"int",
+                         "value":0
+                        }, 
                         {
                          "name":"phiniteStateMachineDisabled",
                          "type":"bool",

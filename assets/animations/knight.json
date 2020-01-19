@@ -49,7 +49,7 @@
         { "key": "knight", "frame": 22 },
         { "key": "knight", "frame": 23 }
       ],
-      "repeat": -1,
+      "repeat": 0,
       "frameRate": 8
     }
   ]

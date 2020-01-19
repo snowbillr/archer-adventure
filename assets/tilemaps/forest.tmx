@@ -226,7 +226,7 @@
 </data>
  </layer>
  <objectgroup id="4" name="markers">
-  <object id="1" name="farmTransferLocation" x="3542.09" y="699.987">
+  <object id="1" name="farmTransferLocation" x="3493.19" y="703.044">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>
@@ -271,7 +271,7 @@
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="16" name="cutsceneZone" x="3597.19" y="487.469" width="418.704" height="270.477">
+  <object id="16" name="cutsceneZone" x="3549.82" y="487.469" width="466.076" height="270.477">
    <properties>
     <property name="cutsceneTrigger" type="bool" value="true"/>
     <property name="zone" type="bool" value="true"/>
@@ -332,6 +332,7 @@
   </properties>
   <object id="17" name="enemyActor1" type="enemy" x="3667.48" y="699.878">
    <properties>
+    <property name="interactionRadius" type="int" value="0"/>
     <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
     <property name="zoneBoundaryName" value="cutsceneZone"/>
    </properties>
@@ -339,6 +340,7 @@
   </object>
   <object id="18" name="enemyActor2" type="enemy" x="3909.42" y="702.934">
    <properties>
+    <property name="interactionRadius" type="int" value="0"/>
     <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
     <property name="zoneBoundaryName" value="cutsceneZone"/>
    </properties>

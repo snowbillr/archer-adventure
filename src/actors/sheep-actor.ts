@@ -1,6 +1,5 @@
 import { ScriptAction } from "../lib/showrunner/script-action";
 import { PhiniteStateMachineComponent } from "../components/phinite-state-machine-component";
-import { ConversationComponent } from "../components/conversation-component";
 import { SpriteComponent } from "../components/sprite-component";
 import { SayComponent } from "../components/say-component";
 
@@ -40,7 +39,7 @@ export class SheepActor {
   shout(text: string) {
     return new ScriptAction(() => {
       return new Promise(resolve => {
-        this.sheep.getComponent(SayComponent).shout('BAAAH!', 900, resolve);
+        this.sheep.getComponent(SayComponent).shout(text, 900, resolve);
       });
     });
   }

@@ -2,6 +2,7 @@ import { PhiniteStateMachineComponent } from "../../components/phinite-state-mac
 import { PhysicsBodyComponent } from "../../components/physics-body-component";
 import { SpriteComponent } from "../../components/sprite-component";
 import { BoundsComponent } from "../../components/bounds-component";
+import { NameComponent } from "../../components/name-component";
 
 export const knightPrefab: Phecs.Prefab = {
   components: [
@@ -18,6 +19,7 @@ export const knightPrefab: Phecs.Prefab = {
       data: {
         boundsKey: "knight-bounds",
       }
-    }
+    },
+    NameComponent
   ]
 };
