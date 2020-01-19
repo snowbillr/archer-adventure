@@ -9,6 +9,7 @@ import { InteractionComponent } from "../../components/interaction-component";
 import { EnemyComponent } from "../../components/enemy-component";
 import { ZoneBoundaryComponent } from "../../components/zone-boundary-component";
 import { SceneComponent } from "../../components/scene-component";
+import { NameComponent } from "../../components/name-component";
 
 export const enemyPrefab: Phecs.Prefab = {
   components: [
@@ -62,8 +63,7 @@ export const enemyPrefab: Phecs.Prefab = {
     },
     EnemyComponent,
     ZoneBoundaryComponent,
-    {
-      component: SceneComponent,
-    }
+    SceneComponent,
+    NameComponent,
   ]
 };

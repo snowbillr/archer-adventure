@@ -13,10 +13,14 @@ export class PhiniteStateMachineComponent implements Phecs.Component {
 
     this.phiniteStateMachine = new PhiniteStateMachine<Phecs.Entity>(scene, entity, states, initialState);
 
-    this.phiniteStateMachine.doTransition({
-      type: TransitionType.Initial,
-      to: initialState.id,
-    });
+    if (data.phiniteStateMachineDisabled) {
+      this.phiniteStateMachine.disable();
+    } else {
+      this.phiniteStateMachine.doTransition({
+        type: TransitionType.Initial,
+        to: initialState.id,
+      });
+    }
   }
 
   destroy() {

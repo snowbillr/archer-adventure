@@ -10,16 +10,13 @@ export class AreaTransferSystem implements Phecs.System {
   }
 
   update(phEntities: EntityManager) {
-    // get all areaTransfer zones
     const zones = this.scene.areaManager.zones;
 
-    // check if adventurer is in the zone
     const adventurerSprite = phEntities.getEntities('adventurer')[0].getComponent(SpriteComponent).sprite;
     const enteredZone = Object.values(zones).find(zone => {
       return zone.shape.contains(adventurerSprite.x, adventurerSprite.y);
     })
 
-    // if they are, move to that new area/marker key
     if (enteredZone && enteredZone.data.toAreaKey && enteredZone.data.toMarker) {
       this.scene.transferToArea(enteredZone.data.toAreaKey, enteredZone.data.toMarker);
     }

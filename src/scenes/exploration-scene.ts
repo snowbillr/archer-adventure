@@ -20,14 +20,16 @@ import { HasAttachmentsSystem } from '../systems/has-attachments-system';
 import { HasBoundsSystem } from '../systems/has-bounds-system';
 import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
-import { InteractionComponentSystem } from '../systems/interaction-component-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
+import { InteractionComponentSystem } from '../systems/interaction-component-system';
+import { KnightForestCustceneSystem } from '../systems/knight-forest-cutscene-system';
 import { SheepGateSystem } from '../systems/sheep-gate-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { enemyPrefab } from '../entities/enemy/prefab';
+import { knightPrefab } from '../entities/knight/prefab';
 import { npcPrefab } from '../entities/npc/prefab';
 import { sheepPrefab } from '../entities/sheep/prefab';
 import { signPrefab } from '../entities/sign/prefab';
@@ -97,8 +99,9 @@ export class ExplorationScene extends BaseScene {
         HasBoundsSystem,
         HasHitboxesSystem,
         HasHurtboxesSystem,
-        InteractionComponentSystem,
         HasPhiniteStateMachineSystem,
+        InteractionComponentSystem,
+        KnightForestCustceneSystem,
         SheepGateSystem,
       ]
     );
@@ -109,6 +112,7 @@ export class ExplorationScene extends BaseScene {
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
+    this.phecs.phEntities.registerPrefab('knight', knightPrefab);
     this.phecs.phEntities.registerPrefab('npc', npcPrefab);
     this.phecs.phEntities.registerPrefab('sheep', sheepPrefab);
     this.phecs.phEntities.registerPrefab('sign', signPrefab);
