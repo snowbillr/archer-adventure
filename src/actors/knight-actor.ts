@@ -9,8 +9,6 @@ export class KnightActor {
   constructor(scene: Phaser.Scene, knight: Phecs.Entity) {
     this.scene = scene;
     this.knight = knight;
-
-    console.log(this.knight.getComponent(SpriteComponent).sprite.x);
   }
 
   walkTo(x: number, duration: number) {
