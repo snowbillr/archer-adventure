@@ -13,6 +13,7 @@ import { AreaTransferSystem } from '../systems/area-transfer-system';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
+import { AdventurerKnightSystem } from '../systems/adventurer-knight-system';
 import { AdventurerNpcSystem } from '../systems/adventurer-npc-system';
 import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
@@ -92,6 +93,7 @@ export class ExplorationScene extends BaseScene {
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
         AdventurerDoorSystem,
+        AdventurerKnightSystem,
         AdventurerNpcSystem,
         AdventurerSignSystem,
         EnemyAdventurerDamageSystem,

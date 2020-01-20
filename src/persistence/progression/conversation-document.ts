@@ -1,70 +1,15 @@
 import { ProgressionDocument } from "./progression-document";
 
+import { conversations } from './progression';
+
 export class ConversationDocument implements Persistence.Document {
   private progression: ProgressionDocument;
 
-  private oldLady: Progression.ConversationItem[] = [
-    {
-      conversationId: 'oldLady1',
-      unlockDependencies: [],
-      completed: false,
-    },
-    {
-      conversationId: 'oldLady2',
-      unlockDependencies: [
-        {
-          type: 'conversation',
-          name: 'oldMan',
-          index: 0
-        }
-      ],
-      completed: false,
-    },
-    {
-      conversationId: 'oldLady3',
-      unlockDependencies: [
-        {
-          type: 'quest',
-          name: 'saveFarm',
-          index: 0
-        }
-      ],
-      completed: false,
-    }
-  ];
-
-  private oldMan: Progression.ConversationItem[] = [
-    {
-      conversationId: 'oldMan1',
-      unlockDependencies: [],
-      completed: false,
-    },
-    {
-      conversationId: 'oldMan2',
-      unlockDependencies: [
-        {
-          type: 'conversation',
-          name: 'oldMan',
-          index: 0,
-        }
-      ],
-      completed: false,
-    },
-    {
-      conversationId: 'oldMan3',
-      unlockDependencies: [
-        {
-          type: 'quest',
-          name: 'saveFarm',
-          index: 0
-        }
-      ],
-      completed: false,
-    }
-  ];
+  private conversations: Record<string, Progression.ConversationItem[]>;
 
   constructor(progression: ProgressionDocument) {
     this.progression = progression;
+    this.conversations = { ...conversations };
   }
 
   getCurrentConversationId(conversationName: string) {
@@ -84,6 +29,9 @@ export class ConversationDocument implements Persistence.Document {
   }
 
   isCompleted(conversationIdentifier: Progression.ItemIdentifier) {
+    return this.conversations[conversationIdentifier.name][conversationIdentifier.index].completed;
+
+    /*
     switch(conversationIdentifier.name) {
       case "oldLady":
         return this.oldLady[conversationIdentifier.index].completed;
@@ -92,9 +40,18 @@ export class ConversationDocument implements Persistence.Document {
       default:
         throw new Error("ConversationDocument::CANNOT_CHECK_IF_COMPLETE::INVALID_CONVERSATION_NAME");
     }
+    */
   }
 
   fromJson(json: Record<string, boolean[]>): void {
+    Object.entries(json).forEach(([conversationKey, conversationRecords]) => {
+      conversationRecords.forEach((completed, index) => {
+        this.conversations[conversationKey][index].completed = completed;
+      });
+      this.conversations[conversationKey]
+    });
+
+    /*
     json.oldLady.forEach((completed, index) => {
       this.oldLady[index].completed = completed;
     });
@@ -102,9 +59,16 @@ export class ConversationDocument implements Persistence.Document {
     json.oldMan.forEach((completed, index) => {
       this.oldMan[index].completed = completed;
     });
+    */
   }
 
   toJson(): object {
+    const json: Record<string, boolean[]> = {};
+    Object.entries(this.conversations).forEach(([conversationKey, conversationItems]) => {
+      json[conversationKey] = conversationItems.map(conversationItem => !!conversationItem.completed);
+    });
+
+    /*
     const oldLadyData = this.oldLady.map(conversationInfo => {
       return conversationInfo.completed;
     });
@@ -117,14 +81,23 @@ export class ConversationDocument implements Persistence.Document {
       oldLady: oldLadyData,
       oldMan: oldManData,
     };
+    */
+
+    return json;
   }
 
   reset() {
+    Object.entries(this.conversations).forEach(([conversationKey, conversationItems]) => {
+      conversationItems.forEach(conversationItem => conversationItem.completed = false);
+    });
+    /*
     this.oldLady.forEach(conversationInfo => conversationInfo.completed = false);
     this.oldMan.forEach(conversationInfo => conversationInfo.completed = false);
+    */
   }
 
   private getCurrentConversation(conversationKey: string) {
+    /*
     let conversation = null;
     switch(conversationKey) {
       case "oldLady":
@@ -136,6 +109,8 @@ export class ConversationDocument implements Persistence.Document {
       default:
         throw new Error("ConversationDocument::CANNOT_GET_CURRENT_CONVERSATION_ID::INVALID_CONVERSATION_NAME");
     }
+    */
+    const conversation = this.conversations[conversationKey];
 
     let lastUnlockedConversationIndex = 0;
     for (let i = 0; i < conversation.length; i++) {

@@ -3,7 +3,6 @@ import { PhysicsBodyComponent } from "../../components/physics-body-component";
 import { PhiniteStateMachineComponent } from "../../components/phinite-state-machine-component";
 import { ZoneBoundaryComponent } from "../../components/zone-boundary-component";
 import { InteractionComponent } from "../../components/interaction-component";
-import { ConversationComponent } from "../../components/conversation-component";
 import { SayComponent } from "../../components/say-component";
 import { AttachmentComponent } from "../../components/attachment-component";
 

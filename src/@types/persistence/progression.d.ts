@@ -10,6 +10,6 @@ declare module Progression {
   type ConversationItem = {
     conversationId: string;
     unlockDependencies: Progression.ItemIdentifier[];
-    completed: boolean;
+    completed?: boolean;
   }
 }

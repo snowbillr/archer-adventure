@@ -2,6 +2,7 @@ import { ConversationDocument } from './conversation-document';
 
 export class ProgressionDocument implements Persistence.Document {
   public conversations!: ConversationDocument;
+  // public quests!: QuestDocument;
 
   constructor() {
     this.reset();
@@ -23,6 +24,7 @@ export class ProgressionDocument implements Persistence.Document {
 
   reset() {
     this.conversations = new ConversationDocument(this);
+    // this.quests = new QuestDocument(this);
   }
 
   fromJson(json: Record<string, any>) {
