@@ -1,4 +1,4 @@
-export const conversations = {
+export const conversations: Record<string, Progression.ConversationItem[]> = {
   oldLady: [
     {
       conversationId: 'oldLady1',

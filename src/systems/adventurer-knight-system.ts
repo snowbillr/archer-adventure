@@ -30,7 +30,7 @@ export class AdventurerKnightSystem extends BaseInteractionSystem {
       this.interacting = false;
       conversation.stopConversation();
 
-      // this.scene.persistence.progression.conversations.markCurrentConversationComplete(conversation.conversationKey);
+      this.scene.persistence.progression.conversations.markCurrentConversationComplete(conversation.conversationKey);
       this.scene.persistence.save();
     }
   }

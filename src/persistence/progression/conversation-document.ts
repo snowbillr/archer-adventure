@@ -29,18 +29,11 @@ export class ConversationDocument implements Persistence.Document {
   }
 
   isCompleted(conversationIdentifier: Progression.ItemIdentifier) {
-    return this.conversations[conversationIdentifier.name][conversationIdentifier.index].completed;
-
-    /*
-    switch(conversationIdentifier.name) {
-      case "oldLady":
-        return this.oldLady[conversationIdentifier.index].completed;
-      case "oldMan":
-        return this.oldMan[conversationIdentifier.index].completed;
-      default:
-        throw new Error("ConversationDocument::CANNOT_CHECK_IF_COMPLETE::INVALID_CONVERSATION_NAME");
+    if (!this.conversations[conversationIdentifier.name][conversationIdentifier.index]) {
+      throw new Error("ConversationDocument::CANNOT_CHECK_IF_COMPLETE::INVALID_CONVERSATION_NAME");
     }
-    */
+
+    return this.conversations[conversationIdentifier.name][conversationIdentifier.index].completed;
   }
 
   fromJson(json: Record<string, boolean[]>): void {
@@ -50,16 +43,6 @@ export class ConversationDocument implements Persistence.Document {
       });
       this.conversations[conversationKey]
     });
-
-    /*
-    json.oldLady.forEach((completed, index) => {
-      this.oldLady[index].completed = completed;
-    });
-
-    json.oldMan.forEach((completed, index) => {
-      this.oldMan[index].completed = completed;
-    });
-    */
   }
 
   toJson(): object {
@@ -68,21 +51,6 @@ export class ConversationDocument implements Persistence.Document {
       json[conversationKey] = conversationItems.map(conversationItem => !!conversationItem.completed);
     });
 
-    /*
-    const oldLadyData = this.oldLady.map(conversationInfo => {
-      return conversationInfo.completed;
-    });
-
-    const oldManData = this.oldMan.map(conversationInfo => {
-      return conversationInfo.completed;
-    });
-
-    return {
-      oldLady: oldLadyData,
-      oldMan: oldManData,
-    };
-    */
-
     return json;
   }
 
@@ -90,26 +58,9 @@ export class ConversationDocument implements Persistence.Document {
     Object.entries(this.conversations).forEach(([conversationKey, conversationItems]) => {
       conversationItems.forEach(conversationItem => conversationItem.completed = false);
     });
-    /*
-    this.oldLady.forEach(conversationInfo => conversationInfo.completed = false);
-    this.oldMan.forEach(conversationInfo => conversationInfo.completed = false);
-    */
   }
 
   private getCurrentConversation(conversationKey: string) {
-    /*
-    let conversation = null;
-    switch(conversationKey) {
-      case "oldLady":
-        conversation = this.oldLady;
-        break;
-      case "oldMan":
-        conversation = this.oldMan;
-        break;
-      default:
-        throw new Error("ConversationDocument::CANNOT_GET_CURRENT_CONVERSATION_ID::INVALID_CONVERSATION_NAME");
-    }
-    */
     const conversation = this.conversations[conversationKey];
 
     let lastUnlockedConversationIndex = 0;
