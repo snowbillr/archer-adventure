@@ -93,7 +93,7 @@ export class ExplorationScene extends BaseScene {
         ArrowEnemyDamageSystem,
         AdventurerDeathSystem,
         AdventurerDoorSystem,
-        AdventurerKnightSystem,
+        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : AdventurerKnightSystem,
         AdventurerNpcSystem,
         AdventurerSignSystem,
         EnemyAdventurerDamageSystem,
@@ -103,9 +103,9 @@ export class ExplorationScene extends BaseScene {
         HasHurtboxesSystem,
         HasPhiniteStateMachineSystem,
         InteractionComponentSystem,
-        KnightForestCustceneSystem,
+        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : KnightForestCustceneSystem,
         SheepGateSystem,
-      ]
+      ].filter(Boolean) as Phecs.SystemConstructor[]
     );
   }
 

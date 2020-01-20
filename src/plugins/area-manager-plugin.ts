@@ -178,10 +178,27 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         let entity = null;
   
         if (tiledObject.type) {
-          const properties = {
+          const properties: Record<string, any> = {
             ...TiledUtil.normalizeProperties(tiledObject.properties),
             name: tiledObject.name
           };
+
+          if (properties.createConditionGate) {
+            let type, name, index, rest;
+            [type, rest] = properties.createConditionGate.split('.');
+            [name, rest] = rest.split('[');
+            [index] = rest.split(']');
+
+            const isCompleted = (this.scene as BaseScene).persistence.progression.areCompleted([
+              {
+                type,
+                name,
+                index
+              }
+            ]);
+
+            if (isCompleted !== properties.createCondition) return;
+          }
 
           entity = scene.phecs.phEntities.createPrefab(tiledObject.type, properties, DepthManager.depthFor(layerProperties.depth), tiledObject.x, tiledObject.y);
           this.objects[layerName].push(entity);

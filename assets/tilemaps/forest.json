@@ -420,6 +420,16 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }, 
+                        {
                          "name":"interactionRadius",
                          "type":"int",
                          "value":0
@@ -448,6 +458,16 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }, 
+                        {
                          "name":"interactionRadius",
                          "type":"int",
                          "value":0
@@ -474,6 +494,17 @@
                  "id":19,
                  "name":"knightActor",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }],
                  "rotation":0,
                  "type":"knight",
                  "visible":true,

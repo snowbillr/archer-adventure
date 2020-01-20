@@ -332,6 +332,8 @@
   </properties>
   <object id="17" name="enemyActor1" type="enemy" x="3667.48" y="699.878">
    <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
     <property name="interactionRadius" type="int" value="0"/>
     <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
     <property name="zoneBoundaryName" value="cutsceneZone"/>
@@ -340,6 +342,8 @@
   </object>
   <object id="18" name="enemyActor2" type="enemy" x="3909.42" y="702.934">
    <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
     <property name="interactionRadius" type="int" value="0"/>
     <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
     <property name="zoneBoundaryName" value="cutsceneZone"/>
@@ -347,6 +351,10 @@
    <point/>
   </object>
   <object id="19" name="knightActor" type="knight" x="3771.39" y="702.934">
+   <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>
