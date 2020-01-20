@@ -4,6 +4,7 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
 import { ParallaxSprite } from "./parallax-sprite";
 import { DepthManager } from "../lib/depth-manager";
+import { ProgressionDocument } from '../persistence/progression/progression-document';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public map!: Phaser.Tilemaps.Tilemap;
@@ -184,17 +185,10 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
           };
 
           if (properties.createConditionGate) {
-            let type, name, index, rest;
-            [type, rest] = properties.createConditionGate.split('.');
-            [name, rest] = rest.split('[');
-            [index] = rest.split(']');
+           const progressionIdentifier = ProgressionDocument.parseProgressionKey(properties.createConditionGate);
 
             const isCompleted = (this.scene as BaseScene).persistence.progression.areCompleted([
-              {
-                type,
-                name,
-                index
-              }
+              progressionIdentifier
             ]);
 
             if (isCompleted !== properties.createCondition) return;

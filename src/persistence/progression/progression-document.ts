@@ -4,6 +4,19 @@ export class ProgressionDocument implements Persistence.Document {
   public conversations!: ConversationDocument;
   // public quests!: QuestDocument;
 
+  static parseProgressionKey(progressionKey: string): Progression.ItemIdentifier {
+    let type, name, index, rest;
+    [type, rest] = progressionKey.split('.');
+    [name, rest] = rest.split('[');
+    [index] = rest.split(']');
+
+    return {
+      type: type as Progression.Type,
+      name,
+      index: parseInt(index)
+    };
+  }
+
   constructor() {
     this.reset();
   }
