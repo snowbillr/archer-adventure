@@ -2,13 +2,6 @@ import 'phaser';
 
 import { BaseScene } from './base-scene';
 
-import { adventurerStates } from '../entities/adventurer/states';
-import { arrowStates } from '../entities/arrow/states';
-import { enemyStates } from '../entities/enemy/states';
-import { oldLadyStates } from '../entities/old-lady/states';
-import { oldManStates } from '../entities/old-man/states';
-import { sheepStates } from '../entities/sheep/states';
-
 import { AreaTransferSystem } from '../systems/area-transfer-system';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
@@ -73,35 +66,11 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
-    this.registerStateSets();
-    this.registerAreas();
-    this.registerBackgroundSets();
     this.registerSystems();
     this.registerPrefabs();
 
     this.loadNewArea(data.areaKey, data.markerName)
     this.scene.launch(SCENE_KEYS.hud);
-  }
-
-  registerStateSets() {
-    this.stateRegistrar.registerSets([
-      { id: 'adventurer', states: adventurerStates },
-      { id: 'arrow', states: arrowStates },
-      { id: 'enemy', states: enemyStates },
-      { id: 'sheep', states: sheepStates },
-      { id: 'old-lady', states: oldLadyStates },
-      { id: 'old-man', states: oldManStates },
-    ]);
-  }
-
-  registerAreas() {
-    this.areaManager.registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
-    this.areaManager.registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
-    this.areaManager.registerArea('forest', 'forest', 'core-tileset', 'core-tileset');
-  }
-
-  registerBackgroundSets() {
-    this.areaManager.registerBackgroundSet('green-hills', ['green-hills-1', 'green-hills-2', 'green-hills-3', 'green-hills-4'])
   }
 
   registerSystems() {
