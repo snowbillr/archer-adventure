@@ -41,6 +41,24 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { DepthManager } from '../lib/depth-manager';
 
+const baseSystems = [
+  HasAttachmentsSystem,
+  HasBoundsSystem,
+  HasHitboxesSystem,
+  HasHurtboxesSystem,
+  HasPhiniteStateMachineSystem,
+  InteractionComponentSystem,
+
+  AreaTransferSystem,
+  ArrowEnemyDamageSystem,
+  AdventurerDeathSystem,
+
+  AdventurerDoorSystem,
+  AdventurerNpcSystem,
+  AdventurerSignSystem,
+  EnemyAdventurerDamageSystem,
+];
+
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
 
@@ -61,7 +79,7 @@ export class ExplorationScene extends BaseScene {
     this.registerSystems();
     this.registerPrefabs();
 
-    this.transferToArea(data.areaKey, data.markerName);
+    this.loadNewArea(data.areaKey, data.markerName)
     this.scene.launch(SCENE_KEYS.hud);
   }
 
@@ -89,22 +107,10 @@ export class ExplorationScene extends BaseScene {
   registerSystems() {
     this.phecs.phSystems.registerSystems(
       [
-        AreaTransferSystem,
-        ArrowEnemyDamageSystem,
-        AdventurerDeathSystem,
-        AdventurerDoorSystem,
+        ...baseSystems,
         this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : AdventurerKnightSystem,
-        AdventurerNpcSystem,
-        AdventurerSignSystem,
-        EnemyAdventurerDamageSystem,
-        HasAttachmentsSystem,
-        HasBoundsSystem,
-        HasHitboxesSystem,
-        HasHurtboxesSystem,
-        HasPhiniteStateMachineSystem,
-        InteractionComponentSystem,
         this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : KnightForestCustceneSystem,
-        SheepGateSystem,
+        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'oldMan', index: 0 }) ? null : SheepGateSystem,
       ].filter(Boolean) as Phecs.SystemConstructor[]
     );
   }
@@ -121,89 +127,86 @@ export class ExplorationScene extends BaseScene {
   }
 
   transferToArea(areaKey: string, markerName?: string) {
+    /*
     this.cameras.main.fadeOut(0);
     this.loadNewArea(areaKey, markerName).then(() => {
       this.cameras.main.fadeIn(1000);
     });
+    */
+    if (this.isLoadingArea) {
+      return;
+    } else {
+      this.isLoadingArea = true;
+    }
+
+    // This delayed call is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
+    // The events must be queued up or something in the event emitter, and even when all the events are cleared,
+    // the listeners still get called.
+    // This manifested as a problem when you entered a door and the sign interaction check got called for the
+    // previous scene.
+    this.time.delayedCall(0, () => {
+      this.controls.stop();
+      this.phecs.reset();
+      this.areaManager.unload();
+      this.scene.restart({ areaKey, markerName });
+    });
   }
 
   private loadNewArea(areaKey: string, markerName?: string) {
-    return new Promise((resolve, reject) => {
-      if (this.isLoadingArea) {
-        reject();
-        return;
-      } else {
-        this.isLoadingArea = true;
-      }
+    this.areaManager.load(areaKey);
 
-      // This delayed call is because when entities get destroyed, their event listeners will still be called for that tick of the game loop.
-      // The events must be queued up or something in the event emitter, and even when all the events are cleared,
-      // the listeners still get called.
+    const map = this.areaManager.map;
+    const tileset = this.areaManager.tileset;
 
-      // This manifested as a problem when you entered a door and the sign interaction check got called for the
-      // previous scene.
-      this.time.delayedCall(0, () => {
-        this.controls.stop();
-        this.phecs.reset();
-        this.areaManager.unload();
+    const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, DepthManager.depthFor('adventurer'));
+    const mapProperties = TiledUtil.normalizeProperties(map.properties);
 
-        this.areaManager.load(areaKey);
+    if (markerName) {
+      this.areaManager.placeEntityAtMarker(adventurer, markerName);
+    } else if (mapProperties.startingMarker) {
+      this.areaManager.placeEntityAtMarker(adventurer, mapProperties.startingMarker);
+    }
 
-        const map = this.areaManager.map;
-        const tileset = this.areaManager.tileset;
+    // At one point, I had a question about why arrows were colliding with tilemap layers.
+    // I wasn't explicitly setting up that collider anywhere.
+    // Turns out, the colliders were getting created because of the entry of `arrow:ground`
+    // in the map properties.
+    //
+    // Then I asked, why was it even working, setting up the colliders before the player
+    // even shoots an arrow? It took me a little while to realize that the arrows were already
+    // created at this point, due to the `ShootsArrowSystem#registerEntity` method.
+    const collisionMap = this.areaManager.getCollisionMap();
+    Object.entries(collisionMap).forEach(([entityType, layerNames]) => {
+      layerNames
+        .forEach(layerName => {
+          const entities = this.phecs.phEntities.getEntities(entityType);
+          const layer = this.areaManager.getTileLayer(layerName);
 
-        const adventurer = this.phecs.phEntities.createPrefab('adventurer', {}, DepthManager.depthFor('adventurer'));
-        const mapProperties = TiledUtil.normalizeProperties(map.properties);
+          if (layer == null) {
+            throw new Error(`Layer does not exist for collision map: ${layerName}`);
+          }
 
-        if (markerName) {
-          this.areaManager.placeEntityAtMarker(adventurer, markerName);
-        } else if (mapProperties.startingMarker) {
-          this.areaManager.placeEntityAtMarker(adventurer, mapProperties.startingMarker);
-        }
-
-        // At one point, I had a question about why arrows were colliding with tilemap layers.
-        // I wasn't explicitly setting up that collider anywhere.
-        // Turns out, the colliders were getting created because of the entry of `arrow:ground`
-        // in the map properties.
-        //
-        // Then I asked, why was it even working, setting up the colliders before the player
-        // even shoots an arrow? It took me a little while to realize that the arrows were already
-        // created at this point, due to the `ShootsArrowSystem#registerEntity` method.
-        const collisionMap = this.areaManager.getCollisionMap();
-        Object.entries(collisionMap).forEach(([entityType, layerNames]) => {
-          layerNames
-            .forEach(layerName => {
-              const entities = this.phecs.phEntities.getEntities(entityType);
-              const layer = this.areaManager.getTileLayer(layerName);
-
-              if (layer == null) {
-                throw new Error(`Layer does not exist for collision map: ${layerName}`);
-              }
-
-              for (let entity of entities) {
-                const sprite = entity.getComponent(SpriteComponent).sprite;
-                this.physics.add.collider(sprite, layer);
-              }
-            });
+          for (let entity of entities) {
+            const sprite = entity.getComponent(SpriteComponent).sprite;
+            this.physics.add.collider(sprite, layer);
+          }
         });
-
-        this.controls.start();
-        this.phecs.start();
-
-        this.physics.world.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
-
-        var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
-        this.cameras.main.setBounds(x, y, width, height);
-        this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
-
-        this.persistence.location.areaKey = areaKey;
-        if (markerName) this.persistence.location.markerName = markerName;
-        this.persistence.save();
-
-        this.isLoadingArea = false;
-        resolve();
-      }, [], null);
     });
+
+    this.controls.start();
+    this.phecs.start();
+
+    this.physics.world.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
+
+    var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
+    this.cameras.main.setBounds(x, y, width, height);
+    this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
+
+    this.persistence.location.areaKey = areaKey;
+    if (markerName) this.persistence.location.markerName = markerName;
+    this.persistence.save();
+
+    this.isLoadingArea = false;
   }
 
   private shutdown() {

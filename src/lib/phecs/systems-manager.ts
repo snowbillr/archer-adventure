@@ -52,4 +52,16 @@ export class SystemsManager {
       this.systems.push(new klass(this.scene));
     });
   }
+
+  unregisterSystems(systemsList: Phecs.SystemConstructor[]) {
+    systemsList.forEach((klass) => {
+      const systemInstance = this.systems.find(system => system instanceof klass);
+      if (systemInstance) {
+        if (systemInstance.stop) systemInstance.stop(this.scene.phecs.phEntities);
+        if (systemInstance.destroy) systemInstance.destroy();
+      } else {
+        throw new Error(`SYSTEMS_MANAGER::UNREGISTER_SYSTEM::NO_SYSTEM_FOUND::${klass}`);
+      }
+    });
+  }
 }

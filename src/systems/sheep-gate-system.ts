@@ -12,14 +12,6 @@ export class SheepGateSystem extends BaseInteractionSystem {
   }
 
   onEnter(adventurer: Phecs.Entity, sheep: Phecs.Entity) {
-    if (this.scene.persistence.progression.conversations.isCompleted({
-      type: "conversation",
-      name: "oldMan",
-      index: 0
-    })) {
-      return;
-    }
-
     const adventurerActor = new AdventurerActor(this.scene, adventurer);
     const sheepActor = new SheepActor(this.scene, sheep);
 
