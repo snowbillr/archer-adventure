@@ -127,12 +127,6 @@ export class ExplorationScene extends BaseScene {
   }
 
   transferToArea(areaKey: string, markerName?: string) {
-    /*
-    this.cameras.main.fadeOut(0);
-    this.loadNewArea(areaKey, markerName).then(() => {
-      this.cameras.main.fadeIn(1000);
-    });
-    */
     if (this.isLoadingArea) {
       return;
     } else {
@@ -145,10 +139,14 @@ export class ExplorationScene extends BaseScene {
     // This manifested as a problem when you entered a door and the sign interaction check got called for the
     // previous scene.
     this.time.delayedCall(0, () => {
-      this.controls.stop();
-      this.phecs.reset();
-      this.areaManager.unload();
-      this.scene.restart({ areaKey, markerName });
+      this.cameras.main.fadeOut(300, 0, 0, 0, (camera: Phaser.Cameras.Scene2D.Camera, progress: number) => {
+        if (progress === 1) {
+          this.controls.stop();
+          this.phecs.reset();
+          this.areaManager.unload();
+          this.scene.restart({ areaKey, markerName });
+        }
+      });
     });
   }
 
@@ -198,15 +196,16 @@ export class ExplorationScene extends BaseScene {
 
     this.physics.world.setBounds(0, 0, map.width * tileset.tileWidth, map.height * tileset.tileHeight);
 
-    var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
-    this.cameras.main.setBounds(x, y, width, height);
-    this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
-
     this.persistence.location.areaKey = areaKey;
     if (markerName) this.persistence.location.markerName = markerName;
     this.persistence.save();
 
     this.isLoadingArea = false;
+
+    var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
+    this.cameras.main.setBounds(x, y, width, height);
+    this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
+    this.cameras.main.fadeIn(300);
   }
 
   private shutdown() {
