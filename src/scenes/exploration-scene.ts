@@ -33,6 +33,7 @@ import { SpriteComponent } from '../components/sprite-component';
 import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { DepthManager } from '../lib/depth-manager';
+import { SystemRegistrar } from '../registrars/system-registrar';
 
 const baseSystems = [
   HasAttachmentsSystem,
@@ -66,20 +67,18 @@ export class ExplorationScene extends BaseScene {
   }
 
   create(data: any) {
-    this.registerSystems();
+    this.registerSystems(data.areaKey);
     this.registerPrefabs();
 
     this.loadNewArea(data.areaKey, data.markerName)
     this.scene.launch(SCENE_KEYS.hud);
   }
 
-  registerSystems() {
+  registerSystems(areaKey: string) {
     this.phecs.phSystems.registerSystems(
       [
         ...baseSystems,
-        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : AdventurerKnightSystem,
-        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'knight', index: 0 }) ? null : KnightForestCustceneSystem,
-        this.persistence.progression.conversations.isCompleted({ type: 'conversation', name: 'oldMan', index: 0 }) ? null : SheepGateSystem,
+        ...SystemRegistrar.getSystemsForArea(areaKey, this.persistence.progression)
       ].filter(Boolean) as Phecs.SystemConstructor[]
     );
   }
