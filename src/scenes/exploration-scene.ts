@@ -79,7 +79,7 @@ export class ExplorationScene extends BaseScene {
       [
         ...baseSystems,
         ...SystemRegistrar.getSystemsForArea(areaKey, this.persistence.progression)
-      ].filter(Boolean) as Phecs.SystemConstructor[]
+      ]
     );
   }
 
