@@ -4,6 +4,9 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SpriteComponent } from '../components/sprite-component';
 import { ParallaxSprite } from "./parallax-sprite";
 import { DepthManager } from "../lib/depth-manager";
+import { ProgressionDocument } from '../persistence/progression/progression-document';
+import { AreaRegistrar } from '../registrars/area-registrar';
+import { BackgroundRegistrar } from '../registrars/background-registrar';
 
 export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
   public map!: Phaser.Tilemaps.Tilemap;
@@ -16,9 +19,6 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   public currentAreaKey: string;
 
-  private areaMap: { [areaName: string]: any };
-  private backgroundSets: { [name: string]: string[] };
-
   private background?: ParallaxSprite;
 
   constructor(scene: Phaser.Scene, pluginManager: Phaser.Plugins.PluginManager) {
@@ -30,26 +30,11 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
     this.zones = {};
 
     this.currentAreaKey = '';
-
-    this.areaMap = {};
-    this.backgroundSets = {};
-  }
-
-  registerArea(key: string, mapKey: string, tilesetName: string, tilesetKey: string) {
-    this.areaMap[key] = {
-      mapKey,
-      tilesetName,
-      tilesetKey,
-    };
-  }
-
-  registerBackgroundSet(name: string, layerNames: string[]) {
-    this.backgroundSets[name] = layerNames;
   }
 
   load(key: string) {
     this.currentAreaKey = key;
-    const area = this.areaMap[key];
+    const area = AreaRegistrar.getArea(key);
 
     const map = this.scene.make.tilemap({ key: area.mapKey });
     const tileset = map.addTilesetImage(area.tilesetName, area.tilesetKey);
@@ -178,7 +163,22 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
         let entity = null;
   
         if (tiledObject.type) {
-          entity = scene.phecs.phEntities.createPrefab(tiledObject.type, tiledObject.properties, DepthManager.depthFor(layerProperties.depth), tiledObject.x, tiledObject.y);
+          const properties: Record<string, any> = {
+            ...TiledUtil.normalizeProperties(tiledObject.properties),
+            name: tiledObject.name
+          };
+
+          if (properties.createConditionGate) {
+           const progressionIdentifier = ProgressionDocument.parseProgressionKey(properties.createConditionGate);
+
+            const isCompleted = (this.scene as BaseScene).persistence.progression.areCompleted([
+              progressionIdentifier
+            ]);
+
+            if (isCompleted !== properties.createCondition) return;
+          }
+
+          entity = scene.phecs.phEntities.createPrefab(tiledObject.type, properties, DepthManager.depthFor(layerProperties.depth), tiledObject.x, tiledObject.y);
           this.objects[layerName].push(entity);
         }
       }); 
@@ -187,7 +187,7 @@ export class AreaManagerPlugin extends Phaser.Plugins.ScenePlugin {
 
   private createBackground(properties: { [key: string]: string }) {
     if (properties.backgroundSet) {
-      const layerNames = this.backgroundSets[properties.backgroundSet];
+      const layerNames = BackgroundRegistrar.getBackgroundSet(properties.backgroundSet);
       const layersConfig: ParallaxSprite.LayersConfig = layerNames.map(layerName => { return { key: layerName } });
 
       this.background = (this.scene.add as any).parallaxSprite(layersConfig, DepthManager.depthFor('parallax')) as ParallaxSprite;

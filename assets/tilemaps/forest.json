@@ -89,8 +89,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":129.8,
-                 "y":863.496
+                 "x":3493.18630806846,
+                 "y":703.043677261614
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -231,6 +231,28 @@
                  "width":161.9804400978,
                  "x":3326.71149144254,
                  "y":606.662591687042
+                }, 
+                {
+                 "height":270.476772616137,
+                 "id":16,
+                 "name":"cutsceneZone",
+                 "properties":[
+                        {
+                         "name":"cutsceneTrigger",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"zone",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":466.075794621027,
+                 "x":3549.81662591687,
+                 "y":487.469437652812
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -385,9 +407,125 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"npcs",
+         "objects":[
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"enemyActor1",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }, 
+                        {
+                         "name":"interactionRadius",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"phiniteStateMachineDisabled",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"zoneBoundaryName",
+                         "type":"string",
+                         "value":"cutsceneZone"
+                        }],
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":3667.48166259169,
+                 "y":699.877750611247
+                }, 
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"enemyActor2",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }, 
+                        {
+                         "name":"interactionRadius",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"phiniteStateMachineDisabled",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"zoneBoundaryName",
+                         "type":"string",
+                         "value":"cutsceneZone"
+                        }],
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":0,
+                 "x":3909.41809290954,
+                 "y":702.933985330073
+                }, 
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"knightActor",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"createCondition",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"createConditionGate",
+                         "type":"string",
+                         "value":"conversation.knight[0]"
+                        }],
+                 "rotation":0,
+                 "type":"knight",
+                 "visible":true,
+                 "width":0,
+                 "x":3771.39364303178,
+                 "y":702.933985330073
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"background2"
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":16,
+ "nextlayerid":10,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -398,7 +536,7 @@
         {
          "name":"entityLayerCollisions",
          "type":"string",
-         "value":"adventurer:ground,arrow:ground,enemy:ground"
+         "value":"adventurer:ground,arrow:ground,enemy:ground,knight:ground"
         }],
  "renderorder":"right-down",
  "tiledversion":"1.3.1",

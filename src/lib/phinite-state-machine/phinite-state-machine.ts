@@ -8,6 +8,7 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   private entity: T;
   private states: PhiniteStateMachine.States.State<T>[];
   private initialState: PhiniteStateMachine.States.State<T>;
+  private enabled: boolean;
 
   private triggerCancelers: (() => void)[];
 
@@ -18,6 +19,7 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
     this.entity = entity;
     this.states = states;
     this.initialState = initialState;
+    this.enabled = true;
 
     this.currentState = { id: 'dummy', transitions: [] };
     this.triggerCancelers = [];
@@ -50,12 +52,18 @@ export class PhiniteStateMachine<T> implements PhiniteStateMachine.PhiniteStateM
   }
 
   disable() {
+    this.enabled = false;
     this.doTransition({ to: this.initialState.id });
     this.cancelTransitionTriggers();
   }
 
   enable() {
+    this.enabled = true;
     this.registerTransitionTriggers();
+  }
+
+  isEnabled() {
+    return this.enabled;
   }
 
   destroy() {

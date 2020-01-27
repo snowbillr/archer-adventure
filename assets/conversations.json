@@ -26,5 +26,13 @@
     "You did it!",
     "Thank you so much, now we'll be okay.",
     "Please take this as a reward."
+  ],
+  "knight1": [
+    "Ho, adventurer!",
+    "The farmers on the other side of this forest been having trouble with monsters.",
+    "The king tasked me with finding where the monsters are coming from and stopping them.",
+    "...",
+    "Oh the farmers sent you?",
+    "Come with me, we should talk with the king."
   ]
 }

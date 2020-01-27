@@ -22,7 +22,8 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
         boxType: 'hitbox',
       },
       {
-        entityFetcher: phEntities => phEntities.getEntities(EnemyComponent),
+        entityFetcher: phEntities => phEntities.getEntities(EnemyComponent)
+          .filter(enemy => enemy.getComponent(PhiniteStateMachineComponent).phiniteStateMachine.isEnabled()),
         boxType: 'hurtbox',
       },
       (arrow: Phecs.Entity, enemy: Phecs.Entity) => {

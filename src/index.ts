@@ -7,7 +7,6 @@ import { ControlsPlugin } from './plugins/controls/controls-plugin';
 import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';
-import { StateRegistrarPlugin } from './plugins/state-registrar-plugin';
 
 import { ExplorationScene } from './scenes/exploration-scene';
 import { DeathScene } from './scenes/death-scene';
@@ -28,11 +27,6 @@ const gameConfig = {
       { key: 'PersistencePlugin', plugin: PersistencePlugin, mapping: 'persistence', start: true },
     ],
     scene: [
-      {
-        key: 'StateRegistrar',
-        plugin: StateRegistrarPlugin,
-        mapping: 'stateRegistrar',
-      },
       {
         key: 'Phecs',
         plugin: PhecsPlugin,

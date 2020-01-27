@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="150" height="65" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="16">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="150" height="65" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="20">
  <editorsettings>
   <export target="forest.json" format="json"/>
  </editorsettings>
  <properties>
   <property name="backgroundSet" value="green-hills"/>
-  <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground,enemy:ground"/>
+  <property name="entityLayerCollisions" value="adventurer:ground,arrow:ground,enemy:ground,knight:ground"/>
  </properties>
  <tileset firstgid="1" source="../tilesets/core-tileset.tsx"/>
  <layer id="2" name="background0" width="150" height="65">
@@ -226,7 +226,7 @@
 </data>
  </layer>
  <objectgroup id="4" name="markers">
-  <object id="1" name="farmTransferLocation" x="129.8" y="863.496">
+  <object id="1" name="farmTransferLocation" x="3493.19" y="703.044">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>
@@ -268,6 +268,12 @@
   </object>
   <object id="15" name="enemy7Zone" x="3326.71" y="606.663" width="161.98" height="203.24">
    <properties>
+    <property name="zone" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="16" name="cutsceneZone" x="3549.82" y="487.469" width="466.076" height="270.477">
+   <properties>
+    <property name="cutsceneTrigger" type="bool" value="true"/>
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>
@@ -316,6 +322,38 @@
   <object id="14" name="enemy7" type="enemy" x="3413.81" y="735.024">
    <properties>
     <property name="zoneBoundaryName" value="enemy7Zone"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="npcs">
+  <properties>
+   <property name="depth" value="background2"/>
+  </properties>
+  <object id="17" name="enemyActor1" type="enemy" x="3667.48" y="699.878">
+   <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
+    <property name="interactionRadius" type="int" value="0"/>
+    <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
+    <property name="zoneBoundaryName" value="cutsceneZone"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" name="enemyActor2" type="enemy" x="3909.42" y="702.934">
+   <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
+    <property name="interactionRadius" type="int" value="0"/>
+    <property name="phiniteStateMachineDisabled" type="bool" value="true"/>
+    <property name="zoneBoundaryName" value="cutsceneZone"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="knightActor" type="knight" x="3771.39" y="702.934">
+   <properties>
+    <property name="createCondition" type="bool" value="false"/>
+    <property name="createConditionGate" value="conversation.knight[0]"/>
    </properties>
    <point/>
   </object>
