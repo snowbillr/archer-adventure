@@ -25,9 +25,9 @@
     "webpack-dev-server": "^3.0.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.7.7",
     "@koreez/phaser3-ninepatch": "^2.0.2",
-    "phaser": "^3.0.0",
-    "@babel/runtime": "^7.7.7"
+    "phaser": "^3.0.0"
   },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js",
