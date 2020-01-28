@@ -34,6 +34,7 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { DepthManager } from '../lib/depth-manager';
 import { SystemRegistrar } from '../registrars/system-registrar';
+import { MusicRegistrar } from '../registrars/music-registrar';
 
 const baseSystems = [
   HasAttachmentsSystem,
@@ -55,6 +56,7 @@ const baseSystems = [
 
 export class ExplorationScene extends BaseScene {
   private isLoadingArea: boolean;
+  private backgroundMusic?: Phaser.Sound.BaseSound;
 
   constructor() {
     super({ key: SCENE_KEYS.exploration });
@@ -159,6 +161,16 @@ export class ExplorationScene extends BaseScene {
         });
     });
 
+    this.backgroundMusic = this.sound.add(MusicRegistrar.getMusicForArea(areaKey), { loop: true });
+    this.backgroundMusic.volume = 0;
+    this.backgroundMusic.play();
+    this.tweens.add({
+      targets: this.backgroundMusic,
+      props: {
+        volume: 1
+      },
+    });
+
     this.controls.start();
     this.phecs.start();
 
@@ -168,15 +180,19 @@ export class ExplorationScene extends BaseScene {
     if (markerName) this.persistence.location.markerName = markerName;
     this.persistence.save();
 
-    this.isLoadingArea = false;
-
     var { x, y, width, height } = this.calculateCameraBounds(map, tileset);
     this.cameras.main.setBounds(x, y, width, height);
     this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
     this.cameras.main.fadeIn(300);
+
+    this.isLoadingArea = false;
   }
 
   private shutdown() {
+    if (this.backgroundMusic) {
+      this.backgroundMusic.stop();
+      this.backgroundMusic.destroy();
+    }
     this.phecs.shutdown();
     this.areaManager.unload();
   }
