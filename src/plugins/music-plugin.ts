@@ -19,14 +19,29 @@ export class MusicPlugin extends Phaser.Plugins.ScenePlugin {
     }
 
     if (this.currentMusicKey) {
-      this.keyedMusic[this.currentMusicKey].stop();
+      this.scene.tweens.add({
+        targets: this.keyedMusic[this.currentMusicKey],
+        props: {
+          volume: { getStart: () => 1, getEnd: () => 0 }
+        },
+        onComplete: () => {
+          this.keyedMusic[this.currentMusicKey].stop();
+        }
+      });
     }
 
     if (!this.keyedMusic[newAreaMusicKey]) {
       this.keyedMusic[newAreaMusicKey] = this.scene.sound.add(newAreaMusicKey, { loop: true });
     }
 
-    this.keyedMusic[newAreaMusicKey].play();
+    const music = this.keyedMusic[newAreaMusicKey];
+    music.play();
+    this.scene.tweens.add({
+      targets: music,
+      props: {
+        volume: { getStart: () => 0, getEnd: () => 1 }
+      }
+    });
 
     this.currentMusicKey = newAreaMusicKey;
   }
