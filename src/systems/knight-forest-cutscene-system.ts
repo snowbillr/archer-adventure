@@ -79,6 +79,6 @@ export class KnightForestCustceneSystem implements Phecs.System {
       await letterboxEpilogue(this.scene);
       enablePhSMEpilogue(this.scene)
     })
-      .run();
+    .run();
   }
 }
