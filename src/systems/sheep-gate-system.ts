@@ -6,6 +6,7 @@ import { AdventurerActor } from '../actors/adventurer-actor';
 import { SheepActor } from '../actors/sheep-actor';
 import { disablePhSMPrologue } from '../cutscenes/disable-phsm-prologue';
 import { enablePhSMEpilogue } from '../cutscenes/enable-phsm-epilogue';
+import { letterboxPrologue, letterboxEpilogue } from '../cutscenes/letterbox-prologue-epilogue';
 
 export class SheepGateSystem extends BaseInteractionSystem {
   constructor(scene: Phaser.Scene) {
@@ -24,8 +25,14 @@ export class SheepGateSystem extends BaseInteractionSystem {
     ]);
 
     new Showrunner(script)
-      .setPrologue(() => disablePhSMPrologue(this.scene))
-      .setEpilogue(() => enablePhSMEpilogue(this.scene))
+      .setPrologue(() => {
+        letterboxPrologue(this.scene);
+        disablePhSMPrologue(this.scene);
+      })
+      .setEpilogue(() => {
+        letterboxEpilogue(this.scene);
+        enablePhSMEpilogue(this.scene)
+      })
       .run();
   }
 }

@@ -11,6 +11,7 @@ import { Showrunner } from '../lib/showrunner/showrunner';
 import { Script } from '../lib/showrunner/script';
 import { disablePhSMPrologue } from '../cutscenes/disable-phsm-prologue';
 import { enablePhSMEpilogue } from '../cutscenes/enable-phsm-epilogue';
+import { letterboxPrologue, letterboxEpilogue } from '../cutscenes/letterbox-prologue-epilogue';
 
 export class KnightForestCustceneSystem implements Phecs.System {
   private scene: BaseScene;
@@ -67,8 +68,14 @@ export class KnightForestCustceneSystem implements Phecs.System {
     ]);
 
     new Showrunner(script)
-      .setPrologue(() => disablePhSMPrologue(this.scene))
-      .setEpilogue(() => enablePhSMEpilogue(this.scene))
+    .setPrologue(() => {
+      letterboxPrologue(this.scene);
+      disablePhSMPrologue(this.scene);
+    })
+    .setEpilogue(() => {
+      letterboxEpilogue(this.scene);
+      enablePhSMEpilogue(this.scene)
+    })
       .run();
   }
 }

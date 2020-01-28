@@ -1,15 +1,11 @@
 import { Script } from "./script";
 
-const defaultOptions = {
-  letterbox: false
-};
-
 export class Showrunner {
   private prologue: () => void;
   private epilogue: () => void;
   private script: Script;
 
-  constructor(script: Script, options: Showrunner.ShowrunnerOptions = defaultOptions) {
+  constructor(script: Script) {
     this.script = script;
     this.prologue = () => {};
     this.epilogue = () => {};
