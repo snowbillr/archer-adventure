@@ -69,16 +69,16 @@ export class KnightForestCustceneSystem implements Phecs.System {
     ]);
 
     new Showrunner(script)
-    .setPrologue(async () => {
-      disablePhSMPrologue(this.scene);
-      cameraFollowPrologue(this.scene, knight.getComponent(SpriteComponent).sprite);
-      await letterboxPrologue(this.scene);
-    })
-    .setEpilogue(async () => {
-      cameraFollowEpilogue(this.scene, adventurer.getComponent(SpriteComponent).sprite);
-      await letterboxEpilogue(this.scene);
-      enablePhSMEpilogue(this.scene)
-    })
-    .run();
+      .setPrologue(async () => {
+        disablePhSMPrologue(this.scene);
+        cameraFollowPrologue(this.scene, knight.getComponent(SpriteComponent).sprite);
+        await letterboxPrologue(this.scene);
+      })
+      .setEpilogue(async () => {
+        cameraFollowEpilogue(this.scene, adventurer.getComponent(SpriteComponent).sprite);
+        await letterboxEpilogue(this.scene);
+        enablePhSMEpilogue(this.scene)
+      })
+      .run();
   }
 }
