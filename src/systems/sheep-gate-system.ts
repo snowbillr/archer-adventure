@@ -37,8 +37,8 @@ export class SheepGateSystem extends BaseInteractionSystem {
       .setEpilogue(async () => {
         const adventurerSprite = adventurer.getComponent(SpriteComponent).sprite;
 
-        this.scene.cameras.main.pan(adventurerSprite.x, adventurerSprite.y, 400);
-        this.scene.cameras.main.zoomTo(1, 400);
+        this.scene.cameras.main.pan(adventurerSprite.x, adventurerSprite.y, 300);
+        this.scene.cameras.main.zoomTo(1, 300);
         this.scene.cameras.main.startFollow(adventurerSprite);
 
         enablePhSMEpilogue(this.scene)
