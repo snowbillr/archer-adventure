@@ -1,7 +1,6 @@
 declare module Showrunner {
-  type ShowrunnerOptions = {
-    letterbox: boolean,
-  }
+  type PrologueFn = () => Promise<never> | void;
+  type EpilogueFn = () => Promise<never> | void;
 
   interface ScriptAction {
     run: () => Promise<never>;

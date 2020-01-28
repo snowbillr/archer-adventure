@@ -9,8 +9,10 @@ import { KnightActor } from '../actors/knight-actor';
 
 import { Showrunner } from '../lib/showrunner/showrunner';
 import { Script } from '../lib/showrunner/script';
-import { disablePhSMPrologue } from '../cutscenes/disable-phsm-prologue';
-import { enablePhSMEpilogue } from '../cutscenes/enable-phsm-epilogue';
+import { disablePhSMPrologue } from '../showrunner/disable-phsm-prologue';
+import { enablePhSMEpilogue } from '../showrunner/enable-phsm-epilogue';
+import { letterboxPrologue, letterboxEpilogue } from '../showrunner/letterbox-prologue-epilogue';
+import { cameraFollowPrologue, cameraFollowEpilogue } from '../showrunner/camera-follow-prologue-epilogue';
 
 export class KnightForestCustceneSystem implements Phecs.System {
   private scene: BaseScene;
@@ -67,8 +69,16 @@ export class KnightForestCustceneSystem implements Phecs.System {
     ]);
 
     new Showrunner(script)
-      .setPrologue(() => disablePhSMPrologue(this.scene))
-      .setEpilogue(() => enablePhSMEpilogue(this.scene))
-      .run();
+    .setPrologue(async () => {
+      disablePhSMPrologue(this.scene);
+      cameraFollowPrologue(this.scene, knight.getComponent(SpriteComponent).sprite);
+      await letterboxPrologue(this.scene);
+    })
+    .setEpilogue(async () => {
+      cameraFollowEpilogue(this.scene, adventurer.getComponent(SpriteComponent).sprite);
+      await letterboxEpilogue(this.scene);
+      enablePhSMEpilogue(this.scene)
+    })
+    .run();
   }
 }
