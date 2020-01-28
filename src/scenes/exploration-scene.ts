@@ -6,7 +6,6 @@ import { AreaTransferSystem } from '../systems/area-transfer-system';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
-import { AdventurerKnightSystem } from '../systems/adventurer-knight-system';
 import { AdventurerNpcSystem } from '../systems/adventurer-npc-system';
 import { AdventurerSignSystem } from '../systems/adventurer-sign-system';
 import { EnemyAdventurerDamageSystem } from '../systems/enemy-adventurer-damage-system';
@@ -16,8 +15,6 @@ import { HasHitboxesSystem } from '../systems/has-hitboxes-system';
 import { HasHurtboxesSystem } from '../systems/has-hurtboxes-system';
 import { HasPhiniteStateMachineSystem } from '../systems/has-phinite-state-machine-system';
 import { InteractionComponentSystem } from '../systems/interaction-component-system';
-import { KnightForestCustceneSystem } from '../systems/knight-forest-cutscene-system';
-import { SheepGateSystem } from '../systems/sheep-gate-system';
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
@@ -34,7 +31,6 @@ import { TiledUtil } from '../utilities/tiled-util';
 import { SCENE_KEYS } from '../constants/scene-keys';
 import { DepthManager } from '../lib/depth-manager';
 import { SystemRegistrar } from '../registrars/system-registrar';
-import { MusicRegistrar } from '../registrars/music-registrar';
 
 const baseSystems = [
   HasAttachmentsSystem,
@@ -95,9 +91,7 @@ export class ExplorationScene extends BaseScene {
     }
 
     this.cameras.main.fadeOut(0);
-    this.loadNewArea(areaKey, markerName).then(() => {
-      this.cameras.main.fadeIn(1000);
-    });
+    this.loadNewArea(areaKey, markerName);
   }
 
   private loadNewArea(areaKey: string, markerName?: string) {
@@ -172,6 +166,8 @@ export class ExplorationScene extends BaseScene {
             this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
             this.cameras.main.fadeIn(300);
 
+            this.music.playForArea(areaKey);
+
             this.isLoadingArea = false;
 
             resolve();
@@ -179,26 +175,6 @@ export class ExplorationScene extends BaseScene {
         });
       });
     });
-
-
-
-
-
-   
-
-    /*
-    this.backgroundMusic = this.sound.add(MusicRegistrar.getMusicForArea(areaKey), { loop: true });
-    this.backgroundMusic.volume = 0;
-    this.backgroundMusic.play();
-    this.tweens.add({
-      targets: this.backgroundMusic,
-      props: {
-        volume: 1
-      },
-    });
-    */
-
-    
   }
 
   private shutdown() {
