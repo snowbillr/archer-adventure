@@ -25,13 +25,13 @@ export class SheepGateSystem extends BaseInteractionSystem {
     ]);
 
     new Showrunner(script)
-      .setPrologue(() => {
-        letterboxPrologue(this.scene);
+      .setPrologue(async () => {
         disablePhSMPrologue(this.scene);
+        await letterboxPrologue(this.scene);
       })
-      .setEpilogue(() => {
+      .setEpilogue(async () => {
         letterboxEpilogue(this.scene);
-        enablePhSMEpilogue(this.scene)
+        await enablePhSMEpilogue(this.scene)
       })
       .run();
   }

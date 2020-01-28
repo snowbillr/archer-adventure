@@ -26,11 +26,9 @@ export class Showrunner {
   }
 
   async run() {
-    this.prologue();
-
+    await this.prologue();
     await this.script.run();
-
-    this.epilogue();
+    await this.epilogue();
 
     return Promise.resolve();
   }

@@ -8,73 +8,79 @@ let letterboxTop: Phaser.GameObjects.Rectangle;
 let letterboxBottom: Phaser.GameObjects.Rectangle;
 
 export function letterboxPrologue(scene: BaseScene) {
-  letterboxTop = scene.add.rectangle(0, -LETTERBOX_HEIGHT, scene.cameras.main.width, LETTERBOX_HEIGHT, 0x000000, 1)
-    .setDepth(DepthManager.depthFor('notifications'))
-    .setOrigin(0, 0)
-    .setScrollFactor(0);
+  return new Promise(resolve => {
+    letterboxTop = scene.add.rectangle(0, -LETTERBOX_HEIGHT, scene.cameras.main.width, LETTERBOX_HEIGHT, 0x000000, 1)
+      .setDepth(DepthManager.depthFor('notifications'))
+      .setOrigin(0, 0)
+      .setScrollFactor(0);
 
-  letterboxBottom = scene.add.rectangle(0, scene.cameras.main.height, scene.cameras.main.width, LETTERBOX_HEIGHT, 0x000000, 1)
-    .setDepth(DepthManager.depthFor('notifications'))
-    .setOrigin(0, 0)
-    .setScrollFactor(0);
+    letterboxBottom = scene.add.rectangle(0, scene.cameras.main.height, scene.cameras.main.width, LETTERBOX_HEIGHT, 0x000000, 1)
+      .setDepth(DepthManager.depthFor('notifications'))
+      .setOrigin(0, 0)
+      .setScrollFactor(0);
 
-  scene.tweens.timeline({
-    duration: TWEEN_DURATION,
-    tweens: [
-      {
-        offset: 0,
-        targets: scene.cameras.main,
-        props: {
-          zoom: 1.2
+    scene.tweens.timeline({
+      duration: TWEEN_DURATION,
+      onComplete: resolve,
+      tweens: [
+        {
+          offset: 0,
+          targets: scene.cameras.main,
+          props: {
+            zoom: 1.2
+          },
         },
-      },
-      {
-        offset: 0,
-        targets: letterboxTop,
-        props: {
-          y: `+=${LETTERBOX_HEIGHT}`
+        {
+          offset: 0,
+          targets: letterboxTop,
+          props: {
+            y: `+=${LETTERBOX_HEIGHT}`
+          },
         },
-      },
-      {
-        offset: 0,
-        targets: letterboxBottom,
-        props: {
-          y: `-=${LETTERBOX_HEIGHT}`
-        },
-      }
-    ]
-  })
+        {
+          offset: 0,
+          targets: letterboxBottom,
+          props: {
+            y: `-=${LETTERBOX_HEIGHT}`
+          },
+        }
+      ]
+    });
+  });
 }
 
 export function letterboxEpilogue(scene: BaseScene) {
-  scene.tweens.timeline({
-    duration: TWEEN_DURATION,
-    onComplete: () => {
-      letterboxTop.destroy();
-      letterboxBottom.destroy();
-    },
-    tweens: [
-      {
-        offset: 0,
-        targets: scene.cameras.main,
-        props: {
-          zoom: 1
-        },
+  return new Promise(resolve => {
+    scene.tweens.timeline({
+      duration: TWEEN_DURATION,
+      onComplete: () => {
+        letterboxTop.destroy();
+        letterboxBottom.destroy();
+        resolve();
       },
-      {
-        offset: 0,
-        targets: letterboxTop,
-        props: {
-          y: `-=${LETTERBOX_HEIGHT}`
+      tweens: [
+        {
+          offset: 0,
+          targets: scene.cameras.main,
+          props: {
+            zoom: 1
+          },
         },
-      },
-      {
-        offset: 0,
-        targets: letterboxBottom,
-        props: {
-          y: `+=${LETTERBOX_HEIGHT}`
+        {
+          offset: 0,
+          targets: letterboxTop,
+          props: {
+            y: `-=${LETTERBOX_HEIGHT}`
+          },
         },
-      },
-    ]
+        {
+          offset: 0,
+          targets: letterboxBottom,
+          props: {
+            y: `+=${LETTERBOX_HEIGHT}`
+          },
+        },
+      ]
+    });
   });
 }
