@@ -29,7 +29,11 @@ const areaSystems: Record<string, SystemConfig[]> = {
 };
 
 export const SystemRegistrar = {
-  getSystemsForArea(areaKey: string, progression: ProgressionDocument) {
+  getSystemsForArea(areaKey: string) {
+    return areaSystems[areaKey].map(systemConfig => systemConfig.system);
+  },
+
+  getFilteredSystemsForArea(areaKey: string, progression: ProgressionDocument) {
     const systems = areaSystems[areaKey];
 
     return systems.filter(systemConfig => {
