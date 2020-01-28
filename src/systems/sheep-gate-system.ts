@@ -6,7 +6,6 @@ import { AdventurerActor } from '../actors/adventurer-actor';
 import { SheepActor } from '../actors/sheep-actor';
 import { disablePhSMPrologue } from '../showrunner/disable-phsm-prologue';
 import { enablePhSMEpilogue } from '../showrunner/enable-phsm-epilogue';
-import { letterboxPrologue, letterboxEpilogue } from '../showrunner/letterbox-prologue-epilogue';
 import { SpriteComponent } from '../components/sprite-component';
 
 export class SheepGateSystem extends BaseInteractionSystem {
