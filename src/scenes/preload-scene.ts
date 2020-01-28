@@ -7,6 +7,10 @@ export class PreloadScene extends BaseScene {
   }
 
   preload() {
+    // music
+    this.load.audio('farm', ['assets/music/farm.ogg', 'assets/music/farm.mp3']);
+    this.load.audio('forest', ['assets/music/forest.ogg', 'assets/music/forest.mp3']);
+
     // title screen backgounrd
     this.load.image('title-screen', 'assets/backgrounds/title-screen.png');
     this.load.image('vignette-effect', 'assets/backgrounds/vignette-effect.png');
