@@ -13,19 +13,21 @@ export class MusicPlugin extends Phaser.Plugins.ScenePlugin {
   }
 
   playForArea(areaKey: string) {
+    const oldMusic = this.keyedMusic[this.currentMusicKey];
+
     const newAreaMusicKey = MusicRegistrar.getMusicForArea(areaKey);
     if (this.currentMusicKey === newAreaMusicKey) {
       return;
     }
 
-    if (this.currentMusicKey) {
+    if (oldMusic) {
       this.scene.tweens.add({
-        targets: this.keyedMusic[this.currentMusicKey],
+        targets: oldMusic,
         props: {
           volume: { getStart: () => 1, getEnd: () => 0 }
         },
         onComplete: () => {
-          this.keyedMusic[this.currentMusicKey].stop();
+          oldMusic.stop();
         }
       });
     }
