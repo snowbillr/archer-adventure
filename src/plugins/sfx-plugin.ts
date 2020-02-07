@@ -1,7 +1,7 @@
 import { SCENE_KEYS } from "../constants/scene-keys";
 import { MusicRegistrar } from "../registrars/music-registrar";
 
-export class MusicPlugin extends Phaser.Plugins.ScenePlugin {
+export class SfxPlugin extends Phaser.Plugins.ScenePlugin {
   private currentMusicKey: string;
   private keyedMusic: Record<string, Phaser.Sound.BaseSound>;
 
@@ -12,7 +12,7 @@ export class MusicPlugin extends Phaser.Plugins.ScenePlugin {
     this.keyedMusic = {};
   }
 
-  playForArea(areaKey: string) {
+  playMusicForArea(areaKey: string) {
     const oldMusic = this.keyedMusic[this.currentMusicKey];
 
     const newAreaMusicKey = MusicRegistrar.getMusicForArea(areaKey);

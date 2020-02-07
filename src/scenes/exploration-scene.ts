@@ -166,7 +166,7 @@ export class ExplorationScene extends BaseScene {
             this.cameras.main.startFollow(adventurer.getComponent(SpriteComponent).sprite, true);
             this.cameras.main.fadeIn(300);
 
-            this.music.playForArea(areaKey);
+            this.sfx.playMusicForArea(areaKey);
 
             this.isLoadingArea = false;
 

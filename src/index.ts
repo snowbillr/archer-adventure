@@ -4,7 +4,7 @@ import { NinePatchPlugin } from '@koreez/phaser3-ninepatch';
 
 import { AreaManagerPlugin } from './plugins/area-manager-plugin';
 import { ControlsPlugin } from './plugins/controls/controls-plugin';
-import { MusicPlugin } from './plugins/music-plugin';
+import { SfxPlugin } from './plugins/sfx-plugin';
 import { ParallaxSpritePlugin } from './plugins/parallax-sprite-plugin';
 import { PersistencePlugin } from './plugins/persistence-plugin';
 import { PhecsPlugin } from './plugins/phecs-plugin';
@@ -34,9 +34,9 @@ const gameConfig = {
         mapping: 'phecs',
       },
       {
-        key: 'Music',
-        plugin: MusicPlugin,
-        mapping: 'music',
+        key: 'Sfx',
+        plugin: SfxPlugin,
+        mapping: 'sfx',
       },
       {
         key: 'Controls',
