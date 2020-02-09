@@ -1,5 +1,6 @@
 import { adventurerStates } from "../entities/adventurer/states";
 import { arrowStates } from "../entities/arrow/states";
+import { barrelStates } from "../entities/barrel/states";
 import { enemyStates } from "../entities/enemy/states";
 import { sheepStates } from "../entities/sheep/states";
 import { oldLadyStates } from "../entities/old-lady/states";
@@ -33,6 +34,7 @@ registerSets([
   { id: 'sheep', states: sheepStates },
   { id: 'old-lady', states: oldLadyStates },
   { id: 'old-man', states: oldManStates },
+  { id: 'barrel', states: barrelStates },
 ]);
 
 export const StateRegistrar = {

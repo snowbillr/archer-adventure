@@ -70,6 +70,11 @@ export class PreloadScene extends BaseScene {
     // doors
     this.load.spritesheet('doors', 'assets/sprites/doors/doors.png', { frameWidth: 64, frameHeight: 82 })
 
+    // barrel
+    this.load.spritesheet('barrel', 'assets/sprites/barrel/barrel.png', { frameWidth: 128, frameHeight: 76 });
+    this.load.animation('barrel-animations', 'assets/animations/barrel.json');
+    this.load.json('barrel-hurtboxes', 'assets/hurtboxes/barrel.json');
+
     // tileset image
     this.load.spritesheet('core-tileset-spritesheet', 'assets/tilesets/core-tileset.png', { frameHeight: 32, frameWidth: 32 });
     // tileset
@@ -92,7 +97,6 @@ export class PreloadScene extends BaseScene {
   }
 
   create() {
-    // this.scene.start(SCENE_KEYS.exploration, { areaKey: 'woollards-farm' });
     this.scene.start(SCENE_KEYS.title);
     // this.scene.start(SCENE_KEYS.prefabTest);
   }

@@ -32,5 +32,4 @@ export class ArrowEnemyDamageSystem extends BaseDamageSystem {
       }
     );
   }
-
 }

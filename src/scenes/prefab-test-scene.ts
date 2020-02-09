@@ -31,6 +31,9 @@ export class PrefabTestScene extends BaseScene {
       ]
     );
 
+    const barrel = this.add.sprite(300, 200, 'barrel');
+    barrel.anims.play('barrel-destroy')
+
     // this.stateRegistrar.registerSets([
       // { id: 'arrow', states: arrowStates },
     // ]);

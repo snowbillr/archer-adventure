@@ -1,0 +1,17 @@
+{
+  "frames": [
+    {
+      "key": "barrel",
+      "frame": 0,
+      "hurtboxes": [
+        {
+          "type": "rectangle",
+          "x": 2,
+          "y": 10,
+          "width": 39,
+          "height": 42
+        }
+      ]
+    }
+  ]
+}

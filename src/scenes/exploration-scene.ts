@@ -4,6 +4,7 @@ import { BaseScene } from './base-scene';
 
 import { AreaTransferSystem } from '../systems/area-transfer-system';
 import { ArrowEnemyDamageSystem } from '../systems/arrow-enemy-damage-system';
+import { ArrowBarrelSystem } from '../systems/arrow-barrel-system';
 import { AdventurerDeathSystem } from '../systems/adventurer-death-system';
 import { AdventurerDoorSystem } from '../systems/adventurer-door-system';
 import { AdventurerNpcSystem } from '../systems/adventurer-npc-system';
@@ -18,6 +19,7 @@ import { InteractionComponentSystem } from '../systems/interaction-component-sys
 
 import { adventurerPrefab } from '../entities/adventurer/prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
+import { barrelPrefab } from '../entities/barrel/prefab';
 import { doorPrefab } from '../entities/door/prefab';
 import { enemyPrefab } from '../entities/enemy/prefab';
 import { knightPrefab } from '../entities/knight/prefab';
@@ -42,6 +44,7 @@ const baseSystems = [
 
   AreaTransferSystem,
   ArrowEnemyDamageSystem,
+  ArrowBarrelSystem,
   AdventurerDeathSystem,
 
   AdventurerDoorSystem,
@@ -75,6 +78,7 @@ export class ExplorationScene extends BaseScene {
   registerPrefabs() {
     this.phecs.phEntities.registerPrefab('adventurer', adventurerPrefab);
     this.phecs.phEntities.registerPrefab('arrow', arrowPrefab);
+    this.phecs.phEntities.registerPrefab('barrel', barrelPrefab);
     this.phecs.phEntities.registerPrefab('door', doorPrefab);
     this.phecs.phEntities.registerPrefab('enemy', enemyPrefab);
     this.phecs.phEntities.registerPrefab('knight', knightPrefab);
