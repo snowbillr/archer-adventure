@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="5">
  <editorsettings>
   <export target="town.json" format="json"/>
  </editorsettings>
@@ -144,7 +144,10 @@
   <properties>
    <property name="depth" value="background0"/>
   </properties>
-  <object id="3" name="barrel" type="barrel" x="490.169" y="1509.91">
+  <object id="3" name="barrel" type="barrel" x="490.169" y="1510.91">
+   <point/>
+  </object>
+  <object id="4" name="barrel" type="barrel" x="869.454" y="1510.1">
    <point/>
   </object>
  </objectgroup>

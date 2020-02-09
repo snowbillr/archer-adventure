@@ -133,7 +133,19 @@
                  "visible":true,
                  "width":0,
                  "x":490.169306389951,
-                 "y":1509.91152375751
+                 "y":1510.91152375751
+                }, 
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"barrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"barrel",
+                 "visible":true,
+                 "width":0,
+                 "x":869.453850354997,
+                 "y":1510.10376843255
                 }],
          "opacity":1,
          "properties":[
@@ -148,7 +160,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":4,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "properties":[
         {
