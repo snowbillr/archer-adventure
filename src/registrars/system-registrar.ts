@@ -25,7 +25,8 @@ const areaSystems: Record<string, SystemConfig[]> = {
       progressionRestriction: { type: 'conversation', name: 'knight', index: 0 },
       system: KnightForestCustceneSystem
     }
-  ]
+  ],
+  'town': []
 };
 
 export const SystemRegistrar = {

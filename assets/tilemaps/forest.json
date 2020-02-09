@@ -77,7 +77,7 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"farmTransferLocation",
+                 "name":"farmForestTransferLocation",
                  "point":true,
                  "properties":[
                         {
@@ -91,6 +91,24 @@
                  "width":0,
                  "x":3493.19,
                  "y":703.044
+                }, 
+                {
+                 "height":0,
+                 "id":21,
+                 "name":"townForestTransferLocation",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"marker",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":3924.20537897311,
+                 "y":702.933985330073
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -106,7 +124,7 @@
                 {
                  "height":335.731,
                  "id":2,
-                 "name":"farmTransfer",
+                 "name":"forestFarmTransfer",
                  "properties":[
                         {
                          "name":"toAreaKey",
@@ -116,7 +134,7 @@
                         {
                          "name":"toMarker",
                          "type":"string",
-                         "value":"farmTransferLocation"
+                         "value":"forestFarmTransferLocation"
                         }, 
                         {
                          "name":"zone",
@@ -250,9 +268,36 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":466.076,
+                 "width":391.198249388753,
                  "x":3549.82,
                  "y":487.469
+                }, 
+                {
+                 "height":335.731,
+                 "id":20,
+                 "name":"forestTownTransfer",
+                 "properties":[
+                        {
+                         "name":"toAreaKey",
+                         "type":"string",
+                         "value":"town"
+                        }, 
+                        {
+                         "name":"toMarker",
+                         "type":"string",
+                         "value":"forestTownTransferLocation"
+                        }, 
+                        {
+                         "name":"zone",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":82.8151,
+                 "x":3950.03499278729,
+                 "y":391.425453545232
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -525,7 +570,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":20,
+ "nextobjectid":22,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -553,6 +598,21 @@
          "spacing":0,
          "tilecount":4816,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":259,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"depth",
+                         "type":"string",
+                         "value":"ground"
+                        }]
+                }],
          "tilewidth":32
         }],
  "tilewidth":32,

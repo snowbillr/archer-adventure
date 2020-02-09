@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="126" height="65" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="20">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="126" height="65" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="22">
  <editorsettings>
   <export target="forest.json" format="json"/>
  </editorsettings>
@@ -226,7 +226,13 @@
 </data>
  </layer>
  <objectgroup id="4" name="markers">
-  <object id="1" name="farmTransferLocation" x="3493.19" y="703.044">
+  <object id="1" name="farmForestTransferLocation" x="3493.19" y="703.044">
+   <properties>
+    <property name="marker" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="townForestTransferLocation" x="3924.21" y="702.934">
    <properties>
     <property name="marker" type="bool" value="true"/>
    </properties>
@@ -234,10 +240,10 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="zones">
-  <object id="2" name="farmTransfer" x="0.615665" y="533.65" width="82.8151" height="335.731">
+  <object id="2" name="forestFarmTransfer" x="0.615665" y="533.65" width="82.8151" height="335.731">
    <properties>
     <property name="toAreaKey" value="woollards-farm"/>
-    <property name="toMarker" value="farmTransferLocation"/>
+    <property name="toMarker" value="forestFarmTransferLocation"/>
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>
@@ -271,9 +277,16 @@
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="16" name="cutsceneZone" x="3549.82" y="487.469" width="466.076" height="270.477">
+  <object id="16" name="cutsceneZone" x="3549.82" y="487.469" width="391.198" height="270.477">
    <properties>
     <property name="cutsceneTrigger" type="bool" value="true"/>
+    <property name="zone" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="20" name="forestTownTransfer" x="3950.03" y="391.425" width="82.8151" height="335.731">
+   <properties>
+    <property name="toAreaKey" value="town"/>
+    <property name="toMarker" value="forestTownTransferLocation"/>
     <property name="zone" type="bool" value="true"/>
    </properties>
   </object>

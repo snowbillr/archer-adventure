@@ -21,6 +21,7 @@ function getArea(key: string): AreaConfig {
 registerArea('woollards-farm', 'woollards-farm', 'core-tileset', 'core-tileset');
 registerArea('woollards-house', 'woollards-house', 'core-tileset', 'core-tileset');
 registerArea('forest', 'forest', 'core-tileset', 'core-tileset');
+registerArea('town', 'town', 'core-tileset', 'core-tileset');
 
 export const AreaRegistrar = {
   getArea

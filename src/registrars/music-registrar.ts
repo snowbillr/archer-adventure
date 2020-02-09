@@ -1,7 +1,8 @@
 const areaMusic: Record<string, string> = {
   'woollards-farm': 'farm',
   'woollards-house': 'farm',
-  'forest': 'forest'
+  'forest': 'forest',
+  'town': 'farm'
 };
 
 export const MusicRegistrar = {
