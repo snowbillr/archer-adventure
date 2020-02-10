@@ -7,25 +7,10 @@ import { PhysicsBodyComponent } from '../../../components/physics-body-component
 import { SceneComponent } from '../../../components/scene-component';
 import { BaseScene } from '../../../scenes/base-scene';
 
-export const adventurerRoll: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerge(baseGround, {
+export const adventurerRoll: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'adventurer-roll',
   onEnter(adventurer: Phecs.Entity) {
     adventurer.getComponent(SpriteComponent).sprite.anims.play('adventurer-roll')
-
-    /*
-    if (adventurer.getComponent(PhysicsBodyComponent).body.velocity.x > 0) {
-      adventurer.getComponent(PhysicsBodyComponent).body.acceleration.x = -1 * movementAttributes.slideDeceleration;
-    } else {
-      adventurer.getComponent(PhysicsBodyComponent).body.acceleration.x = movementAttributes.slideDeceleration;
-    }
-    */
-  },
-  onUpdate(entity: Phecs.Entity) {
-    /*
-    if(Phaser.Math.Within(entity.getComponent(PhysicsBodyComponent).body.velocity.x, 0, 5)) {
-      entity.getComponent(PhysicsBodyComponent).body.acceleration.x = 0;
-    }
-    */
   },
   transitions: [
     {
@@ -53,4 +38,4 @@ export const adventurerRoll: PhiniteStateMachine.States.State<Phecs.Entity> = St
       to: 'adventurer-jump-prep',
     }
   ],
-});
+};
