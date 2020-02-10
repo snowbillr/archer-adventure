@@ -129,6 +129,18 @@
       ],
       "frameRate": 16,
       "repeat": 0
+    },
+    {
+      "key": "adventurer-roll",
+      "frames": [
+        { "key": "adventurer-core", "frame": 5 },
+        { "key": "adventurer-core", "frame": 19 },
+        { "key": "adventurer-core", "frame": 20 },
+        { "key": "adventurer-core", "frame": 21 },
+        { "key": "adventurer-core", "frame": 5 }
+      ],
+      "frameRate": 10,
+      "repeat": 0
     }
   ]
 }

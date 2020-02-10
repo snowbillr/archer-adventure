@@ -20,13 +20,7 @@ export const baseRun: PhiniteStateMachine.States.State<Phecs.Entity> = StateMerg
     {
       type: TransitionType.PressControl,
       control: 'down',
-      to: (entity: Phecs.Entity) => {
-        if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
-          return 'adventurer-crouch';
-        } else {
-          return 'adventurer-slide';
-        }
-      }
+      to: 'adventurer-roll',
     },
    {
      type: TransitionType.PressControl,

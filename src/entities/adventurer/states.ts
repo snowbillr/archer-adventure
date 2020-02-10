@@ -7,7 +7,7 @@ import { adventurerCrouchLeft } from './states/crouch-left';
 import { adventurerCrouchRight } from './states/crouch-right';
 import { adventurerRunRight } from './states/run-right';
 import { adventurerRunLeft } from './states/run-left';
-import { adventurerSlide } from './states/slide';
+import { adventurerRoll } from './states/slide';
 import { adventurerJumpPrep } from './states/jump-prep';
 import { adventurerJump} from './states/jump';
 import { adventurerJumpLeft } from './states/jump-left';
@@ -32,7 +32,7 @@ export const adventurerStates: PhiniteStateMachine.States.State<Phecs.Entity>[] 
   adventurerRunRight,
   adventurerRunLeft,
 
-  adventurerSlide,
+  adventurerRoll,
 
   adventurerJumpPrep,
   adventurerJump,

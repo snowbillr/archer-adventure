@@ -27,10 +27,10 @@ export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMer
         const controls = (entity.getComponent(SceneComponent).scene as BaseScene).controls;
 
         if (controls.down.isPressed) {
-          if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) < movementAttributes.slideVelocityThreshold) {
-            return 'adventurer-crouch';
+          if (Math.abs(entity.getComponent(PhysicsBodyComponent).body.velocity.x) > 0) {
+            return 'adventurer-roll';
           } else {
-            return 'adventurer-slide';
+            return 'adventurer-crouch';
           }
         } else if (controls.left.isPressed) {
           return 'adventurer-run-left';

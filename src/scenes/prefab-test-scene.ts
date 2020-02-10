@@ -23,21 +23,26 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.phecs.phEntities.registerPrefab('knight', knightPrefab);
+    // this.phecs.phEntities.registerPrefab('knight', knightPrefab);
 
+    /*
     this.phecs.phSystems.registerSystems(
       [
         HasBoundsSystem
       ]
     );
+    */
 
-    const barrel = this.add.sprite(300, 200, 'barrel');
-    barrel.anims.play('barrel-destroy')
+    const barrel = this.add.sprite(300, 200, 'adventurer-core');
+    barrel.anims.play('adventurer-roll')
+
+    this.input.on('pointerdown', () => barrel.anims.play('adventurer-roll'))
 
     // this.stateRegistrar.registerSets([
       // { id: 'arrow', states: arrowStates },
     // ]);
 
+    /*
     let frameIndex = 22;
     const frameText = this.add.text(300, 50, `Frame ${frameIndex}`);
 
@@ -69,5 +74,6 @@ export class PrefabTestScene extends BaseScene {
     this.cameras.main.setBackgroundColor('#777777');
 
     this.knight = knight;
+    */
   }
 }
