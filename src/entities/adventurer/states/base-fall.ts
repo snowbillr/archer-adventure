@@ -33,9 +33,9 @@ export const baseFall: PhiniteStateMachine.States.State<Phecs.Entity> = StateMer
             return 'adventurer-crouch';
           }
         } else if (controls.left.isPressed) {
-          return 'adventurer-run-left';
+          return 'adventurer-run';
         } else if (controls.right.isPressed) {
-          return 'adventurer-run-right';
+          return 'adventurer-run';
         }  else {
           return 'adventurer-stand';
         }

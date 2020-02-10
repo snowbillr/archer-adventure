@@ -22,9 +22,9 @@ export const adventurerStandShoot: PhiniteStateMachine.States.State<Phecs.Entity
         const controls = (entity.getComponent(SceneComponent).scene as BaseScene).controls;
 
         if (controls.right.isPressed) {
-          return 'adventurer-run-right';
+          return 'adventurer-run';
         } else if (controls.left.isPressed) {
-          return 'adventurer-run-left';
+          return 'adventurer-run';
         } else {
           return 'adventurer-stand';
         }

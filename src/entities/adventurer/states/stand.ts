@@ -12,12 +12,12 @@ export const adventurerStand: PhiniteStateMachine.States.State<Phecs.Entity> = S
     {
       type: TransitionType.PressControl,
       control: 'right',
-      to: 'adventurer-run-right',
+      to: 'adventurer-run',
     },
     {
       type: TransitionType.PressControl,
       control: 'left',
-      to: 'adventurer-run-left',
+      to: 'adventurer-run',
     },
     {
       type: TransitionType.PressControl,
