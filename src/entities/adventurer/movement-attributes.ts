@@ -4,11 +4,10 @@ export const movementAttributes: { [key: string]: number } = {
   horizontalAcceleration: 800,
   horizontalDeceleration: 2000,
 
-  slideVelocityThreshold: 250,
-  slideDeceleration: 350,
-
   shortJumpVelocity: -350,
   jumpVelocity: -465,
+
+  rollVelocity: 350,
 
   aerialMaxHorizontalVelocity: 250,
   aerialHorizontalAcceleration: 300,

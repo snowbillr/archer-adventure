@@ -253,6 +253,48 @@
   },
   {
     "key": "adventurer-core",
+    "frame": 19,
+    "bounds": {
+      "offset": {
+        "x": 28,
+        "y": 20
+      },
+      "size": {
+        "width": 48,
+        "height": 34
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 20,
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 20
+      },
+      "size": {
+        "width": 36,
+        "height": 42
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
+    "frame": 21,
+    "bounds": {
+      "offset": {
+        "x": 22,
+        "y": 26
+      },
+      "size": {
+        "width": 52,
+        "height": 34
+      }
+    }
+  },
+  {
+    "key": "adventurer-core",
     "frame": 22,
     "bounds": {
       "offset": {

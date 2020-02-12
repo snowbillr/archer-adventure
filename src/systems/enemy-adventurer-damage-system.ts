@@ -5,6 +5,7 @@ import { InvulnerabilityComponent } from '../components/invulnerability-componen
 import { BaseDamageSystem } from './base-systems/base-damage-system';
 
 const ENEMY_DAMAGE = 1;
+const ADVENTURER_INVULNERABILITY_PERIOD = 500;
 
 export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
   constructor() {
@@ -23,7 +24,7 @@ export class EnemyAdventurerDamageSystem extends BaseDamageSystem {
         boxType: 'hurtbox',
       },
       (adventurer: Phecs.Entity, enemy: Phecs.Entity) => {
-        adventurer.getComponent(InvulnerabilityComponent).makeInvulnerable();
+        adventurer.getComponent(InvulnerabilityComponent).makeInvulnerableFor(ADVENTURER_INVULNERABILITY_PERIOD);
         adventurer.getComponent(AdventurerComponent).decreaseHealth(ENEMY_DAMAGE);
       }
     )

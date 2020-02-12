@@ -23,7 +23,7 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    this.phecs.phEntities.registerPrefab('knight', knightPrefab);
+    this.phecs.phEntities.registerPrefab('adventurer', adventurerTestPrefab);
 
     this.phecs.phSystems.registerSystems(
       [
@@ -31,23 +31,18 @@ export class PrefabTestScene extends BaseScene {
       ]
     );
 
-    const barrel = this.add.sprite(300, 200, 'barrel');
-    barrel.anims.play('barrel-destroy')
 
-    // this.stateRegistrar.registerSets([
-      // { id: 'arrow', states: arrowStates },
-    // ]);
-
-    let frameIndex = 22;
+    let frameIndex = 21;
     const frameText = this.add.text(300, 50, `Frame ${frameIndex}`);
 
-    const knight = this.phecs.phEntities.createPrefab('knight', {}, 1, 150, 200);
+    const entity = this.phecs.phEntities.createPrefab('adventurer', {}, 1, 150, 200);
 
-    knight.getComponent(SpriteComponent).sprite.setScale(3);
-    knight.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
+    entity.getComponent(SpriteComponent).sprite.setScale(4);
+    entity.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
 
-    knight.getComponent(PhysicsBodyComponent).body.allowGravity = false;
+    entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
 
+    /*
     knight.getComponent(SpriteComponent).sprite.anims.play('knight-attack');
 
     this.input.keyboard.on('keydown', (e: any) => {
@@ -63,11 +58,10 @@ export class PrefabTestScene extends BaseScene {
       knight.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
       frameText.setText(`Frame ${frameIndex}`);
     });
+    */
 
     this.phecs.start();
 
     this.cameras.main.setBackgroundColor('#777777');
-
-    this.knight = knight;
   }
 }

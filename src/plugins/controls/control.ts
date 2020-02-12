@@ -5,12 +5,16 @@ export class Control {
   private onReleaseListeners: Controls.ListenerConfig[];
 
   public isPressed: boolean;
+  public pressedAt: number | null;
+  public releasedAt: number | null;
 
   constructor() {
     this.onPressListeners = [];
     this.onReleaseListeners = [];
 
     this.isPressed = false;
+    this.pressedAt = null;
+    this.releasedAt = null;
   }
 
   onPress(callback: Controls.Listener, context?: any) {
@@ -44,23 +48,29 @@ export class Control {
   }
 
   press() {
-    if (!this.isPressed) {
+    const shouldCallListeners = !this.isPressed;
+    this.isPressed = true;
+    this.pressedAt = Date.now();
+    this.releasedAt = null;
+
+    if (shouldCallListeners) {
       for (let listener of this.onPressListeners) {
         listener.callback.call(listener.context);
       }
     }
-
-    this.isPressed = true;
   }
 
   release() {
-    if (this.isPressed) {
+    const shouldCallListeners = this.isPressed;
+    this.isPressed = false;
+    this.pressedAt = null;
+    this.releasedAt = Date.now();
+
+    if (shouldCallListeners) {
       for (let listener of this.onReleaseListeners) {
         listener.callback.call(listener.context);
       }
     }
-
-    this.isPressed = false;
   }
 
   destroy() {
