@@ -1,6 +1,4 @@
 import { movementAttributes } from '../movement-attributes';
-import { baseGround } from './base-ground';
-import { StateMerge } from '../../../lib/phinite-state-machine/state-merge';
 import { TransitionType } from '../../../lib/phinite-state-machine/transition-type';
 import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
@@ -11,6 +9,16 @@ export const adventurerRoll: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'adventurer-roll',
   onEnter(adventurer: Phecs.Entity) {
     adventurer.getComponent(SpriteComponent).sprite.anims.play('adventurer-roll')
+
+    const body = adventurer.getComponent(PhysicsBodyComponent).body;
+
+    const scene = adventurer.getComponent(SceneComponent).scene as BaseScene;
+    
+    if (scene.controls.left.isPressed) {
+      body.velocity.x = -movementAttributes.rollVelocity;
+    } else if (scene.controls.right.isPressed) {
+      body.velocity.x = movementAttributes.rollVelocity;
+    }
   },
   transitions: [
     {
