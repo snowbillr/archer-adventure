@@ -4,21 +4,26 @@ import { SpriteComponent } from '../../../components/sprite-component';
 import { PhysicsBodyComponent } from '../../../components/physics-body-component';
 import { SceneComponent } from '../../../components/scene-component';
 import { BaseScene } from '../../../scenes/base-scene';
+import { InvulnerabilityComponent } from '../../../components/invulnerability-component';
 
 export const adventurerRoll: PhiniteStateMachine.States.State<Phecs.Entity> = {
   id: 'adventurer-roll',
-  onEnter(adventurer: Phecs.Entity) {
+  onEnter(adventurer) {
     adventurer.getComponent(SpriteComponent).sprite.anims.play('adventurer-roll')
 
     const body = adventurer.getComponent(PhysicsBodyComponent).body;
 
     const scene = adventurer.getComponent(SceneComponent).scene as BaseScene;
-    
     if (scene.controls.left.isPressed) {
       body.velocity.x = -movementAttributes.rollVelocity;
     } else if (scene.controls.right.isPressed) {
       body.velocity.x = movementAttributes.rollVelocity;
     }
+
+    adventurer.getComponent(InvulnerabilityComponent).makeInvulnerable();
+  },
+  onLeave(adventurer) {
+    adventurer.getComponent(InvulnerabilityComponent).makeVulnerable();
   },
   transitions: [
     {
