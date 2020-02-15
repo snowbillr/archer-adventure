@@ -1,0 +1,16 @@
+{
+  "anims": [
+    {
+      "key": "barrel-destroy",
+      "frames": [
+        { "key": "barrel", "frame": 2 },
+        { "key": "barrel", "frame": 3 },
+        { "key": "barrel", "frame": 4 },
+        { "key": "barrel", "frame": 5 },
+        { "key": "barrel", "frame": 6 }
+      ],
+      "repeat": 0,
+      "frameRate": 10
+    }
+  ]
+}
