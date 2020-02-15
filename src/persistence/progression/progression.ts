@@ -58,5 +58,12 @@ export const conversations: Record<string, Progression.ConversationItem[]> = {
       conversationId: 'knight1',
       unlockDependencies: []
     }
+  ],
+
+  girl: [
+    {
+      conversationId: 'girl1',
+      unlockDependencies: []
+    }
   ]
 }
