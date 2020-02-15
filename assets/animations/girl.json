@@ -1,0 +1,37 @@
+{
+  "anims": [
+    {
+      "key": "girl-idle",
+      "frames": [
+        { "key": "girl", "frame": 0 },
+        { "key": "girl", "frame": 1 },
+        { "key": "girl", "frame": 2 },
+        { "key": "girl", "frame": 3 },
+        { "key": "girl", "frame": 4 },
+        { "key": "girl", "frame": 5 },
+        { "key": "girl", "frame": 6 },
+        { "key": "girl", "frame": 7 },
+        { "key": "girl", "frame": 8 },
+        { "key": "girl", "frame": 9 },
+        { "key": "girl", "frame": 10 },
+        { "key": "girl", "frame": 11 }
+      ],
+      "repeat": -1,
+      "frameRate": 10
+    },
+    {
+      "key": "girl-walk",
+      "frames": [
+        { "key": "girl", "frame": 12 },
+        { "key": "girl", "frame": 13 },
+        { "key": "girl", "frame": 14 },
+        { "key": "girl", "frame": 15 },
+        { "key": "girl", "frame": 16 },
+        { "key": "girl", "frame": 17 },
+        { "key": "girl", "frame": 18 }
+      ],
+      "repeat": -1,
+      "frameRate": 12
+    }
+  ]
+}

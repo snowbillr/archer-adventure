@@ -5,6 +5,7 @@ import { enemyStates } from "../entities/enemy/states";
 import { sheepStates } from "../entities/sheep/states";
 import { oldLadyStates } from "../entities/old-lady/states";
 import { oldManStates } from "../entities/old-man/states";
+import { girlStates } from "../entities/girl/states";
 
 const states: Record<string, PhiniteStateMachine.States.State<any>> = {};
 const sets: Record<string, string[]> = {};
@@ -34,6 +35,7 @@ registerSets([
   { id: 'sheep', states: sheepStates },
   { id: 'old-lady', states: oldLadyStates },
   { id: 'old-man', states: oldManStates },
+  { id: 'girl', states: girlStates },
   { id: 'barrel', states: barrelStates },
 ]);
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="5">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="6">
  <editorsettings>
   <export target="town.json" format="json"/>
  </editorsettings>
@@ -144,10 +144,25 @@
   <properties>
    <property name="depth" value="background0"/>
   </properties>
-  <object id="3" name="barrel" type="barrel" x="490.169" y="1510.91">
+  <object id="3" name="barrel" type="barrel" x="439.169" y="1510.91">
    <point/>
   </object>
   <object id="4" name="barrel" type="barrel" x="869.454" y="1510.1">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="npcs">
+  <properties>
+   <property name="depth" value="background0"/>
+  </properties>
+  <object id="5" name="girl" type="npc" x="546.207" y="1504.64">
+   <properties>
+    <property name="conversationKey" value="girl"/>
+    <property name="initialStateId" value="girl-idle"/>
+    <property name="npcId" value="girl"/>
+    <property name="stateSet" value="girl"/>
+    <property name="texture" value="girl"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

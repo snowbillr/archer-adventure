@@ -132,7 +132,7 @@
                  "type":"barrel",
                  "visible":true,
                  "width":0,
-                 "x":490.169306389951,
+                 "x":439.169306389951,
                  "y":1510.91152375751
                 }, 
                 {
@@ -158,9 +158,64 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":8,
+         "name":"npcs",
+         "objects":[
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"girl",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"conversationKey",
+                         "type":"string",
+                         "value":"girl"
+                        }, 
+                        {
+                         "name":"initialStateId",
+                         "type":"string",
+                         "value":"girl-idle"
+                        }, 
+                        {
+                         "name":"npcId",
+                         "type":"string",
+                         "value":"girl"
+                        }, 
+                        {
+                         "name":"stateSet",
+                         "type":"string",
+                         "value":"girl"
+                        }, 
+                        {
+                         "name":"texture",
+                         "type":"string",
+                         "value":"girl"
+                        }],
+                 "rotation":0,
+                 "type":"npc",
+                 "visible":true,
+                 "width":0,
+                 "x":546.206990715456,
+                 "y":1504.64227198252
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"depth",
+                 "type":"string",
+                 "value":"background0"
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":5,
+ "nextlayerid":9,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "properties":[
         {

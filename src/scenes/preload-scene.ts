@@ -33,6 +33,8 @@ export class PreloadScene extends BaseScene {
     this.load.animation('old-lady-animations', 'assets/animations/old-lady.json');
     this.load.spritesheet('old-man', 'assets/sprites/npcs/old-man.png', { frameWidth: 47, frameHeight: 66 });
     this.load.animation('old-man-animations', 'assets/animations/old-man.json');
+    this.load.spritesheet('girl', 'assets/sprites/npcs/girl.png', { frameWidth: 30, frameHeight: 54 });
+    this.load.animation('girl-animations', 'assets/animations/girl.json');
 
     // adventurer
     this.load.spritesheet('adventurer-core', 'assets/sprites/adventurer/adventurer-core.png', { frameWidth: 100, frameHeight: 74 })

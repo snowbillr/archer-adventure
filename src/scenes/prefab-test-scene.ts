@@ -14,37 +14,41 @@ import { adventurerTestPrefab } from '../entities/adventurer/test-prefab';
 import { arrowPrefab } from '../entities/arrow/prefab';
 import { arrowStates } from '../entities/arrow/states';
 import { SCENE_KEYS } from '../constants/scene-keys';
+import { npcPrefab } from '../entities/npc/prefab';
 
 export class PrefabTestScene extends BaseScene {
-  knight!: Phecs.Entity;
-
   constructor() {
     super({ key: SCENE_KEYS.prefabTest })
   }
 
   create() {
-    this.phecs.phEntities.registerPrefab('adventurer', adventurerTestPrefab);
+    // this.phecs.phEntities.registerPrefab('npc', npcPrefab);
 
+    /*
     this.phecs.phSystems.registerSystems(
       [
         HasBoundsSystem
       ]
     );
+    */
 
 
     let frameIndex = 21;
     const frameText = this.add.text(300, 50, `Frame ${frameIndex}`);
 
-    const entity = this.phecs.phEntities.createPrefab('adventurer', {}, 1, 150, 200);
+    // const entity = this.phecs.phEntities.createPrefab('adventurer', {}, 1, 150, 200);
 
-    entity.getComponent(SpriteComponent).sprite.setScale(4);
-    entity.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
+    // entity.getComponent(SpriteComponent).sprite.setScale(4);
+    // entity.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
 
-    entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
+    // entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
+
+    const sprite = this.add.sprite(100, 100, 'girl', 0);
+    sprite.setScale(3);
+
+    sprite.anims.play('girl-idle');
 
     /*
-    knight.getComponent(SpriteComponent).sprite.anims.play('knight-attack');
-
     this.input.keyboard.on('keydown', (e: any) => {
       switch (e.key) {
         case "ArrowUp":
