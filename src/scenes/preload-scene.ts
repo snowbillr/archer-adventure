@@ -64,6 +64,10 @@ export class PreloadScene extends BaseScene {
     this.load.json('knight-bounds', 'assets/bounds/knight.json');
     this.load.animation('knight-animations', 'assets/animations/knight.json');
 
+    // knight 2
+    this.load.atlas('knight2', 'assets/sprites/knight2/knight-scaled-2.5.png', 'assets/sprites/knight2/knight.json');
+    this.load.animation('knight-2-animations', 'assets/animations/knight2.json');
+
     // indicators
     this.load.spritesheet('indicator-down', 'assets/sprites/indicators/indicator-down.png', { frameWidth: 32, frameHeight: 32 })
     this.load.spritesheet('indicator-right', 'assets/sprites/indicators/indicator-right.png', { frameWidth: 32, frameHeight: 32 })
@@ -99,7 +103,7 @@ export class PreloadScene extends BaseScene {
   }
 
   create() {
-    this.scene.start(SCENE_KEYS.title);
-    // this.scene.start(SCENE_KEYS.prefabTest);
+    // this.scene.start(SCENE_KEYS.title);
+    this.scene.start(SCENE_KEYS.prefabTest);
   }
 }

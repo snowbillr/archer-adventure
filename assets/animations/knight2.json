@@ -1,0 +1,65 @@
+{
+  "anims": [
+    {
+      "key": "knight2-ready",
+      "frames": [
+        { "key": "knight2", "frame": "ready_1" },
+        { "key": "knight2", "frame": "ready_2" },
+        { "key": "knight2", "frame": "ready_3" },
+        { "key": "knight2", "frame": "ready_2" }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    },
+    {
+      "key": "knight2-walk",
+      "frames": [
+        { "key": "knight2", "frame": "walk_1" },
+        { "key": "knight2", "frame": "walk_2" },
+        { "key": "knight2", "frame": "walk_3" },
+        { "key": "knight2", "frame": "walk_4" },
+        { "key": "knight2", "frame": "walk_5" },
+        { "key": "knight2", "frame": "walk_6" }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    },
+    {
+      "key": "knight2-run",
+      "frames": [
+        { "key": "knight2", "frame": "run_1" },
+        { "key": "knight2", "frame": "run_2" },
+        { "key": "knight2", "frame": "run_3" },
+        { "key": "knight2", "frame": "run_4" },
+        { "key": "knight2", "frame": "run_5" },
+        { "key": "knight2", "frame": "run_6" }
+      ],
+      "repeat": -1,
+      "frameRate": 7
+    },
+    {
+      "key": "knight2-attack-vertical",
+      "frames": [
+        { "key": "knight2", "frame": "attack1_1" },
+        { "key": "knight2", "frame": "attack1_2" },
+        { "key": "knight2", "frame": "attack1_3" },
+        { "key": "knight2", "frame": "attack1_4" },
+        { "key": "knight2", "frame": "attack1_5" },
+        { "key": "knight2", "frame": "attack1_6" }
+      ],
+      "frameRate": 7
+    },
+    {
+      "key": "knight2-attack-horizontal",
+      "frames": [
+        { "key": "knight2", "frame": "attack4_1" },
+        { "key": "knight2", "frame": "attack4_2" },
+        { "key": "knight2", "frame": "attack4_3" },
+        { "key": "knight2", "frame": "attack4_4" },
+        { "key": "knight2", "frame": "attack4_5" },
+        { "key": "knight2", "frame": "attack4_6" }
+      ],
+      "frameRate": 7
+    }
+  ]
+}

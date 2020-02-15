@@ -43,10 +43,10 @@ export class PrefabTestScene extends BaseScene {
 
     // entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
 
-    const sprite = this.add.sprite(100, 100, 'girl', 0);
+    const sprite = this.add.sprite(200, 100, 'knight2', 'attack1_3');
     sprite.setScale(3);
 
-    sprite.anims.play('girl-idle');
+    sprite.anims.play('knight2-attack-horizontal');
 
     /*
     this.input.keyboard.on('keydown', (e: any) => {
