@@ -1,6 +1,6 @@
 [
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "ready_1",
     "bounds": {
       "offset": {
@@ -14,7 +14,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "ready_2",
     "bounds": {
       "offset": {
@@ -28,7 +28,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "ready_3",
     "bounds": {
       "offset": {
@@ -42,7 +42,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_1",
     "bounds": {
       "offset": {
@@ -56,7 +56,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_2",
     "bounds": {
       "offset": {
@@ -70,7 +70,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_3",
     "bounds": {
       "offset": {
@@ -84,7 +84,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_4",
     "bounds": {
       "offset": {
@@ -98,7 +98,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_5",
     "bounds": {
       "offset": {
@@ -112,7 +112,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "walk_6",
     "bounds": {
       "offset": {
@@ -126,7 +126,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_1",
     "bounds": {
       "offset": {
@@ -140,7 +140,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_2",
     "bounds": {
       "offset": {
@@ -154,7 +154,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_3",
     "bounds": {
       "offset": {
@@ -168,7 +168,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_4",
     "bounds": {
       "offset": {
@@ -182,7 +182,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_5",
     "bounds": {
       "offset": {
@@ -196,7 +196,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "run_6",
     "bounds": {
       "offset": {
@@ -210,7 +210,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_1",
     "bounds": {
       "offset": {
@@ -224,7 +224,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_2",
     "bounds": {
       "offset": {
@@ -238,7 +238,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_3",
     "bounds": {
       "offset": {
@@ -252,7 +252,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_4",
     "bounds": {
       "offset": {
@@ -266,7 +266,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_5",
     "bounds": {
       "offset": {
@@ -280,7 +280,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack1_6",
     "bounds": {
       "offset": {
@@ -294,7 +294,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_1",
     "bounds": {
       "offset": {
@@ -308,7 +308,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_2",
     "bounds": {
       "offset": {
@@ -322,7 +322,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_3",
     "bounds": {
       "offset": {
@@ -336,7 +336,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_4",
     "bounds": {
       "offset": {
@@ -350,7 +350,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_5",
     "bounds": {
       "offset": {
@@ -364,7 +364,7 @@
     }
   },
   {
-    "key": "knight2",
+    "key": "knight",
     "frame": "attack4_6",
     "bounds": {
       "offset": {

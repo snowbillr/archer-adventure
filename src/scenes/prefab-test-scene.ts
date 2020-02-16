@@ -40,7 +40,7 @@ export class PrefabTestScene extends BaseScene {
     entity.getComponent(SpriteComponent).sprite.setFrame('attack4_6');
     entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
 
-    // const sprite = this.add.sprite(200, 100, 'knight2', 'attack1_3');
+    // const sprite = this.add.sprite(200, 100, 'knight', 'attack1_3');
     // sprite.setScale(3);
 
     // sprite.anims.play('knight2-attack-horizontal');

@@ -15,7 +15,7 @@ export class KnightActor {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
         sprite.flipX = x < sprite.x;
-        sprite.anims.play('knight2-run');
+        sprite.anims.play('knight-run');
 
         this.scene.tweens.add({
           targets: sprite,
@@ -24,7 +24,7 @@ export class KnightActor {
           },
           duration: duration,
           onComplete: () => {
-            sprite.anims.play('knight2-ready');
+            sprite.anims.play('knight-ready');
             resolve();
           }
         });
@@ -38,7 +38,7 @@ export class KnightActor {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
         sprite.y -= 20;
 
-        sprite.anims.play('knight2-attack-vertical');
+        sprite.anims.play('knight-attack-vertical');
 
         sprite.on(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, resolve);
       });
@@ -47,7 +47,7 @@ export class KnightActor {
 
   idle() {
     return new ScriptAction(() => {
-      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight2-ready');
+      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight-ready');
 
       return Promise.resolve();
     });

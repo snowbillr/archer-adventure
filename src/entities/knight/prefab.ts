@@ -12,7 +12,7 @@ export const knightPrefab: Phecs.Prefab = {
     {
       component: SpriteComponent,
       data: {
-        texture: 'knight2',
+        texture: 'knight',
         frame: 'ready_1',
       }
     },
@@ -20,7 +20,7 @@ export const knightPrefab: Phecs.Prefab = {
     {
       component: BoundsComponent,
       data: {
-        boundsKey: "knight2-bounds",
+        boundsKey: "knight-bounds",
       }
     },
     {
