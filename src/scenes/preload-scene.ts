@@ -65,7 +65,7 @@ export class PreloadScene extends BaseScene {
     this.load.animation('trainer-animations', 'assets/animations/trainer.json');
 
     // knight
-    this.load.atlas('knight', 'assets/sprites/knight/knight-scaled-2.5.png', 'assets/sprites/knight/knight.json');
+    this.load.atlas('knight', 'assets/sprites/knight/knight.png', 'assets/sprites/knight/knight.json');
     this.load.animation('knight-animations', 'assets/animations/knight.json');
     this.load.json('knight-bounds', 'assets/bounds/knight.json');
 
