@@ -1,5 +1,4 @@
 import { ScriptAction } from "../lib/showrunner/script-action";
-import { PhiniteStateMachineComponent } from "../components/phinite-state-machine-component";
 import { SpriteComponent } from "../components/sprite-component";
 
 export class KnightActor {
@@ -15,8 +14,8 @@ export class KnightActor {
     return new ScriptAction(() => {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
-        sprite.flipX = x > sprite.x;
-        sprite.anims.play('knight-run');
+        sprite.flipX = x < sprite.x;
+        sprite.anims.play('knight2-run');
 
         this.scene.tweens.add({
           targets: sprite,
@@ -25,7 +24,7 @@ export class KnightActor {
           },
           duration: duration,
           onComplete: () => {
-            sprite.anims.play('knight-ready');
+            sprite.anims.play('knight2-ready');
             resolve();
           }
         });
@@ -37,8 +36,9 @@ export class KnightActor {
     return new ScriptAction(() => {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
+        sprite.y -= 20;
 
-        sprite.anims.play('knight-attack');
+        sprite.anims.play('knight2-attack-vertical');
 
         sprite.on(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, resolve);
       });
@@ -47,7 +47,7 @@ export class KnightActor {
 
   idle() {
     return new ScriptAction(() => {
-      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight-idle');
+      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight2-ready');
 
       return Promise.resolve();
     });
