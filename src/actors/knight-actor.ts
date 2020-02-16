@@ -36,7 +36,7 @@ export class KnightActor {
     return new ScriptAction(() => {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
-        sprite.y -= 20;
+        sprite.y -= 20; // TODO: https://trello.com/c/WDGd7iYz/93-knight-spritesheet-has-different-sizes-for-different-animations
 
         sprite.anims.play('knight-attack-vertical');
 
