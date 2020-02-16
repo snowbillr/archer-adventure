@@ -1,0 +1,380 @@
+[
+  {
+    "key": "knight2",
+    "frame": "ready_1",
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 33
+      },
+      "size": {
+        "width": 45,
+        "height": 72
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "ready_2",
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 30
+      },
+      "size": {
+        "width": 45,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "ready_3",
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 30
+      },
+      "size": {
+        "width": 45,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_1",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 28
+      },
+      "size": {
+        "width": 50,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_2",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 33
+      },
+      "size": {
+        "width": 50,
+        "height": 72
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_3",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 30
+      },
+      "size": {
+        "width": 50,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_4",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 28
+      },
+      "size": {
+        "width": 50,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_5",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 33
+      },
+      "size": {
+        "width": 50,
+        "height": 72
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "walk_6",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 30
+      },
+      "size": {
+        "width": 50,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_1",
+    "bounds": {
+      "offset": {
+        "x": 48,
+        "y": 18
+      },
+      "size": {
+        "width": 30,
+        "height": 87
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_2",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 33
+      },
+      "size": {
+        "width": 52,
+        "height": 72
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_3",
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 30
+      },
+      "size": {
+        "width": 53,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_4",
+    "bounds": {
+      "offset": {
+        "x": 38,
+        "y": 28
+      },
+      "size": {
+        "width": 50,
+        "height": 77
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_5",
+    "bounds": {
+      "offset": {
+        "x": 40,
+        "y": 33
+      },
+      "size": {
+        "width": 60,
+        "height": 72
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "run_6",
+    "bounds": {
+      "offset": {
+        "x": 48,
+        "y": 30
+      },
+      "size": {
+        "width": 55,
+        "height": 75
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_1",
+    "bounds": {
+      "offset": {
+        "x": 78,
+        "y": 75
+      },
+      "size": {
+        "width": 45,
+        "height": 73
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_2",
+    "bounds": {
+      "offset": {
+        "x": 78,
+        "y": 53
+      },
+      "size": {
+        "width": 45,
+        "height": 95
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_3",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 68
+      },
+      "size": {
+        "width": 90,
+        "height": 80
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_4",
+    "bounds": {
+      "offset": {
+        "x": 33,
+        "y": 52
+      },
+      "size": {
+        "width": 150,
+        "height": 96
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_5",
+    "bounds": {
+      "offset": {
+        "x": 83,
+        "y": 82
+      },
+      "size": {
+        "width": 50,
+        "height": 66
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack1_6",
+    "bounds": {
+      "offset": {
+        "x": 83,
+        "y": 75
+      },
+      "size": {
+        "width": 67,
+        "height": 73
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_1",
+    "bounds": {
+      "offset": {
+        "x": 78,
+        "y": 75
+      },
+      "size": {
+        "width": 45,
+        "height": 73
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_2",
+    "bounds": {
+      "offset": {
+        "x": 80,
+        "y": 75
+      },
+      "size": {
+        "width": 40,
+        "height": 73
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_3",
+    "bounds": {
+      "offset": {
+        "x": 43,
+        "y": 75
+      },
+      "size": {
+        "width": 77,
+        "height": 73
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_4",
+    "bounds": {
+      "offset": {
+        "x": 45,
+        "y": 72
+      },
+      "size": {
+        "width": 153,
+        "height": 76
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_5",
+    "bounds": {
+      "offset": {
+        "x": 83,
+        "y": 77
+      },
+      "size": {
+        "width": 45,
+        "height": 71
+      }
+    }
+  },
+  {
+    "key": "knight2",
+    "frame": "attack4_6",
+    "bounds": {
+      "offset": {
+        "x": 83,
+        "y": 75
+      },
+      "size": {
+        "width": 67,
+        "height": 73
+      }
+    }
+  }
+]

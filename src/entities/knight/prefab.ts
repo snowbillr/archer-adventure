@@ -12,15 +12,15 @@ export const knightPrefab: Phecs.Prefab = {
     {
       component: SpriteComponent,
       data: {
-        texture: 'knight',
-        frame: 0,
+        texture: 'knight2',
+        frame: 'ready_1',
       }
     },
     PhysicsBodyComponent,
     {
       component: BoundsComponent,
       data: {
-        boundsKey: "knight-bounds",
+        boundsKey: "knight2-bounds",
       }
     },
     {
