@@ -1,5 +1,4 @@
 import { ScriptAction } from "../lib/showrunner/script-action";
-import { PhiniteStateMachineComponent } from "../components/phinite-state-machine-component";
 import { SpriteComponent } from "../components/sprite-component";
 
 export class KnightActor {
@@ -15,7 +14,7 @@ export class KnightActor {
     return new ScriptAction(() => {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
-        sprite.flipX = x > sprite.x;
+        sprite.flipX = x < sprite.x;
         sprite.anims.play('knight-run');
 
         this.scene.tweens.add({
@@ -37,8 +36,9 @@ export class KnightActor {
     return new ScriptAction(() => {
       return new Promise(resolve => {
         const sprite = this.knight.getComponent(SpriteComponent).sprite;
+        sprite.y -= 20; // TODO: https://trello.com/c/WDGd7iYz/93-knight-spritesheet-has-different-sizes-for-different-animations
 
-        sprite.anims.play('knight-attack');
+        sprite.anims.play('knight-attack-vertical');
 
         sprite.on(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, resolve);
       });
@@ -47,7 +47,7 @@ export class KnightActor {
 
   idle() {
     return new ScriptAction(() => {
-      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight-idle');
+      this.knight.getComponent(SpriteComponent).sprite.anims.play('knight-ready');
 
       return Promise.resolve();
     });

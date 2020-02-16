@@ -68,9 +68,12 @@ export class KnightForestCustceneSystem implements Phecs.System {
       knightActor.idle(),
     ]);
 
+    const previousCameraBounds = this.scene.cameras.main.getBounds();
+
     new Showrunner(script)
       .setPrologue(async () => {
         disablePhSMPrologue(this.scene);
+        
         cameraFollowPrologue(this.scene, knight.getComponent(SpriteComponent).sprite);
         await letterboxPrologue(this.scene);
       })

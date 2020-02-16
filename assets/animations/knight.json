@@ -1,56 +1,65 @@
 {
   "anims": [
     {
-      "key": "knight-idle",
+      "key": "knight-ready",
       "frames": [
-        { "key": "knight", "frame": 0 },
-        { "key": "knight", "frame": 1 },
-        { "key": "knight", "frame": 2 },
-        { "key": "knight", "frame": 3 }
+        { "key": "knight", "frame": "ready_1" },
+        { "key": "knight", "frame": "ready_2" },
+        { "key": "knight", "frame": "ready_3" },
+        { "key": "knight", "frame": "ready_2" }
       ],
       "repeat": -1,
       "frameRate": 4
     },
     {
-      "key": "knight-ready",
+      "key": "knight-walk",
       "frames": [
-        { "key": "knight", "frame": 4 },
-        { "key": "knight", "frame": 5 },
-        { "key": "knight", "frame": 6 },
-        { "key": "knight", "frame": 7 }
+        { "key": "knight", "frame": "walk_1" },
+        { "key": "knight", "frame": "walk_2" },
+        { "key": "knight", "frame": "walk_3" },
+        { "key": "knight", "frame": "walk_4" },
+        { "key": "knight", "frame": "walk_5" },
+        { "key": "knight", "frame": "walk_6" }
       ],
       "repeat": -1,
-      "frameRate": 4
+      "frameRate": 7
     },
     {
       "key": "knight-run",
       "frames": [
-        { "key": "knight", "frame": 8 },
-        { "key": "knight", "frame": 9 },
-        { "key": "knight", "frame": 10 },
-        { "key": "knight", "frame": 11 },
-        { "key": "knight", "frame": 12 },
-        { "key": "knight", "frame": 13 },
-        { "key": "knight", "frame": 14 },
-        { "key": "knight", "frame": 15 }
+        { "key": "knight", "frame": "run_1" },
+        { "key": "knight", "frame": "run_2" },
+        { "key": "knight", "frame": "run_3" },
+        { "key": "knight", "frame": "run_4" },
+        { "key": "knight", "frame": "run_5" },
+        { "key": "knight", "frame": "run_6" }
       ],
       "repeat": -1,
-      "frameRate": 8
+      "frameRate": 7
     },
     {
-      "key": "knight-attack",
+      "key": "knight-attack-vertical",
       "frames": [
-        { "key": "knight", "frame": 16 },
-        { "key": "knight", "frame": 17 },
-        { "key": "knight", "frame": 18 },
-        { "key": "knight", "frame": 19 },
-        { "key": "knight", "frame": 20 },
-        { "key": "knight", "frame": 21 },
-        { "key": "knight", "frame": 22 },
-        { "key": "knight", "frame": 23 }
+        { "key": "knight", "frame": "attack1_1" },
+        { "key": "knight", "frame": "attack1_2" },
+        { "key": "knight", "frame": "attack1_3" },
+        { "key": "knight", "frame": "attack1_4" },
+        { "key": "knight", "frame": "attack1_5" },
+        { "key": "knight", "frame": "attack1_6" }
       ],
-      "repeat": 0,
-      "frameRate": 8
+      "frameRate": 7
+    },
+    {
+      "key": "knight-attack-horizontal",
+      "frames": [
+        { "key": "knight", "frame": "attack4_1" },
+        { "key": "knight", "frame": "attack4_2" },
+        { "key": "knight", "frame": "attack4_3" },
+        { "key": "knight", "frame": "attack4_4" },
+        { "key": "knight", "frame": "attack4_5" },
+        { "key": "knight", "frame": "attack4_6" }
+      ],
+      "frameRate": 7
     }
   ]
 }

@@ -13,7 +13,7 @@ export const knightPrefab: Phecs.Prefab = {
       component: SpriteComponent,
       data: {
         texture: 'knight',
-        frame: 0,
+        frame: 'ready_1',
       }
     },
     PhysicsBodyComponent,

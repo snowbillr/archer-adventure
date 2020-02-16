@@ -22,31 +22,28 @@ export class PrefabTestScene extends BaseScene {
   }
 
   create() {
-    // this.phecs.phEntities.registerPrefab('npc', npcPrefab);
+    this.phecs.phEntities.registerPrefab('knight', knightPrefab);
 
-    /*
     this.phecs.phSystems.registerSystems(
       [
         HasBoundsSystem
       ]
     );
-    */
 
 
-    let frameIndex = 21;
-    const frameText = this.add.text(300, 50, `Frame ${frameIndex}`);
+    // let frameIndex = 21;
+    // const frameText = this.add.text(300, 50, `Frame ${frameIndex}`);
 
-    // const entity = this.phecs.phEntities.createPrefab('adventurer', {}, 1, 150, 200);
+    const entity = this.phecs.phEntities.createPrefab('knight', {}, 1, 400, 200);
 
-    // entity.getComponent(SpriteComponent).sprite.setScale(4);
-    // entity.getComponent(SpriteComponent).sprite.setFrame(frameIndex);
+    entity.getComponent(SpriteComponent).sprite.setScale(3);
+    entity.getComponent(SpriteComponent).sprite.setFrame('attack4_6');
+    entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
 
-    // entity.getComponent(PhysicsBodyComponent).body.allowGravity = false;
+    // const sprite = this.add.sprite(200, 100, 'knight', 'attack1_3');
+    // sprite.setScale(3);
 
-    const sprite = this.add.sprite(100, 100, 'girl', 0);
-    sprite.setScale(3);
-
-    sprite.anims.play('girl-idle');
+    // sprite.anims.play('knight2-attack-horizontal');
 
     /*
     this.input.keyboard.on('keydown', (e: any) => {
@@ -66,6 +63,6 @@ export class PrefabTestScene extends BaseScene {
 
     this.phecs.start();
 
-    this.cameras.main.setBackgroundColor('#777777');
+    this.cameras.main.setBackgroundColor('#22aa22');
   }
 }
