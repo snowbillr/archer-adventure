@@ -1,0 +1,56 @@
+{
+  "anims": [
+    {
+      "key": "trainer-idle",
+      "frames": [
+        { "key": "trainer", "frame": 0 },
+        { "key": "trainer", "frame": 1 },
+        { "key": "trainer", "frame": 2 },
+        { "key": "trainer", "frame": 3 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    },
+    {
+      "key": "trainer-ready",
+      "frames": [
+        { "key": "trainer", "frame": 4 },
+        { "key": "trainer", "frame": 5 },
+        { "key": "trainer", "frame": 6 },
+        { "key": "trainer", "frame": 7 }
+      ],
+      "repeat": -1,
+      "frameRate": 4
+    },
+    {
+      "key": "trainer-run",
+      "frames": [
+        { "key": "trainer", "frame": 8 },
+        { "key": "trainer", "frame": 9 },
+        { "key": "trainer", "frame": 10 },
+        { "key": "trainer", "frame": 11 },
+        { "key": "trainer", "frame": 12 },
+        { "key": "trainer", "frame": 13 },
+        { "key": "trainer", "frame": 14 },
+        { "key": "trainer", "frame": 15 }
+      ],
+      "repeat": -1,
+      "frameRate": 8
+    },
+    {
+      "key": "trainer-attack",
+      "frames": [
+        { "key": "trainer", "frame": 16 },
+        { "key": "trainer", "frame": 17 },
+        { "key": "trainer", "frame": 18 },
+        { "key": "trainer", "frame": 19 },
+        { "key": "trainer", "frame": 20 },
+        { "key": "trainer", "frame": 21 },
+        { "key": "trainer", "frame": 22 },
+        { "key": "trainer", "frame": 23 }
+      ],
+      "repeat": 0,
+      "frameRate": 8
+    }
+  ]
+}

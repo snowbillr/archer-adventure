@@ -1,6 +1,6 @@
 [
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 0,
     "bounds": {
       "offset": {
@@ -14,7 +14,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 1,
     "bounds": {
       "offset": {
@@ -28,7 +28,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 2,
     "bounds": {
       "offset": {
@@ -42,7 +42,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 3,
     "bounds": {
       "offset": {
@@ -56,7 +56,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 4,
     "bounds": {
       "offset": {
@@ -70,7 +70,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 5,
     "bounds": {
       "offset": {
@@ -84,7 +84,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 6,
     "bounds": {
       "offset": {
@@ -98,7 +98,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 7,
     "bounds": {
       "offset": {
@@ -112,7 +112,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 8,
     "bounds": {
       "offset": {
@@ -126,7 +126,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 9,
     "bounds": {
       "offset": {
@@ -140,7 +140,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 10,
     "bounds": {
       "offset": {
@@ -154,7 +154,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 11,
     "bounds": {
       "offset": {
@@ -168,7 +168,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 12,
     "bounds": {
       "offset": {
@@ -182,7 +182,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 13,
     "bounds": {
       "offset": {
@@ -196,7 +196,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 14,
     "bounds": {
       "offset": {
@@ -210,7 +210,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 15,
     "bounds": {
       "offset": {
@@ -224,7 +224,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 16,
     "bounds": {
       "offset": {
@@ -238,7 +238,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 17,
     "bounds": {
       "offset": {
@@ -252,7 +252,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 18,
     "bounds": {
       "offset": {
@@ -266,7 +266,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 19,
     "bounds": {
       "offset": {
@@ -280,7 +280,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 20,
     "bounds": {
       "offset": {
@@ -294,7 +294,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 21,
     "bounds": {
       "offset": {
@@ -308,7 +308,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 22,
     "bounds": {
       "offset": {
@@ -322,7 +322,7 @@
     }
   },
   {
-    "key": "knight",
+    "key": "trainer",
     "frame": 23,
     "bounds": {
       "offset": {

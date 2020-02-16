@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="6">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="74" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="7">
  <editorsettings>
   <export target="town.json" format="json"/>
  </editorsettings>
@@ -162,6 +162,16 @@
     <property name="npcId" value="girl"/>
     <property name="stateSet" value="girl"/>
     <property name="texture" value="girl"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="6" name="trainer" type="npc" x="666.303" y="1506.91">
+   <properties>
+    <property name="conversationKey" value="trainer"/>
+    <property name="initialStateId" value="trainer-idle"/>
+    <property name="npcId" value="trainer"/>
+    <property name="stateSet" value="trainer"/>
+    <property name="texture" value="trainer"/>
    </properties>
    <point/>
   </object>

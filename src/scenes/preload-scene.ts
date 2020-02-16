@@ -59,10 +59,10 @@ export class PreloadScene extends BaseScene {
     this.load.json('enemy-hurtboxes', 'assets/hurtboxes/enemy.json');
     this.load.json('enemy-hitboxes', 'assets/hitboxes/enemy.json');
 
-    // knight
-    this.load.spritesheet('knight', 'assets/sprites/knight/knight.png', { frameWidth: 84, frameHeight: 84 });
-    this.load.json('knight-bounds', 'assets/bounds/knight.json');
-    this.load.animation('knight-animations', 'assets/animations/knight.json');
+    // trainer
+    this.load.spritesheet('trainer', 'assets/sprites/trainer/trainer.png', { frameWidth: 84, frameHeight: 84 });
+    this.load.json('trainer-bounds', 'assets/bounds/trainer.json');
+    this.load.animation('trainer-animations', 'assets/animations/trainer.json');
 
     // knight 2
     this.load.atlas('knight2', 'assets/sprites/knight2/knight-scaled-2.5.png', 'assets/sprites/knight2/knight.json');

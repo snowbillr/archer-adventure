@@ -201,6 +201,44 @@
                  "width":0,
                  "x":546.206990715456,
                  "y":1504.64227198252
+                }, 
+                {
+                 "height":0,
+                 "id":6,
+                 "name":"trainer",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"conversationKey",
+                         "type":"string",
+                         "value":"trainer"
+                        }, 
+                        {
+                         "name":"initialStateId",
+                         "type":"string",
+                         "value":"trainer-idle"
+                        }, 
+                        {
+                         "name":"npcId",
+                         "type":"string",
+                         "value":"trainer"
+                        }, 
+                        {
+                         "name":"stateSet",
+                         "type":"string",
+                         "value":"trainer"
+                        }, 
+                        {
+                         "name":"texture",
+                         "type":"string",
+                         "value":"trainer"
+                        }],
+                 "rotation":0,
+                 "type":"npc",
+                 "visible":true,
+                 "width":0,
+                 "x":666.302566903331,
+                 "y":1506.91152375751
                 }],
          "opacity":1,
          "properties":[
@@ -215,7 +253,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":6,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "properties":[
         {
